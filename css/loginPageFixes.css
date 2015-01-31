@@ -1,0 +1,45 @@
+.loginpanel {
+	text-shadow: none;
+}
+.loginpanel h2 {
+	border-bottom: none;
+	color: inherit !important;
+	padding-top: 0;
+	padding-bottom: 5px;
+}
+.loginpanel .guestsub {
+	border-top: none;
+	padding-top: 0;
+}
+.loginbox {
+	background: transparent;
+	border: none !important;
+	box-shadow: none;
+
+	margin: 0;
+
+	width: 100%;
+}
+.form-label {
+	display: none;
+}
+.loginbox .loginsub .loginform .form-input {
+	text-align: center;
+	width: 100% !important;
+}
+.form-input > input {
+	background-color: white;
+	margin: 0;
+}
+.form-input > input[type=text] { 
+	margin-bottom: -2px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.form-input > input[type=password] { 
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+.loginbox .subcontent {
+	padding: 0;
+}

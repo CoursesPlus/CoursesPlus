@@ -1,0 +1,25 @@
+.coursebox {
+	position: relative;
+}
+
+.upcomingEventsBtn {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	border-radius: 0;
+	opacity: 0;
+	transition: opacity 0.4s ease-in-out;
+}
+
+.coursesplus-eventTitle {
+	font-size: 14pt;
+	font-weight: bold;
+}
+.coursesplus-eventDesc {
+	font-size: 11pt;
+}
+.coursesplus-eventGo {
+	margin-bottom: 10px;
+}
+}

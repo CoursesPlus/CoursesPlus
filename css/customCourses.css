@@ -1,0 +1,110 @@
+.coursebox {
+	position: relative;
+}
+.upcomingBtn {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	border-radius: 0;
+}
+.editBtn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	border-radius: 0;
+	opacity: 0;
+	transition: opacity 0.4s ease-in-out;
+}
+.editUppercase {
+	text-transform: uppercase;
+}
+
+.selBox {
+	display: inline-block;
+	border: solid 1px black;
+	width: 48px;
+	height: 48px;
+	cursor: pointer;
+	margin-right: 2px;
+}
+.selBox:hover {
+	border: solid 2px yellow;
+}
+.selBox.selected {
+	border: solid 3px yellow;
+}
+
+.pink {
+	background: pink;
+}
+.lightgreen {
+	background: lightgreen;
+}
+.lightblue {
+	background: lightblue;
+}
+.orange {
+	background: orange;
+}
+.gray {
+	background: gray;
+}
+.black {
+	background: black;
+}
+.white {
+	background: white;
+}
+.selBox.custom {
+	background-color: white;
+	color: white;
+
+	position: relative;
+	top: -19px;
+}
+.selBox.custom > span {
+	color: inherit;
+	display: inline-block;
+
+	font-size: 25px;
+
+	text-align: center;
+
+	height: 25px;
+	width: 43px;
+
+	position: relative;
+
+	-webkit-filter: invert(100%);
+	filter: invert(100%);
+}
+
+.arialRounded {
+	font-family: "Arial Rounded MT Bold", sans-serif;
+}
+.georgia {
+	font-family: "Georgia", sans-serif;
+}
+.helveticaNeue {
+	font-family: "Helvetica Neue", "Arial", sans-serif;
+}
+.impact {
+	font-family: "Impact", sans-serif;
+}
+.tahoma {
+	font-family: "Tahoma", sans-serif;
+}
+.ptSans {
+	font-family: "PT Sans", serif;
+}
+.timesNewRoman {
+	font-family: "Times New Roman", serif;
+}
+.trebuchetMS {
+	font-family: "Trebuchet MS", serif;
+}
+.verdana {
+	font-family: "Verdana", sans-serif;
+}
