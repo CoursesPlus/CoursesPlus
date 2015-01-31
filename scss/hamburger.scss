@@ -1,0 +1,218 @@
+@import "compass/reset";	// Override browser default styles.
+@import "compass/css3";		// Use some CSS3 transitions (among other things) to make the interface more usable.
+
+@import "fonts";			// Import webfonts file.
+
+html {
+	height: 100%;
+}
+ 
+body {
+	height: 100%;
+	font-family: Lato, Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 20px;
+	min-width: 320px;
+}
+ 
+h3 {
+	margin: 0 0 20px 0;
+}
+p {
+	margin: 0 0 20px 0;
+}
+
+#page-content {
+	display: block;
+	width: 100%;
+	min-height: 100%;
+	background: #ffffff;
+	position: relative;
+	z-index: 5;
+	@include box-sizing(border-box);
+	@include box-shadow(0 0 20px #000000);
+	@include transition-property(margin-left);
+	@include transition-duration(0.25s);
+	@include transition-timing-function(ease-in); 
+	@include transition-delay(0);
+	padding: 80px 20px 40px 20px;
+}
+
+#hamburger-icon {
+	float: left;
+	width: 100%;
+	height: 60px;
+	margin: 0 0 20px 0;
+	padding: 0 20px;
+	line-height: 50px;
+	cursor: pointer;
+	position: fixed;
+	z-index: 10;
+	@include box-sizing(border-box);
+	@include transition-property(left);
+	@include transition-duration(0.25s);
+	@include transition-timing-function(ease-in); 
+	@include transition-delay(0);
+	display: block;
+	top: 0;
+	left: 0;
+	@include box-shadow(2px 1px 9px black);
+
+	background-color: #EEEEEE;
+	background-image: url("../images/logos/circle.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 52px 52px;
+}
+
+nav {
+	display: block;
+	width: 100%;
+	margin: 0 0 20px 0;
+	line-height: 50px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	@include box-sizing(border-box);
+	height: 100%;
+	padding: 10px 20px 10px 10px;
+	z-index: 1;
+	background: #EEEEEE;
+	a#home-logo {
+		display: block;
+		float: left;
+	}
+	ul {
+		display: block;
+		float: left;
+		width: 100%;
+		line-height: 40px;
+		> li {
+			display: block;
+			float: left;
+			width: 100%;
+			> a {
+				display: block;
+				float: left;
+				width: 100%;
+			}
+		}
+	}
+}
+
+body.nav-expanded {
+	#page-content {
+		margin-left: 200px;
+	}
+	#hamburger-icon {
+		left: 200px;
+	}
+}
+
+#username-img {
+	border-radius: 100%;
+}
+
+#username-big {
+	font-size: 24px;
+	font-weight: 100;
+	line-height: 24px;
+	position: relative;
+	top: -15px;
+	left: 7px;
+}
+
+#hamburger-icon > i {
+	margin-top: 17px;
+	font-size: 24px;
+}
+
+#user-actions {
+	font-size: 14pt;
+}
+#userinfo > #user-actions > li {
+	display: block;
+	color: black;
+	text-decoration: none;
+	padding-left: 10px;
+	margin-right: 999999999px;
+	width: 160px;
+	@include transition(margin-left 0.25s ease-in-out);
+
+	> a {
+		color: black;
+		text-decoration: none;
+	}
+}
+#userinfo > #user-actions > li:hover {
+	background-color: #DDD;
+	cursor: pointer;
+	margin-left: 3px;
+}
+
+// Avatar
+#username-img {
+	width: 48px;
+	height: 48px;
+}
+
+// Calendar
+.calendar {
+	margin: 0 auto;
+	text-align: center;
+}
+.calendar-month {
+	font-size: 18px;
+}
+.calendar-month, .calendar-day, .calendar-dayOfWeek {
+	text-align: center;
+}
+.calendar-day, .calendar-dayOfWeek {
+	padding: 8px;
+}
+.calendar-notInMonth {
+	background: lightgray;
+}
+
+// Pages
+.page {
+	display: none;
+}
+.page.showing {
+	display: block;
+}
+
+// Loading page
+#loadingPage {
+	text-align: center;
+}
+
+.grid {
+	text-align: center;
+}
+
+// Headers
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 300;
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+h1 {
+	font-size: 26px;
+}
+h2 {
+	font-size: 24px;
+}
+h3 {
+	font-size: 22px;
+}
+h4 {
+	font-size: 20px;
+}
+h5 {
+	font-size: 18px;
+}
+h6 {
+	font-size: 16px;
+}

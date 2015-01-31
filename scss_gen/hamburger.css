@@ -1,0 +1,427 @@
+/* line 17, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 100;
+  src: url(../fonts/Lato-Hairline.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: url(../fonts/Lato-Light.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/Lato-Regular.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: url(../fonts/Lato-Bold.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  src: url(../fonts/Lato-Black.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 100;
+  src: url(../fonts/Lato-HairlineItalic.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 300;
+  src: url(../fonts/Lato-LightItalic.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: url(../fonts/Lato-Italic.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 700;
+  src: url(../fonts/Lato-BoldItalic.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 900;
+  src: url(../fonts/Lato-BlackItalic.ttf) format("ttf");
+}
+
+/* line 6, ../scss/hamburger.scss */
+html {
+  height: 100%;
+}
+
+/* line 10, ../scss/hamburger.scss */
+body {
+  height: 100%;
+  font-family: Lato, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  min-width: 320px;
+}
+
+/* line 19, ../scss/hamburger.scss */
+h3 {
+  margin: 0 0 20px 0;
+}
+
+/* line 22, ../scss/hamburger.scss */
+p {
+  margin: 0 0 20px 0;
+}
+
+/* line 26, ../scss/hamburger.scss */
+#page-content {
+  display: block;
+  width: 100%;
+  min-height: 100%;
+  background: #ffffff;
+  position: relative;
+  z-index: 5;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0 0 20px black;
+  -moz-box-shadow: 0 0 20px black;
+  box-shadow: 0 0 20px black;
+  -webkit-transition-property: margin-left;
+  -moz-transition-property: margin-left;
+  -o-transition-property: margin-left;
+  transition-property: margin-left;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  -o-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-timing-function: ease-in;
+  -moz-transition-timing-function: ease-in;
+  -o-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  -o-transition-delay: 0;
+  transition-delay: 0;
+  padding: 80px 20px 40px 20px;
+}
+
+/* line 42, ../scss/hamburger.scss */
+#hamburger-icon {
+  float: left;
+  width: 100%;
+  height: 60px;
+  margin: 0 0 20px 0;
+  padding: 0 20px;
+  line-height: 50px;
+  cursor: pointer;
+  position: fixed;
+  z-index: 10;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition-property: left;
+  -moz-transition-property: left;
+  -o-transition-property: left;
+  transition-property: left;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  -o-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-timing-function: ease-in;
+  -moz-transition-timing-function: ease-in;
+  -o-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  -o-transition-delay: 0;
+  transition-delay: 0;
+  display: block;
+  top: 0;
+  left: 0;
+  -webkit-box-shadow: 2px 1px 9px black;
+  -moz-box-shadow: 2px 1px 9px black;
+  box-shadow: 2px 1px 9px black;
+  background-color: #EEEEEE;
+  background-image: url("../images/logos/circle.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 52px 52px;
+}
+
+/* line 69, ../scss/hamburger.scss */
+nav {
+  display: block;
+  width: 100%;
+  margin: 0 0 20px 0;
+  line-height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 10px 20px 10px 10px;
+  z-index: 1;
+  background: #EEEEEE;
+}
+/* line 82, ../scss/hamburger.scss */
+nav a#home-logo {
+  display: block;
+  float: left;
+}
+/* line 86, ../scss/hamburger.scss */
+nav ul {
+  display: block;
+  float: left;
+  width: 100%;
+  line-height: 40px;
+}
+/* line 91, ../scss/hamburger.scss */
+nav ul > li {
+  display: block;
+  float: left;
+  width: 100%;
+}
+/* line 95, ../scss/hamburger.scss */
+nav ul > li > a {
+  display: block;
+  float: left;
+  width: 100%;
+}
+
+/* line 105, ../scss/hamburger.scss */
+body.nav-expanded #page-content {
+  margin-left: 200px;
+}
+/* line 108, ../scss/hamburger.scss */
+body.nav-expanded #hamburger-icon {
+  left: 200px;
+}
+
+/* line 113, ../scss/hamburger.scss */
+#username-img {
+  border-radius: 100%;
+}
+
+/* line 117, ../scss/hamburger.scss */
+#username-big {
+  font-size: 24px;
+  font-weight: 100;
+  line-height: 24px;
+  position: relative;
+  top: -15px;
+  left: 7px;
+}
+
+/* line 126, ../scss/hamburger.scss */
+#hamburger-icon > i {
+  margin-top: 17px;
+  font-size: 24px;
+}
+
+/* line 131, ../scss/hamburger.scss */
+#user-actions {
+  font-size: 14pt;
+}
+
+/* line 134, ../scss/hamburger.scss */
+#userinfo > #user-actions > li {
+  display: block;
+  color: black;
+  text-decoration: none;
+  padding-left: 10px;
+  margin-right: 999999999px;
+  width: 160px;
+  -webkit-transition: margin-left 0.25s ease-in-out;
+  -moz-transition: margin-left 0.25s ease-in-out;
+  -o-transition: margin-left 0.25s ease-in-out;
+  transition: margin-left 0.25s ease-in-out;
+}
+/* line 143, ../scss/hamburger.scss */
+#userinfo > #user-actions > li > a {
+  color: black;
+  text-decoration: none;
+}
+
+/* line 148, ../scss/hamburger.scss */
+#userinfo > #user-actions > li:hover {
+  background-color: #DDD;
+  cursor: pointer;
+  margin-left: 3px;
+}
+
+/* line 155, ../scss/hamburger.scss */
+#username-img {
+  width: 48px;
+  height: 48px;
+}
+
+/* line 161, ../scss/hamburger.scss */
+.calendar {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* line 165, ../scss/hamburger.scss */
+.calendar-month {
+  font-size: 18px;
+}
+
+/* line 168, ../scss/hamburger.scss */
+.calendar-month, .calendar-day, .calendar-dayOfWeek {
+  text-align: center;
+}
+
+/* line 171, ../scss/hamburger.scss */
+.calendar-day, .calendar-dayOfWeek {
+  padding: 8px;
+}
+
+/* line 174, ../scss/hamburger.scss */
+.calendar-notInMonth {
+  background: lightgray;
+}
+
+/* line 179, ../scss/hamburger.scss */
+.page {
+  display: none;
+}
+
+/* line 182, ../scss/hamburger.scss */
+.page.showing {
+  display: block;
+}
+
+/* line 187, ../scss/hamburger.scss */
+#loadingPage {
+  text-align: center;
+}
+
+/* line 191, ../scss/hamburger.scss */
+.grid {
+  text-align: center;
+}
+
+/* line 196, ../scss/hamburger.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+/* line 201, ../scss/hamburger.scss */
+h1 {
+  font-size: 26px;
+}
+
+/* line 204, ../scss/hamburger.scss */
+h2 {
+  font-size: 24px;
+}
+
+/* line 207, ../scss/hamburger.scss */
+h3 {
+  font-size: 22px;
+}
+
+/* line 210, ../scss/hamburger.scss */
+h4 {
+  font-size: 20px;
+}
+
+/* line 213, ../scss/hamburger.scss */
+h5 {
+  font-size: 18px;
+}
+
+/* line 216, ../scss/hamburger.scss */
+h6 {
+  font-size: 16px;
+}

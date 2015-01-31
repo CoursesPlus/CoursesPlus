@@ -1,6 +1,6 @@
 {
     "name": "Courses+",
-    "version": "2.7.1",
+    "version": "3.0",
     "manifest_version": 2,
     "description": "An extension that makes Courses look nicer, adds some features, and fixes some issues.",
     "icons": {
@@ -35,7 +35,9 @@
         "*://courses2015.dalton.org/",
         "*://coursesplus.tk/",
         "*://*.coursesplus.tk/",
-        "storage"
+        "storage",
+        "webRequest",
+        "webRequestBlocking"
     ],
     "web_accessible_resources": [
         "images/*.png",
