@@ -357,7 +357,12 @@ var components = {
 					courseInfo = $.extend(courseInfo, items["course-" + courseId]);
 				}
 				$saveThis.attr("data-font-family", courseInfo.fontFamily);
-				$saveThis.css("font-family", courseInfo.fontFamily);
+				var fontFamilyCss = courseInfo.fontFamily;
+				if (fontFamilyCss == "Helvetica Neue") {
+					// Not all Windows machines have Helvetica Neue. So, we add in some replacements
+					fontFamilyCss = "'Helvetica Neue', Helvetica, Arial, sans-serif;";
+				}
+				$saveThis.css("font-family", fontFamilyCss);
 
 				$saveThis.css("background-color", courseInfo.backgroundColor);
 				$saveThis.attr("data-background-color", courseInfo.backgroundColor);
