@@ -365,7 +365,18 @@ $(document).ready(function() {
 	$("#selectLogo").click(function() {
 		$("#selLogoModal").modal();
 	});
-	chrome.storage.sync.getBytesInUse(null, function(bytes) {
-		$("#storageUsage").text(Math.round((bytes / 1024) * 100) / 100 + " kB out of " + (chrome.storage.sync.QUOTA_BYTES / 1024) + " kB total used");
+	var recalcStorage = function() {
+		chrome.storage.sync.getBytesInUse(null, function(bytes) {
+			$("#storageUsage").text(Math.round((bytes / 1024) * 100) / 100 + " kB out of " + (chrome.storage.sync.QUOTA_BYTES / 1024) + " kB total used");
+		});		
+	};
+	recalcStorage();
+	$("#clearStorage").click(function() {
+		if (confirm("This will reset Courses+ to its original state, removing all stored information, including completed assignments, course customizations, and more.\n\nAre you SURE you want to clear storage?\nThis action cannot be undone.")) {
+			chrome.storage.sync.clear(function() {
+				recalcStorage();
+				window.location.reload();
+			});
+		}
 	});
 });
