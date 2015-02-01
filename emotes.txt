@@ -57,7 +57,7 @@
 ":smoking:": {url: "Smoking.png"},
 ":smug:": {url: "Smug.png"},
 ":stars:": {url: "Stars.png"},
-":staightface:": {url: "Straight-Face.png"},
+":straightface:": {url: "Straight-Face.png"},
 ":sun:": {url: "Sun.png"},
 ":sweat:": {url: "Sweating.png"},
 ":sweating:": {url: "Sweating.png"},
