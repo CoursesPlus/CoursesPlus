@@ -148,7 +148,7 @@ function uploadImageAndSetBg() {
 		//beforeSend: beforeSendHandler,
 		success: function(res) {
 			if (res.error) {
-				alert("Error - " + res.errorMsg);
+				alert("Error uploading image - " + res.errorMsg);
 				hideLoading();
 				window.location.reload();
 				return;
@@ -294,7 +294,7 @@ $(document).ready(function() {
 			hideConnecting();
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
-			alert("Unknown error connecting to background image server!");
+			$("#connectingText").text("Unknown error connecting to background image server!");
 			console.log(jqXHR);
 			console.log(textStatus);
 			console.log(errorThrown);
