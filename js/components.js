@@ -959,6 +959,15 @@ function runNonComponentTweaks(componentsToSkip) {
 					case "circle":
 						$("#page-header").css("background-size", "80px 80px");
 						break;
+					case "coursesbigwordmark":
+						$("#page-header").css("background-size", "216px 80px");
+						break;
+					case "coursespluswordmark":
+						$("#page-header").css("background-size", "194px 31px");
+						break;
+					case "daltoncourseswordmark":
+						$("#page-header").css("background-size", "237px 35px");
+						break;
 					default:
 						break;
 				}

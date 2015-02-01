@@ -136,17 +136,36 @@ h6 {
 	border: solid 1px black;
 	width: 100%;
 	height: 200px;
+	overflow: auto;
 }
 .logo {
 
 }
 .logo.regular {
 	background-image: url("images/logos/regular.png");
+	background-position: center center;
+	background-size: contain;
+	background-repeat: no-repeat;
 	width: 328px;
 	height: 80px;	
 }
 .logo.circle {
 	background-image: url("images/logos/circle.png");
 	width: 110px;
-			height: 110px;
-		}
+	height: 110px;
+}
+.logo.coursesbigwordmark {
+	background-image: url("images/logos/coursesbigwordmark.png");
+	width: 270px;
+	height: 100px;
+}
+.logo.coursespluswordmark {
+	background-image: url("images/logos/coursespluswordmark.png");
+	width: 194px;
+	height: 31px;
+}
+.logo.daltoncourseswordmark {
+	background-image: url("images/logos/daltoncourseswordmark.png");
+	width: 237px;
+	height: 35px;
+}
