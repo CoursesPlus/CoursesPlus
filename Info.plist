@@ -19,7 +19,7 @@
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
-		<string>bg.html</string>
+		<string>bg.safari.html</string>
 	</dict>
 	<key>Content</key>
 	<dict>

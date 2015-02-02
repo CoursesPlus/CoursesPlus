@@ -12,10 +12,10 @@ cpal = {};
 cpal.extension = {};
 
 cpal.extension.getBrowserVersion = function() {
-	return navigator.appVersion.split("/")[2].replace(" Safari", "");
+	return navigator.appVersion.split('/')[2].replace(" Safari", ""); // Yes, this is the same in both Chrome and Safari. :O
 };
 cpal.extension.getExtensionVersion = function() {
-	return chrome.runtime.getManifest().version;
+	return safari.extension.displayVersion;
 };
 
 /*
@@ -29,9 +29,7 @@ cpal.logging.getReportLink = function() {
 cpal.logging.specificErrorDetails = function() {
 	var details = "";
 
-		details += "Platform: Google Chrome";
-		details += "\n";
-		details += "Extension ID: " + chrome.runtime.id;
+		details += "Platform: Apple Safari";
 		details += "\n"
 
 	return details;
@@ -43,7 +41,7 @@ cpal.logging.specificErrorDetails = function() {
 cpal.resources = {};
 
 cpal.resources.getURL = function(item) {
-	return chrome.runtime.getURL(item);
+	return safari.extension.baseURI + item;
 };
 
 /*
@@ -52,7 +50,7 @@ cpal.resources.getURL = function(item) {
 cpal.request = {};
 
 cpal.request.addBeforeSendHeaders = function(urls, listener) {
-	chrome.webRequest.onBeforeSendHeaders.addListener(listener, {urls: urls}, ["blocking", "requestHeaders"]);
+	console.error("no-op");
 };
 
 /*
@@ -61,33 +59,21 @@ cpal.request.addBeforeSendHeaders = function(urls, listener) {
 cpal.storage = {};
 
 cpal.storage.clear = function(callback) {
-	chrome.storage.sync.clear(function() {
-		callback();
-	});
+	console.error("no-op");
 };
 cpal.storage.getKey = function(keyName, callback) {
-	chrome.storage.sync.get(keyName, function(result) {
-		callback(result[keyName]);
-	});
+	console.error("no-op");
 };
 cpal.storage.setKey = function(keyName, keyValue, callback) {
-	var saveObj = {};
-	saveObj[keyName] = keyValue;
-	chrome.storage.sync.set(saveObj, function() {
-		if (callback !== undefined) {
-			callback();
-		}
-	});
+	console.error("no-op");
 };
 /*
  * cpal.storage.quota
  */
 cpal.storage.quota = {};
 cpal.storage.quota.getUsedBytes = function(callback) {
-	chrome.storage.sync.getBytesInUse(null, function(bytes) {
-		callback(bytes);
-	});
+	console.error("no-op");
 };
 cpal.storage.quota.getTotalBytes = function() {
-	return chrome.storage.sync.QUOTA_BYTES;
+	console.error("no-op");
 };

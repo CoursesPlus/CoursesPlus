@@ -2,12 +2,12 @@
 	"name": "Courses+",
 	"version": "3.0",
 	"manifest_version": 2,
-	"description": "An extension that makes Courses look nicer, adds some features, and fixes some issues.",
+	"description": "An extension that makes Dalton Courses look nicer, adds some features, and fixes some issues.",
 	"icons": {
 		"128": "icon128.png"
 	},
 	"background": {
-		"page": "bg.html",
+		"page": "bg.chrome.html",
 		"persistent": true /* As of Chrome 38, webrequest doesn't support event pages, so it's a background page for now */
 	},
 	"content_scripts": [
