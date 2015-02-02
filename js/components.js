@@ -715,7 +715,7 @@ var components = {
 					var eventDone = $(this).prop('checked');
 
 					var saveThing = {};
-					chrome.storage.sync.get([thisId], function(res) {
+					chrome.storage.sync.get(thisId, function(res) {
 						saveThing = res;
 						if (saveThing[eventId] == undefined) {
 							saveThing[eventId] = {};
@@ -737,7 +737,7 @@ var components = {
 					});
 				});
 
-				chrome.storage.sync.get([thisId], function(res) {
+				chrome.storage.sync.get(thisId, function(res) {
 					if (res[thisId] == undefined) {
 						console.log(thisId + " not set!");
 					} else {
@@ -759,7 +759,7 @@ var components = {
 					var eventId = url.split("#")[1];
 					var $thingThis = $(this);
 					console.log(eventId);				
-					chrome.storage.sync.get([eventId], function(res) {
+					chrome.storage.sync.get(eventId, function(res) {
 						if (res[eventId] == undefined) {
 							console.log(eventId + " not set!");
 						} else {
@@ -949,7 +949,7 @@ function runNonComponentTweaks(componentsToSkip) {
 					console.log("Logo image not set!");
 					return;
 				}
-				$("#page-header").css("background-image", "url(" + chrome.extension.getURL("images/logos/" + items.logoImage + ".png") + ")");
+				$("#page-header").css("background-image", "url(" + cpal.resources.getURL("images/logos/" + items.logoImage + ".png") + ")");
 				// TODO: Change for different logos
 				switch (items.logoImage) {
 					case "regular":
