@@ -374,7 +374,7 @@ $(document).ready(function() {
 	recalcStorage();
 	$("#clearStorage").click(function() {
 		if (confirm("This will reset Courses+ to its original state, removing all stored information, including completed assignments, course customizations, and more.\n\nAre you SURE you want to clear storage?\nThis action cannot be undone.")) {
-			chrome.storage.sync.clear(function() {
+			cpal.storage.clear(function() {
 				recalcStorage();
 				window.location.reload();
 			});
