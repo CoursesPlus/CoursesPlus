@@ -14,7 +14,6 @@ cpal.extension = {};
 cpal.extension.getBrowserVersion = function() {
 	return navigator.appVersion.split("/")[2].replace(" Safari", "");
 };
-
 cpal.extension.getExtensionVersion = function() {
 	return chrome.runtime.getVersion();
 };

@@ -21,6 +21,7 @@
                 "inject.css"
             ],
             "js": [
+                "js/cpal.js",
                 "js/cpal.chrome.js",
                 "js/jquery.js",
                 "js/bootstrap.js",
