@@ -39,6 +39,8 @@ cpal.resources.getURL = cpal.notImplemented;
  */
 cpal.storage = {};
 
+cpal.storage.getKey = cpal.notImplemented;
+
 window.cpal = {};
 
 console.log("CPAL base ready!");

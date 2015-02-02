@@ -50,3 +50,9 @@ cpal.resources.getURL = function(item) {
  * cpal.storage
  */
 cpal.storage = {};
+
+cpal.storage.getKey = function(keyName, callback) {
+	chrome.storage.sync.get(keyName, function(result) {
+		callback(result[keyName]);
+	});
+};

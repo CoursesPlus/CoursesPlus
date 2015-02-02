@@ -348,13 +348,13 @@ var components = {
 		$('.coursebox').each(function() {
 			var courseId = $(this).attr("data-courseid");
 			var $saveThis = $(this);
-			chrome.storage.sync.get("course-" + courseId, function(items) {
+			cpal.storage.getKey("course-" + courseId, function(result) {
 				var courseInfo = {
 					fontFamily: "Helvetica Neue",
 					backgroundColor: "white"
 				};
-				if (items["course-" + courseId] !== undefined) {
-					courseInfo = $.extend(courseInfo, items["course-" + courseId]);
+				if (result !== undefined) {
+					courseInfo = $.extend(courseInfo, result);
 				}
 				$saveThis.attr("data-font-family", courseInfo.fontFamily);
 				var fontFamilyCss = courseInfo.fontFamily;
@@ -404,14 +404,12 @@ var components = {
 				if ($(this).attr("data-courseid") == courseId) {
 					$(this).css("font-family", $(".editFontDropdown").val());
 					$(this).attr("data-font-family", $(".editFontDropdown").val());
-					chrome.storage.sync.get("course-" + courseId, function(items) {
+					cpal.storage.getKey("course-" + courseId, function(result) {
 						var courseInfo = {};
-						if (items["course-" + courseId] !== undefined) {
-							courseInfo = items["course-" + courseId];
+						if (result !== undefined) {
+							courseInfo = result;
 						}
-						console.log(courseInfo);
 						courseInfo.fontFamily = $(".editFontDropdown").val();
-						console.log(courseInfo);
 						var saveObj = {};
 						saveObj["course-" + courseId] = courseInfo;
 						chrome.storage.sync.set(saveObj);
@@ -440,10 +438,10 @@ var components = {
 				if ($(this).attr("data-courseid") == courseId) {
 					$(this).css("background-color", to);
 					$(this).attr("data-background-color", to);
-					chrome.storage.sync.get("course-" + courseId, function(items) {
+					cpal.storage.getKey("course-" + courseId, function(result) {
 						var courseInfo = {};
-						if (items["course-" + courseId] !== undefined) {
-							courseInfo = items["course-" + courseId];
+						if (result !== undefined) {
+							courseInfo = result;
 						}
 						courseInfo.backgroundColor = to;
 						var saveObj = {};
@@ -715,13 +713,15 @@ var components = {
 					var eventDone = $(this).prop('checked');
 
 					var saveThing = {};
-					chrome.storage.sync.get(thisId, function(res) {
-						saveThing = res;
+					cpal.storage.getKey(thisId, function(result) {
+						saveThing[eventId] = result;
 						if (saveThing[eventId] == undefined) {
 							saveThing[eventId] = {};
 						}
 						saveThing[eventId].done = eventDone;
-						chrome.storage.sync.set(saveThing, function(res) {
+						var storSet = {};
+						storSet[eventId] = res;
+						chrome.storage.sync.set(storSet, function(res) {
 							if (saveThing[eventId].done) {
 								var $eventNameElem = $r0.children(".topic").children(".referer").children("a");
 								$eventNameElem.text("DONE - " + $eventNameElem.text());
@@ -737,11 +737,11 @@ var components = {
 					});
 				});
 
-				chrome.storage.sync.get(thisId, function(res) {
-					if (res[thisId] == undefined) {
+				cpal.storage.getKey(thisId, function(result) {
+					if (result == undefined) {
 						console.log(thisId + " not set!");
 					} else {
-						if (res[thisId].done) {
+						if (result.done) {
 							var $eventNameElem = $r0.children(".topic").children(".referer").children("a");
 							$eventNameElem.text("DONE - " + $eventNameElem.text());
 							$r0.parent().parent().addClass("eventComplete");
@@ -759,12 +759,12 @@ var components = {
 					var eventId = url.split("#")[1];
 					var $thingThis = $(this);
 					console.log(eventId);				
-					chrome.storage.sync.get(eventId, function(res) {
-						if (res[eventId] == undefined) {
+					cpal.storage.getKey(eventId, function(result) {
+						if (result == undefined) {
 							console.log(eventId + " not set!");
 						} else {
 							console.log("Set! - " + eventId);
-							if (res[eventId].done) {
+							if (result.done) {
 								console.log("It's complete!");
 								$thingThis.addClass("calendar-eventComplete");
 							}
@@ -869,25 +869,25 @@ function runNonComponentTweaks(componentsToSkip) {
 	$("html, body, #dalton-nav, #page-content").css("background", "transparent");
 
 	console.log("Changing background color...");
-	chrome.storage.sync.get("backgroundColor", function(items) {
-		if (items.backgroundColor === undefined) {
+	cpal.storage.getKey("backgroundColor", function(result) {
+		if (result === undefined) {
 			console.log("Background color not set!");
 			return;
 		}
 		/*$("html, body, #dalton-nav, #page-content")*/
-		$("#superBgThing").css("background", items.backgroundColor);
+		$("#superBgThing").css("background", result);
 	});
 
 	console.log("Changing background image...");
-	chrome.storage.sync.get("backgroundImage", function(items) {
-		if (items.backgroundImage === undefined || items.backgroundImage === false) {
+	cpal.storage.getKey("backgroundImage", function(result) {
+		if (result === undefined || result === false) {
 			console.log("Background image not set!");
 			return;
 		}
 		var $bgElements = $superBgThing;//$("html, body, #dalton-nav, #page-content");
-		$bgElements.css("background-image", "url('" + items.backgroundImage.url + "')");
-		console.log(items.backgroundImage);
-		switch (items.backgroundImage.sizing) {
+		$bgElements.css("background-image", "url('" + result.url + "')");
+		console.log(result);
+		switch (result.sizing) {
 			case "center":
 				$bgElements.css("background-repeat", "no-repeat");
 				$bgElements.css("background-position", "center center");
@@ -903,55 +903,55 @@ function runNonComponentTweaks(componentsToSkip) {
 	});
 
 	console.log("Changing text color...");
-	chrome.storage.sync.get("textColor", function(items) {
-		if (items.textColor === undefined) {
+	cpal.storage.getKey("textColor", function(result) {
+		if (result === undefined) {
 			console.log("Text color not set!");
 			return;
 		}
-		$("html, body, #dalton-nav, #page-content").css("color", items.textColor);
-		$(".content h3.sectionname").css("color", items.textColor);
-		$("p").css("color", items.textColor);
+		$("html, body, #dalton-nav, #page-content").css("color", result);
+		$(".content h3.sectionname").css("color", result);
+		$("p").css("color", result);
 	});
 
 	console.log("Changing link text color...");
-	chrome.storage.sync.get("linkTextColor", function(items) {
-		if (items.linkTextColor === undefined) {
+	cpal.storage.getKey("linkTextColor", function(result) {
+		if (result === undefined) {
 			console.log("Link text color not set!");
 			return;
 		}
-		$("a").not(".dropdown-toggle").not(".navbar-brand").not(".dropdown-menu > li > a").css("color", items.linkTextColor);
+		$("a").not(".dropdown-toggle").not(".navbar-brand").not(".dropdown-menu > li > a").css("color", result);
 	});
 
 	console.log("Changing navbar text color...");
-	chrome.storage.sync.get("navTextColor", function(items) {
-		if (items.navTextColor === undefined) {
+	cpal.storage.getKey("navTextColor", function(result) {
+		if (result === undefined) {
 			console.log("Nav text color not set!");
 			return;
 		}
-		$(".dropdown-toggle, .navbar-brand, .dropdown-menu > li > a").css("color", items.navTextColor);
+		$(".dropdown-toggle, .navbar-brand, .dropdown-menu > li > a").css("color", result);
 	});
 
 	console.log("Changing logo...");
-	chrome.storage.sync.get("logoType", function(items) {
+	cpal.storage.getKey("logoType", function(logoType) {
 		if (componentsToSkip.indexOf("newNavbar") == -1) {
 			console.log("Logo disabled because new navbar!");
 			$("#page-header").css("background", "transparent");
 			return;
 		}
-		if (items.logoType === undefined) {
+		if (logoType === undefined) {
 			console.log("Logo type not set!");
 			return;
 		}
-		if (items.logoType == "preload") {
+		if (logoType == "preload") {
 			console.log("Logo is preload, looking up which one...");
-			chrome.storage.sync.get("logoImage", function(items) {
-				if (items.logoImage === undefined) {
+			cpal.storage.getKey("logoImage", function(logoImage) {
+				if (logoImage === undefined) {
 					console.log("Logo image not set!");
 					return;
 				}
-				$("#page-header").css("background-image", "url(" + cpal.resources.getURL("images/logos/" + items.logoImage + ".png") + ")");
+				$("#page-header").css("background-image", "url(" + cpal.resources.getURL("images/logos/" + logoImage + ".png") + ")");
 				// TODO: Change for different logos
-				switch (items.logoImage) {
+				switch (logoImage) {
 					case "regular":
 						$("#page-header").css("background-size", "328px 80px");
 						break;
@@ -1021,12 +1021,11 @@ window.components.runAll = function() {
 	var runCount = 0;
 	var componentsToSkip = [];
 
-	chrome.storage.sync.get("disabledComponents", function(items) {
+	cpal.storage.getKey("disabledComponents", function(result) {
 		console.log("Retrieved disabled components!");
-		componentsToSkip = ($.isArray(items.disabledComponents) ? items.disabledComponents : []);
+		componentsToSkip = ($.isArray(result) ? result : []);
 		runNonComponentTweaks(componentsToSkip);
 		console.log(componentsToSkip);
-		console.log(items);
 		var addedCssFiles = [];
 		var addedJsFiles = [];
 		for (var componentIndex in window.components) {
