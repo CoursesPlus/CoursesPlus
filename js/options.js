@@ -1,6 +1,6 @@
 var disabledComponentList = [];
 function saveChanges() {
-	chrome.storage.sync.set({disabledComponents: disabledComponentList}, function() {
+	cpal.storage.setKey("disabledComponents", disabledComponentList, function() {
 		console.log("Saved changes!");
 	});
 }
@@ -98,7 +98,7 @@ function progressHandlingFunction(e) {
 }
 
 function saveBgUrlSizing(url) {
-	chrome.storage.sync.set({backgroundImage: {
+	cpal.storage.setKey("backgroundImage", {
 		url: url,
 		sizing: $(".bgSizing:checked").val()
 	}});
@@ -180,25 +180,25 @@ var onBgColorPickerChange = function() {
 	var newColor = $("#secretColorPicker").val();
 	$(".background.custom").css("background-color", newColor);
 	$(".background.custom").css("color", newColor);
-	chrome.storage.sync.set({backgroundColor: newColor});
+	cpal.storage.setKey("backgroundColor", newColor);
 };
 var onTextColorPickerChange = function() {
 	var newColor = $("#secretTextColorPicker").val();
 	$(".textColor.custom").css("background-color", newColor);
 	$(".textColor.custom").css("color", newColor);
-	chrome.storage.sync.set({textColor: newColor});
+	cpal.storage.setKey("textColor", newColor);
 };
 var onLinkTextColorPickerChange = function() {
 	var newColor = $("#secretLinkTextColorPicker").val();
 	$(".linkTextColor.custom").css("background-color", newColor);
 	$(".linkTextColor.custom").css("color", newColor);
-	chrome.storage.sync.set({linkTextColor: newColor});
+	cpal.storage.setKey("linkTextColor", newColor);
 };
 var onNavTextColorPickerChange = function() {
 	var newColor = $("#secretNavTextColorPicker").val();
 	$(".navTextColor.custom").css("background-color", newColor);
 	$(".navTextColor.custom").css("color", newColor);
-	chrome.storage.sync.set({navTextColor: newColor});
+	cpal.storage.setKey("navTextColor", newColor};
 };
 
 $(document).ready(function() {
@@ -317,7 +317,7 @@ $(document).ready(function() {
 
 	$(".background").on("selBoxChanged", function(e) {
 		if (e.to != "custom") {
-			chrome.storage.sync.set({backgroundColor: e.to});
+			cpal.storage.setKey("backgroundColor". e.to});
 		} else {
 			$("#secretColorPicker")[0].click();
 		}
@@ -333,33 +333,34 @@ $(document).ready(function() {
 		saveBgSizing();
 	});
 	$("#resetBg").click(function() {
-		chrome.storage.sync.set({backgroundImage: false});
+		cpal.storage.setKey("backgroundImage", false);
 		window.location.reload();
 	});
 
 	$(".textColor").on("selBoxChanged", function(e) {
 		if (e.to != "custom") {
-			chrome.storage.sync.set({textColor: e.to});
+			cpal.storage.setKey("textColor", e.to);
 		} else {
 			$("#secretTextColorPicker")[0].click();
 		}
 	});
 	$(".linkTextColor").on("selBoxChanged", function(e) {
 		if (e.to != "custom") {
-			chrome.storage.sync.set({linkTextColor: e.to});
+			cpal.storage.setKey("linkTextColor", e.to);
 		} else {
 			$("#secretLinkTextColorPicker")[0].click();
 		}
 	});
 	$(".navTextColor").on("selBoxChanged", function(e) {
 		if (e.to != "custom") {
-			chrome.storage.sync.set({navTextColor: e.to});
+			cpal.storage.setKey("navTextColor", e.to);
 		} else {
 			$("#secretNavTextColorPicker")[0].click();
 		}
 	});
 	$(".logo").on("selBoxChanged" ,function(e) {
-		chrome.storage.sync.set({logoType: "preload", logoImage: e.to});
+		cpal.storage.setKey("logoType", "preload");
+		cpal.storage.setKey("logoImage", e.to);
 		$(".selectedLogo").attr("src", cpal.resources.getURL("images/logos/" + e.to + ".png"));
 	});
 	$("#selectLogo").click(function() {
