@@ -410,9 +410,7 @@ var components = {
 							courseInfo = result;
 						}
 						courseInfo.fontFamily = $(".editFontDropdown").val();
-						var saveObj = {};
-						saveObj["course-" + courseId] = courseInfo;
-						chrome.storage.sync.set(saveObj);
+						cpal.storage.setKey("course-" + courseId, courseInfo);
 					});
 				}
 			});
@@ -444,9 +442,7 @@ var components = {
 							courseInfo = result;
 						}
 						courseInfo.backgroundColor = to;
-						var saveObj = {};
-						saveObj["course-" + courseId] = courseInfo;
-						chrome.storage.sync.set(saveObj);
+						cpal.storage.setKey("course-" + courseId, courseInfo);
 					});
 				}
 			});
@@ -714,15 +710,13 @@ var components = {
 
 					var saveThing = {};
 					cpal.storage.getKey(thisId, function(result) {
-						saveThing[eventId] = result;
-						if (saveThing[eventId] == undefined) {
-							saveThing[eventId] = {};
+						saveThing = result;
+						if (saveThing == undefined) {
+							saveThing = {};
 						}
-						saveThing[eventId].done = eventDone;
-						var storSet = {};
-						storSet[eventId] = res;
-						chrome.storage.sync.set(storSet, function(res) {
-							if (saveThing[eventId].done) {
+						saveThing.done = eventDone;
+						cpal.storage.setKey(eventId, saveThing, function() {
+							if (saveThing.done) {
 								var $eventNameElem = $r0.children(".topic").children(".referer").children("a");
 								$eventNameElem.text("DONE - " + $eventNameElem.text());
 								$r0.parent().parent().addClass("eventComplete");

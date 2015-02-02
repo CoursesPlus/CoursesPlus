@@ -40,6 +40,7 @@ cpal.resources.getURL = cpal.notImplemented;
 cpal.storage = {};
 
 cpal.storage.getKey = cpal.notImplemented;
+cpal.storage.setKey = cpal.notImplemented;
 
 window.cpal = {};
 
