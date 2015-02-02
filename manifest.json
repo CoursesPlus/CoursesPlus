@@ -1,63 +1,62 @@
 {
-    "name": "Courses+",
-    "version": "3.0",
-    "manifest_version": 2,
-    "description": "An extension that makes Courses look nicer, adds some features, and fixes some issues.",
-    "icons": {
-        "128": "icon128.png"
-    },
-    "background": {
-        "scripts": [
-            "bg.js"
-        ]
-    },
-    "content_scripts": [
-        {
-            "matches": [
-                "https://courses2015.dalton.org/*"
-            ],
-            "css": [
-                "fixedsticky.css",
-                "inject.css"
-            ],
-            "js": [
-                "js/cpal.js",
-                "js/cpal.chrome.js",
-                "js/jquery.js",
-                "js/bootstrap.js",
-                "js/components.js",
-                "inject.js",
-                "js/coursesLib.js"
-            ],
-            "run_at": "document_start"
-        }
-    ],
-    "options_page": "options.html",
-    "permissions": [
-        "*://courses2015.dalton.org/",
-        "*://coursesplus.tk/",
-        "*://*.coursesplus.tk/",
-        "storage",
-        "webRequest",
-        "webRequestBlocking"
-    ],
-    "web_accessible_resources": [
-        "images/*.png",
-        "images/logos/*.png",
-        "css/*.css",
-        "fonts/*.eot",
-        "fonts/*.svg",
-        "fonts/*.ttf",
-        "fonts/*.woff",
-        "js/*.js",
-        "chosen/*.css",
-        "chosen/*.png",
-        "chosen/*.js",
-        "options.html"
-    ],
-    "externally_connectable": {
-        "matches": [
-            "*://courses2015.dalton.org/*"
-        ]
-    }
+	"name": "Courses+",
+	"version": "3.0",
+	"manifest_version": 2,
+	"description": "An extension that makes Courses look nicer, adds some features, and fixes some issues.",
+	"icons": {
+		"128": "icon128.png"
+	},
+	"background": {
+		"page": "bg.html",
+		"persistent": true /* As of Chrome 38, webrequest doesn't support event pages, so it's a background page for now */
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://courses2015.dalton.org/*"
+			],
+			"css": [
+				"fixedsticky.css",
+				"inject.css"
+			],
+			"js": [
+				"js/cpal.js",
+				"js/cpal.chrome.js",
+				"js/jquery.js",
+				"js/bootstrap.js",
+				"js/components.js",
+				"inject.js",
+				"js/coursesLib.js"
+			],
+			"run_at": "document_start"
+		}
+	],
+	"options_page": "options.html",
+	"permissions": [
+		"*://courses2015.dalton.org/",
+		"*://coursesplus.tk/",
+		"*://*.coursesplus.tk/",
+		"storage",
+		"webRequest",
+		"webRequestBlocking"
+	],
+	"web_accessible_resources": [
+		"images/*.png",
+		"images/logos/*.png",
+		"css/*.css",
+		"fonts/*.eot",
+		"fonts/*.svg",
+		"fonts/*.ttf",
+		"fonts/*.woff",
+		"js/*.js",
+		"chosen/*.css",
+		"chosen/*.png",
+		"chosen/*.js",
+		"options.html"
+	],
+	"externally_connectable": {
+		"matches": [
+			"*://courses2015.dalton.org/*"
+		]
+	}
 }

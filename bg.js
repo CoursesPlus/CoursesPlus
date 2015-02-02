@@ -1,5 +1,5 @@
 console.log("Courses+ background page!");
-chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
+cpal.request.addBeforeSendHeaders(["*://courses2015.dalton.org/*"], function(details) {
 	if (details.url.indexOf("user/icon/dalton/") > -1) {
 		details.requestHeaders.push({name: 'X-CoursesPlus-RefererSpoof-Yay', value: "https://courses2015.dalton.org/user/profile.php"});
 	}
@@ -21,4 +21,4 @@ chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
 		}
 	}
 	return {requestHeaders: details.requestHeaders};
-}, {urls: ["*://courses2015.dalton.org/*"]}, ["blocking", "requestHeaders"]);
+});

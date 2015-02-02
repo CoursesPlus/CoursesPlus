@@ -35,6 +35,13 @@ cpal.resources = {};
 cpal.resources.getURL = cpal.notImplemented;
 
 /*
+ * cpal.request
+ */
+cpal.request = {};
+
+cpal.request.addBeforeSendHeaders = cpal.notImplemented;
+
+/*
  * cpal.storage
  */
 cpal.storage = {};

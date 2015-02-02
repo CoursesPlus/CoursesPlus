@@ -47,6 +47,15 @@ cpal.resources.getURL = function(item) {
 };
 
 /*
+ * cpal.request
+ */
+cpal.request = {};
+
+cpal.request.addBeforeSendHeaders = function(urls, listener) {
+	chrome.webRequest.onBeforeSendHeaders.addListener(listener, {urls: urls}, ["blocking", "requestHeaders"]);
+};
+
+/*
  * cpal.storage
  */
 cpal.storage = {};
