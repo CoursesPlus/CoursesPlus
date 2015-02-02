@@ -988,10 +988,12 @@ window.components.createErrorModal = function() {
 
 				errorHelperText += 'Courses+ encountered an error while loading the <strong class="coursesplus-error-componentname"></strong> feature.<br />';
 				errorHelperText += '<br />';
-				errorHelperText += 'We\'re really sorry about this! We\'ve tried to the other feature you have enabled, but features that require <strong class="coursesplus-error-componentname"></strong> might not work.<br/>';
+				errorHelperText += 'We\'re really sorry about this! We\'ve tried to load the other features you have enabled, but features that require <strong class="coursesplus-error-componentname"></strong> might not work.<br/>';
 				errorHelperText += '<br />';
 				errorHelperText += 'Try reloading the page. If that doesn\'t work, ';
-				errorHelperText += 'please copy the technical details below (all of it!) and <a href="https://chrome.google.com/webstore/detail/courses%2B/pieincmodljnbihihjnapcmhdddhbpgi/support">report a problem on our Chrome Web Store page.</a><br />';
+				errorHelperText += 'please copy the technical details below (all of it!) and <a href="';
+				errorHelperText += cpal.logging.getReportLink();
+				errorHelperText += '">report a problem here.</a><br />';
 				errorHelperText += '<br />';
 				errorHelperText += 'We\'d really appreciate it if you did; your help lets us make Courses+ even better!<br />';
 				errorHelperText += '<br />';
@@ -1121,6 +1123,7 @@ window.components.runAll = function() {
 		console.log("Ran " + runCount + " component(s)!");
 		// Remove the curtain
 		setTimeout(function() {
+			console.log("Removed curtain!");
 			$("body").addClass("removeCurtain");
 		}, 100);
 	});

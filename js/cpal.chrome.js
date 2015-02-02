@@ -15,7 +15,7 @@ cpal.extension.getBrowserVersion = function() {
 	return navigator.appVersion.split("/")[2].replace(" Safari", "");
 };
 cpal.extension.getExtensionVersion = function() {
-	return chrome.runtime.getVersion();
+	return chrome.runtime.getManifest().version;
 };
 
 /*
@@ -23,11 +23,16 @@ cpal.extension.getExtensionVersion = function() {
  */
 cpal.logging = {};
 
+cpal.logging.getReportLink = function() {
+	return "https://chrome.google.com/webstore/detail/courses%2B/pieincmodljnbihihjnapcmhdddhbpgi/support";
+};
 cpal.logging.specificErrorDetails = function() {
 	var details = "";
 
 		details += "Platform: Google Chrome";
+		details += "\n";
 		details += "Extension ID: " + chrome.runtime.id;
+		details += "\n"
 
 	return details;
 };

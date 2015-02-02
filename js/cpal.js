@@ -24,6 +24,7 @@ cpal.extension.getExtensionVersion = cpal.notImplemented;
  */
 cpal.logging = {};
 
+cpal.logging.getReportLink = cpal.notImplemented;
 cpal.logging.specificErrorDetails = cpal.notImplemented;
 
 /*
@@ -37,3 +38,7 @@ cpal.resources.getURL = cpal.notImplemented;
  * cpal.storage
  */
 cpal.storage = {};
+
+window.cpal = {};
+
+console.log("CPAL base ready!");
