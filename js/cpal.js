@@ -41,6 +41,12 @@ cpal.storage = {};
 
 cpal.storage.getKey = cpal.notImplemented;
 cpal.storage.setKey = cpal.notImplemented;
+/*
+ * cpal.storage.quota
+ */
+cpal.storage.quota = {};
+cpal.storage.quota.getUsedBytes = cpal.notImplemented;
+cpal.storage.quota.getTotalBytes = cpal.notImplemented;
 
 window.cpal = {};
 

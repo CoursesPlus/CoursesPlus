@@ -65,3 +65,15 @@ cpal.storage.setKey = function(keyName, keyValue, callback) {
 		}
 	});
 };
+/*
+ * cpal.storage.quota
+ */
+cpal.storage.quota = {};
+cpal.storage.quota.getUsedBytes = function(callback) {
+	chrome.storage.sync.getBytesInUse(null, function(bytes) {
+		callback(bytes);
+	});
+};
+cpal.storage.quota.getTotalBytes = function() {
+	return chrome.storage.sync.QUOTA_BYTES;
+};

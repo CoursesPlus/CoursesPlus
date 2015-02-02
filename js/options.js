@@ -101,7 +101,7 @@ function saveBgUrlSizing(url) {
 	cpal.storage.setKey("backgroundImage", {
 		url: url,
 		sizing: $(".bgSizing:checked").val()
-	}});
+	});
 }
 function saveBgSizing() {
 	if ($("#backgroundImagePreview").attr("src") != "images/nobg.png") {
@@ -198,7 +198,7 @@ var onNavTextColorPickerChange = function() {
 	var newColor = $("#secretNavTextColorPicker").val();
 	$(".navTextColor.custom").css("background-color", newColor);
 	$(".navTextColor.custom").css("color", newColor);
-	cpal.storage.setKey("navTextColor", newColor};
+	cpal.storage.setKey("navTextColor", newColor);
 };
 
 $(document).ready(function() {
@@ -317,7 +317,7 @@ $(document).ready(function() {
 
 	$(".background").on("selBoxChanged", function(e) {
 		if (e.to != "custom") {
-			cpal.storage.setKey("backgroundColor". e.to});
+			cpal.storage.setKey("backgroundColor". e.to);
 		} else {
 			$("#secretColorPicker")[0].click();
 		}
@@ -367,8 +367,8 @@ $(document).ready(function() {
 		$("#selLogoModal").modal();
 	});
 	var recalcStorage = function() {
-		chrome.storage.sync.getBytesInUse(null, function(bytes) {
-			$("#storageUsage").text(Math.round((bytes / 1024) * 100) / 100 + " kB out of " + (chrome.storage.sync.QUOTA_BYTES / 1024) + " kB total used");
+		cpal.storage.quota.getUsedBytes(function(bytes) {
+			$("#storageUsage").text(Math.round((bytes / 1024) * 100) / 100 + " kB out of " + (cpal.storage.quota.getTotalBytes() / 1024) + " kB total used");
 		});		
 	};
 	recalcStorage();
