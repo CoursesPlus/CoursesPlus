@@ -707,7 +707,6 @@ var components = {
 			$(".event").each(function() {
 				var $r0 = $(this).children("tbody").children(".r0");
 				var thisId = $r0.children(".picture").children("a").attr("name");
-				var oldError = chrome.runtime.lastError;
 				
 				var $eventCheck = $('<input type="checkbox" class="eventCheck" />');
 				$eventCheck.change(function() {
