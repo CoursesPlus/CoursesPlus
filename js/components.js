@@ -185,7 +185,7 @@ var components = {
 	/*logo: {displayName: "Logo change", description: "Changes the logo to the circular Dalton School thing.", exec: function() {
 		// MOVED to runNonComponentTweaks();
 		// Change logo
-		//$("#page-header").css("background-image", "url(" + chrome.extension.getURL("images/logos/circle.png") + ")");
+		//$("#page-header").css("background-image", "url(" + cpal.resources.getURL("images/logos/circle.png") + ")");
 		//$("#page-header").css("background-size", "80px 80px");
 	}, js: [], css:"", runOn: "*"},*/
 	teacherList: {displayName: "Condense list of teachers", description: "Makes a list of teachers just say the first teacher's name and bla others.", exec: function() {
@@ -485,7 +485,7 @@ var components = {
 
 		$('body').append($editModal);
 
-		$(".transparent").css("background-image", "url('" + chrome.runtime.getURL("images/transparent.png") + "')");
+		$(".transparent").css("background-image", "url('" + cpal.resources.getURL("images/transparent.png") + "')");
 
 		$(".selBox").click(function() {
 			if ($(this).hasClass("selected") && !$(this).hasClass("custom")) {
@@ -577,7 +577,7 @@ var components = {
 							var $optionsLink = $('<li><a target="_blank"></a></li>');
 
 								$optionsLink.children("a").html("<i class=\"glyphicon glyphicon-wrench\"></i>&nbsp;&nbsp;Courses+ Options");
-								$optionsLink.children("a").attr("href", chrome.runtime.getURL("options.html"));
+								$optionsLink.children("a").attr("href", cpal.resources.getURL("options.html"));
 
 							$logDownList.append($optionsLink);
 
@@ -1049,7 +1049,7 @@ window.components.runAll = function() {
 							console.log("CSS file '" + cssFile + "' (for '" + componentIndex + "') already added!");
 						} else {
 							var $linkTag = $("<link rel=\"stylesheet\" />");
-							$linkTag.attr("href", "chrome-extension://" + chrome.runtime.id + "/css/" + cssFile );
+							$linkTag.attr("href", cpal.resources.getURL("/css/" + cssFile));
 							$("head").append($linkTag);
 							addedCssFiles.push(cssFile);
 							console.log("Added CSS file '" + cssFile + "' (for '" + componentIndex + "')!");
@@ -1061,7 +1061,7 @@ window.components.runAll = function() {
 							console.log("JS file '" + jsFile + "' (for '" + componentIndex + "') already added!");
 						} else {
 							var $scriptTag = $("<script type=\"text/javascript\"></script>");
-							$scriptTag.attr("src", "chrome-extension://" + chrome.runtime.id + "/js/" + jsFile );
+							$scriptTag.attr("src", cpal.resources.getURL("/js/" + jsFile));
 							$("head").append($scriptTag);
 							addedJsFiles.push(jsFile);
 							console.log("Added JS file '" + jsFile + "' (for '" + componentIndex + "')!");
@@ -1094,12 +1094,15 @@ window.components.runAll = function() {
 						detailsText += "Page URL: ";
 						detailsText += window.location.href;
 						detailsText += "\n";
-						detailsText += "Extension ID: ";
-						detailsText += chrome.runtime.id;
+						detailsText += "Browser version: ";
+						detailsText += cpal.extension.getBrowserVersion();
 						detailsText += "\n";
 						detailsText += "Extension version: ";
-						detailsText += chrome.runtime.getManifest().version;
+						detailsText += cpal.extension.getExtensionVersion();
 						detailsText += "\n";
+						detailsText += "\n";
+						detailsText += "CPAL platform-specifics:\n";
+						detailsText += cpal.logging.specificErrorDetails();
 
 						console.error("ERROR DETAILS:");
 						console.error(detailsText);

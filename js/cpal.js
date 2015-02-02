@@ -8,6 +8,7 @@ cpal = {};
 
 cpal.notImplemented = function() {
 	alert("Error - this function has not been implemented in the abstraction layer. :(");
+	return "NOIMPL!";
 }
 
 /*
