@@ -202,87 +202,87 @@ var onNavTextColorPickerChange = function() {
 };
 
 $(document).ready(function() {
-	chrome.storage.sync.get("disabledComponents", function(items) {
-		disabledComponentList = ($.isArray(items.disabledComponents) ? items.disabledComponents : []);
+	cpal.storage.getKey("disabledComponents", function(result) {
+		disabledComponentList = ($.isArray(result) ? result : []);
 		console.log(disabledComponentList);
 		createList();
 	});
-	chrome.storage.sync.get("backgroundColor", function(items) {
-		if (items.backgroundColor === undefined) {
+	cpal.storage.getKey("backgroundColor", function(result) {
+		if (result === undefined) {
 			return;
 		}
 		$(".background.white").removeClass("selected");
-		if ($(".background").hasClass(items.backgroundColor)) {
-			$(".background." + items.backgroundColor).addClass("selected");
+		if ($(".background").hasClass(result)) {
+			$(".background." + result).addClass("selected");
 		} else {
 			$(".background.custom").addClass("selected");
-			$("#secretColorPicker").val(items.backgroundColor);
+			$("#secretColorPicker").val(result);
 			onBgColorPickerChange();
 		}
 	});
-	chrome.storage.sync.get("backgroundImage", function(items) {
-		if (items.backgroundImage === undefined || items.backgroundImage === false) {
+	cpal.storage.getKey("backgroundImage", function(result) {
+		if (result === undefined || result === false) {
 			return;
 		}
-		$("#backgroundImagePreview").attr("src", items.backgroundImage.url);
+		$("#backgroundImagePreview").attr("src", result.url);
 	});
-	chrome.storage.sync.get("textColor", function(items) {
-		if (items.textColor === undefined) {
+	cpal.storage.getKey("textColor", function(result) {
+		if (result === undefined) {
 			return;
 		}
 		$(".textColor.black").removeClass("selected");
-		if ($(".textColor").hasClass(items.textColor)) {
-			$(".textColor." + items.textColor).addClass("selected");
+		if ($(".textColor").hasClass(result)) {
+			$(".textColor." + result).addClass("selected");
 		} else {
 			$(".textColor.custom").addClass("selected");
-			$("#secretTextColorPicker").val(items.textColor);
+			$("#secretTextColorPicker").val(result);
 			onTextColorPickerChange();
 		}
 	});
-	chrome.storage.sync.get("linkTextColor", function(items) {
-		if (items.linkTextColor === undefined) {
+	cpal.storage.getKey("linkTextColor", function(result) {
+		if (result === undefined) {
 			return;
 		}
-		if (items.linkTextColor == "#428BCA") {
+		if (result == "#428BCA") {
 			// It's the "bluish" color.
 			return;
 		}
 		$(".linkTextColor.bluish").removeClass("selected");
-		if ($(".linkTextColor").hasClass(items.linkTextColor)) {
-			$(".linkTextColor." + items.linkTextColor).addClass("selected");
+		if ($(".linkTextColor").hasClass(result)) {
+			$(".linkTextColor." + result).addClass("selected");
 		} else {
 			$(".linkTextColor.custom").addClass("selected");
-			$("#secretLinkTextColorPicker").val(items.linkTextColor);
+			$("#secretLinkTextColorPicker").val(result);
 			onLinkTextColorPickerChange();
 		}
 	});
-	chrome.storage.sync.get("navTextColor", function(items) {
-		if (items.navTextColor === undefined) {
+	cpal.storage.getKey("navTextColor", function(items) {
+		if (result === undefined) {
 			return;
 		}
 		$(".navTextColor.black").removeClass("selected");
-		if ($(".navTextColor").hasClass(items.navTextColor)) {
-			$(".navTextColor." + items.navTextColor).addClass("selected");
+		if ($(".navTextColor").hasClass(result)) {
+			$(".navTextColor." + result).addClass("selected");
 		} else {
 			$(".navTextColor.custom").addClass("selected");
-			$("#secretNavTextColorPicker").val(items.navTextColor);
+			$("#secretNavTextColorPicker").val(result);
 			onNavTextColorPickerChange();
 		}
 	});
-	chrome.storage.sync.get("logoType", function(items) {
-		if (items.logoType === undefined) {
+	cpal.storage.getKey("logoType", function(logoType) {
+		if (logoType === undefined) {
 			return;
 		}
-		chrome.storage.sync.get("logoImage", function(items) {
-			if (items.logoImage === undefined) {
+		cpal.storage.getKey("logoImage", function(logoImage) {
+			if (logoImage === undefined) {
 				return;
 			}
 			$(".logo.regular").removeClass("selected");
-			$(".logo." + items.logoImage).addClass("selected");
-			$(".selectedLogo").attr("src", chrome.runtime.getURL("images/logos/" + items.logoImage + ".png"));
+			$(".logo." + logoImage).addClass("selected");
+			$(".selectedLogo").attr("src", cpal.resources.getURL("images/logos/" + logoImage + ".png"));
 		});
 	});
-	$(".selectedLogo").attr("src", chrome.runtime.getURL("images/logos/regular.png"));
+	$(".selectedLogo").attr("src", cpal.resources.getURL("images/logos/regular.png"));
 	$.ajax({
 		url: 'https://coursesplus.tk/usrupl/uplInfo.php',  //Server script to process data
 		type: 'POST',
@@ -360,7 +360,7 @@ $(document).ready(function() {
 	});
 	$(".logo").on("selBoxChanged" ,function(e) {
 		chrome.storage.sync.set({logoType: "preload", logoImage: e.to});
-		$(".selectedLogo").attr("src", chrome.runtime.getURL("images/logos/" + e.to + ".png"));
+		$(".selectedLogo").attr("src", cpal.resources.getURL("images/logos/" + e.to + ".png"));
 	});
 	$("#selectLogo").click(function() {
 		$("#selLogoModal").modal();
