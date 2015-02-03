@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Courses+ Options</title>
+
+		<link rel="stylesheet" href="scss_gen/fonts.css" />
+		<link rel="stylesheet" href="options.css" />
+
+		<script type="text/javascript" src="js/cpal.chrome.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/components.js"></script>
+		<script type="text/javascript" src="js/options.js"></script>
+	</head>
+	<body>
+		<div id="selLogoModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title">Select logo</h4>
+					</div>
+					<div class="modal-body">
+						<p>Click on a logo to select it!</p>
+						<p>Your changes are automatically saved.</p>
+						<p>Thanks to William Barkoff for the "CoursesPlus" and "DaltonCourses" logos.</p>
+						<div id="logoSelGallery">
+							<div class="selBox logo regular selected" data-selBoxGroup="logo" data-selBoxVal="regular"></div>
+							<div class="selBox logo circle" data-selBoxGroup="logo" data-selBoxVal="circle"></div>
+							<div class="selBox logo coursesbigwordmark" data-selBoxGroup="logo" data-selBoxVal="coursesbigwordmark"></div>
+							<div class="selBox logo coursespluswordmark" data-selBoxGroup="logo" data-selBoxVal="coursespluswordmark"></div>
+							<div class="selBox logo daltoncourseswordmark" data-selBoxGroup="logo" data-selBoxVal="daltoncourseswordmark"></div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<!--<button type="button" id="logoFromUrl" class="btn btn-info pull-left">From URL...</button>-->
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<h1>Courses<strong>Plus</strong> Options</h1>
+		<p>You can use this page to set up, change, or disable some features of Courses<strong>Plus</strong>.</p>
+		<p>If you're signed in to Chrome, your options are synced across computers.</p>
+		<p>Your changes are automatically saved.</p>
+		<h3>Make Courses yours</h3>
+		<h4>Page options</h4>
+		<h6>Background</h6>
+		<div class="indentLevel1">
+			<h6>Color</h6>
+			<input type="color" id="secretColorPicker" value="#8e908f" />
+			<div id="backgrounds">
+				<div class="selBox background white selected" data-selBoxGroup="background" data-selBoxVal="white"></div>
+				<div class="selBox background pink" data-selBoxGroup="background" data-selBoxVal="pink"></div>
+				<div class="selBox background lightgreen" data-selBoxGroup="background" data-selBoxVal="lightgreen"></div>
+				<div class="selBox background lightblue" data-selBoxGroup="background" data-selBoxVal="lightblue"></div>
+				<div class="selBox background orange" data-selBoxGroup="background" data-selBoxVal="orange"></div>
+				<div class="selBox background gray" data-selBoxGroup="background" data-selBoxVal="gray"></div>
+				<div class="selBox background custom" data-selBoxGroup="background" data-selBoxVal="custom"><span>...</span></div>
+			</div>
+
+			<h6>Image</h6>
+			<img id="backgroundImagePreview" src="images/nobg.png"/>
+			<form id="bgImgUpl" enctype="multipart/form-data">
+				<div id="uploadingText" style="display:none;">Uploading image, please wait...</div>
+				<div id="connectingText">Connecting to background image server, please wait...</div>
+
+				<input type="hidden" name="submit" id="Submit" style="display:none;" />
+				<input type="file" name="fileToUpload" id="fileToUpload" style="display:none;" />
+				<br />
+
+				<button id="bgImgUplBtn" class="btn btn-success btn-sm" style="display:none;">Upload image</button>
+				<small id="bgFileInfo" style="display:none;"></small>
+				<br />
+
+				<button id="resetBg" class="btn btn-warning btn-sm" style="display:none;">Reset image</button>
+				<br />
+
+				<small id="bgPrivacy" style="display:none;"></small>
+				<br />
+
+				<h6 style="display:none;">Sizing</h6>
+				<input type="radio" class="bgSizing" name="bgSizing" value="center" checked="checked" style="display:none;" /><span style="display:none;">&nbsp;Centered&nbsp;&nbsp;&nbsp;</span>
+				<input type="radio" class="bgSizing" name="bgSizing" value="tile" style="display:none;" /><span style="display:none;">&nbsp;Tiled&nbsp;&nbsp;&nbsp;</span>
+				<input type="radio" class="bgSizing" name="bgSizing" value="fill" style="display:none;" /><span style="display:none;">&nbsp;Fill screen&nbsp;&nbsp;&nbsp;</span>
+			</form>
+		</div>
+		<h6>Text</h6>
+		<div class="indentLevel1">
+			<h6>Regular Color</h6>
+			<input type="color" id="secretTextColorPicker" value="#8e908f" />
+			<div id="textColors">
+				<div class="selBox textColor black selected" data-selBoxGroup="textColor" data-selBoxVal="black"></div>
+				<div class="selBox textColor gray" data-selBoxGroup="textColor" data-selBoxVal="gray"></div>
+				<div class="selBox textColor white" data-selBoxGroup="textColor" data-selBoxVal="white"></div>
+				<div class="selBox textColor custom" data-selBoxGroup="textColor" data-selBoxVal="custom"><span>...</span></div>
+			</div>
+			<h6>Link Color</h6>
+			<input type="color" id="secretLinkTextColorPicker" value="#8e908f" />
+			<div id="linkTextColors">
+				<div class="selBox linkTextColor bluish selected" data-selBoxGroup="linkTextColor" data-selBoxVal="#428BCA"></div>
+				<div class="selBox linkTextColor blue" data-selBoxGroup="linkTextColor" data-selBoxVal="blue"></div>
+				<div class="selBox linkTextColor black" data-selBoxGroup="linkTextColor" data-selBoxVal="black"></div>
+				<div class="selBox linkTextColor lightblue" data-selBoxGroup="linkTextColor" data-selBoxVal="lightblue"></div>
+				<div class="selBox linkTextColor gray" data-selBoxGroup="linkTextColor" data-selBoxVal="gray"></div>
+				<div class="selBox linkTextColor white" data-selBoxGroup="linkTextColor" data-selBoxVal="white"></div>
+				<div class="selBox linkTextColor custom" data-selBoxGroup="linkTextColor" data-selBoxVal="custom"><span>...</span></div>
+			</div>
+		</div>
+		<h6>Navigation Bar</h6>
+		<div class="indentLevel1">
+			<h6>Text Color</h6>
+			<input type="color" id="secretNavTextColorPicker" value="#8e908f" />
+			<div id="navTextColors">
+				<div class="selBox navTextColor black selected" data-selBoxGroup="navTextColor" data-selBoxVal="black"></div>
+				<div class="selBox navTextColor blue" data-selBoxGroup="navTextColor" data-selBoxVal="blue"></div>
+				<div class="selBox navTextColor lightblue" data-selBoxGroup="navTextColor" data-selBoxVal="lightblue"></div>
+				<div class="selBox navTextColor gray" data-selBoxGroup="navTextColor" data-selBoxVal="gray"></div>
+				<div class="selBox navTextColor white" data-selBoxGroup="navTextColor" data-selBoxVal="white"></div>
+				<div class="selBox navTextColor custom" data-selBoxGroup="navTextColor" data-selBoxVal="custom"><span>...</span></div>
+			</div>
+		</div>
+		<h6>Logo</h6>
+		<p>This is only shown if the "New navbar" feature is disabled below.</p>
+		<img src="" class="selectedLogo"/>
+		<br />
+		<button id="selectLogo" class="btn btn-primary">Select a logo...</button>
+		<h3>Enable or disable features</h3>
+		<div id="features">
+			<ul>
+
+			</ul>
+		</div>
+		<h3>Storage info</h3>
+		<p>Using sync storage - if you sign into Chrome on more than one computer, your Courses+ settings will sync between them!</p>
+		<p id="storageUsage">Loading usage information...</p>
+		<button id="clearStorage" class="btn btn-warning">Clear storage</button>
+	</body>
+</html>

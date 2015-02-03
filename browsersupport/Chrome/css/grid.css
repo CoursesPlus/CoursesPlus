@@ -1,0 +1,36 @@
+.coursebox {
+	width: 49% !important;
+	display: inline-block;
+	margin-bottom: 10px !important;
+	border-radius: 0 !important;
+}
+.coursebox.odd {
+	float: left;
+}
+.coursebox.even {
+	float: right;
+}
+.coursebox > .info > .moreinfo {
+	display: none;
+}
+.coursebox > .info > .coursename {
+	width: 100% !important;
+	margin-left: 18px !important;
+	padding-left: 5px !important;
+}
+.coursebox > .info > .coursename a {
+	background-color: white;
+	background-image: none !important;
+	/*text-transform: lowercase;*/
+	text-align: center;
+	width: 91%;
+	padding-left: 0 !important;
+}
+.teachers {
+	width: 100% !important;
+}
+.teachers > li {
+	/*text-transform: lowercase;*/
+	text-align: center;
+	width: 100%;
+}
