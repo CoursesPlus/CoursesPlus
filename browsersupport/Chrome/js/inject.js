@@ -6,9 +6,14 @@ if (window.location.href.indexOf(".pdf") != -1) {
 	console.log("Set event listener.");
 	document.addEventListener('DOMContentLoaded', onDOM_Ready, false);
 }
-window.components.runAll();
+
+if (cpal.extension.getBrowser() == "safari") {
+	window.components.runAll();
+}
 
 function onDOM_Ready () {
 	console.log("onDOM_Ready called!");
-    //window.components.runAll();
+    if (cpal.extension.getBrowser() == "chrome") {
+		window.components.runAll();
+	}
 }

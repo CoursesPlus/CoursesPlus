@@ -11,6 +11,9 @@ cpal = {};
  */
 cpal.extension = {};
 
+cpal.extension.getBrowser = function() {
+	return "chrome";
+};
 cpal.extension.getBrowserVersion = function() {
 	return navigator.appVersion.split("/")[2].replace(" Safari", "");
 };

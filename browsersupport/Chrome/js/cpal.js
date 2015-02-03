@@ -24,6 +24,7 @@ cpal.extension.getExtensionVersion = cpal.notImplemented;
  */
 cpal.logging = {};
 
+cpal.logging.getBrowser = cpal.notImplemented;
 cpal.logging.getReportLink = cpal.notImplemented;
 cpal.logging.specificErrorDetails = cpal.notImplemented;
 

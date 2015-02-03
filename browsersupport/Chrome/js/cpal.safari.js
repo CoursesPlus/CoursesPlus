@@ -11,6 +11,9 @@ cpal = {};
  */
 cpal.extension = {};
 
+cpal.extension.getBrowser = function() {
+	return "safari";
+};
 cpal.extension.getBrowserVersion = function() {
 	return navigator.appVersion.split('/')[2].replace(" Safari", ""); // Yes, this is the same in both Chrome and Safari. :O
 };
