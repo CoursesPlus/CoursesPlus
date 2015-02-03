@@ -7,7 +7,15 @@
 		<link rel="stylesheet" href="options.css" />
 
 		<script type="text/javascript" src="../js/cpal.js"></script>
-		<script type="text/javascript" src="../js/cpal.chrome.js"></script>
+		<script>
+		var file = "";
+		if (navigator.userAgent.indexOf("Chrome") > -1) {
+			file = "chrome";
+		} else if (navigator.userAgent.indexOf("Safari") > -1) {
+			file = "safari";
+		}
+		document.write('<script type="text/javascript" src="../js/cpal.' + file + '.js"></script>');
+		</script>
 		<script type="text/javascript" src="../js/jquery.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../js/components.js"></script>
@@ -61,7 +69,7 @@
 			</div>
 
 			<h6>Image</h6>
-			<img id="backgroundImagePreview" src="images/nobg.png"/>
+			<img id="backgroundImagePreview" src="../images/nobg.png"/>
 			<form id="bgImgUpl" enctype="multipart/form-data">
 				<div id="uploadingText" style="display:none;">Uploading image, please wait...</div>
 				<div id="connectingText">Connecting to background image server, please wait...</div>
