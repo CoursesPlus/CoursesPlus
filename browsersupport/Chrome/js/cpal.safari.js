@@ -63,6 +63,7 @@ cpal.storage.clear = function(callback) {
 };
 cpal.storage.getKey = function(keyName, callback) {
 	console.error("no-op");
+	callback("notarray");
 };
 cpal.storage.setKey = function(keyName, keyValue, callback) {
 	console.error("no-op");

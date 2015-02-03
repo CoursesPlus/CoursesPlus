@@ -1,0 +1,12 @@
+.block .minicalendar th {
+	font-size: 0.7em;
+}
+
+table.minicalendar abbr {
+	border-bottom: none;
+	cursor: default;
+}
+
+.block .minicalendar th, .block .minicalendar td {
+	width: 14.2%;
+}

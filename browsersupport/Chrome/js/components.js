@@ -1043,7 +1043,7 @@ window.components.runAll = function() {
 							console.log("CSS file '" + cssFile + "' (for '" + componentIndex + "') already added!");
 						} else {
 							var $linkTag = $("<link rel=\"stylesheet\" />");
-							$linkTag.attr("href", cpal.resources.getURL("/css/" + cssFile));
+							$linkTag.attr("href", cpal.resources.getURL("css/" + cssFile));
 							$("head").append($linkTag);
 							addedCssFiles.push(cssFile);
 							console.log("Added CSS file '" + cssFile + "' (for '" + componentIndex + "')!");
@@ -1055,7 +1055,7 @@ window.components.runAll = function() {
 							console.log("JS file '" + jsFile + "' (for '" + componentIndex + "') already added!");
 						} else {
 							var $scriptTag = $("<script type=\"text/javascript\"></script>");
-							$scriptTag.attr("src", cpal.resources.getURL("/js/" + jsFile));
+							$scriptTag.attr("src", cpal.resources.getURL("js/" + jsFile));
 							$("head").append($scriptTag);
 							addedJsFiles.push(jsFile);
 							console.log("Added JS file '" + jsFile + "' (for '" + componentIndex + "')!");

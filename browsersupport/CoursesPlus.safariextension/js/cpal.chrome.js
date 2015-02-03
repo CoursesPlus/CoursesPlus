@@ -1,7 +1,7 @@
 /*
  * CoursesPlus Abstraction Layer
  * This abstracts away things like storage or resource-ness.
- * Safari version
+ * Chrome version
  */
 
 cpal = {};
@@ -12,10 +12,10 @@ cpal = {};
 cpal.extension = {};
 
 cpal.extension.getBrowserVersion = function() {
-	return navigator.appVersion.split('/')[2].replace(" Safari", ""); // Yes, this is the same in both Chrome and Safari. :O
+	return navigator.appVersion.split("/")[2].replace(" Safari", "");
 };
 cpal.extension.getExtensionVersion = function() {
-	return safari.extension.displayVersion;
+	return chrome.runtime.getManifest().version;
 };
 
 /*
@@ -29,7 +29,9 @@ cpal.logging.getReportLink = function() {
 cpal.logging.specificErrorDetails = function() {
 	var details = "";
 
-		details += "Platform: Apple Safari";
+		details += "Platform: Google Chrome";
+		details += "\n";
+		details += "Extension ID: " + chrome.runtime.id;
 		details += "\n"
 
 	return details;
@@ -41,7 +43,7 @@ cpal.logging.specificErrorDetails = function() {
 cpal.resources = {};
 
 cpal.resources.getURL = function(item) {
-	return safari.extension.baseURI + item;
+	return chrome.runtime.getURL(item);
 };
 
 /*
@@ -50,7 +52,7 @@ cpal.resources.getURL = function(item) {
 cpal.request = {};
 
 cpal.request.addBeforeSendHeaders = function(urls, listener) {
-	console.error("no-op");
+	chrome.webRequest.onBeforeSendHeaders.addListener(listener, {urls: urls}, ["blocking", "requestHeaders"]);
 };
 
 /*
@@ -59,22 +61,33 @@ cpal.request.addBeforeSendHeaders = function(urls, listener) {
 cpal.storage = {};
 
 cpal.storage.clear = function(callback) {
-	console.error("no-op");
+	chrome.storage.sync.clear(function() {
+		callback();
+	});
 };
 cpal.storage.getKey = function(keyName, callback) {
-	console.error("no-op");
-	callback("notarray");
+	chrome.storage.sync.get(keyName, function(result) {
+		callback(result[keyName]);
+	});
 };
 cpal.storage.setKey = function(keyName, keyValue, callback) {
-	console.error("no-op");
+	var saveObj = {};
+	saveObj[keyName] = keyValue;
+	chrome.storage.sync.set(saveObj, function() {
+		if (callback !== undefined) {
+			callback();
+		}
+	});
 };
 /*
  * cpal.storage.quota
  */
 cpal.storage.quota = {};
 cpal.storage.quota.getUsedBytes = function(callback) {
-	console.error("no-op");
+	chrome.storage.sync.getBytesInUse(null, function(bytes) {
+		callback(bytes);
+	});
 };
 cpal.storage.quota.getTotalBytes = function() {
-	console.error("no-op");
+	return chrome.storage.sync.QUOTA_BYTES;
 };
