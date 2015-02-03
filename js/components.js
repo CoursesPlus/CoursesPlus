@@ -316,7 +316,7 @@ var components = {
 		}
 	}, js: [], css: [], runOn: "", requires: []},
 	courseGrid: {displayName: "Grid view for homepage", description: "Makes your courses on the homepage into a grid. We recommend you choose the 'Condense list of teachers' option too.", exec: function() {
-		// Pure CSS! :)
+		$(".coursebox.even").after($('<div style="position: relative;float: left;width: 100%;"></div>'));
 	}, js: [], css: ["grid.css"], runOn: "", requires: []},
 	customCourses: {displayName: "Customizable courses", description: "Makes the courses on the homepage be customizable.", exec: function() {	
 		var onEditBtnDown = function() {
