@@ -571,7 +571,7 @@ var components = {
 							var $optionsLink = $('<li><a target="_blank"></a></li>');
 
 								$optionsLink.children("a").html("<i class=\"glyphicon glyphicon-wrench\"></i>&nbsp;&nbsp;Courses+ Options");
-								$optionsLink.children("a").attr("href", cpal.resources.getURL("options.html"));
+								$optionsLink.children("a").attr("href", cpal.resources.getURL("etc/options.html"));
 
 							$logDownList.append($optionsLink);
 

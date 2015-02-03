@@ -4,10 +4,10 @@
 	"manifest_version": 2,
 	"description": "An extension that makes Dalton Courses look nicer, adds some features, and fixes some issues.",
 	"icons": {
-		"128": "icon128.png"
+		"128": "images/icon128.png"
 	},
 	"background": {
-		"page": "bg.chrome.html",
+		"page": "etc/bg.chrome.html",
 		"persistent": true /* As of Chrome 38, webrequest doesn't support event pages, so it's a background page for now */
 	},
 	"content_scripts": [
@@ -16,8 +16,8 @@
 				"https://courses2015.dalton.org/*"
 			],
 			"css": [
-				"fixedsticky.css",
-				"inject.css"
+				"css/fixedsticky.css",
+				"css/inject.css"
 			],
 			"js": [
 				"js/cpal.js",
@@ -25,13 +25,13 @@
 				"js/jquery.js",
 				"js/bootstrap.js",
 				"js/components.js",
-				"inject.js",
+				"js/inject.js",
 				"js/coursesLib.js"
 			],
 			"run_at": "document_start"
 		}
 	],
-	"options_page": "options.html",
+	"options_page": "etc/options.html",
 	"permissions": [
 		"*://courses2015.dalton.org/",
 		"*://coursesplus.tk/",
@@ -52,7 +52,7 @@
 		"chosen/*.css",
 		"chosen/*.png",
 		"chosen/*.js",
-		"options.html"
+		"etc/*.html"
 	],
 	"externally_connectable": {
 		"matches": [
