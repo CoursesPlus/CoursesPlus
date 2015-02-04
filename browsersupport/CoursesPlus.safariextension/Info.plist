@@ -56,6 +56,8 @@
 			<key>Allowed Domains</key>
 			<array>
 				<string>*.dalton.org</string>
+				<string>coursesplus.tk</string>
+				<string>*.coursesplus.tk</string>
 			</array>
 			<key>Include Secure Pages</key>
 			<true/>

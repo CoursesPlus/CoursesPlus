@@ -61,23 +61,42 @@ cpal.request.addBeforeSendHeaders = function(urls, listener) {
  */
 cpal.storage = {};
 
+var callbackStorage;
+
 cpal.storage.clear = function(callback) {
-	console.error("no-op");
+	callbackStorage = callback;
+	safari.self.tab.dispatchMessage("clearStorage", [null]);
 };
 cpal.storage.getKey = function(keyName, callback) {
-	console.error("no-op");
-	callback("notarray");
+	callbackStorage = callback;
+	safari.self.tab.dispatchMessage("getKey", [keyName, null]);
 };
 cpal.storage.setKey = function(keyName, keyValue, callback) {
-	console.error("no-op");
+	callbackStorage = callback;
+	safari.self.tab.dispatchMessage("setKey", [keyName, keyValue, null]);
 };
 /*
  * cpal.storage.quota
  */
 cpal.storage.quota = {};
 cpal.storage.quota.getUsedBytes = function(callback) {
-	console.error("no-op");
+	return 0;
 };
 cpal.storage.quota.getTotalBytes = function() {
-	console.error("no-op");
+	return 1024;
 };
+
+// Safari callback thing
+function messageHandler(messageEvent) {
+	console.log("Got message!");
+	console.log(messageEvent);
+	if (messageEvent.name === "callback") {
+		//var callback = messageEvent.message[0];
+		var param = messageEvent.message[1];
+		callbackStorage(param);
+	}
+}
+
+if (window.ZOMGBGSAFARIHACKONEONEONE !== true) {
+	safari.self.addEventListener("message", messageHandler, false);
+}
