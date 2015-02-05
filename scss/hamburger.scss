@@ -128,10 +128,10 @@ body.nav-expanded {
 	font-size: 24px;
 }
 
-#user-actions {
+.happyNavList {
 	font-size: 14pt;
 }
-#userinfo > #user-actions > li {
+#userinfo > .happyNavList > li {
 	display: block;
 	color: black;
 	text-decoration: none;
@@ -145,7 +145,7 @@ body.nav-expanded {
 		text-decoration: none;
 	}
 }
-#userinfo > #user-actions > li:hover {
+#userinfo > .happyNavList > li:hover {
 	background-color: #DDD;
 	cursor: pointer;
 	margin-left: 3px;
