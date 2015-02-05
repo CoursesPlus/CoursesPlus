@@ -1,4 +1,3 @@
-/* line 17, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,45 +19,37 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../../Applications/DinoCanyon/Dinosaur Canyon.app/Contents/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -187,12 +178,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
-/* line 6, ../scss/hamburger.scss */
 html {
   height: 100%;
 }
 
-/* line 10, ../scss/hamburger.scss */
 body {
   height: 100%;
   font-family: Lato, Helvetica, Arial, sans-serif;
@@ -202,17 +191,14 @@ body {
   min-width: 320px;
 }
 
-/* line 19, ../scss/hamburger.scss */
 h3 {
   margin: 0 0 20px 0;
 }
 
-/* line 22, ../scss/hamburger.scss */
 p {
   margin: 0 0 20px 0;
 }
 
-/* line 26, ../scss/hamburger.scss */
 #page-content {
   display: block;
   width: 100%;
@@ -245,7 +231,6 @@ p {
   padding: 80px 20px 40px 20px;
 }
 
-/* line 42, ../scss/hamburger.scss */
 #hamburger-icon {
   float: left;
   width: 100%;
@@ -288,7 +273,6 @@ p {
   background-size: 52px 52px;
 }
 
-/* line 69, ../scss/hamburger.scss */
 nav {
   display: block;
   width: 100%;
@@ -305,46 +289,38 @@ nav {
   z-index: 1;
   background: #EEEEEE;
 }
-/* line 82, ../scss/hamburger.scss */
 nav a#home-logo {
   display: block;
   float: left;
 }
-/* line 86, ../scss/hamburger.scss */
 nav ul {
   display: block;
   float: left;
   width: 100%;
   line-height: 40px;
 }
-/* line 91, ../scss/hamburger.scss */
 nav ul > li {
   display: block;
   float: left;
   width: 100%;
 }
-/* line 95, ../scss/hamburger.scss */
 nav ul > li > a {
   display: block;
   float: left;
   width: 100%;
 }
 
-/* line 105, ../scss/hamburger.scss */
 body.nav-expanded #page-content {
   margin-left: 200px;
 }
-/* line 108, ../scss/hamburger.scss */
 body.nav-expanded #hamburger-icon {
   left: 200px;
 }
 
-/* line 113, ../scss/hamburger.scss */
 #username-img {
   border-radius: 100%;
 }
 
-/* line 117, ../scss/hamburger.scss */
 #username-big {
   font-size: 24px;
   font-weight: 100;
@@ -354,18 +330,15 @@ body.nav-expanded #hamburger-icon {
   left: 7px;
 }
 
-/* line 126, ../scss/hamburger.scss */
 #hamburger-icon > i {
   margin-top: 17px;
   font-size: 24px;
 }
 
-/* line 131, ../scss/hamburger.scss */
 .happyNavList {
   font-size: 14pt;
 }
 
-/* line 134, ../scss/hamburger.scss */
 #userinfo > .happyNavList > li {
   display: block;
   color: black;
@@ -378,104 +351,85 @@ body.nav-expanded #hamburger-icon {
   -o-transition: margin-left 0.25s ease-in-out;
   transition: margin-left 0.25s ease-in-out;
 }
-/* line 143, ../scss/hamburger.scss */
 #userinfo > .happyNavList > li > a {
   color: black;
   text-decoration: none;
 }
 
-/* line 148, ../scss/hamburger.scss */
 #userinfo > .happyNavList > li:hover {
   background-color: #DDD;
   cursor: pointer;
   margin-left: 3px;
 }
 
-/* line 155, ../scss/hamburger.scss */
 #username-img {
   width: 48px;
   height: 48px;
 }
 
-/* line 161, ../scss/hamburger.scss */
 .calendar {
   margin: 0 auto;
   text-align: center;
 }
 
-/* line 165, ../scss/hamburger.scss */
 .calendar-month {
   font-size: 18px;
 }
 
-/* line 168, ../scss/hamburger.scss */
 .calendar-month, .calendar-day, .calendar-dayOfWeek {
   text-align: center;
 }
 
-/* line 171, ../scss/hamburger.scss */
 .calendar-day, .calendar-dayOfWeek {
   padding: 8px;
 }
 
-/* line 174, ../scss/hamburger.scss */
 .calendar-notInMonth {
   background: lightgray;
 }
 
-/* line 179, ../scss/hamburger.scss */
 .page {
   display: none;
 }
 
-/* line 182, ../scss/hamburger.scss */
 .page.showing {
   display: block;
 }
 
-/* line 187, ../scss/hamburger.scss */
 #loadingPage {
   text-align: center;
 }
 
-/* line 191, ../scss/hamburger.scss */
 .grid {
   text-align: center;
 }
 
-/* line 196, ../scss/hamburger.scss */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
   margin-top: 10px;
   margin-bottom: 15px;
 }
 
-/* line 201, ../scss/hamburger.scss */
 h1 {
   font-size: 26px;
 }
 
-/* line 204, ../scss/hamburger.scss */
 h2 {
   font-size: 24px;
 }
 
-/* line 207, ../scss/hamburger.scss */
 h3 {
   font-size: 22px;
 }
 
-/* line 210, ../scss/hamburger.scss */
 h4 {
   font-size: 20px;
 }
 
-/* line 213, ../scss/hamburger.scss */
 h5 {
   font-size: 18px;
 }
 
-/* line 216, ../scss/hamburger.scss */
 h6 {
   font-size: 16px;
 }
