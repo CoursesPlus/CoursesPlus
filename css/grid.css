@@ -21,7 +21,6 @@
 .coursebox > .info > .coursename a {
 	background-color: white;
 	background-image: none !important;
-	/*text-transform: lowercase;*/
 	text-align: center;
 	width: 91%;
 	padding-left: 0 !important;
@@ -30,7 +29,6 @@
 	width: 100% !important;
 }
 .teachers > li {
-	/*text-transform: lowercase;*/
 	text-align: center;
 	width: 100%;
 }
