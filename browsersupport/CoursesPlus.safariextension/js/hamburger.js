@@ -131,10 +131,10 @@ $(document).ready(function() {
 				console.log(response);
 				for (var i = 0; i < response.events.length; i++) {
 					var thisEvent = response.events[i];
-					var $eventItem = $('<li><div class="upcoming-title"></div><div class="upcoming-class"></div><div class="upcoming-desc"></div></li>');
+					var $eventItem = $('<li><div class="upcoming-title"></div><div class="upcoming-course"></div><div class="upcoming-desc"></div></li>');
 
 					$eventItem.children(".upcoming-title").text(thisEvent.title);
-					$eventItem.children(".upcoming-class").text(thisEvent.course);
+					$eventItem.children(".upcoming-course").text(thisEvent.course);
 					$eventItem.children(".upcoming-desc").text(thisEvent.normText);
 
 					$("#upcomingEventList").append($eventItem);

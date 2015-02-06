@@ -334,6 +334,22 @@ body.nav-expanded #hamburger-icon {
   text-align: center;
 }
 
+#upcomingEventList {
+  text-align: left;
+}
+
+#upcomingEventList > li {
+  margin-bottom: 10px;
+}
+
+.upcoming-title {
+  font-size: 16px;
+}
+
+.upcoming-course {
+  font-size: 15px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
   margin-top: 10px;
