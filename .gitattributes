@@ -4,6 +4,15 @@
 # Custom for Visual Studio
 *.cs     diff=csharp
 
+*.md	 diff
+
+# Chrome extension stuff
+*.css	 diff
+*.html	 diff
+*.js	 diff
+*.json	 diff
+*.scss	 diff
+
 # Standard to msysgit
 *.doc	 diff=astextplain
 *.DOC	 diff=astextplain
