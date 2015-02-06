@@ -6,6 +6,17 @@ window.coursesLib = {};
 
 window.coursesLib.baseUrl = "https://courses2015.dalton.org";
 
+window.coursesLib.checkLoggedIn = function(doneFunc) {
+	$.get(window.coursesLib.baseUrl + "/login/index.php", function (resText) {
+		var $response = $(resText);
+		var respObj = {};
+
+		respObj.isLoggedIn = ($response.find(".loginform").length == 0);
+
+		doneFunc(respObj);
+	});
+};
+
 window.coursesLib.getCourseInfo = function(courseId, doneFunc) {
 	$.get(window.coursesLib.baseUrl + "/course/view.php" + "?id=" + courseId, function (resText) {
 		var $response = $(resText);
