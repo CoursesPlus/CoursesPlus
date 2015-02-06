@@ -69,12 +69,13 @@ window.coursesLib.getUpcomingCourseEvents = function(courseId, doneFunc) {
 					.children(".event").each(function() {
 						// !!!
 						var eventTitle = $(this).children("tbody").children(".r0").children(".topic").children(".referer").children("a").text().replace(/\s{2,}/g, " ");
+						var eventCourse = $(this).children("tbody").children(".r0").children(".topic").children(".course").children("a").text().replace(/\s{2,}/g, " ");
 						var eventHtml = $(this).children("tbody").children(".r1").children(".description").html();
 						var eventText = $(this).children("tbody").children(".r1").children(".description").text();
 						var eventNormText = $(this).children("tbody").children(".r1").children(".description").text().replace(/\r/g, "").replace(/\n/g, " ");
 						var eventLink = $(this).children("tbody").children(".r0").children(".topic").children(".referer").children("a").attr("href");
 						
-						var eventObj = {title: eventTitle, text: eventText, normText: eventNormText, html: eventHtml, link: eventLink};
+						var eventObj = {title: eventTitle, course: eventCourse, text: eventText, normText: eventNormText, html: eventHtml, link: eventLink};
 
 						respObj.events.push(eventObj);
 					});
@@ -102,12 +103,13 @@ window.coursesLib.getUpcomingEvents = function(doneFunc) {
 					.children(".event").each(function() {
 						// !!!
 						var eventTitle = $(this).children("tbody").children(".r0").children(".topic").children(".referer").children("a").text().replace(/\s{2,}/g, " ");
+						var eventCourse = $(this).children("tbody").children(".r0").children(".topic").children(".course").children("a").text().replace(/\s{2,}/g, " ");
 						var eventHtml = $(this).children("tbody").children(".r1").children(".description").html();
 						var eventText = $(this).children("tbody").children(".r1").children(".description").text();
 						var eventNormText = $(this).children("tbody").children(".r1").children(".description").text().replace(/\r/g, "").replace(/\n/g, " ");
 						var eventLink = $(this).children("tbody").children(".r0").children(".topic").children(".referer").children("a").attr("href");
 						
-						var eventObj = {title: eventTitle, text: eventText, normText: eventNormText, html: eventHtml, link: eventLink};
+						var eventObj = {title: eventTitle, course: eventCourse, text: eventText, normText: eventNormText, html: eventHtml, link: eventLink};
 
 						respObj.events.push(eventObj);
 					});

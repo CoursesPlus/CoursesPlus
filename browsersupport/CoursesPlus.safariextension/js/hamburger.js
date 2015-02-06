@@ -134,7 +134,7 @@ $(document).ready(function() {
 					var $eventItem = $('<li><div class="upcoming-title"></div><div class="upcoming-class"></div><div class="upcoming-desc"></div></li>');
 
 					$eventItem.children(".upcoming-title").text(thisEvent.title);
-					$eventItem.children(".upcoming-class").text(thisEvent.title);
+					$eventItem.children(".upcoming-class").text(thisEvent.course);
 					$eventItem.children(".upcoming-desc").text(thisEvent.normText);
 
 					$("#upcomingEventList").append($eventItem);
