@@ -118,28 +118,34 @@ $(document).ready(function() {
 	});
 
 	// Load info
-	$("#calendarSpot").html(getCalendarHTML(1, 2015));
-	window.coursesLib.getProfile(function(response) {
-		$("#username-big").text(response.firstName);
-		$("#username-img").attr("src", response.avatarUrl);
-		window.coursesLib.getUpcomingEvents(function(response) {
-			console.log(response);
-			for (var i = 0; i < response.events.length; i++) {
-				var thisEvent = response.events[i];
-				var $eventItem = $('<li><div class="upcoming-title"></div><div class="upcoming-class"></div><div class="upcoming-desc"></div></li>');
+	window.coursesLib.checkLoggedIn(function(loginStatus) {
+		if (!loginStatus.isLoggedIn) {
+			setPageTo("notLoggedInPage");
+			return;
+		}
+		$("#calendarSpot").html(getCalendarHTML(1, 2015));
+		window.coursesLib.getProfile(function(response) {
+			$("#username-big").text(response.firstName);
+			$("#username-img").attr("src", response.avatarUrl);
+			window.coursesLib.getUpcomingEvents(function(response) {
+				console.log(response);
+				for (var i = 0; i < response.events.length; i++) {
+					var thisEvent = response.events[i];
+					var $eventItem = $('<li><div class="upcoming-title"></div><div class="upcoming-class"></div><div class="upcoming-desc"></div></li>');
 
-				$eventItem.children(".upcoming-title").text(thisEvent.title);
-				$eventItem.children(".upcoming-class").text(thisEvent.title);
-				$eventItem.children(".upcoming-desc").text(thisEvent.normText);
+					$eventItem.children(".upcoming-title").text(thisEvent.title);
+					$eventItem.children(".upcoming-class").text(thisEvent.title);
+					$eventItem.children(".upcoming-desc").text(thisEvent.normText);
 
-				$("#upcomingEventList").append($eventItem);
-				$(".upcoming-desc").each(function() {
-					//$(this).text().sp
-				});
+					$("#upcomingEventList").append($eventItem);
+					$(".upcoming-desc").each(function() {
+						//$(this).text().sp
+					});
 
-				console.log(thisEvent);
-			}
-			setPageTo("mainPage");
+					console.log(thisEvent);
+				}
+				setPageTo("mainPage");
+			});
 		});
 	});
 });
