@@ -91,6 +91,7 @@ It has to be disabled because it hides the customize button.
 }
 /* Not logged in homepage changes */
 #home-feature {
+	width: 101%;
 	height: 248px !important;
 }
 
