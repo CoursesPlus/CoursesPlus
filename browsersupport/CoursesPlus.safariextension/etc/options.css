@@ -142,7 +142,7 @@ h6 {
 
 }
 .logo.regular {
-	background-image: url("images/logos/regular.png");
+	background-image: url("../images/logos/regular.png");
 	background-position: center center;
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -150,22 +150,22 @@ h6 {
 	height: 80px;	
 }
 .logo.circle {
-	background-image: url("images/logos/circle.png");
+	background-image: url("../images/logos/circle.png");
 	width: 110px;
 	height: 110px;
 }
 .logo.coursesbigwordmark {
-	background-image: url("images/logos/coursesbigwordmark.png");
+	background-image: url("../images/logos/coursesbigwordmark.png");
 	width: 270px;
 	height: 100px;
 }
 .logo.coursespluswordmark {
-	background-image: url("images/logos/coursespluswordmark.png");
+	background-image: url("../images/logos/coursespluswordmark.png");
 	width: 194px;
 	height: 31px;
 }
 .logo.daltoncourseswordmark {
-	background-image: url("images/logos/daltoncourseswordmark.png");
+	background-image: url("../images/logos/daltoncourseswordmark.png");
 	width: 237px;
 	height: 35px;
 }
