@@ -169,3 +169,19 @@ h6 {
 	width: 237px;
 	height: 35px;
 }
+
+#features > ul {
+	list-style-type: none;
+}
+.col-1-4 {
+	border: solid 1px black;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 5px;
+	width: 300px;
+	height: 140px;
+}
+.grid {
+	max-width: none;
+	padding-top: 0;
+}

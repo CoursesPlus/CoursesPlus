@@ -11,7 +11,9 @@ function createList() {
 			continue;
 		}
 		var component = sortedComponents[componentIndex];
-		var $appendMe = $("<li></li>");
+		var $appendMeReally = $('<li class="col-1-4 feature"></li>');
+		$appendMeReally.attr("data-componentIndex", componentIndex);
+		var $appendMe = $('<div class="content"></div>');
 		$appendMe.addClass("feature");
 			var $check = $("<input type=\"checkbox\" />");
 				$check.addClass("featureCheck");
@@ -86,7 +88,8 @@ function createList() {
 				$appendMe.append($req);
 			}
 
-		$("#features > ul").append($appendMe);
+		$appendMeReally.append($appendMe)
+		$("#features > ul").append($appendMeReally);
 	}
 }
 
