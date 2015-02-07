@@ -16,7 +16,6 @@
 				"https://courses2015.dalton.org/*"
 			],
 			"css": [
-				"css/fixedsticky.css",
 				"css/inject.css"
 			],
 			"js": [
