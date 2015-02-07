@@ -28,6 +28,13 @@
 	margin-right: 5px;
 	width: 90%;
 }
+
+/* Navbar logo */
+.navbarHappyLogo {
+	position: relative;
+	top: -13px;
+}
+
 /* Navbar force collapse */
 @media (max-width: 1140px) {
 	.navbar > .container-fluid {

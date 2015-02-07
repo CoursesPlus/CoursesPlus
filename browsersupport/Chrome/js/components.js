@@ -927,13 +927,20 @@ function runNonComponentTweaks(componentsToSkip) {
 
 	console.log("Changing logo...");
 	cpal.storage.getKey("logoType", function(logoType) {
-		if (componentsToSkip.indexOf("newNavbar") == -1) {
-			console.log("Logo disabled because new navbar!");
+		var newNavbar = (componentsToSkip.indexOf("newNavbar") == -1);
+		if (newNavbar) {
+			//console.log("Logo disabled because new navbar!");
 			$("#page-header").css("background", "transparent");
-			return;
+			//return;
 		}
 		if (logoType === undefined) {
 			console.log("Logo type not set!");
+			if (newNavbar) {
+				var newUrl = cpal.resources.getURL("images/logos/regular.png");
+				var newWidth = (328 / 2) + "px";
+				var newHeight = (80 / 2) + "px";
+				$(".navbar-brand").html('<img class="navbarHappyLogo" src="' + newUrl + '" alt="Logo" width="' + newWidth + '" height="' + newHeight + '"/>');
+			}
 			return;
 		}
 		if (logoType == "preload") {
@@ -943,26 +950,52 @@ function runNonComponentTweaks(componentsToSkip) {
 					console.log("Logo image not set!");
 					return;
 				}
-				$("#page-header").css("background-image", "url(" + cpal.resources.getURL("images/logos/" + logoImage + ".png") + ")");
-				// TODO: Change for different logos
+
+				var logoUrl = cpal.resources.getURL("images/logos/" + logoImage + ".png");
+				var logoWidth = "";
+				var logoHeight = "";
+
+				// TODO: Make for efficient
 				switch (logoImage) {
 					case "regular":
-						$("#page-header").css("background-size", "328px 80px");
+						logoWidth = "328px";
+						logoHeight = "80px";
 						break;
+
 					case "circle":
-						$("#page-header").css("background-size", "80px 80px");
+						logoWidth = "80px";
+						logoHeight = "80px";
 						break;
+
 					case "coursesbigwordmark":
-						$("#page-header").css("background-size", "216px 80px");
+						logoWidth = "216px";
+						logoHeight = "80px";
 						break;
+
 					case "coursespluswordmark":
-						$("#page-header").css("background-size", "194px 31px");
+						logoWidth = "194px";
+						logoHeight = "31px";
 						break;
+
 					case "daltoncourseswordmark":
-						$("#page-header").css("background-size", "237px 35px");
+						logoWidth = "237px";
+						logoHeight = "35px";
 						break;
+
 					default:
 						break;
+
+				}
+
+				if (newNavbar) {
+					console.log("New navbar, new logo.");
+					var newWidth = (parseInt(logoWidth.replace("px", "")) / 2) + "px";
+					var newHeight = (parseInt(logoHeight.replace("px", "")) / 2) + "px";
+					$(".navbar-brand").html('<img class="navbarHappyLogo" src="' + logoUrl + '" alt="Logo" width="' + newWidth + '" height="' + newHeight + '"/>');
+				} else {
+					console.log("Old navbar, old logo.");
+					$("#page-header").css("background-image", "url(" + logoUrl + ")");
+					$("#page-header").css("background-size", logoWidth + " " + logoHeight);
 				}
 			});
 		}
