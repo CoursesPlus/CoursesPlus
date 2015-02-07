@@ -270,7 +270,7 @@ body.nav-expanded #hamburger-icon {
   font-size: 14pt;
 }
 
-#userinfo > .happyNavList > li {
+* > .happyNavList > li {
   display: block;
   color: black;
   text-decoration: none;
@@ -282,12 +282,12 @@ body.nav-expanded #hamburger-icon {
   -o-transition: margin-left 0.25s ease-in-out;
   transition: margin-left 0.25s ease-in-out;
 }
-#userinfo > .happyNavList > li > a {
+* > .happyNavList > li > a {
   color: black;
   text-decoration: none;
 }
 
-#userinfo > .happyNavList > li:hover {
+* > .happyNavList > li:hover {
   background-color: #DDD;
   cursor: pointer;
   margin-left: 3px;
@@ -349,6 +349,11 @@ body.nav-expanded #hamburger-icon {
 
 .upcoming-course {
   font-size: 15px;
+}
+
+.mutedtext {
+  color: gray;
+  font-size: 16pt;
 }
 
 h1, h2, h3, h4, h5, h6 {
