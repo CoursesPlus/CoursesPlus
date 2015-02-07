@@ -185,3 +185,13 @@ h6 {
 	max-width: none;
 	padding-top: 0;
 }
+#features > .grid > li[data-componentIndex=bootstrap] > .feature > .featureDesc:after {
+	margin-top: 10px;
+	content: ' You can\'t disable this feature because most of Courses+ relies on it.';
+}
+#features > .grid > li[data-componentIndex=bootstrap] > .feature > .featureCheck {
+	display: none;
+}
+.featureCheck {
+	margin-right: 4px !important;
+}

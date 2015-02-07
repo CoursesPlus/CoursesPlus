@@ -60,7 +60,7 @@ function createList() {
 
 			var $label = $("<strong></strong>");
 			$label.addClass("featureLabel");
-			$label.html("&nbsp;" + component.displayName);
+			$label.html(/*"&nbsp;" + */component.displayName);
 			$appendMe.append($label);
 
 			var $desc = $("<p></p>");
