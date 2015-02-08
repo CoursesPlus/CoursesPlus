@@ -320,7 +320,7 @@ $(document).ready(function() {
 
 	$(".background").on("selBoxChanged", function(e) {
 		if (e.to != "custom") {
-			cpal.storage.setKey("backgroundColor". e.to);
+			cpal.storage.setKey("backgroundColor", e.to);
 		} else {
 			$("#secretColorPicker")[0].click();
 		}
