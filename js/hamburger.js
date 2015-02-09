@@ -135,7 +135,12 @@ $(document).ready(function() {
 
 					$eventItem.children(".upcoming-title").text(thisEvent.title);
 					$eventItem.children(".upcoming-course").text(thisEvent.course);
-					$eventItem.children(".upcoming-desc").text(thisEvent.normText);
+					var descThing = thisEvent.normText;
+					if (descThing.length > 200) {
+						descThing = descThing.substring(0, 200);
+						descThing += "...";
+					}
+					$eventItem.children(".upcoming-desc").text(descThing);
 
 					$("#upcomingEventList").append($eventItem);
 					$(".upcoming-desc").each(function() {
