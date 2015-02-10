@@ -153,6 +153,14 @@ $(document).ready(function() {
 				setPageTo("mainPage");
 			});
 		});
+		window.coursesLib.getCourseList(function(response) {
+			$.each(response.classes, function() {
+				var $appendItem = $("<li></li>");
+				$appendItem.text(this.name);
+				$appendItem.attr("data-courseId", this.courseId);
+				$("#courseList").append($appendItem);
+			});
+		});
 	});
 });
 
