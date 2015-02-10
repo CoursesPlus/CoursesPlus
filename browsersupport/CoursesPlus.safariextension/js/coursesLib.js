@@ -29,6 +29,23 @@ window.coursesLib.getCourseInfo = function(courseId, doneFunc) {
 	});
 };
 
+window.coursesLib.getCourseList = function(doneFunc) {
+	$.get(window.coursesLib.baseUrl + "/index.php", function (resText) {
+		var $response = $(resText);
+		var respObj = {};
+
+		respObj.classes = [];
+		$response.find(".coursename > a").each(function() {
+			respObj.classes.push({	courseId: parseInt($(this).attr("href").replace(window.coursesLib.baseUrl + "/course/view.php?id=", "")),
+									name: $(this).text(),
+									url: $(this).attr("href")
+								});
+		})
+
+		doneFunc(respObj);
+	});
+};
+
 window.coursesLib.getCourseEvents = function(courseId, doneFunc) {
 	$.get(window.coursesLib.baseUrl + "/course/view.php" + "?id=" + courseId, function (resText) {
 		var $response = $(resText);
