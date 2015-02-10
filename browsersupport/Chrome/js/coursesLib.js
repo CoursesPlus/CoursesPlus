@@ -17,6 +17,26 @@ window.coursesLib.checkLoggedIn = function(doneFunc) {
 	});
 };
 
+window.coursesLib.getCourseEvents = function(courseId, doneFunc) {
+	$.get(window.coursesLib.baseUrl + "/course/view.php" + "?id=" + courseId, function (resText) {
+		var $response = $(resText);
+		var respObj = {};
+
+		respObj.id = courseId;
+		respObj.title = $response.children("#page-content")
+								.children("#region-main-box")
+								.children("#region-post-box")
+								.children("#region-main-wrap")
+								.children("#region-main")
+								.children("#region-main-box")
+								.children(".region-content")
+								.children(".course-content")
+								.text();
+
+		doneFunc(respObj);
+	});
+};
+
 window.coursesLib.getCourseInfo = function(courseId, doneFunc) {
 	$.get(window.coursesLib.baseUrl + "/course/view.php" + "?id=" + courseId, function (resText) {
 		var $response = $(resText);
@@ -41,26 +61,6 @@ window.coursesLib.getCourseList = function(doneFunc) {
 									url: $(this).attr("href")
 								});
 		})
-
-		doneFunc(respObj);
-	});
-};
-
-window.coursesLib.getCourseEvents = function(courseId, doneFunc) {
-	$.get(window.coursesLib.baseUrl + "/course/view.php" + "?id=" + courseId, function (resText) {
-		var $response = $(resText);
-		var respObj = {};
-
-		respObj.id = courseId;
-		respObj.title = $response.children("#page-content")
-								.children("#region-main-box")
-								.children("#region-post-box")
-								.children("#region-main-wrap")
-								.children("#region-main")
-								.children("#region-main-box")
-								.children(".region-content")
-								.children(".course-content")
-								.text();
 
 		doneFunc(respObj);
 	});
