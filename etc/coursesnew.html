@@ -13,9 +13,9 @@
 		<script src="../js/coursesLib.js"></script>
 		<script src="../js/hamburger.js"></script>
 	</head>
-	<body>
+	<body style="overflow-x:hidden;">
 		<noscript>Please enable JavaScript.</noscript>
-		<div id="page-content">
+		<div id="page-content" style="overflow-x:hidden;">
 			<div id="loadingPage" class="page showing">
 				<i class="fa fa-4x fa-circle-o-notch fa-spin"></i>
 			</div>
@@ -53,7 +53,7 @@
 			<i class="fa fa-bars"></i>
 		</div>
 		 
-		<nav>
+		<nav style="overflow-x:hidden;overflow-y:auto;">
 			<div id="userinfo">
 				<img id="username-img" src="" alt="User image" />
 				<span id="username-big">Loading...</span>
@@ -64,12 +64,7 @@
 				</ul>
 			</div>
 			<div class="mutedtext">Classes</div>
-			<ul class="happyNavList">
-				<li>Class 1</li>
-				<li>Class 2</li>
-				<li>Class 3</li>
-				<li>Class 4</li>
-			</ul>
+			<ul id="happySideCourseList" class="happyNavList"></ul>
 		</nav>
 	</body>
 </html>

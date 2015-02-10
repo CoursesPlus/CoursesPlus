@@ -160,6 +160,7 @@ $(document).ready(function() {
 				$appendItem.text(this.name);
 				$appendItem.attr("data-courseId", this.courseId);
 				$("#courseList").append($appendItem);
+				$("#happySideCourseList").append($appendItem);
 			});
 			$(".courseItem").click(function() {
 				setPageTo("coursePage", $(this).attr("data-courseId"));
