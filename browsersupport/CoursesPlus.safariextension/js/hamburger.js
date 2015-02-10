@@ -4,6 +4,7 @@
 function setPageTo(pageId) {
 	$("html, body").animate({ scrollTop: 0 }, 125);
 
+	History.pushState({}, "Dalton Courses", "#!" + pageId)
 	setTimeout(function() {
 		$(".page.showing").removeClass("showing");
 		$("#" + pageId).addClass("showing");
