@@ -156,9 +156,13 @@ $(document).ready(function() {
 		window.coursesLib.getCourseList(function(response) {
 			$.each(response.classes, function() {
 				var $appendItem = $("<li></li>");
+				$appendItem.addClass("courseItem");
 				$appendItem.text(this.name);
 				$appendItem.attr("data-courseId", this.courseId);
 				$("#courseList").append($appendItem);
+			});
+			$(".courseItem").click(function() {
+				setPageTo("coursePage", $(this).attr("data-courseId"));
 			});
 		});
 	});
