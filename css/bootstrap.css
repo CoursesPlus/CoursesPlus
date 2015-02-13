@@ -176,3 +176,8 @@ table.calendarmonth .calendar_event_user, table.calendarmonth .calendar_event_co
 a > img.icon {
 	width: inherit;
 }
+/* Teacher view */
+.iconsmall {
+	width: 16px !important;
+	height: 16px !important;
+}
