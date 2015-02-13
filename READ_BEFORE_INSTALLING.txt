@@ -1,0 +1,1 @@
+Before programming or installing this extension, go to https://gitlab.com/CoursesPlus/CoursesPlus/wikis/How-to-use-CoursesPlusDevSync.
