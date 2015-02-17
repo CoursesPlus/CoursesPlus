@@ -188,7 +188,7 @@ h6 {
 }
 #features > .grid > li[data-componentIndex=bootstrap] > .feature > .featureDesc:after {
 	margin-top: 10px;
-	content: ' You can\'t disable this feature because this will break courses. If you would like to turn this off, disable Courses+ from the extensions menu <a href="chrome://extensions">here/a>.';
+	content: ' You can\'t disable this feature because this will break things. If you would like to turn this off, disable Courses+.';
 }
 #features > .grid > li[data-componentIndex=bootstrap] > .feature > .featureCheck {
 	display: none;
