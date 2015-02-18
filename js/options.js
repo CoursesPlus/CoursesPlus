@@ -4,8 +4,8 @@ function saveChanges() {
 		console.log("Saved changes!");
 	});
 }
-function createList() {
-	var sortedComponents = window.components;
+function createList(sortedComponents, $ulToAppendTo) {
+	//var sortedComponents = window.components;
 	for (var componentIndex in sortedComponents) {
 		if (componentIndex == "runAll") {
 			continue;
@@ -89,7 +89,7 @@ function createList() {
 			}
 
 		$appendMeReally.append($appendMe)
-		$("#features > ul").append($appendMeReally);
+		$ulToAppendTo.append($appendMeReally);
 	}
 }
 
@@ -205,10 +205,11 @@ var onNavTextColorPickerChange = function() {
 };
 
 $(document).ready(function() {
+	createList(window.services, $("#services > ul"));
 	cpal.storage.getKey("disabledComponents", function(result) {
 		disabledComponentList = ($.isArray(result) ? result : []);
 		console.log(disabledComponentList);
-		createList();
+		createList(window.components, $("#features > ul"));
 	});
 	cpal.storage.getKey("backgroundColor", function(result) {
 		if (result === undefined) {

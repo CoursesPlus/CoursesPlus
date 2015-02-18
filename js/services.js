@@ -4,6 +4,7 @@ var services = {
 		description: "Displays events from daltonplanner.org in your calendar.",
 		type: "calendar",
 		permissions: ["*://daltonplanner.org/"],
+		requires: [],
 		onEnable: function() {
 			// TODO: signin
 		},
@@ -17,6 +18,7 @@ var services = {
 		description: "Displays what's for lunch in the sidebar.",
 		type: "block",
 		permissions: ["*://www.myschooldining.com/"],
+		requires: [],
 		onEnable: function() {
 			// TODO: nothing!
 		},
@@ -30,6 +32,7 @@ var services = {
 		description: "Displays what classes you've got next in the sidebar.",
 		type: "block",
 		permissions: ["*://schedules.dalton.org/"],
+		requires: [],
 		onEnable: function() {
 			// TODO: signin
 			// Does Schedules have an API to hook in to? How long do session cookies last?

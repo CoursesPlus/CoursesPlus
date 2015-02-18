@@ -171,7 +171,7 @@ h6 {
 	height: 35px;
 }
 
-#features > ul {
+#features > ul, #services > ul {
 	list-style-type: none;
 }
 .col-1-4 {
