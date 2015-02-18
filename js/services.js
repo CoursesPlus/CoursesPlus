@@ -42,7 +42,8 @@ var services = {
 			// TODO: get events
 			// This shouldn't change much, so maybe some sort of caching (with a force refresh option)?
 		}
-	}
+	},
+	/* This is not a service because it should affect a whole site with all the above geatures
 	archivedCourses:
 		displayName: "Archived Courses",
 		description: "Allows Courses+to work on Archived Courses",
@@ -52,12 +53,12 @@ var services = {
 		onEnable: function() {
 			// TODO: Change a bunch of links in the code. This should be simple.
 		},
-	}
-		athletecs: {
+	},*/
+	athletics: {
 		displayName: "Athletics",
-		description: "Displays what classes you've got next in the sidebar.",
+		description: "Displays your sport's schedule in the sidebar.",
 		type: "block",
-		permissions: ["http://www.dalton.org/program/athletics/schedules"],
+		permissions: ["http://www.dalton.org/"], // dalton.org/program/athletics/schedules
 		requires: [],
 		onEnable: function() {
 			// TODO: ajax.
@@ -65,6 +66,7 @@ var services = {
 		createBlock: function() {
 			// TODO: get events and games.
 		}
+	}
 };
 
 window.services = services;
