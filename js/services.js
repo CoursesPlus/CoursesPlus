@@ -58,7 +58,7 @@ var services = {
 		displayName: "Athletics",
 		description: "Displays your sport's schedule in the sidebar.",
 		type: "block",
-		permissions: ["http://www.dalton.org/"], // dalton.org/program/athletics/schedules
+		permissions: ["*://www.dalton.org/"], // dalton.org/program/athletics/schedules
 		requires: [],
 		onEnable: function() {
 			// TODO: ajax.
