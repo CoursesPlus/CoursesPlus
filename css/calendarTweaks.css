@@ -1,5 +1,5 @@
 .block .minicalendar th {
-	font-size: 0.7em;
+	font-size: 0.75em;
 }
 
 table.minicalendar abbr {
@@ -9,4 +9,8 @@ table.minicalendar abbr {
 
 .block .minicalendar th, .block .minicalendar td {
 	width: 14.2%;
+}
+
+.minicalendar.calendartable > tbody > .weekdays > th {
+	border: none;
 }
