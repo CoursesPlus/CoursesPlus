@@ -66,11 +66,12 @@ var services = {
 		createBlock: function() {
 			// TODO: get events and games.
 		}
-	}	randomStudent: {
+	},
+	randomStudent: {
 		displayName: "Random Student of the Day",
-		description: "Displays a random student every day. You will be displayed to other students if you enable this option.",
+		description: "Displays a random student every day. NOTE: Your name will be displayed to other students if you enable this option.",
 		type: "block",
-		// permissions: ["none."],
+		permissions: [],
 		requires: [],
 		onEnable: function() {
 			// TODO: ask student for name.
@@ -79,18 +80,20 @@ var services = {
 		createBlock: function() {
 			// TODO: fetch a name from the server.
 		}
-	}	DriveConnect: {
-		displayName: "Google Drive (Gdocs) Connect",
-		description: "Allows you to connect a Google Drive document to an assignment",
+	},
+	googleDrive: {
+		displayName: "Google Drive Connect",
+		description: "Allows you to connect a Google Drive document to an assignment.",
 		type: "assignment",
-		permissions: ["Google Drive"],
+		permissions: ["*://drive.google.com"],
 		requires: [],
 		onEnable: function() {
-			// TODO: write a google script.
+			// TODO: write a google script, ask for OAuth signin
 		},
-		createBlock: function() {
+		addAssignmentButton: function() {
 			// TODO: button to add a google document.
 		}
+	}
 };
 
 window.services = services;
