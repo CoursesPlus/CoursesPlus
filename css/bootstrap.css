@@ -147,7 +147,7 @@ table.calendarmonth .calendar_event_user, table.calendarmonth .calendar_event_co
 }
 .path-calendar .maincalendar .eventlist .event > tbody > tr > .picture > img {
 	width: 20px;
-	height: 20px;
+	/* height: 20px; */
 }
 .path-calendar .maincalendar .eventlist .event > tbody > tr > .topic {
 	padding: 10px;
