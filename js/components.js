@@ -174,10 +174,10 @@ var components = {
 			$(".maincalendar > .heightcontainer > .header").html("");
 		}
 
-		// Hack to make Course updates and Events key text smaller
+		// Hack to make Course updates, Events key, and more text smaller
 		// TODO: find a way to do this in CSS (maybe very specific path of parent elements?) or at least optimize this... somehow.
 		$("h3").each(function() {
-			if ($(this).text() == "Course updates:" || $(this).text() == "Events key") {
+			if ($(this).text() == "Course updates:" || $(this).text() == "Events key" || $(this).text() == "Assignments submitted:" || $(this).text() == "New forum posts:" || $(this).text() == "New glossary entries:") {
 				$(this).css("font-size", "16px");
 			}
 		});
