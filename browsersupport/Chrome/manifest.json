@@ -1,5 +1,6 @@
 /*
-Hi, We see you want to look at the code. This is manifest.json. The manifest is required for developing chrome extensions.
+Hello!
+We see you want to look at the code. This file is required for developing Chrome extensions.
 The manifest includes the icon, description, name, permissions, and more.
 */
 {
