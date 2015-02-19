@@ -4,7 +4,7 @@ function saveChanges() {
 		console.log("Saved changes!");
 	});
 }
-function createList(sortedComponents, $ulToAppendTo) {
+function createList(sortedComponents, $ulToAppendTo, clickEvent) {
 	//var sortedComponents = window.components;
 	for (var componentIndex in sortedComponents) {
 		if (componentIndex == "runAll") {
@@ -19,43 +19,7 @@ function createList(sortedComponents, $ulToAppendTo) {
 				$check.addClass("featureCheck");
 				$check.prop("checked", disabledComponentList.indexOf(componentIndex) == -1);
 				$check.attr("data-index", componentIndex);
-				$check.click(function() {
-					var index = $(this).attr("data-index");
-					var featureList = [];
-					for (var checkInd in sortedComponents) {
-						if (checkInd == "createErrorModal" || checkInd == "runAll") {
-							continue;
-						}
-						if (sortedComponents[checkInd].requires.indexOf(index) != -1) {
-							featureList.push(sortedComponents[checkInd].displayName); 
-						}
-					}
-					if ($(this).prop("checked")) {
-						disabledComponentList.splice(disabledComponentList.indexOf(index), 1);
-					} else {
-						if (featureList.length > 0) {
-							var result = "";
-							var index2 = 0;
-							for (var featureIndex in featureList) {
-								if (index2 != 0) {
-									result += ", ";
-								}
-								if (featureList.length > 1 && index2 == (featureList.length - 1)) {
-									result += "and ";
-								}
-								result += featureList[featureIndex];
-								index2++;
-							}
-							if (!confirm("Some other features require the one you're trying to disable.\nSpecifically: " + result + " all require it.\nIf you disable just this one without disabling the ones in the list before, *BAD THINGS MIGHT HAPPEN*.\n\n\nAre you sure you want to disable this feature? (***BAD THINGS MIGHT HAPPEN***)")) {
-								$(this).prop("checked", true);
-								return;
-							}
-						}
-						disabledComponentList.push(index);
-					}
-					console.log(disabledComponentList);
-					saveChanges();
-				});
+				$check.click(clickEvent);
 			$appendMe.append($check);
 
 			var $label = $("<strong></strong>");
@@ -205,11 +169,50 @@ var onNavTextColorPickerChange = function() {
 };
 
 $(document).ready(function() {
-	createList(window.services, $("#services > ul"));
+	createList(window.services, $("#services > ul"), function() {
+		alert("SERVICE THING");
+	});
 	cpal.storage.getKey("disabledComponents", function(result) {
 		disabledComponentList = ($.isArray(result) ? result : []);
 		console.log(disabledComponentList);
-		createList(window.components, $("#features > ul"));
+		createList(window.components, $("#features > ul"), function() {
+			var sortedComponents = window.components;
+			var index = $(this).attr("data-index");
+			var featureList = [];
+			for (var checkInd in sortedComponents) {
+				if (checkInd == "createErrorModal" || checkInd == "runAll") {
+					continue;
+				}
+				if (sortedComponents[checkInd].requires.indexOf(index) != -1) {
+					featureList.push(sortedComponents[checkInd].displayName); 
+				}
+			}
+			if ($(this).prop("checked")) {
+				disabledComponentList.splice(disabledComponentList.indexOf(index), 1);
+			} else {
+				if (featureList.length > 0) {
+					var result = "";
+					var index2 = 0;
+					for (var featureIndex in featureList) {
+						if (index2 != 0) {
+							result += ", ";
+						}
+						if (featureList.length > 1 && index2 == (featureList.length - 1)) {
+							result += "and ";
+						}
+						result += featureList[featureIndex];
+						index2++;
+					}
+					if (!confirm("Some other features require the one you're trying to disable.\nSpecifically: " + result + " all require it.\nIf you disable just this one without disabling the ones in the list before, *BAD THINGS MIGHT HAPPEN*.\n\n\nAre you sure you want to disable this feature? (***BAD THINGS MIGHT HAPPEN***)")) {
+						$(this).prop("checked", true);
+						return;
+					}
+				}
+				disabledComponentList.push(index);
+			}
+			console.log(disabledComponentList);
+			saveChanges();
+		});
 	});
 	cpal.storage.getKey("backgroundColor", function(result) {
 		if (result === undefined) {
