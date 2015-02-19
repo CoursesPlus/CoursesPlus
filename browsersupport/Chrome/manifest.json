@@ -3,10 +3,10 @@ Hi, We see you want to look at the code. This is manifest.json. The manifest is 
 The manifest includes the icon, description, name, permissions, and more.
 */
 {
-	"name": "CoursesPlus",
+	"name": "Courses+",
 	"version": "3.0",
 	"manifest_version": 2,
-	"description": "An extension that makes Dalton Courses look nicer, adds some features, and fixes some issues. (For The Dalton School only.)",
+	"description": "An extension that makes Dalton Courses look nicer, adds some features, and fixes some issues.",
 	"icons": {
 		"128": "images/icon128.png"
 	},
