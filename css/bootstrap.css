@@ -180,6 +180,10 @@ a > img.icon {
 .path-mod-survey .surveytable td {
 	text-align: center;
 }
+/* Message fixes */
+.message .messagearea .messagehistory .notification { 
+	margin-right: 22px;
+}
 /* Teacher view */
 .iconsmall {
 	width: 16px !important;
