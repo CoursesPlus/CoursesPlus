@@ -692,7 +692,7 @@ var components = {
 			console.log("Parsed message!");
 			return true;
 		});
-	}, js: [], css: ["messages.css", "spacer.css"], runOn: "*", requires: ["bootstrap"]},
+	}, js: [], css: ["messages.css", "spacer.css"], runOn: "message/", requires: ["bootstrap"]},
 	modernAsides: {displayName: "Modern asides", description: "Makes the asides on course pages look more modern.", exec: function() {
 		// Pure CSS! :)
 	}, js: [], css: ["modernAsides.css"], runOn: "*", requires: []},
