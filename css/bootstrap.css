@@ -176,6 +176,10 @@ table.calendarmonth .calendar_event_user, table.calendarmonth .calendar_event_co
 a > img.icon {
 	width: inherit;
 }
+/* Survey fixes */
+.path-mod-survey .surveytable td {
+	text-align: center;
+}
 /* Teacher view */
 .iconsmall {
 	width: 16px !important;
