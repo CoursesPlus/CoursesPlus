@@ -1,8 +1,12 @@
+/*
+Hi, We see you want to look at the code. This is manifest.json. The manifest is required for developing chrome extensions.
+The manifest includes the icon, description, name, permissions, and more.
+*/
 {
-	"name": "Courses+",
+	"name": "CoursesPlus",
 	"version": "3.0",
 	"manifest_version": 2,
-	"description": "An extension that makes Dalton Courses look nicer, adds some features, and fixes some issues.",
+	"description": "An extension that makes Dalton Courses look nicer, adds some features, and fixes some issues. (For The Dalton School only.)",
 	"icons": {
 		"128": "images/icon128.png"
 	},
