@@ -68,6 +68,7 @@ var services = {
 			// TODO: get lunch menu from http://www.myschooldining.com/dalton/?cmd=menus
 			// This shouldn't change every day, so maybe some sort of caching?
 			// Maybe a RSS I don't know if they have one.
+			return $("<p>Hi there!</p>");
 		}
 	},
 	schedules: {
@@ -83,6 +84,7 @@ var services = {
 		createBlock: function() {
 			// TODO: get events
 			// This shouldn't change much, so maybe some sort of caching (with a force refresh option)?
+			return $("<p>Schedule!</p>");
 		}
 	},
 	/* This is not a service because it should affect a whole site with all the above geatures
@@ -107,6 +109,7 @@ var services = {
 		},
 		createBlock: function() {
 			// TODO: get events and games.
+			return $("<p>Athletics!</p>");
 		}
 	},
 	randomStudent: {
@@ -121,6 +124,7 @@ var services = {
 		},
 		createBlock: function() {
 			// TODO: fetch a name from the server.
+			return $("<p>HIII!</p>");
 		}
 	},
 	googleDrive: {
@@ -157,7 +161,27 @@ window.services.runAll = function() {
 				console.warn("TODO: assignment services");
 				break;
 			case "block":
-				console.warn("TODO: block services");
+				var $blockBody = service.createBlock();
+
+				var $blockToAppend = $("<div></div>");
+
+				$blockToAppend.attr("id", serviceIndex + "_service_block");
+				$blockToAppend.addClass("block");
+
+					var $header = $("<div class=\"header\"><div class=\"title\"><h2></h2></div></div>");
+
+						$header.find("h2").text(service.displayName);
+
+					$blockToAppend.append($header);
+
+					var $content = $("<div class=\"content\"></div>");
+
+						$content.append($blockBody);
+
+					$blockToAppend.append($content);
+
+				$("#region-post > .region-content").append($blockToAppend);
+
 				break;
 			case "calendar":
 				var events = service.createCalendarEvents();
