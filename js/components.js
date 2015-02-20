@@ -517,6 +517,7 @@ var components = {
 		$("#form-home button.submit").css("top", "-49px");
 	}, js: [], css: ["homelogin.css"], runOn: "", requires: ["bootstrap"]},
 	newNavbar: {displayName: "New navbar", description: "Changes the top navigation bar to a smaller and neater version.", exec: function() {
+
 		var $navbar = $('<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin:0;"></nav>');
 
 			var $navbarContainer = $('<div class="container-fluid"></div>');
@@ -529,7 +530,7 @@ var components = {
 
 						//$navbarLinks.append('<li class="navbar-text">This is a test</li>');
 
-						$("#dalton_nav ul li .sub").each(function() {
+						var subProcessFunction = function() {
 							var menuName = $(this).parent().children("a").text()
 							var $dropdownContainer = $('<li class="dropdown"></li>');
 								var $dropdownName = $('<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="dropdownCoursesPlusThingText">Error</span> <span class="caret"></span></a>');
@@ -553,7 +554,15 @@ var components = {
 
 								$dropdownContainer.append($dropdownList);
 							$navbarLinks.append($dropdownContainer);
-						});
+						};
+
+						$("#dalton_nav ul li .sub").each(subProcessFunction);
+
+						if ($("#dalton_nav").length == 0) {
+							// Oh, it's one of *those* pages...
+							$("#custommenu li .sub").each(subProcessFunction);
+							$("#custommenu").remove();
+						}
 
 				$navbarContainer.children(".collapse").append($navbarLinks);
 
