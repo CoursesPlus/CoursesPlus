@@ -185,18 +185,23 @@ window.services.runAll = function() {
 					$(".day > .day").each(function() {
 						for (var eventIndex in dayEventAddThing[$(this).text()]) {
 							var thisEvent = dayEventAddThing[$(this).text()][eventIndex];
+
+							var eventId = "event_" + serviceIndex + "_" + thisEvent.id;
+
 							var $appendMe = $("<li></li>");
 
 							$appendMe.addClass("calendar_event_course");
 							$appendMe.addClass("cal_" + thisEvent.cssClass);
 
 							$appendMe.append($("<a></a>"));
-							$appendMe.children("a").text(service.displayName + " - "+ thisEvent.title);
+							$appendMe.children("a").text(service.displayName + " - " + thisEvent.title);
 
 							var linkTo = window.location.href;
 
 							linkTo = linkTo.replace("month", "day");
 							linkTo = linkTo.replace(getParameterByName("time", window.location.href), thisEvent.date.getTime() / 1000);
+							linkTo += "#";
+							linkTo += eventId;
 
 							$appendMe.children("a").attr("href", linkTo);
 
