@@ -1,3 +1,36 @@
+function testURL(url) {
+	var saveView = "";
+	if (window.location.href.indexOf("view.php") != -1) {
+		saveView = getParameterByName("view", window.location.href);
+	}
+	var saveViewing = "";
+	if (window.location.href.indexOf("index.php") != -1) {
+		saveViewing = getParameterByName("viewing", window.location.href);
+	}
+	var testThing = window.location.href.replace("http://", "")
+										.replace("https://", "")
+										.replace("courses2015.dalton.org/")
+										.replace("undefined", "")
+										.replace("index.php", "")
+										.replace(window.location.search, "")
+										.replace(window.location.hash, "").replace("?", "")
+										+ (saveView != "" ? ("?view=" + saveView) : "")
+										+ (saveViewing != "" ? ("?viewing=" + saveViewing) : "");
+	return testThing.indexOf(url) > -1;
+}
+function getParameterByName(name, href) {
+	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+	var regexS = "[\\?&]"+name+"=([^&#]*)";
+	var regex = new RegExp(regexS);
+	var results = regex.exec(href);
+	if (results == null) {
+		return "";
+	}
+	else {
+		return decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+}
+
 var services = {
 	planbook: {
 		displayName: "Planbook",
@@ -11,6 +44,15 @@ var services = {
 		createCalendarEvents: function() {
 			// TODO: get events
 			// Should the request be on-demand or in the background?
+
+			return [{
+				id: "IAmUnique",
+				title: "Test event",
+				cssClass: "hw",
+				icon: "assign",
+				date: new Date("2-19-2015"),
+				description: "This is a test event added by the 'Planbook' service. It's client-side only, and inserted by the Courses+ service manager. <br/> <b>BOLD</b><i>ITALIC</i><u>UNDERLINE</u>"
+			}];
 		}
 	},
 	lunchMenu: {
@@ -97,3 +139,72 @@ var services = {
 };
 
 window.services = services;
+window.services.runAll = function() {
+	console.log("Running all services...");
+
+	var runCount = 0;
+
+	for (var serviceIndex in window.services) {
+		if (serviceIndex == "runAll") {
+			continue;
+		}
+		var service = window.services[serviceIndex];
+		
+		console.log("Running service '" + service.displayName + "'...");
+
+		switch (service.type) {
+			case "assignment":
+				console.warn("TODO: assignment services");
+				break;
+			case "block":
+				console.warn("TODO: block services");
+				break;
+			case "calendar":
+				var events = service.createCalendarEvents();
+				// date.getTime() / 1000 // in Unix time 
+				if (testURL("calendar/view.php?view=month")) {
+					console.log("Month view!");
+
+					var dayEventAddThing = {};
+
+					$(".day > .day").each(function() {
+						dayEventAddThing[$(this).text()] = [];
+					});
+
+					for (var eventIndex in events) {
+						var thisEvent = events[eventIndex];
+
+						if (thisEvent.date.getMonth() == new Date(parseInt(getParameterByName("time", window.location.href)) * 1000).getMonth()) {
+							dayEventAddThing[thisEvent.date.getDate()].push(thisEvent);
+						}
+					}
+
+					$(".day > .day").each(function() {
+						for (var eventIndex in dayEventAddThing[$(this).text()]) {
+							var thisEvent = dayEventAddThing[$(this).text()][eventIndex];
+							var $appendMe = $("<li></li>");
+
+							$appendMe.addClass("calendar_event_course");
+							$appendMe.addClass("cal_" + thisEvent.cssClass);
+
+							$appendMe.append($("<a></a>"));
+							$appendMe.children("a").text(service.displayName + " - "+ thisEvent.title);
+
+							var linkTo = window.location.href;
+
+							linkTo = linkTo.replace("month", "day");
+							linkTo = linkTo.replace(getParameterByName("time", window.location.href), thisEvent.date.getTime() / 1000);
+
+							$appendMe.children("a").attr("href", linkTo);
+
+							$(this).parent().children(".events-new").append($appendMe);
+						}
+					});
+				}
+				break;
+		}
+
+		runCount++;
+	}
+	console.log("Ran " + runCount + " service(s)!");
+};

@@ -8,12 +8,14 @@ if (window.location.href.indexOf(".pdf") != -1) {
 }
 
 if (cpal.extension.getBrowser() == "safari") {
+	window.services.runAll();
 	window.components.runAll();
 }
 
 function onDOM_Ready () {
 	console.log("onDOM_Ready called!");
     if (cpal.extension.getBrowser() == "chrome") {
+		window.services.runAll();
 		window.components.runAll();
 	}
 }
