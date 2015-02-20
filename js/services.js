@@ -161,9 +161,12 @@ window.services.runAll = function() {
 				break;
 			case "calendar":
 				var events = service.createCalendarEvents();
+
 				// date.getTime() / 1000 // in Unix time 
 				if (testURL("calendar/view.php?view=month")) {
 					console.log("Month view!");
+
+					var curDate = new Date(parseInt(getParameterByName("time", window.location.href)) * 1000);
 
 					var dayEventAddThing = {};
 
@@ -174,7 +177,7 @@ window.services.runAll = function() {
 					for (var eventIndex in events) {
 						var thisEvent = events[eventIndex];
 
-						if (thisEvent.date.getMonth() == new Date(parseInt(getParameterByName("time", window.location.href)) * 1000).getMonth()) {
+						if (thisEvent.date.getMonth() == curDate.getMonth()) {
 							dayEventAddThing[thisEvent.date.getDate()].push(thisEvent);
 						}
 					}
@@ -200,6 +203,129 @@ window.services.runAll = function() {
 							$(this).parent().children(".events-new").append($appendMe);
 						}
 					});
+				}				
+				if (testURL("calendar/view.php?view=day")) {
+					console.log("Day view!");
+
+					var curDate = new Date(parseInt(getParameterByName("time", window.location.href)) * 1000);
+
+					for (var eventIndex in events) {
+						var thisEvent = events[eventIndex];
+
+						if (thisEvent.date.getMonth() == curDate.getMonth() && thisEvent.date.getDay() == curDate.getDay()) {
+							var eventId = "event_" + serviceIndex + "_" + thisEvent.id;
+
+							var $appendMe = $("<table></table>");
+
+							$appendMe.addClass("event");
+
+							$appendMe.append($("<tbody></tbody>"));
+
+							var r0 = $("<tr></tr>");
+							
+								r0.addClass("r0");
+
+								var c0_1 = $("<td></td>");
+
+									c0_1.addClass("picture");
+									c0_1.addClass("cell");
+									c0_1.addClass("c0");
+
+									c0_1.css("width", "32px");
+
+									c0_1.append($('<a name="' + eventId + '"></a>'));
+
+									var $eventImg = $("<img />");
+
+										var thisIconHref = $("link[rel='shortcut icon']").attr("href");
+
+										thisIconHref = thisIconHref.replace("dalton/theme", "dalton/" + thisEvent.icon);
+										thisIconHref = thisIconHref.replace("favicon", "icon");
+
+										$eventImg.attr("src", thisIconHref);
+										$eventImg.addClass("icon");
+
+									c0_1.append($eventImg);
+
+								r0.append(c0_1);
+
+								var c1_1 = $("<td></td>");
+
+									c1_1.addClass("topic");
+									c1_1.addClass("cell");
+									c1_1.addClass("c1");
+									c1_1.addClass("lastcol");
+
+									// No, referer with one r *is not a typo*.
+									// At least, not one made in Courses+.
+									var $referer = $("<div>");
+
+										$referer.addClass("referer");
+
+										var $refererLink = $("<a></a>");
+
+											$refererLink.attr("href", "#");
+											$refererLink.text(thisEvent.title);
+
+										$referer.append($refererLink);
+
+									c1_1.append($referer);
+
+									var $course = $("<div>");
+
+										$course.addClass("course");
+
+										var $courseLink = $("<a></a>");
+
+											$courseLink.css("color", "gray");
+											$courseLink.css("cursor", "default");
+											$courseLink.css("text-decoration", "none");
+											$courseLink.text("from " + service.displayName);
+
+										$course.append($courseLink);
+
+									c1_1.append($course);
+
+								r0.append(c1_1);
+
+							$appendMe.children("tbody").append(r0);
+
+							var r1 = $("<tr></tr>");
+							
+								r1.addClass("r1");
+								r1.addClass("lastrow");
+
+								var c0_2 = $("<td></td>");
+
+									c0_2.addClass("side");
+									c0_2.addClass("cell");
+									c0_2.addClass("c0");
+
+									c0_2.html("&nbsp");
+
+								r1.append(c0_2);
+
+								var c1_2 = $("<td></td>");
+
+									c1_2.addClass("description");
+									c1_2.addClass("cell");
+									c1_2.addClass("c0");
+									c1_2.addClass("lastcol");
+
+									var $noOverflowCont = $("<div></div>");
+
+										$noOverflowCont.addClass("no-overflow");
+										$noOverflowCont.html(thisEvent.description);
+
+									c1_2.append($noOverflowCont);
+
+								r1.append(c1_2);
+
+							$appendMe.children("tbody").append(r1);
+
+							$(".eventlist").append($appendMe);
+						}
+					}
 				}
 				break;
 		}
