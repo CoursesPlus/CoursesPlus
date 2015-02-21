@@ -914,7 +914,18 @@ var components = {
 
 		var $debugModal = $('<div class="debugModal modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">Debug menu</h4></div><div class="modal-body"></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>');
 
-			$debugModal.find(".modal-body").text(":D");
+			$debugModal.find(".modal-body").text("Select an option below.");
+
+			var $createDbgRptBtn = $('<button class="btn btn-primary">Create debug report...</button>');
+
+				$createDbgRptBtn.click(function() {
+					$("#debugModalOutputTextarea").val(createDebugReport());
+				})
+
+			$debugModal.find(".modal-body").append($createDbgRptBtn);
+			
+			var $outputTextarea = $('<textarea id="debugModalOutputTextarea" placeholder="Output..." style="width: 100%; height: 400px"></textarea>');
+			$debugModal.find(".modal-body").append($outputTextarea);
 		
 		$("body").append($debugModal);
 
