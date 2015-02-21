@@ -123,6 +123,48 @@ function testURL(url) {
 										+ (saveViewing != "" ? ("?viewing=" + saveViewing) : "");
 	return testThing.indexOf(url) > -1;
 }
+
+function createDebugReport(e, component) {
+	var detailsText = "Courses+\n\n";
+	detailsText += "Debug report\n";
+	detailsText += "\n";
+	if (component != undefined) {
+		detailsText += "Error encountered while running code for component ";
+		detailsText += component.displayName;
+		detailsText += " (with index ";
+		detailsText += componentIndex;
+		detailsText += ").\n";
+	} else {
+		detailsText += "No component info - manual report?"
+	}
+	detailsText += "\n";
+	detailsText += "Error details\n";
+	if (e != undefined) {
+		detailsText += "Message: ";
+		detailsText += e.message;
+		detailsText += "\n";
+		detailsText += "Stack:\n";
+		detailsText += e.stack;
+		detailsText += "\n";
+	} else {
+		detailsText += "No error - report is from debug mode?\n";
+	}
+	detailsText += "\n";
+	detailsText += "Context info\n";
+	detailsText += "Page URL: ";
+	detailsText += window.location.href;
+	detailsText += "\n";
+	detailsText += "Browser version: ";
+	detailsText += cpal.extension.getBrowserVersion();
+	detailsText += "\n";
+	detailsText += "Extension version: ";
+	detailsText += cpal.extension.getExtensionVersion();
+	detailsText += "\n";
+	detailsText += "\n";
+	detailsText += "CPAL platform-specifics:\n";
+	detailsText += cpal.logging.specificErrorDetails();
+}
+
 // All of the components.
 var components = {
 	bootstrap: {displayName: "Bootstrap-ification", description: "Changes Courses' look and feel - things like the navigation bar, buttons, etc.", exec: function() {
@@ -854,7 +896,36 @@ var components = {
 		$upcomingEventsModal.children(".modal-dialog").children(".modal-content").children(".modal-body").append($panel);
 
 		$('body').append($upcomingEventsModal);
-	}, js: [], css: ["modalstuff.css", "upcomingEventsBtn.css"], runOn: "", requires: ["bootstrap"]}
+	}, js: [], css: ["modalstuff.css", "upcomingEventsBtn.css"], runOn: "", requires: ["bootstrap"]},
+	debugMode: {displayName: "Debug mode", description: "Adds a debugging mode for problem reporting.", exec: function() {
+		/*
+		 * Konami-JS ~ 
+		 * :: Now with support for touch events and multiple instances for 
+		 * :: those situations that call for multiple easter eggs!
+		 * Code: http://konami-js.googlecode.com/
+		 * Examples: http://www.snaptortoise.com/konami-js
+		 * Copyright (c) 2009 George Mandis (georgemandis.com, snaptortoise.com)
+		 * Version: 1.4.2 (9/2/2013)
+		 * Licensed under the MIT License (http://opensource.org/licenses/MIT)
+		 * Tested in: Safari 4+, Google Chrome 4+, Firefox 3+, IE7+, Mobile Safari 2.2.1 and Dolphin Browser
+		 */
+		var Konami=function(a){var b={addEvent:function(a,b,c,d){a.addEventListener?a.addEventListener(b,c,!1):a.attachEvent&&(a["e"+b+c]=c,a[b+c]=function(){a["e"+b+c](window.event,d)},a.attachEvent("on"+b,a[b+c]))},input:"",pattern:"38384040373937396665",load:function(a){this.addEvent(document,"keydown",function(c,d){return d&&(b=d),b.input+=c?c.keyCode:event.keyCode,b.input.length>b.pattern.length&&(b.input=b.input.substr(b.input.length-b.pattern.length)),b.input==b.pattern?(b.code(a),b.input="",c.preventDefault(),!1):void 0},this),this.iphone.load(a)},code:function(a){window.location=a},iphone:{start_x:0,start_y:0,stop_x:0,stop_y:0,tap:!1,capture:!1,orig_keys:"",keys:["UP","UP","DOWN","DOWN","LEFT","RIGHT","LEFT","RIGHT","TAP","TAP"],code:function(a){b.code(a)},load:function(a){this.orig_keys=this.keys,b.addEvent(document,"touchmove",function(a){if(1==a.touches.length&&1==b.iphone.capture){var c=a.touches[0];b.iphone.stop_x=c.pageX,b.iphone.stop_y=c.pageY,b.iphone.tap=!1,b.iphone.capture=!1,b.iphone.check_direction()}}),b.addEvent(document,"touchend",function(){1==b.iphone.tap&&b.iphone.check_direction(a)},!1),b.addEvent(document,"touchstart",function(a){b.iphone.start_x=a.changedTouches[0].pageX,b.iphone.start_y=a.changedTouches[0].pageY,b.iphone.tap=!0,b.iphone.capture=!0})},check_direction:function(a){x_magnitude=Math.abs(this.start_x-this.stop_x),y_magnitude=Math.abs(this.start_y-this.stop_y),x=this.start_x-this.stop_x<0?"RIGHT":"LEFT",y=this.start_y-this.stop_y<0?"DOWN":"UP",result=x_magnitude>y_magnitude?x:y,result=1==this.tap?"TAP":result,result==this.keys[0]&&(this.keys=this.keys.slice(1,this.keys.length)),0==this.keys.length&&(this.keys=this.orig_keys,this.code(a))}}};return"string"==typeof a&&b.load(a),"function"==typeof a&&(b.code=a,b.load()),b};
+		// END Konami-JS
+
+		var $debugModal = $('<div class="debugModal modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">Debug menu</h4></div><div class="modal-body"></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>');
+
+			$debugModal.find(".modal-body").text(":D");
+		
+		$("body").append($debugModal);
+
+		var easter_egg = new Konami();
+		easter_egg.code = function() {
+			$(".debugModal").modal("toggle");
+		};
+		easter_egg.load();
+		
+	}, js: [], css: [], runOn: "*", requires: ["bootstrap"]},
+
 };
 
 function runNonComponentTweaks(componentsToSkip) {
@@ -1110,35 +1181,7 @@ window.components.runAll = function() {
 						console.error(e);
 						console.error(e.stack);
 
-						var detailsText = "Courses+ Error\n\n";
-						detailsText += "Component error.\n";
-						detailsText += "Encountered while running code for component ";
-						detailsText += component.displayName;
-						detailsText += " (with index ";
-						detailsText += componentIndex;
-						detailsText += ").\n";
-						detailsText += "\n";
-						detailsText += "Error details\n";
-						detailsText += "Message: ";
-						detailsText += e.message;
-						detailsText += "\n";
-						detailsText += "Stack:\n";
-						detailsText += e.stack;
-						detailsText += "\n";
-						detailsText += "\n";
-						detailsText += "Context info\n";
-						detailsText += "Page URL: ";
-						detailsText += window.location.href;
-						detailsText += "\n";
-						detailsText += "Browser version: ";
-						detailsText += cpal.extension.getBrowserVersion();
-						detailsText += "\n";
-						detailsText += "Extension version: ";
-						detailsText += cpal.extension.getExtensionVersion();
-						detailsText += "\n";
-						detailsText += "\n";
-						detailsText += "CPAL platform-specifics:\n";
-						detailsText += cpal.logging.specificErrorDetails();
+						var detailsText = createDebugReport(e, component);
 
 						console.error("ERROR DETAILS:");
 						console.error(detailsText);
