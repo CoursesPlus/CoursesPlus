@@ -189,3 +189,7 @@ a > img.icon {
 	width: 16px !important;
 	height: 16px !important;
 }
+/*This is for the printer freindly icon not to over lap*/
+#intro.box.generalbox{
+	margin-right: 159px;
+}

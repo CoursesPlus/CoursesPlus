@@ -8,6 +8,4 @@ Also on the CoursesPlus Team:
 * Joshua Fielding
 * William Barkoff
 * Sehan Choi
-* Eeshan Tripathii
-
-TODO: add more information.
+* Eeshan Tripathii 
