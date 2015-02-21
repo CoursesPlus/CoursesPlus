@@ -827,8 +827,13 @@ var components = {
 		$("#password").attr("placeholder", "Password");
 	}, js: [], css: ["loginPageFixes.css"], runOn: "login/", requires: ["bootstrap"]},
 	tableOverflow: {displayName: "Table scrolling", description: "Make tables on course pages be scrollable if they go off the page.", exec: function() {
-		$("table:not(.calendartable)").wrap($('<div class="coursesplus-tableOverflowContainer"></div>'));
-	}, js: [], css: ["tableOverflow.css"], runOn: "course/view.php", requires: []},
+		if (testURL("course/view.php")) {
+			$("table:not(.calendartable)").wrap($('<div class="coursesplus-tableOverflowContainer"></div>'));
+		}
+		if (testURL("calendar/view.php")) {
+			$("table:not(.calendartable):not(.event)").wrap($('<div class="coursesplus-tableOverflowContainer coursesplus-tableOverflowContainerBig"></div>'));
+		}
+	}, js: [], css: ["tableOverflow.css"], runOn: "view.php", requires: []},
 	calendarTweaks: {displayName: "Calendar tweaks", description: "Makes some tweaks to the calendar block.", exec: function() {
 		// Pure CSS! :)
 	}, js: [], css: ["calendarTweaks.css"], runOn: "*", requires: ["bootstrap"]},
