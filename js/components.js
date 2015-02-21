@@ -163,6 +163,8 @@ function createDebugReport(e, component) {
 	detailsText += "\n";
 	detailsText += "CPAL platform-specifics:\n";
 	detailsText += cpal.logging.specificErrorDetails();
+
+	return detailsText;
 }
 
 // All of the components.
@@ -914,7 +916,8 @@ var components = {
 
 		var $debugModal = $('<div class="debugModal modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">Debug menu</h4></div><div class="modal-body"></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>');
 
-			$debugModal.find(".modal-body").text("Select an option below.");
+			$debugModal.find(".modal-body").html("Select an option below.");
+			$debugModal.find(".modal-body").append("<br />");
 
 			var $createDbgRptBtn = $('<button class="btn btn-primary">Create debug report...</button>');
 
@@ -923,8 +926,10 @@ var components = {
 				})
 
 			$debugModal.find(".modal-body").append($createDbgRptBtn);
+
+			$debugModal.find(".modal-body").append("<br />");
 			
-			var $outputTextarea = $('<textarea id="debugModalOutputTextarea" placeholder="Output..." style="width: 100%; height: 400px"></textarea>');
+			var $outputTextarea = $('<textarea id="debugModalOutputTextarea" placeholder="Output..." style="width: 100%; height: 200px"></textarea>');
 			$debugModal.find(".modal-body").append($outputTextarea);
 		
 		$("body").append($debugModal);
