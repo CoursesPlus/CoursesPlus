@@ -194,3 +194,7 @@ a > img.icon {
 	margin-right: 135px;
 	margin-left: 10px;
 }
+/* Fix "Upcoming events" block font size */
+.block {
+	font-size: inherit;
+}
