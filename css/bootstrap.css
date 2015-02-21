@@ -203,3 +203,7 @@ a > img.icon {
 	width: 30px !important;
 	height: 30px !important;
 }
+/* Moodle dialog fix */
+.moodle-dialogue-base .moodle-dialogue {
+	z-index: 9999;
+}
