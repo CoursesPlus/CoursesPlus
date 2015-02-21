@@ -198,3 +198,8 @@ a > img.icon {
 .block {
 	font-size: inherit;
 }
+/* TinyMCE icon fix */
+.moodleSkin img.mceIcon {
+	width: 30px !important;
+	height: 30px !important;
+}
