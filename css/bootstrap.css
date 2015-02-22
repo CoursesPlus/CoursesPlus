@@ -211,3 +211,8 @@ a > img.icon {
 .editing .sitetopic .section .activity .activityinstance, .editing .course-content .section .activity .activityinstance, .editing .sitetopic .section .activity .contentwithoutlink, .editing .course-content .section .activity .contentwithoutlink {
 	padding-right: 0;
 }
+/* search fix */
+#search {
+    padding-top: 1px;
+    padding-bottom: 2px;
+}
