@@ -213,6 +213,7 @@ a > img.icon {
 }
 /* search fix */
 #search {
-    padding-top: 1px;
-    padding-bottom: 2px;
+   
+    padding-bottom: 0px;
+    padding-top: 0px;
 }
