@@ -207,7 +207,10 @@ a > img.icon {
 .moodle-dialogue-base .moodle-dialogue {
 	z-index: 9999;
 }
-/* Teacher edit fix */
+/* Teacher edit fixes */
 .editing .sitetopic .section .activity .activityinstance, .editing .course-content .section .activity .activityinstance, .editing .sitetopic .section .activity .contentwithoutlink, .editing .course-content .section .activity .contentwithoutlink {
 	padding-right: 0;
+}
+#dndupload-status {
+	z-index: 999;
 }
