@@ -215,12 +215,7 @@ a > img.icon {
 	z-index: 999;
 }
 /* search fix */
-#search {
-   
+#search {  
     padding-bottom: 0px;
     padding-top: 0px;
-=======
-#dndupload-status {
-	z-index: 999;
->>>>>>> FETCH_HEAD
 }
