@@ -241,7 +241,7 @@ window.services.runAll = function() {
 					for (var eventIndex in events) {
 						var thisEvent = events[eventIndex];
 
-						if (thisEvent.date.getMonth() == curDate.getMonth() && thisEvent.date.getDay() == curDate.getDay()) {
+						if (thisEvent.date.getMonth() == curDate.getMonth() && thisEvent.date.getDay() == curDate.getDay() && thisEvent.date.getDate() == curDate.getDate() && thisEvent.date.getYear() == curDate.getYear()) {
 							var eventId = "event_" + serviceIndex + "_" + thisEvent.id;
 
 							var $appendMe = $("<table></table>");
