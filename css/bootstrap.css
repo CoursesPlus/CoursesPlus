@@ -68,6 +68,9 @@ body {
 .mform fieldset {
 	border: none !important;
 }
+.mform .btn-cancel {
+	border-radius: 3px;
+}
 /* This hides the breadcrumbs bar
 It has to be disabled because it hides the customize button.
 .navbar.clearfix {
