@@ -14,3 +14,12 @@ table.minicalendar abbr {
 .minicalendar.calendartable > tbody > .weekdays > th {
 	border: none;
 }
+
+.yui3-widget.yui3-overlay.yui3-widget-positioned.yui3-widget-stacked.calendar-event-panel {
+	display: none;
+}
+
+.popover {
+	position: absolute;
+	z-index: 99999;
+}
