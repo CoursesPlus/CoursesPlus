@@ -1,0 +1,3 @@
+div > form > button.submit > i {
+	box-shadow: none !important;
+}
