@@ -226,6 +226,17 @@ var components = {
 				$(this).css("font-size", "16px");
 			}
 		});
+
+		// Deal with news forums
+		if (testURL("forum/view.php")) {
+			$("table").addClass("table table-striped");
+			$("table").css("margin-left", "10px");
+			$("table").css("border-radius", "4px");
+			$("table > tbody").css("overflow", "hidden");
+			$("table > tbody > tr").css("background", "#fff");
+			$(".table > thead > tr > .header").css("border-bottom", "none");
+			$("table > tbody > tr > .topic").css("border", "none");
+		}
 	}, js: [], css: ["bootstrap.css"], runOn: "*", requires: []},
 	/*logo: {displayName: "Logo change", description: "Changes the logo to the circular Dalton School thing.", exec: function() {
 		// MOVED to runNonComponentTweaks();
