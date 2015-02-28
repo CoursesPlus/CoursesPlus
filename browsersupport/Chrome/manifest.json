@@ -1,8 +1,3 @@
-/*
-Hello!
-We see you want to look at the code. This file is required for developing Chrome extensions.
-The manifest includes the icon, description, name, permissions, and more.
-*/
 {
 	"name": "Courses+",
 	"version": "2.7.5",
@@ -13,7 +8,7 @@ The manifest includes the icon, description, name, permissions, and more.
 	},
 	"background": {
 		"page": "etc/bg.chrome.html",
-		"persistent": true /* As of Chrome 38, webrequest doesn't support event pages, so it's a background page for now */
+		"persistent": true
 	},
 	"content_scripts": [
 		{
