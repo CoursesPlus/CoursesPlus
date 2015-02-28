@@ -44,7 +44,6 @@ var services = {
 		createCalendarEvents: function(callback) {
 			// TODO: get events
 			// Should the request be on-demand or in the background?
-
 			cpal.storage.getKey("daltonplanner-cache", function(events) {
 				callback([{
 					id: "IAmUnique",
