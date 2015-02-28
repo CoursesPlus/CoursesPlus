@@ -41,18 +41,20 @@ var services = {
 		onEnable: function() {
 			// TODO: signin
 		},
-		createCalendarEvents: function() {
+		createCalendarEvents: function(callback) {
 			// TODO: get events
 			// Should the request be on-demand or in the background?
 
-			return [{
-				id: "IAmUnique",
-				title: "Test event",
-				cssClass: "hw",
-				icon: "assign",
-				date: new Date("2-19-2015"),
-				description: "This is a test event added by the 'Planbook' service. It's client-side only, and inserted by the Courses+ service manager. <br/> <b>BOLD</b><i>ITALIC</i><u>UNDERLINE</u>"
-			}];
+			cpal.storage.getKey("daltonplanner-cache", function(events) {
+				callback([{
+					id: "IAmUnique",
+					title: "Test event",
+					cssClass: "hw",
+					icon: "assign",
+					date: new Date("2-19-2015"),
+					description: "This is a test event added by the 'Planbook' service. It's client-side only, and inserted by the Courses+ service manager. <br/> <b>BOLD</b><i>ITALIC</i><u>UNDERLINE</u>"
+				}]);
+			});
 		}
 	},
 	lunchMenu: {
@@ -184,178 +186,178 @@ window.services.runAll = function() {
 
 				break;
 			case "calendar":
-				var events = service.createCalendarEvents();
+				service.createCalendarEvents(function(events) {
+					// date.getTime() / 1000 // in Unix time 
+					if (testURL("calendar/view.php?view=month")) {
+						console.log("Month view!");
 
-				// date.getTime() / 1000 // in Unix time 
-				if (testURL("calendar/view.php?view=month")) {
-					console.log("Month view!");
+						var curDate = new Date(parseInt(getParameterByName("time", window.location.href)) * 1000);
 
-					var curDate = new Date(parseInt(getParameterByName("time", window.location.href)) * 1000);
+						var dayEventAddThing = {};
 
-					var dayEventAddThing = {};
+						$(".day > .day").each(function() {
+							dayEventAddThing[$(this).text()] = [];
+						});
 
-					$(".day > .day").each(function() {
-						dayEventAddThing[$(this).text()] = [];
-					});
+						for (var eventIndex in events) {
+							var thisEvent = events[eventIndex];
 
-					for (var eventIndex in events) {
-						var thisEvent = events[eventIndex];
+							if (thisEvent.date.getMonth() == curDate.getMonth()) {
+								dayEventAddThing[thisEvent.date.getDate()].push(thisEvent);
+							}
+						}
 
-						if (thisEvent.date.getMonth() == curDate.getMonth()) {
-							dayEventAddThing[thisEvent.date.getDate()].push(thisEvent);
+						$(".day > .day").each(function() {
+							for (var eventIndex in dayEventAddThing[$(this).text()]) {
+								var thisEvent = dayEventAddThing[$(this).text()][eventIndex];
+
+								var eventId = "event_" + serviceIndex + "_" + thisEvent.id;
+
+								var $appendMe = $("<li></li>");
+
+								$appendMe.addClass("calendar_event_course");
+								$appendMe.addClass("cal_" + thisEvent.cssClass);
+
+								$appendMe.append($("<a></a>"));
+								$appendMe.children("a").text(service.displayName + " - " + thisEvent.title);
+
+								var linkTo = window.location.href;
+
+								linkTo = linkTo.replace("month", "day");
+								linkTo = linkTo.replace(getParameterByName("time", window.location.href), thisEvent.date.getTime() / 1000);
+								linkTo += "#";
+								linkTo += eventId;
+
+								$appendMe.children("a").attr("href", linkTo);
+
+								$(this).parent().children(".events-new").append($appendMe);
+							}
+						});
+					}				
+					if (testURL("calendar/view.php?view=day")) {
+						console.log("Day view!");
+
+						var curDate = new Date(parseInt(getParameterByName("time", window.location.href)) * 1000);
+
+						for (var eventIndex in events) {
+							var thisEvent = events[eventIndex];
+
+							if (thisEvent.date.getMonth() == curDate.getMonth() && thisEvent.date.getDay() == curDate.getDay() && thisEvent.date.getDate() == curDate.getDate() && thisEvent.date.getYear() == curDate.getYear()) {
+								var eventId = "event_" + serviceIndex + "_" + thisEvent.id;
+
+								var $appendMe = $("<table></table>");
+
+								$appendMe.addClass("event");
+
+								$appendMe.append($("<tbody></tbody>"));
+
+								var r0 = $("<tr></tr>");
+								
+									r0.addClass("r0");
+
+									var c0_1 = $("<td></td>");
+
+										c0_1.addClass("picture");
+										c0_1.addClass("cell");
+										c0_1.addClass("c0");
+
+										c0_1.css("width", "32px");
+
+										c0_1.append($('<a name="' + eventId + '"></a>'));
+
+										var $eventImg = $("<img />");
+
+											var thisIconHref = $("link[rel='shortcut icon']").attr("href");
+
+											thisIconHref = thisIconHref.replace("dalton/theme", "dalton/" + thisEvent.icon);
+											thisIconHref = thisIconHref.replace("favicon", "icon");
+
+											$eventImg.attr("src", thisIconHref);
+											$eventImg.addClass("icon");
+
+										c0_1.append($eventImg);
+
+									r0.append(c0_1);
+
+									var c1_1 = $("<td></td>");
+
+										c1_1.addClass("topic");
+										c1_1.addClass("cell");
+										c1_1.addClass("c1");
+										c1_1.addClass("lastcol");
+
+										// No, referer with one r *is not a typo*.
+										// At least, not one made in Courses+.
+										var $referer = $("<div>");
+
+											$referer.addClass("referer");
+
+											var $refererLink = $("<a></a>");
+
+												$refererLink.attr("href", "#");
+												$refererLink.text(thisEvent.title);
+
+											$referer.append($refererLink);
+
+										c1_1.append($referer);
+
+										var $course = $("<div>");
+
+											$course.addClass("course");
+
+											var $courseLink = $("<a></a>");
+
+												$courseLink.css("color", "gray");
+												$courseLink.css("cursor", "default");
+												$courseLink.css("text-decoration", "none");
+												$courseLink.text("from " + service.displayName);
+
+											$course.append($courseLink);
+
+										c1_1.append($course);
+
+									r0.append(c1_1);
+
+								$appendMe.children("tbody").append(r0);
+
+								var r1 = $("<tr></tr>");
+								
+									r1.addClass("r1");
+									r1.addClass("lastrow");
+
+									var c0_2 = $("<td></td>");
+
+										c0_2.addClass("side");
+										c0_2.addClass("cell");
+										c0_2.addClass("c0");
+
+										c0_2.html("&nbsp");
+
+									r1.append(c0_2);
+
+									var c1_2 = $("<td></td>");
+
+										c1_2.addClass("description");
+										c1_2.addClass("cell");
+										c1_2.addClass("c0");
+										c1_2.addClass("lastcol");
+
+										var $noOverflowCont = $("<div></div>");
+
+											$noOverflowCont.addClass("no-overflow");
+											$noOverflowCont.html(thisEvent.description);
+
+										c1_2.append($noOverflowCont);
+
+									r1.append(c1_2);
+
+								$appendMe.children("tbody").append(r1);
+
+								$(".eventlist").append($appendMe);
+							}
 						}
 					}
-
-					$(".day > .day").each(function() {
-						for (var eventIndex in dayEventAddThing[$(this).text()]) {
-							var thisEvent = dayEventAddThing[$(this).text()][eventIndex];
-
-							var eventId = "event_" + serviceIndex + "_" + thisEvent.id;
-
-							var $appendMe = $("<li></li>");
-
-							$appendMe.addClass("calendar_event_course");
-							$appendMe.addClass("cal_" + thisEvent.cssClass);
-
-							$appendMe.append($("<a></a>"));
-							$appendMe.children("a").text(service.displayName + " - " + thisEvent.title);
-
-							var linkTo = window.location.href;
-
-							linkTo = linkTo.replace("month", "day");
-							linkTo = linkTo.replace(getParameterByName("time", window.location.href), thisEvent.date.getTime() / 1000);
-							linkTo += "#";
-							linkTo += eventId;
-
-							$appendMe.children("a").attr("href", linkTo);
-
-							$(this).parent().children(".events-new").append($appendMe);
-						}
-					});
-				}				
-				if (testURL("calendar/view.php?view=day")) {
-					console.log("Day view!");
-
-					var curDate = new Date(parseInt(getParameterByName("time", window.location.href)) * 1000);
-
-					for (var eventIndex in events) {
-						var thisEvent = events[eventIndex];
-
-						if (thisEvent.date.getMonth() == curDate.getMonth() && thisEvent.date.getDay() == curDate.getDay() && thisEvent.date.getDate() == curDate.getDate() && thisEvent.date.getYear() == curDate.getYear()) {
-							var eventId = "event_" + serviceIndex + "_" + thisEvent.id;
-
-							var $appendMe = $("<table></table>");
-
-							$appendMe.addClass("event");
-
-							$appendMe.append($("<tbody></tbody>"));
-
-							var r0 = $("<tr></tr>");
-							
-								r0.addClass("r0");
-
-								var c0_1 = $("<td></td>");
-
-									c0_1.addClass("picture");
-									c0_1.addClass("cell");
-									c0_1.addClass("c0");
-
-									c0_1.css("width", "32px");
-
-									c0_1.append($('<a name="' + eventId + '"></a>'));
-
-									var $eventImg = $("<img />");
-
-										var thisIconHref = $("link[rel='shortcut icon']").attr("href");
-
-										thisIconHref = thisIconHref.replace("dalton/theme", "dalton/" + thisEvent.icon);
-										thisIconHref = thisIconHref.replace("favicon", "icon");
-
-										$eventImg.attr("src", thisIconHref);
-										$eventImg.addClass("icon");
-
-									c0_1.append($eventImg);
-
-								r0.append(c0_1);
-
-								var c1_1 = $("<td></td>");
-
-									c1_1.addClass("topic");
-									c1_1.addClass("cell");
-									c1_1.addClass("c1");
-									c1_1.addClass("lastcol");
-
-									// No, referer with one r *is not a typo*.
-									// At least, not one made in Courses+.
-									var $referer = $("<div>");
-
-										$referer.addClass("referer");
-
-										var $refererLink = $("<a></a>");
-
-											$refererLink.attr("href", "#");
-											$refererLink.text(thisEvent.title);
-
-										$referer.append($refererLink);
-
-									c1_1.append($referer);
-
-									var $course = $("<div>");
-
-										$course.addClass("course");
-
-										var $courseLink = $("<a></a>");
-
-											$courseLink.css("color", "gray");
-											$courseLink.css("cursor", "default");
-											$courseLink.css("text-decoration", "none");
-											$courseLink.text("from " + service.displayName);
-
-										$course.append($courseLink);
-
-									c1_1.append($course);
-
-								r0.append(c1_1);
-
-							$appendMe.children("tbody").append(r0);
-
-							var r1 = $("<tr></tr>");
-							
-								r1.addClass("r1");
-								r1.addClass("lastrow");
-
-								var c0_2 = $("<td></td>");
-
-									c0_2.addClass("side");
-									c0_2.addClass("cell");
-									c0_2.addClass("c0");
-
-									c0_2.html("&nbsp");
-
-								r1.append(c0_2);
-
-								var c1_2 = $("<td></td>");
-
-									c1_2.addClass("description");
-									c1_2.addClass("cell");
-									c1_2.addClass("c0");
-									c1_2.addClass("lastcol");
-
-									var $noOverflowCont = $("<div></div>");
-
-										$noOverflowCont.addClass("no-overflow");
-										$noOverflowCont.html(thisEvent.description);
-
-									c1_2.append($noOverflowCont);
-
-								r1.append(c1_2);
-
-							$appendMe.children("tbody").append(r1);
-
-							$(".eventlist").append($appendMe);
-						}
-					}
-				}
+				});
 				break;
 		}
 
