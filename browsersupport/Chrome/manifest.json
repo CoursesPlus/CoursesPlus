@@ -5,7 +5,7 @@ The manifest includes the icon, description, name, permissions, and more.
 */
 {
 	"name": "Courses+",
-	"version": "3.0",
+	"version": "2.7.5",
 	"manifest_version": 2,
 	"description": "An extension that makes Dalton Courses look nicer, adds some features, and fixes some issues.",
 	"icons": {
