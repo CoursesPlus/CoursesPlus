@@ -144,6 +144,9 @@ var services = {
 
 window.services = services;
 window.services.runAll = function() {
+	return true;
+
+	
 	console.log("Running all services...");
 
 	var runCount = 0;
