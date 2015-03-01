@@ -124,7 +124,7 @@ $(document).ready(function() {
 			setPageTo("notLoggedInPage");
 			return;
 		}
-		$("#calendarSpot").html(getCalendarHTML(1, 2015));
+		$("#calendarSpot").html(getCalendarHTML((new Date()).getMonth() + 1, 2015));
 		window.coursesLib.getProfile(function(response) {
 			$("#username-big").text(response.firstName);
 			$("#username-img").attr("src", response.avatarUrl);
