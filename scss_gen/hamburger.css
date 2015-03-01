@@ -316,7 +316,7 @@ body.nav-expanded #hamburger-icon {
 }
 
 .calendar-notInMonth {
-  background: lightgray;
+  background: transparent;
 }
 
 .page {
