@@ -222,3 +222,11 @@ a > img.icon {
     padding-bottom: 0px;
     padding-top: 0px;
 }
+/* tab fixing */
+.tabrow0 > li > a {
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+.tabtree .tabrow0 > li {
+	margin-right: 3px;
+}
