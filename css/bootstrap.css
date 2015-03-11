@@ -237,3 +237,10 @@ a > img.icon {
 .blog_entry.blog > .row.maincontent {
 	background-color: white;
 }
+/* file picker fixes */
+.filemanager input[type="text"], .file-picker input[type="text"] {
+	line-height: 1;
+}
+.file-picker .fp-list .fp-repo-icon {
+	padding: 0;
+}
