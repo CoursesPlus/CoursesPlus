@@ -252,3 +252,8 @@ a > img.icon {
 #page-footer .homelink a {
 	background-color: white;
 }
+/* message icon on homepage */
+.message > a > img.iconsmall {
+	width: 12px !important;
+	height: 12px !important;
+}
