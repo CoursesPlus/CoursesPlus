@@ -188,9 +188,8 @@ $(document).ready(function() {
 							permissions: [],
 							origins: thisService.origins
 						}, function(granted) {
-							// The callback argument will be true if the user granted the permissions.
 							if (granted) {
-								doSomething();
+								// YAAAY
 							} else {
 								alert(thisService.displayName + " requires those permissions.");
 							}
