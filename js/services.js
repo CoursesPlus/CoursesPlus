@@ -34,7 +34,7 @@ function getParameterByName(name, href) {
 var services = {
 	planbook: {
 		displayName: "Planbook",
-		description: "Displays events from daltonplanner.org in your calendar.",
+		description: "Displays events from the Online Planbook (at daltonplanner.org) in your calendar.",
 		type: "calendar",
 		origins: ["*://daltonplanner.org/"],
 		requires: [],
@@ -69,9 +69,16 @@ var services = {
 			// TODO: get lunch menu from http://www.myschooldining.com/dalton/?cmd=menus
 			// This shouldn't change every day, so maybe some sort of caching?
 			$.get("https://www.myschooldining.com/api/?key=B6EEF83E-7E80-11E1-BAEF-DBA84824019B&siteID=336&locationId=753&lib=menus", function(data) {
-				console.log(data);
+				var $builtList = $("<ul></ul>");
+				var mealItems = data["meal periods"][0]["menu items"];
+				$.each(mealItems, function() {
+					var $menuLi = $("<li></li>");
+					$menuLi.text(this.name);
+					$builtList.append($menuLi);
+				});
+				$("#coursesPlus_services_lunchMenu_overHerePls").append($builtList);
 			});
-			return $("<p><center><strong>Today's Lunch</strong></center><center id=\"coursesPlus_services_lunchMenu_overHerePls\"></center></p>");
+			return $("<p><center><strong>Today's Lunch</strong></center><center id=\"coursesPlus_services_lunchMenu_overHerePls\">Loading...</center></p>");
 		}
 	},
 	schedules: {
