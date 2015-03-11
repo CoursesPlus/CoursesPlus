@@ -237,6 +237,14 @@ var components = {
 			$(".table > thead > tr > .header").css("border-bottom", "none");
 			$("table > tbody > tr > .topic").css("border", "none");
 		}
+
+		// Fix that one lone... thingy next to the topics on a course
+		$(".section > .left.side").each(function() {
+			if ($(this).find("img").length == 0) {
+				var addMe = '<img width="1" height="1" class="spacer" alt="" title="" src="/theme/image.php/dalton/core/1425901267/spacer">';
+				$(this).append(addMe);
+			}
+		});
 	}, js: [], css: ["bootstrap.css"], runOn: "*", requires: []},
 	/*logo: {displayName: "Logo change", description: "Changes the logo to the circular Dalton School thing.", exec: function() {
 		// MOVED to runNonComponentTweaks();
