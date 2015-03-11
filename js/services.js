@@ -36,7 +36,7 @@ var services = {
 		displayName: "Planbook",
 		description: "Displays events from daltonplanner.org in your calendar.",
 		type: "calendar",
-		permissions: ["*://daltonplanner.org/"],
+		origins: ["*://daltonplanner.org/"],
 		requires: [],
 		onEnable: function() {
 			// TODO: signin
@@ -60,7 +60,7 @@ var services = {
 		displayName: "Lunch menu",
 		description: "Displays what's for lunch in the sidebar.",
 		type: "block",
-		permissions: ["*://www.myschooldining.com/"],
+		origins: ["*://*.myschooldining.com/"],
 		requires: [],
 		onEnable: function() {
 			// TODO: nothing!
@@ -68,15 +68,17 @@ var services = {
 		createBlock: function() {
 			// TODO: get lunch menu from http://www.myschooldining.com/dalton/?cmd=menus
 			// This shouldn't change every day, so maybe some sort of caching?
-			// Maybe a RSS I don't know if they have one.
-			return $("<p>Hi there!</p>");
+			$.get("https://www.myschooldining.com/api/?key=B6EEF83E-7E80-11E1-BAEF-DBA84824019B&siteID=336&locationId=753&lib=menus", function(data) {
+				console.log(data);
+			});
+			return $("<p><center><strong>Today's Lunch</strong></center><center id=\"coursesPlus_services_lunchMenu_overHerePls\"></center></p>");
 		}
 	},
 	schedules: {
 		displayName: "Schedules",
 		description: "Displays what classes you've got next in the sidebar.",
 		type: "block",
-		permissions: ["*://schedules.dalton.org/"],
+		origins: ["*://schedules.dalton.org/"],
 		requires: [],
 		onEnable: function() {
 			// TODO: signin
@@ -93,7 +95,7 @@ var services = {
 		displayName: "Archived Courses",
 		description: "Allows Courses+to work on Archived Courses",
 		type: "block", // I do not know what to put here.
-		permissions: ["*://.dalton.org/"],
+		origins: ["*://.dalton.org/"],
 		requires: [],
 		onEnable: function() {
 			// TODO: Change a bunch of links in the code. This should be simple.
@@ -103,7 +105,7 @@ var services = {
 		displayName: "Athletics",
 		description: "Displays your sport's schedule in the sidebar.",
 		type: "block",
-		permissions: ["*://www.dalton.org/"], // dalton.org/program/athletics/schedules
+		origins: ["*://www.dalton.org/"], // dalton.org/program/athletics/schedules
 		requires: [],
 		onEnable: function() {
 			// TODO: ajax.
@@ -117,7 +119,7 @@ var services = {
 		displayName: "Random Student of the Day",
 		description: "Displays a random student every day. NOTE: Your name will be displayed to other students if you enable this option.",
 		type: "block",
-		permissions: [],
+		origins: [],
 		requires: [],
 		onEnable: function() {
 			// TODO: ask student for name.
@@ -132,7 +134,7 @@ var services = {
 		displayName: "Google Drive Connect",
 		description: "Allows you to connect a Google Drive document to an assignment.",
 		type: "assignment",
-		permissions: ["*://drive.google.com"],
+		origins: ["*://drive.google.com"],
 		requires: [],
 		onEnable: function() {
 			// TODO: write a google script, ask for OAuth signin

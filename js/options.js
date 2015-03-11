@@ -170,7 +170,35 @@ var onNavTextColorPickerChange = function() {
 
 $(document).ready(function() {
 	createList(window.services, $("#services > ul"), function() {
-		alert("SERVICE THING");
+		alert($(this).attr("data-index"));
+		var thisService = window.services[$(this).attr("data-index")];
+		if ($(this).prop("checked")) {
+			if (thisService.origins != []) {
+				// TODO: cpal
+				// Do we have them?
+				chrome.permissions.contains({
+					permissions: [],
+					origins: thisService.origins
+				}, function(result) {
+					if (result) {
+						// Done with permission stuff!
+					} else {
+						// OK, let's ask.
+						chrome.permissions.request({
+							permissions: [],
+							origins: thisService.origins
+						}, function(granted) {
+							// The callback argument will be true if the user granted the permissions.
+							if (granted) {
+								doSomething();
+							} else {
+								alert(thisService.displayName + " requires those permissions.");
+							}
+						});
+					}
+				});
+			}
+		}
 	});
 	cpal.storage.getKey("disabledComponents", function(result) {
 		disabledComponentList = ($.isArray(result) ? result : []);
