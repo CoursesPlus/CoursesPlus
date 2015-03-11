@@ -1028,6 +1028,26 @@ var components = {
 		$(document).on('click', '.magic-input-container .first-word', function (){	
 			$(this).closest('.magic-input-container').find('input').focus();
 		});
+
+		$(".magic-input-container").after().append("<br />");
+		$(".magic-input-container").after().append("<em>Start the assignment name with a special prefix so it appears color-coded on students' calendars. <a href=\"#\" id=\"coursesplus_teacherassignment_prefixes_learnmore\"> Learn more about prefixes...</a></em>");
+		
+		var $prefixModal = $('<div id="coursesplus_learnmore_prefixes" class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">About prefixes</h4></div><div class="modal-body"></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>');
+
+		$prefixModal.find(".modal-body").append("<p>Start an assignment with a prefix so it appears color-coded on student's calendars. This helps students see, at-a-glance, where they have quizzes, tests, projects, and more. While it is not required, it is convenient for students. Assignments with no special prefix show up as a pink-ish color. The special prefixes are:</p>");
+		$prefixModal.find(".modal-body").append('<div class="coursesplus_prefixBlock cal_hw">HW</div>');
+		$prefixModal.find(".modal-body").append('<div class="coursesplus_prefixBlock cal_project">Project</div>');
+		$prefixModal.find(".modal-body").append('<div class="coursesplus_prefixBlock cal_paper">Paper</div>');
+		$prefixModal.find(".modal-body").append('<div class="coursesplus_prefixBlock cal_quiz">Quiz</div>');
+		$prefixModal.find(".modal-body").append('<div class="coursesplus_prefixBlock cal_test">Test</div>');
+		$prefixModal.find(".modal-body").append('<div class="coursesplus_prefixBlock cal_ica">ICA</div>');
+		$prefixModal.find(".modal-body").append('<div class="coursesplus_prefixBlock cal_no_prefix">No prefix</div>');
+
+		$("body").append($prefixModal);
+
+		$("#coursesplus_teacherassignment_prefixes_learnmore").click(function() {
+			$("#coursesplus_learnmore_prefixes").modal();
+		});
 	}, js: [], css: ["prefixColors.css"], runOn: "course/modedit.php", requires: ["bootstrap"]},
 };
 

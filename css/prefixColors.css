@@ -35,3 +35,12 @@ body {
 	background-color: #FFD3BD;
 	color: black !important;
 }
+
+.coursesplus_prefixBlock {
+	width: 300px;
+	margin: 0 auto;
+	text-align: left;
+	padding: 2px;
+	margin-bottom: 5px;
+	color: white;
+}
