@@ -969,7 +969,66 @@ var components = {
 		};
 		easter_egg.load();
 		
-	}, js: [], css: [], runOn: "*", requires: ["bootstrap"]}
+	}, js: [], css: [], runOn: "*", requires: ["bootstrap"]},	
+	prefixColors: {displayName: "Colored prefixes", description: "For teachers, colors the prefixes on the new/edit assignments.", exec: function() {
+		if ($("label[for=id_name]").text() != "Assignment name ") {
+			return;
+		}
+
+		var $mic = $('<div class="magic-input-container"></div>');
+		$("#id_name").wrap($mic);
+
+		var $firstword = $('<div class="form-control first-word hiddenThing"></div>');
+		$(".magic-input-container").prepend($firstword);
+
+		$(document).on('keydown keyup change', '.magic-input-container input', function (){
+			if (($(this).val().length) && ($(this).val().split(' ').length)) {
+				var prefix = $(this).val().split(' ')[0];
+				var $element = $(this).closest('.magic-input-container').find('.first-word');
+				$element.html(prefix);
+				prefix = prefix.toLowerCase();
+				$element.removeClass("cal_no_prefix");
+				$element.removeClass("cal_hw");
+				$element.removeClass("cal_project");
+				$element.removeClass("cal_paper");
+				$element.removeClass("cal_quiz");
+				$element.removeClass("cal_test");
+				$element.removeClass("cal_ica");
+
+				switch (prefix) {
+					case "hw":
+						$element.addClass("cal_hw");
+						break;
+					case "project":
+						$element.addClass("cal_project");
+						break;
+					case "paper":
+						$element.addClass("cal_paper");
+						break;
+					case "quiz":
+						$element.addClass("cal_quiz");
+						break;
+					case "test":
+						$element.addClass("cal_test");
+						break;
+					case "ica":
+						$element.addClass("cal_ica");
+						break;
+					default:
+						$element.addClass("cal_no_prefix");
+						break;
+				}
+				$(this).closest('.magic-input-container').find('.first-word').removeClass("hiddenThing");
+			}
+			else { 
+				$(this).closest('.magic-input-container').find('.first-word').addClass("hiddenThing");
+			}
+		});
+
+		$(document).on('click', '.magic-input-container .first-word', function (){	
+			$(this).closest('.magic-input-container').find('input').focus();
+		});
+	}, js: [], css: ["prefixColors.css"], runOn: "course/modedit.php", requires: ["bootstrap"]},
 };
 
 function runNonComponentTweaks(componentsToSkip) {

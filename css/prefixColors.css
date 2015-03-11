@@ -1,0 +1,37 @@
+body {
+	padding: 10px;
+}
+
+.magic-input-container {
+	width: 100%;
+	height: auto;
+	position: relative;
+	float: left;
+}
+
+.magic-input-container .first-word {
+	transition: opacity 0.25s ease-in-out, background-color 0.25s ease-in-out;
+	display: block;
+	width: auto;
+	height: 20px;
+	line-height: 20px;
+	box-shadow: none;
+	margin: 6px 12px;
+	padding: 0px 1px;
+	border: 0px;
+	top: 8px;
+	position: absolute;
+	border-radius: 0px;
+	color: #FFF;
+	opacity: 1;
+	font-size: 16px;
+}
+
+.hiddenThing {
+	opacity: 0 !important;
+}
+
+.cal_no_prefix {
+	background-color: #FFD3BD;
+	color: black !important;
+}
