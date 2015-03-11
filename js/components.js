@@ -1055,7 +1055,8 @@ function runNonComponentTweaks(componentsToSkip) {
 				var newUrl = cpal.resources.getURL("images/logos/regular.png");
 				var newWidth = (328 / 2) + "px";
 				var newHeight = (80 / 2) + "px";
-				$(".navbar-brand").html('<img class="navbarHappyLogo" src="' + newUrl + '" alt="Logo" width="' + newWidth + '" height="' + newHeight + '"/>');
+				var htmlToBrand = '<img class="navbarHappyLogo" src="' + newUrl + '" alt="Logo" width="' + newWidth + '" height="' + newHeight + '"/>';
+				$(".navbar-brand").html(htmlToBrand);
 			}
 			return;
 		}
@@ -1070,8 +1071,9 @@ function runNonComponentTweaks(componentsToSkip) {
 				var logoUrl = cpal.resources.getURL("images/logos/" + logoImage + ".png");
 				var logoWidth = "";
 				var logoHeight = "";
+				var logoRaiseness = "";
 
-				// TODO: Make for efficient
+				// TODO: Make more efficient
 				switch (logoImage) {
 					case "regular":
 						logoWidth = "328px";
@@ -1081,21 +1083,25 @@ function runNonComponentTweaks(componentsToSkip) {
 					case "circle":
 						logoWidth = "80px";
 						logoHeight = "80px";
+						logoRaiseness = "-10px";
 						break;
 
 					case "coursesbigwordmark":
 						logoWidth = "216px";
 						logoHeight = "80px";
+						logoRaiseness = "-9px";
 						break;
 
 					case "coursespluswordmark":
 						logoWidth = "194px";
 						logoHeight = "31px";
+						logoRaiseness = "-3px";
 						break;
 
 					case "daltoncourseswordmark":
 						logoWidth = "237px";
 						logoHeight = "35px";
+						logoRaiseness = "-1px";
 						break;
 
 					default:
@@ -1107,7 +1113,12 @@ function runNonComponentTweaks(componentsToSkip) {
 					console.log("New navbar, new logo.");
 					var newWidth = (parseInt(logoWidth.replace("px", "")) / 2) + "px";
 					var newHeight = (parseInt(logoHeight.replace("px", "")) / 2) + "px";
-					$(".navbar-brand").html('<img class="navbarHappyLogo" src="' + logoUrl + '" alt="Logo" width="' + newWidth + '" height="' + newHeight + '"/>');
+					var topText = "";
+					if (logoRaiseness != "") {
+						topText = ' style="top: ' + logoRaiseness + '"';
+					}
+					var htmlToBrand = '<img class="navbarHappyLogo" src="' + logoUrl + '" alt="Logo" width="' + newWidth + '" height="' + newHeight + '"' + topText + '/>';
+					$(".navbar-brand").html(htmlToBrand);
 				} else {
 					console.log("Old navbar, old logo.");
 					$("#page-header").css("background-image", "url(" + logoUrl + ")");
