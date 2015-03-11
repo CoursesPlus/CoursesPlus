@@ -349,7 +349,7 @@ var components = {
 			even = !even;
 		});
 		// Fix height (because the "Show all courses" page doesn't have the text at the bottom to push the box down)
-		$(".block_course_overview.block").css("height", ((count*57) + 108) + "px");
+		//$(".block_course_overview.block").css("height", ((count*57) + 108) + "px");
 		$(".collapsibleregioncaption").html("");
 		$(".activity_info").remove();
 		$(".block_course_overview .content .notice").css("text-align", "center");
@@ -357,12 +357,12 @@ var components = {
 		if ($(".block_course_overview .content .notice").html() != undefined) {
 			$(".block_course_overview .content .notice").html($(".block_course_overview .content .notice").html().replace("You have ", ""));
 		}
-		$(".block_course_overview .content .notice").css("margin-top", ((count*57) + 50) + "px");
+		//$(".block_course_overview .content .notice").css("margin-top", ((count*57) + 50) + "px");
 
 		if ($(".box.notice").length == 2) {
 			// Customization mode!
-			$(".block_course_overview.block").css("height", ((count*57) + 160) + "px");
-			$(".block_course_overview .content .notice:first-child").css("margin-top", "0px");
+			//$(".block_course_overview.block").css("height", "auto");//((count*57) + 160) + "px");
+			//$(".block_course_overview .content .notice:first-child").css("margin-top", "0px");
 		}
 	}, js: [], css: ["my.css"], runOn: "my/", requires: []},
 	uselessText: {displayName: "Remove useless text", description: "Removes the \"Dalton Courses is your place for ... bla bla bla\" text on the main page.", exec: function() {
