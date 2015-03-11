@@ -230,3 +230,10 @@ a > img.icon {
 .tabtree .tabrow0 > li {
 	margin-right: 3px;
 }
+/* blog post fixes */
+.blog_entry.blog > .row.header a {
+	color: white;
+}
+.blog_entry.blog > .row.maincontent {
+	background-color: white;
+}
