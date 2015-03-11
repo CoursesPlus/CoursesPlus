@@ -244,3 +244,7 @@ a > img.icon {
 .file-picker .fp-list .fp-repo-icon {
 	padding: 0;
 }
+/* grade table fixes */
+.pagelayout-report #report-main-content .region-content table {
+	width: 100%;
+}
