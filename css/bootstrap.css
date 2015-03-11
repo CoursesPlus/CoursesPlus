@@ -248,3 +248,7 @@ a > img.icon {
 .pagelayout-report #report-main-content .region-content table {
 	width: 100%;
 }
+/* not-so-transparent thingy! */
+#page-footer .homelink a {
+	background-color: white;
+}
