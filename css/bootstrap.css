@@ -261,3 +261,7 @@ a > img.icon {
 .forumpost {
 	margin-left: 20px;
 }
+/* red text is weird */
+.mform .required {
+	color: inherit;
+}
