@@ -256,7 +256,7 @@ var components = {
 		$(".teachers").each(function(index) {
 			// Get rid of the "Teacher: " text.
 			$(this).children().each(function(index) {
-				$(this).html($(this).html().replace("Teacher: ", ""));
+				$(this).html($(this).html().split(": ")[1]);
 			});
 		});
 		// List of teachers is sometimes long... this just makes it say "multiple teachers"
