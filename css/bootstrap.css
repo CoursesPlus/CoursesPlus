@@ -6546,3 +6546,12 @@ a > img.icon {
 .mform .required {
 	color: inherit;
 }
+/* fix the calendar day view bar */
+.path-calendar .maincalendar .controls {
+	background: white;
+	border-radius: 5px;
+	padding: 7px;
+	width: 100%;
+	margin-top: 0;
+	margin-left: -5px;
+}
