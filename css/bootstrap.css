@@ -6469,7 +6469,7 @@ a > img.icon {
 	margin-right: 22px;
 }
 /* Teacher view */
-.iconsmall {
+.editing_update.menu-action.cm-edit-action > .iconsmall {
 	width: 16px !important;
 	height: 16px !important;
 }
