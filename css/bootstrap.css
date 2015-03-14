@@ -6469,9 +6469,9 @@ a > img.icon {
 	margin-right: 22px;
 }
 /* Teacher view */
-.editing_update.menu-action.cm-edit-action > .iconsmall {
-	width: 16px !important;
-	height: 16px !important;
+.moodle-actionmenu[data-enhanced].show .menu a>img {
+	width: 18px !important;
+	height: 18px !important;
 }
 /* This is for the printer friendly icon not to overlap */
 .path-mod-glossary .printicon {
