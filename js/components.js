@@ -1063,12 +1063,22 @@ var components = {
 		componentEnabled("newNavbar", function(newNav) {
 			var message = "This is a test message.";
 			var style = "info";
+			var canDismiss = true;
+
+			var $closeButton = $('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+			
+			var $alertElem = $('<div class="alert fade in" role="alert"></div>');
+			$alertElem.addClass("alert-" + style);
+			$alertElem.html(message);
+			if (canDismiss) {
+				$alertElem.addClass("alert-dismissible");
+				$closeButton.css("z-index", "10000");
+				$closeButton.css("right", "25px");
+				$closeButton.css("box-shadow", "none");
+				$alertElem.append($closeButton);
+			}
 
 			if (newNav) {
-				var $alertElem = $('<div class="alert"></div>');
-
-				$alertElem.addClass("alert-" + style);
-				$alertElem.html(message);
 				$alertElem.css("z-index", "9999");
 				$alertElem.css("position", "fixed");
 				$alertElem.css("top", "50px");
@@ -1076,7 +1086,11 @@ var components = {
 				$alertElem.css("width", "100%");
 				$alertElem.css("padding", "7px 0");
 				$alertElem.css("text-align", "center");
-				$("body").css("padding-top", "80px");
+				$("body").css("padding-top", "90px");
+
+				$alertElem.on('closed.bs.alert', function () {
+					$("body").css("padding-top", "70px");
+				});
 
 				$("body").append($alertElem);
 			} else {
