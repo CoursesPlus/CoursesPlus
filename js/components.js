@@ -209,9 +209,9 @@ var components = {
 		$("#dalton_nav_date").addClass("navbar-text");
 
 		// YAY buttons
-		$('input[type="submit"], button').not(".nobootstrapchange").addClass("btn");
-		$('input[type="submit"], button').not(".nobootstrapchange").addClass("btn-primary");
-		$('input[type="submit"], button').not(".nobootstrapchange").css("background-color", "rgb(66, 139, 202)");
+		$('input[type="submit"], input[type="button"], button').not(".nobootstrapchange").addClass("btn");
+		$('input[type="submit"], input[type="button"], button').not(".nobootstrapchange").addClass("btn-primary");
+		$('input[type="submit"], input[type="button"], button').not(".nobootstrapchange").css("background-color", "rgb(66, 139, 202)");
 
 		// Fix buttons being hidden
 		$(".messagesend form div").css("display", "block");
@@ -1086,6 +1086,7 @@ var components = {
 				$alertElem.css("width", "100%");
 				$alertElem.css("padding", "7px 0");
 				$alertElem.css("text-align", "center");
+				$alertElem.css("border-radius", "0");
 				$("body").css("padding-top", "90px");
 
 				$alertElem.on('closed.bs.alert', function () {
@@ -1094,7 +1095,9 @@ var components = {
 
 				$("body").append($alertElem);
 			} else {
+				$alertElem.css("width", "100%");
 
+				$("body").append($alertElem);
 			}
 		});
 	}, js: [], css: [], runOn: "*", requires: ["bootstrap"]}
