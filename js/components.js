@@ -11,6 +11,16 @@ String.prototype.replaceAll = function(search, replace)
     return this.replace(new RegExp(escapeRegExp(search), 'g'), replace);
 };
 
+function componentEnabled(name, callback) {
+	var componentsToSkip = [];
+
+	cpal.storage.getKey("disabledComponents", function(result) {
+		componentsToSkip = ($.isArray(result) ? result : []);
+		var response = (componentsToSkip.indexOf(name) == -1);
+		callback(response);
+	});
+}
+
 var emoteBaseUrl = "https://coursesplus.tk/emotions/";
 var emoteTable = {
 	":)" : {url: "smile.png"},
@@ -1049,6 +1059,31 @@ var components = {
 			$("#coursesplus_learnmore_prefixes").modal();
 		});
 	}, js: [], css: ["prefixColors.css"], runOn: "course/modedit.php", requires: ["bootstrap"]},
+	navbarMessages: {displayName: "Navbar messages", description: "Shows messages and information underneath the navbar.", exec: function() {
+		componentEnabled("newNavbar", function(newNav) {
+			var message = "This is a test message.";
+			var style = "info";
+
+			if (newNav) {
+				var $alertElem = $('<div class="alert"></div>');
+
+				$alertElem.addClass("alert-" + style);
+				$alertElem.html(message);
+				$alertElem.css("z-index", "9999");
+				$alertElem.css("position", "fixed");
+				$alertElem.css("top", "50px");
+				$alertElem.css("left", "0");
+				$alertElem.css("width", "100%");
+				$alertElem.css("padding", "7px 0");
+				$alertElem.css("text-align", "center");
+				$("body").css("padding-top", "80px");
+
+				$("body").append($alertElem);
+			} else {
+
+			}
+		});
+	}, js: [], css: [], runOn: "*", requires: ["bootstrap"]}
 };
 
 function runNonComponentTweaks(componentsToSkip) {
