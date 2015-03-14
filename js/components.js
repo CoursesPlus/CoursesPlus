@@ -1096,8 +1096,9 @@ var components = {
 				$("body").append($alertElem);
 			} else {
 				$alertElem.css("width", "100%");
+				$alertElem.find("button").css("right", "0");
 
-				$("body").append($alertElem);
+				$("#page-header").append($alertElem);
 			}
 		});
 	}, js: [], css: [], runOn: "*", requires: ["bootstrap"]}
