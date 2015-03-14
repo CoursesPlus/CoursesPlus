@@ -16,7 +16,20 @@ table.minicalendar abbr {
 }
 
 .yui3-widget.yui3-overlay.yui3-widget-positioned.yui3-widget-stacked.calendar-event-panel {
-	display: none;
+	left: 28px !important;
+	top: 150px !important;
+	visibility: visible !important;
+	opacity: 1;
+	transition: opacity 0.25s ease-in-out;
+}
+
+.yui3-overlay-hidden {
+	opacity: 0 !important;
+}
+
+.yui3-widget.yui3-overlay.yui3-widget-positioned.yui3-widget-stacked.calendar-event-panel > .yui3-overlay-content.yui3-widget-stdmod {
+	border: solid 2px #B5B5B5 !important;
+	border-radius: 5px;
 }
 
 .popover {
