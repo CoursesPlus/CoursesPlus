@@ -1072,14 +1072,14 @@ var components = {
 			$alertElem.html(message);
 			if (canDismiss) {
 				$alertElem.addClass("alert-dismissible");
-				$closeButton.css("z-index", "10000");
+				$closeButton.css("z-index", "1001");
 				$closeButton.css("right", "25px");
 				$closeButton.css("box-shadow", "none");
 				$alertElem.append($closeButton);
 			}
 
 			if (newNav) {
-				$alertElem.css("z-index", "9999");
+				$alertElem.css("z-index", "1000");
 				$alertElem.css("position", "fixed");
 				$alertElem.css("top", "50px");
 				$alertElem.css("left", "0");
