@@ -66,19 +66,27 @@ var services = {
 			// TODO: nothing!
 		},
 		createBlock: function() {
-			// TODO: get lunch menu from http://www.myschooldining.com/dalton/?cmd=menus
-			// This shouldn't change every day, so maybe some sort of caching?
-			$.get("https://www.myschooldining.com/api/?key=B6EEF83E-7E80-11E1-BAEF-DBA84824019B&siteID=336&locationId=753&lib=menus", function(data) {
+			$.get("https://www.myschooldining.com/api/", {
+				key: "B6EEF83E-7E80-11E1-BAEF-DBA84824019B",
+				siteID: 336,
+				locationId: 753,
+				lib: "menus"
+			}, function(data) {
 				var $builtList = $("<ul></ul>");
+				$builtList.css("list-style-type", "none");
 				var mealItems = data["meal periods"][0]["menu items"];
+				if (mealItems.length == 0) {
+					$builtList.append($("<li>No lunch today!</li>"));
+				}
 				$.each(mealItems, function() {
 					var $menuLi = $("<li></li>");
 					$menuLi.text(this.name);
 					$builtList.append($menuLi);
 				});
+				$("#coursesPlus_services_lunchMenu_overHerePls").html("");
 				$("#coursesPlus_services_lunchMenu_overHerePls").append($builtList);
 			});
-			return $("<p><center><strong>Today's Lunch</strong></center><center id=\"coursesPlus_services_lunchMenu_overHerePls\">Loading...</center></p>");
+			return $("<p><center id=\"coursesPlus_services_lunchMenu_overHerePls\">Loading...</center></p>");
 		}
 	},
 	schedules: {
