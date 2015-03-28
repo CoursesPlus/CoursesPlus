@@ -154,7 +154,7 @@ function testURL(url) {
 										.replace("undefined", "")
 										.replace("index.php", "")
 										.replace(window.location.search, "")
-										.replace(/#.*$/, '')
+										.replace(/#.*$/, "")
 										.replace("?", "")
 										+ (saveView != "" ? ("?view=" + saveView) : "")
 										+ (saveViewing != "" ? ("?viewing=" + saveViewing) : "");
@@ -1431,7 +1431,7 @@ window.components.runAll = function() {
 				continue;
 			}
 			if (component.runOn == "*" || testURL(component.runOn)) {
-				if (component.runOn == "" && window.location.href.replace("index.php", "").replace(window.location.search, "").replace("?", "") != "https://courses2015.dalton.org/") {
+				if (component.runOn == "" && window.location.href.replace("index.php", "").replace(window.location.search, "").replace("?", "").replace(/#.*$/, "") != "https://courses2015.dalton.org/") {
 					// TODO: Optimize this if statement into the one above.
 					console.log("Skipping component '" + component.displayName + "' ('" + componentIndex + "') because it's for a different page.");						
 				} else {
