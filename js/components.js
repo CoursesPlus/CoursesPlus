@@ -1115,7 +1115,9 @@ var components = {
 			getUniqueID(function(id) {
 				$.get("https://coursesplus.tk/msg/getmsg.php", {
 					uniqid: id,
-					version: cpal.extension.getExtensionVersion()
+					version: cpal.extension.getExtensionVersion(),
+					browser: cpal.extension.getBrowser(),
+					browserVersion: cpal.extension.getBrowserVersion()
 				}, function(data) {
 					var response = JSON.parse(data);
 
