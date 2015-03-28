@@ -21,6 +21,29 @@ function componentEnabled(name, callback) {
 	});
 }
 
+function randomString(len, charSet) {
+    charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var randomString = '';
+    for (var i = 0; i < len; i++) {
+    	var randomPoz = Math.floor(Math.random() * charSet.length);
+    	randomString += charSet.substring(randomPoz,randomPoz+1);
+    }
+    return randomString;
+}
+
+function getUniqueID(callback) {
+	cpal.storage.getKey("uniqueId", function(result) {
+		if (result != undefined) {
+			callback(result);
+		} else {
+			var newid = randomString(24);
+			cpal.storage.setKey("uniqueId", newid, function() {
+				callback(newId);
+			});
+		}
+	});
+}
+
 var emoteBaseUrl = "https://coursesplus.tk/emotions/";
 var emoteTable = {
 	":)" : {url: "smile.png"},
@@ -1061,45 +1084,55 @@ var components = {
 	}, js: [], css: ["prefixColors.css"], runOn: "course/modedit.php", requires: ["bootstrap"]},
 	navbarMessages: {displayName: "Navbar messages", description: "Shows messages and information underneath the navbar.", exec: function() {
 		componentEnabled("newNavbar", function(newNav) {
-			var message = "This is a test message.";
-			var style = "info";
-			var canDismiss = true;
+			getUniqueID(function(id) {
+				$.get("https://coursesplus.tk/msg/getmsg.php", {
+					uniqid: id,
+					version: cpal.extension.getExtensionVersion()
+				}, function(data) {
+					var response = JSON.parse(data);
 
-			var $closeButton = $('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
-			
-			var $alertElem = $('<div class="alert fade in" role="alert"></div>');
-			$alertElem.addClass("alert-" + style);
-			$alertElem.html(message);
-			if (canDismiss) {
-				$alertElem.addClass("alert-dismissible");
-				$closeButton.css("z-index", "1001");
-				$closeButton.css("right", "25px");
-				$closeButton.css("box-shadow", "none");
-				$alertElem.append($closeButton);
-			}
+					var message = response.message;
+					var style = response.style;
+					var canDismiss = true;
 
-			if (newNav) {
-				$alertElem.css("z-index", "1000");
-				$alertElem.css("position", "fixed");
-				$alertElem.css("top", "50px");
-				$alertElem.css("left", "0");
-				$alertElem.css("width", "100%");
-				$alertElem.css("padding", "7px 0");
-				$alertElem.css("text-align", "center");
-				$alertElem.css("border-radius", "0");
-				$("body").css("padding-top", "90px");
+					var $closeButton = $('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+					
+					var $alertElem = $('<div class="alert fade in" role="alert"></div>');
+					$alertElem.addClass(style);
+					$alertElem.html(message);
+					if (canDismiss) {
+						$alertElem.addClass("alert-dismissible");
+						$closeButton.css("z-index", "1001");
+						$closeButton.css("right", "25px");
+						$closeButton.css("box-shadow", "none");
+						$alertElem.append($closeButton);
+					}
 
-				$alertElem.on('closed.bs.alert', function () {
-					$("body").css("padding-top", "70px");
+					if (newNav) {
+						$alertElem.css("z-index", "1000");
+						$alertElem.css("position", "fixed");
+						$alertElem.css("top", "50px");
+						$alertElem.css("left", "0");
+						$alertElem.css("width", "100%");
+						$alertElem.css("padding", "7px 0");
+						$alertElem.css("text-align", "center");
+						$alertElem.css("border-radius", "0");
+						$("body").css("padding-top", "90px");
+
+						$alertElem.on('closed.bs.alert', function () {
+							$("body").css("padding-top", "70px");
+						});
+
+						$("body").append($alertElem);
+					} else {
+						$alertElem.css("width", "100%");
+						$alertElem.find("button").css("right", "0");
+
+						$("#page-content").prepend($alertElem);
+					}
 				});
 
-				$("body").append($alertElem);
-			} else {
-				$alertElem.css("width", "100%");
-				$alertElem.find("button").css("right", "0");
-
-				$("#page-header").append($alertElem);
-			}
+			});
 		});
 	}, js: [], css: [], runOn: "*", requires: ["bootstrap"]}/*,
 	rearrangeCourses: {displayName: "Rearrange courses", description: "Lets you drag and drop your courses into the order you want.", exec: function() {
