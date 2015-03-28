@@ -230,7 +230,7 @@ $(document).ready(function() {
 						result += featureList[featureIndex];
 						index2++;
 					}
-					if (!confirm("Some other features require the one you're trying to disable.\nSpecifically: " + result + " all require it.\nIf you disable just this one without disabling the ones in the list before, *BAD THINGS MIGHT HAPPEN*.\n\n\nAre you sure you want to disable this feature? (***BAD THINGS MIGHT HAPPEN***)")) {
+					if (!confirm("Some other features require the one you're trying to disable.\n\nSpecifically: " + result + ".\n\nIf you disable this feature without disabling the ones in the list before, *BAD THINGS MIGHT HAPPEN*.\n\n\nAre you sure you want to disable this feature? (***BAD THINGS MIGHT HAPPEN***)")) {
 						$(this).prop("checked", true);
 						return;
 					}

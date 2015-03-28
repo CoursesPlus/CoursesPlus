@@ -1,14 +1,15 @@
-.coursebox {
-	width: 49% !important;
+ .coursebox {
+	width: 300px !important;
 	display: inline-block;
 	margin-bottom: 10px !important;
 	border-radius: 0 !important;
+	margin-right: 12px;
 }
-.coursebox.odd {
-	float: left;
+.coursebox:nth-of-type(odd) {
+	/*float: left;*/
 }
-.coursebox.even {
-	float: right;
+.coursebox:nth-of-type(even) {
+	/*float: right;*/
 }
 .coursebox > .info > .moreinfo {
 	display: none;
@@ -31,4 +32,15 @@
 .teachers > li {
 	text-align: center;
 	width: 100%;
+}
+.coursesplus-course-placeholder {
+	width: 48% !important;
+}
+@media (max-width: 1112px) {
+	.courses > .coursebox {
+		width: 100% !important;
+	}
+	.coursebox > .info > .coursename a {
+		width: 95%;
+	}
 }
