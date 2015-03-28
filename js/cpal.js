@@ -16,6 +16,7 @@ cpal.notImplemented = function() {
  */
 cpal.extension = {};
 
+cpal.extension.getBrowser = cpal.notImplemented;
 cpal.extension.getBrowserVersion = cpal.notImplemented;
 cpal.extension.getExtensionVersion = cpal.notImplemented;
 
