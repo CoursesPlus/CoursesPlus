@@ -1,49 +1,3 @@
-function escapeRegExp(string) {
-    return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
-}
-String.prototype.replaceAll = function(search, replace)
-{
-    //if replace is null, return original string otherwise it will
-    //replace search string with 'undefined'.
-    if(!replace) 
-        return this;
-
-    return this.replace(new RegExp(escapeRegExp(search), 'g'), replace);
-};
-
-function componentEnabled(name, callback) {
-	var componentsToSkip = [];
-
-	cpal.storage.getKey("disabledComponents", function(result) {
-		componentsToSkip = ($.isArray(result) ? result : []);
-		var response = (componentsToSkip.indexOf(name) == -1);
-		callback(response);
-	});
-}
-
-function randomString(len, charSet) {
-    charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var randomString = '';
-    for (var i = 0; i < len; i++) {
-    	var randomPoz = Math.floor(Math.random() * charSet.length);
-    	randomString += charSet.substring(randomPoz,randomPoz+1);
-    }
-    return randomString;
-}
-
-function getUniqueID(callback) {
-	cpal.storage.getKey("uniqueId", function(result) {
-		if (result != undefined) {
-			callback(result);
-		} else {
-			var newid = randomString(24);
-			cpal.storage.setKey("uniqueId", newid, function() {
-				callback(newId);
-			});
-		}
-	});
-}
-
 var emoteBaseUrl = "https://coursesplus.tk/emotions/";
 var emoteTable = {
 	":)" : {url: "smile.png"},
@@ -125,17 +79,66 @@ var emoteTable = {
 	":yawn2:": {url: "Yawn2.png"},
 	":zombie:": {url: "Zombie.png"}
 };
-function getParameterByName( name,href )
-{
-  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-  var regexS = "[\\?&]"+name+"=([^&#]*)";
-  var regex = new RegExp( regexS );
-  var results = regex.exec( href );
-  if( results == null )
-    return "";
-  else
-    return decodeURIComponent(results[1].replace(/\+/g, " "));
+
+function escapeRegExp(string) {
+    return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 }
+String.prototype.replaceAll = function(search, replace)
+{
+    //if replace is null, return original string otherwise it will
+    //replace search string with 'undefined'.
+    if(!replace) 
+        return this;
+
+    return this.replace(new RegExp(escapeRegExp(search), 'g'), replace);
+};
+
+function componentEnabled(name, callback) {
+	var componentsToSkip = [];
+
+	cpal.storage.getKey("disabledComponents", function(result) {
+		componentsToSkip = ($.isArray(result) ? result : []);
+		var response = (componentsToSkip.indexOf(name) == -1);
+		callback(response);
+	});
+}
+
+function randomString(len, charSet) {
+    charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var randomString = '';
+    for (var i = 0; i < len; i++) {
+    	var randomPoz = Math.floor(Math.random() * charSet.length);
+    	randomString += charSet.substring(randomPoz,randomPoz+1);
+    }
+    return randomString;
+}
+
+function getUniqueID(callback) {
+	cpal.storage.getKey("uniqueId", function(result) {
+		if (result != undefined) {
+			callback(result);
+		} else {
+			var newid = randomString(24);
+			cpal.storage.setKey("uniqueId", newid, function() {
+				callback(newId);
+			});
+		}
+	});
+}
+
+function getParameterByName(name, href)
+{
+	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+	var regexS = "[\\?&]"+name+"=([^&#]*)";
+	var regex = new RegExp( regexS );
+	var results = regex.exec( href );
+	if (results == null) {
+	  return "";
+	} else {
+	  return decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+}
+
 function testURL(url) {
 	var saveView = "";
 	if (window.location.href.indexOf("view.php") != -1) {
