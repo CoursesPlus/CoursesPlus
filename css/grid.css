@@ -5,11 +5,11 @@
 	border-radius: 0 !important;
 	margin-right: 12px;
 }
-.coursebox:nth-of-type(odd) {
-	/*float: left;*/
+.coursebox.odd {
+	float: left;
 }
-.coursebox:nth-of-type(even) {
-	/*float: right;*/
+.coursebox.even {
+	float: right;
 }
 .coursebox > .info > .moreinfo {
 	display: none;
@@ -42,5 +42,11 @@
 	}
 	.coursebox > .info > .coursename a {
 		width: 95%;
+	}
+	.coursebox.odd {
+		float: none;
+	}
+	.coursebox.even {
+		float: none;
 	}
 }
