@@ -414,4 +414,11 @@ $(document).ready(function() {
 			});
 		}
 	});
+	cpal.storage.getKey("uniqueId", function(response) {
+		if (response == undefined) {
+			$("#coursesplus-uniqueid").text("not generated yet. Visit a page to have one generated for you.");
+		} else {
+			$("#coursesplus-uniqueid").text(response);
+		}
+	});
 });
