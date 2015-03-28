@@ -154,7 +154,8 @@ function testURL(url) {
 										.replace("undefined", "")
 										.replace("index.php", "")
 										.replace(window.location.search, "")
-										.replace(window.location.hash, "").replace("?", "")
+										.replace(/#.*$/, '')
+										.replace("?", "")
 										+ (saveView != "" ? ("?view=" + saveView) : "")
 										+ (saveViewing != "" ? ("?viewing=" + saveViewing) : "");
 	return testThing.indexOf(url) > -1;
