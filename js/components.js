@@ -1091,6 +1091,10 @@ var components = {
 				}, function(data) {
 					var response = JSON.parse(data);
 
+					if (response.message == "") {
+						return;
+					}
+
 					var message = response.message;
 					var style = response.style;
 					var canDismiss = true;
