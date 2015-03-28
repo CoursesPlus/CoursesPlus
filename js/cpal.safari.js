@@ -71,6 +71,10 @@ cpal.storage.getKey = function(keyName, callback) {
 	callbackStorage = callback;
 	safari.self.tab.dispatchMessage("getKey", [keyName, null]);
 };
+cpal.storage.getAll = function(keyName, callback) {
+	callbackStorage = callback;
+	safari.self.tab.dispatchMessage("getAll", [null]);
+};
 cpal.storage.setKey = function(keyName, keyValue, callback) {
 	callbackStorage = callback;
 	safari.self.tab.dispatchMessage("setKey", [keyName, keyValue, null]);

@@ -421,4 +421,20 @@ $(document).ready(function() {
 			$("#coursesplus-uniqueid").text(response);
 		}
 	});
+	$("#importData").click(function() {
+		var response = prompt("THIS WILL REMOVE ALL CURRENTLY STORED DATA.\n\nIf you would like to continue, type in the new data and press OK. Otherwise, press Cancel.");
+		if (response != null) {
+			var responseData = JSON.parse(response);
+			cpal.storage.clear(function() {
+				for (var key in responseData) {
+					cpal.storage.setKey(key, responseData[key], function() {});
+				}
+			});
+		}
+	});
+	$("#exportData").click(function() {
+		cpal.storage.getAll(function(items) {
+			prompt("Here is all the information Courses+ has stored in JSON format.", JSON.stringify(items));
+		});
+	});
 });

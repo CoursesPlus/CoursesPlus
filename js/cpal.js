@@ -50,6 +50,7 @@ cpal.storage = {};
 
 cpal.storage.clear = cpal.notImplemented;
 cpal.storage.getKey = cpal.notImplemented;
+cpal.storage.getAll = cpal.notImplemented;
 cpal.storage.setKey = cpal.notImplemented;
 /*
  * cpal.storage.quota

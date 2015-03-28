@@ -73,6 +73,11 @@ cpal.storage.getKey = function(keyName, callback) {
 		callback(result[keyName]);
 	});
 };
+cpal.storage.getAll = function(callback) {
+	chrome.storage.sync.get(null, function(items) {
+		callback(items);
+	});
+};
 cpal.storage.setKey = function(keyName, keyValue, callback) {
 	var saveObj = {};
 	saveObj[keyName] = keyValue;
