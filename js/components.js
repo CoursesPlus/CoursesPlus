@@ -1490,6 +1490,6 @@ window.components.runAll = function() {
 		setTimeout(function() {
 			console.log("Removed curtain!");
 			$("body").addClass("removeCurtain");
-		}, 100);
+		}, 200);
 	});
 };
