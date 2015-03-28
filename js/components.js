@@ -292,12 +292,36 @@ var components = {
 				$(this).html($(this).html().split(": ")[1]);
 			});
 		});
+		var $teacherListModal = $('<div class="teacherListModal modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">List of teachers</h4></div><div class="modal-body"><ul id="coursesplus-teacherotherdialog-listofteachers"></ul></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>');
+		$("body").append($teacherListModal);
 		// List of teachers is sometimes long... this just makes it say "multiple teachers"
 		$(".coursebox.clearfix").each(function() {
 			var myLength = $(this).children(".content").children(".teachers").children("li").length;
 			if (myLength > 1) {
+				var teacherListStr = $(this).children(".content").children(".teachers").children("li").map(function(i, opt) {
+					return $(opt).text();
+				}).toArray().join(',');
 				var first = $(this).children(".content").children(".teachers").children("li").first();
-				$(this).children(".content").children(".teachers").html("<li>" + first.html() +  " and " + (myLength - 1) + " other" + (myLength == 2 ? "" : "s") + "</li>");
+				$(this).children(".content").children(".teachers").html("");
+
+				var $appendMe = $("<li>" + first.html() +  " and " + (myLength - 1) + " </li>");
+				
+					var $otherlink = $("<a class=\"coursesplus-teachers-otherlink\" href=\"#\">other" + (myLength == 2 ? "" : "s") + "</a>");
+					$otherlink.attr("data-teacherlist", teacherListStr);
+					$otherlink.click(function() {
+						$("#coursesplus-teacherotherdialog-listofteachers").html("");
+						var teacherArray = $(this).attr("data-teacherlist").split(',');
+						for (var teacherIndex in teacherArray) {
+							var $teacherItem = $("<li></li>");
+							$teacherItem.text(teacherArray[teacherIndex]);
+							$("#coursesplus-teacherotherdialog-listofteachers").append($teacherItem);
+						}
+						$teacherListModal.modal();
+					});
+
+				$appendMe.append($otherlink);
+
+				$(this).children(".content").children(".teachers").append($appendMe);
 			}
 		});
 	}, js: [], css: [], runOn: "", requires: []},
