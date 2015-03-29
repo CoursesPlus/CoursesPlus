@@ -115,7 +115,7 @@ var services = {
 		onEnable: function() {
 			// TODO: Change a bunch of links in the code. This should be simple.
 		},
-	},*/
+	},*//*
 	athletics: {
 		displayName: "Athletics",
 		description: "Displays your sport's schedule in the sidebar.",
@@ -129,7 +129,7 @@ var services = {
 			// TODO: get events and games.
 			return $("<p>Athletics!</p>");
 		}
-	}/*,
+	}*//*,
 	randomStudent: {
 		displayName: "Random Student of the Day",
 		description: "Displays a random student every day. NOTE: Your name will be displayed to other students if you enable this option.",
