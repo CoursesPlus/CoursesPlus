@@ -32,7 +32,7 @@ function getParameterByName(name, href) {
 }
 
 var services = {
-	planbook: {
+	/*planbook: {
 		displayName: "Planbook",
 		description: "Displays events from the Online Planbook (at daltonplanner.org) in your calendar.",
 		type: "calendar",
@@ -58,7 +58,7 @@ var services = {
 				}]);
 			});
 		}
-	},
+	},*/
 	lunchMenu: {
 		displayName: "Lunch menu",
 		description: "Displays what's for lunch in the sidebar.",
@@ -193,7 +193,7 @@ window.services.runAll = function() {
 
 		for (var serviceCount in serviceList) {
 			var serviceIndex = serviceList[serviceCount];
-			
+
 			if (serviceIndex == "runAll") {
 				continue;
 			}
