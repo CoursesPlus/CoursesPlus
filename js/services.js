@@ -102,18 +102,20 @@ var services = {
 		origins: ["*://schedules.dalton.org/"],
 		requires: [],
 		onEnable: function() {
+			var schedulesUrl = "https://schedules.dalton.org/roux/index.php";
 			// TODO: signin
-			// Does Schedules have an API to hook in to? How long do session cookies last?
+			
 		},
 		onDisable: function() {
 			// TODO: clear info
 		},
 		createBlock: function() {
+			var schedulesUrl = "https://schedules.dalton.org/roux/index.php";
 			// TODO: get events
 			// This shouldn't change much, so maybe some sort of caching (with a force refresh option)?
 			return $("<p>Schedule!</p>");
 		}
-	},
+	}//,
 	/* This is not a service because it should affect a whole site with all the above geatures
 	archivedCourses:
 		displayName: "Archived Courses",

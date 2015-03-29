@@ -4,7 +4,7 @@ function saveChanges() {
 		console.log("Saved changes!");
 	});
 }
-function createList(sortedComponents, $ulToAppendTo, clickEvent) {
+function createList(sortedComponents, $ulToAppendTo, checkList, checkPresence, clickEvent) {
 	//var sortedComponents = window.components;
 	for (var componentIndex in sortedComponents) {
 		if (componentIndex == "runAll") {
@@ -17,7 +17,7 @@ function createList(sortedComponents, $ulToAppendTo, clickEvent) {
 		$appendMe.addClass("feature");
 			var $check = $("<input type=\"checkbox\" />");
 				$check.addClass("featureCheck");
-				$check.prop("checked", disabledComponentList.indexOf(componentIndex) == -1);
+				$check.prop("checked", (checkPresence ? checkList.indexOf(componentIndex) != -1 : checkList.indexOf(componentIndex) == -1));
 				$check.attr("data-index", componentIndex);
 				$check.click(clickEvent);
 			$appendMe.append($check);
@@ -169,40 +169,59 @@ var onNavTextColorPickerChange = function() {
 };
 
 $(document).ready(function() {
-	createList(window.services, $("#services > ul"), function() {
-		alert($(this).attr("data-index"));
-		var thisService = window.services[$(this).attr("data-index")];
-		if ($(this).prop("checked")) {
-			if (thisService.origins != []) {
-				// TODO: cpal
-				// Do we have them?
-				chrome.permissions.contains({
-					permissions: [],
-					origins: thisService.origins
-				}, function(result) {
-					if (result) {
-						// Done with permission stuff!
-					} else {
-						// OK, let's ask.
-						chrome.permissions.request({
-							permissions: [],
-							origins: thisService.origins
-						}, function(granted) {
-							if (granted) {
-								// YAAAY
-							} else {
-								alert(thisService.displayName + " requires those permissions.");
-							}
-						});
-					}
+	cpal.storage.getKey("services", function(result) {
+		var serviceList = ($.isArray(result) ? result : []);)
+		createList(window.services, $("#services > ul"), serviceList, true, function() {
+			var thisService = window.services[$(this).attr("data-index")];
+			if ($(this).prop("checked")) {
+				if (thisService.origins != []) {
+					// TODO: cpal
+					// Do we have them?
+					chrome.permissions.contains({
+						permissions: [],
+						origins: thisService.origins
+					}, function(result) {
+						if (result) {
+							// Done with permission stuff!
+						} else {
+							// OK, let's ask.
+							chrome.permissions.request({
+								permissions: [],
+								origins: thisService.origins
+							}, function(granted) {
+								if (granted) {
+									// YAAAY
+									cpal.storage.getKey("services", function(result) {
+										serviceList = ($.isArray(result) ? result : []);
+										serviceList.push($(this).attr("data-index"));
+										cpal.storage.setKey("services", serviceList, function() {
+											thisService.onEnable();
+										});
+									});
+								} else {
+									$(this).prop("checked", false);
+									alert(thisService.displayName + " requires those permissions.");
+								}
+							});
+						}
+					});
+				}
+			} else {
+				cpal.storage.getKey("services", function(result) {
+					serviceList = ($.isArray(result) ? result : []);
+					serviceList.splice(serviceList.indexOf($(this).attr("data-index")), 1);
+					cpal.storage.setKey("services", serviceList, function() {
+						
+					});
 				});
+				thisService.onDisable();
 			}
-		}
+		});
 	});
 	cpal.storage.getKey("disabledComponents", function(result) {
 		disabledComponentList = ($.isArray(result) ? result : []);
 		console.log(disabledComponentList);
-		createList(window.components, $("#features > ul"), function() {
+		createList(window.components, $("#features > ul"), disabledComponentList, false, function() {
 			var sortedComponents = window.components;
 			var index = $(this).attr("data-index");
 			var featureList = [];
