@@ -129,7 +129,7 @@ var services = {
 			// TODO: get events and games.
 			return $("<p>Athletics!</p>");
 		}
-	},
+	}/*,
 	randomStudent: {
 		displayName: "Random Student of the Day",
 		description: "Displays a random student every day. NOTE: Your name will be displayed to other students if you enable this option.",
@@ -157,7 +157,7 @@ var services = {
 		addAssignmentButton: function() {
 			// TODO: button to add a google document.
 		}
-	}
+	}*/
 };
 
 window.services = services;
