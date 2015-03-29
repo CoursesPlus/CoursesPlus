@@ -170,7 +170,7 @@ var onNavTextColorPickerChange = function() {
 
 $(document).ready(function() {
 	cpal.storage.getKey("services", function(result) {
-		var serviceList = ($.isArray(result) ? result : []);)
+		var serviceList = ($.isArray(result) ? result : []);
 		createList(window.services, $("#services > ul"), serviceList, true, function() {
 			var thisService = window.services[$(this).attr("data-index")];
 			if ($(this).prop("checked")) {
