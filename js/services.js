@@ -41,6 +41,9 @@ var services = {
 		onEnable: function() {
 			// TODO: signin
 		},
+		onDisable: function() {
+			// TODO: clear info
+		},
 		createCalendarEvents: function(callback) {
 			// TODO: get events
 			// Should the request be on-demand or in the background?
@@ -63,7 +66,10 @@ var services = {
 		origins: ["*://*.myschooldining.com/"],
 		requires: [],
 		onEnable: function() {
-			// TODO: nothing!
+
+		},
+		onDisable: function() {
+
 		},
 		createBlock: function() {
 			$.get("https://www.myschooldining.com/api/", {
@@ -99,6 +105,9 @@ var services = {
 			// TODO: signin
 			// Does Schedules have an API to hook in to? How long do session cookies last?
 		},
+		onDisable: function() {
+			// TODO: clear info
+		},
 		createBlock: function() {
 			// TODO: get events
 			// This shouldn't change much, so maybe some sort of caching (with a force refresh option)?
@@ -125,6 +134,9 @@ var services = {
 		onEnable: function() {
 			// TODO: ajax.
 		},
+		onDisable: function() {
+			
+		},
 		createBlock: function() {
 			// TODO: get events and games.
 			return $("<p>Athletics!</p>");
@@ -140,6 +152,9 @@ var services = {
 			// TODO: ask student for name.
 			//     - store names on server.
 		},
+		onDisable: function() {
+			// TODO: reset participant info
+		},
 		createBlock: function() {
 			// TODO: fetch a name from the server.
 			return $("<p>HIII!</p>");
@@ -153,6 +168,9 @@ var services = {
 		requires: [],
 		onEnable: function() {
 			// TODO: write a google script, ask for OAuth signin
+		},
+		onDisable: function() {
+			// TODO: un-OAuth?
 		},
 		addAssignmentButton: function() {
 			// TODO: button to add a google document.
