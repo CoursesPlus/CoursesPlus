@@ -168,21 +168,37 @@ var onNavTextColorPickerChange = function() {
 	cpal.storage.setKey("navTextColor", newColor);
 };
 
+function handleServicePart2(index, thisService) {
+	console.log("All permissions done!");
+	cpal.storage.getKey("services", function(result) {
+		serviceList = ($.isArray(result) ? result : []);
+		console.log(serviceList);
+		serviceList.push(index);
+		cpal.storage.setKey("services", serviceList, function() {
+			thisService.onEnable();
+		});
+	});
+}
+
 $(document).ready(function() {
 	cpal.storage.getKey("services", function(result) {
 		var serviceList = ($.isArray(result) ? result : []);
 		createList(window.services, $("#services > ul"), serviceList, true, function() {
-			var thisService = window.services[$(this).attr("data-index")];
+			var index = $(this).attr("data-index");
+			var $this = $(this);
+			var thisService = window.services[index];
 			if ($(this).prop("checked")) {
 				if (thisService.origins != []) {
 					// TODO: cpal
 					// Do we have them?
+					console.log("Asking for permissions...");
 					chrome.permissions.contains({
 						permissions: [],
 						origins: thisService.origins
 					}, function(result) {
 						if (result) {
 							// Done with permission stuff!
+							handleServicePart2(index, thisService);
 						} else {
 							// OK, let's ask.
 							chrome.permissions.request({
@@ -191,21 +207,17 @@ $(document).ready(function() {
 							}, function(granted) {
 								if (granted) {
 									// YAAAY
-									cpal.storage.getKey("services", function(result) {
-										serviceList = ($.isArray(result) ? result : []);
-										serviceList.push($(this).attr("data-index"));
-										cpal.storage.setKey("services", serviceList, function() {
-											thisService.onEnable();
-										});
-									});
+									handleServicePart2(index, thisService);
 								} else {
-									$(this).prop("checked", false);
+									$this.prop("checked", false);
 									alert(thisService.displayName + " requires those permissions.");
 								}
 							});
 						}
 					});
-				}
+				} else {
+					handleServicePart2(index, thisService);
+				}			
 			} else {
 				cpal.storage.getKey("services", function(result) {
 					serviceList = ($.isArray(result) ? result : []);
