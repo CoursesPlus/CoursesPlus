@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Courses+ Options</title>
+		<title>CoursesPlus Options</title>
 
 		<link rel="stylesheet" href="../css/simplegrid.css" />
 		<link rel="stylesheet" href="../scss_gen/fonts.css" />
@@ -16,6 +16,21 @@
 		<script type="text/javascript" src="../js/options.js"></script>
 	</head>
 	<body>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">Courses<strong>Plus</strong> Options</a>
+	    </div>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="http://courses.dalton.org/">Go to Courses</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
 		<div id="selLogoModal" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -26,7 +41,7 @@
 					<div class="modal-body">
 						<p>Click on a logo to select it!</p>
 						<p>Your changes are automatically saved.</p>
-						<p>Thanks to William Barkoff for the "CoursesPlus" and "DaltonCourses" logos.</p>
+						<p>Thanks to c20wb for the "CoursesPlus" and "DaltonCourses" logos.</p>
 						<div id="logoSelGallery">
 							<div class="selBox logo regular selected" data-selBoxGroup="logo" data-selBoxVal="regular"></div>
 							<div class="selBox logo circle" data-selBoxGroup="logo" data-selBoxVal="circle"></div>
@@ -37,7 +52,7 @@
 					</div>
 					<div class="modal-footer">
 						<!--<button type="button" id="logoFromUrl" class="btn btn-info pull-left">From URL...</button>-->
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
 					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
@@ -65,8 +80,9 @@
 			<h6>Image</h6>
 			<img id="backgroundImagePreview" src="../images/nobg.png"/>
 			<form id="bgImgUpl" enctype="multipart/form-data">
-				<div id="uploadingText" style="display:none;">Uploading image, please wait...</div>
-				<div id="connectingText">Connecting to background image server, please wait...</div>
+			<br>
+				<div id="uploadingText" style="display:none;">Hold on a second.<br><br>We are processing your image.</div>
+				<div id="connectingText">Hold on a second.<br><br>We are loading your image.</div>
 
 				<input type="hidden" name="submit" id="Submit" style="display:none;" />
 				<input type="file" name="fileToUpload" id="fileToUpload" style="display:none;" />
