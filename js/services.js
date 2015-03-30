@@ -270,228 +270,257 @@ window.services = services;
 window.services.runAll = function() {
 	console.log("Getting service list...");
 	cpal.storage.getKey("services", function(result) {
-		var serviceList = ($.isArray(result) ? result : []);
-		console.log(serviceList);
+		cpal.storage.getKey("serviceUpsell", function(serviceUpsell) {
+			var serviceList = ($.isArray(result) ? result : []);
+			console.log(serviceList);
 
-		console.log("Running all services...");
+			console.log("Running all services...");
 
-		var runCount = 0;
+			if (serviceList.length == 0 && serviceUpsell == undefined) {
+				var $serviceUpsell = $('<div class="coursesplus_services_serviceUpsell"></div>');
 
-		for (var serviceCount in serviceList) {
-			var serviceIndex = serviceList[serviceCount];
+				$serviceUpsell.css("border", "solid 1px black");
+				$serviceUpsell.css("border-radius", "5px");
+				$serviceUpsell.css("padding", "5px");
 
-			if (serviceIndex == "runAll") {
-				continue;
-			}
-			var service = window.services[serviceIndex];
-			
-			console.log("Running service '" + service.displayName + "'...");
+				$serviceUpsell.text("Enable Services to connect Courses+ with other websites and information, like the current lunch or your schedule.");
 
-			switch (service.type) {
-				case "assignment":
-					console.warn("TODO: assignment services");
-					break;
-				case "block":
-					var $blockBody = service.createBlock();
+				var $learnMore = $('<a class="btn btn-primary" target="_blank">Learn more</a>');
+				var $noThanks = $('<button class="btn btn-danger btn-sm">No thanks</button>');
 
-					var $blockToAppend = $("<div></div>");
-
-					$blockToAppend.attr("id", serviceIndex + "_service_block");
-					$blockToAppend.addClass("block");
-
-						var $header = $("<div class=\"header\"><div class=\"title\"><h2></h2></div></div>");
-
-							$header.find("h2").text(service.displayName);
-
-						$blockToAppend.append($header);
-
-						var $content = $("<div class=\"content\"></div>");
-
-							$content.append($blockBody);
-
-						$blockToAppend.append($content);
-
-					$("#region-post > .region-content").append($blockToAppend);
-
-					break;
-				case "calendar":
-					service.createCalendarEvents(function(events) {
-						// date.getTime() / 1000 // in Unix time 
-						if (testURL("calendar/view.php?view=month")) {
-							console.log("Month view!");
-
-							var curDate = new Date(parseInt(getParameterByName("time", window.location.href)) * 1000);
-
-							var dayEventAddThing = {};
-
-							$(".day > .day").each(function() {
-								dayEventAddThing[$(this).text()] = [];
-							});
-
-							for (var eventIndex in events) {
-								var thisEvent = events[eventIndex];
-
-								if (thisEvent.date.getMonth() == curDate.getMonth()) {
-									dayEventAddThing[thisEvent.date.getDate()].push(thisEvent);
-								}
-							}
-
-							$(".day > .day").each(function() {
-								for (var eventIndex in dayEventAddThing[$(this).text()]) {
-									var thisEvent = dayEventAddThing[$(this).text()][eventIndex];
-
-									var eventId = "event_" + serviceIndex + "_" + thisEvent.id;
-
-									var $appendMe = $("<li></li>");
-
-									$appendMe.addClass("calendar_event_course");
-									$appendMe.addClass("cal_" + thisEvent.cssClass);
-
-									$appendMe.append($("<a></a>"));
-									$appendMe.children("a").text(service.displayName + " - " + thisEvent.title);
-
-									var linkTo = window.location.href;
-
-									linkTo = linkTo.replace("month", "day");
-									linkTo = linkTo.replace(getParameterByName("time", window.location.href), thisEvent.date.getTime() / 1000);
-									linkTo += "#";
-									linkTo += eventId;
-
-									$appendMe.children("a").attr("href", linkTo);
-
-									$(this).parent().children(".events-new").append($appendMe);
-								}
-							});
-						}				
-						if (testURL("calendar/view.php?view=day")) {
-							console.log("Day view!");
-
-							var curDate = new Date(parseInt(getParameterByName("time", window.location.href)) * 1000);
-
-							for (var eventIndex in events) {
-								var thisEvent = events[eventIndex];
-
-								if (thisEvent.date.getMonth() == curDate.getMonth() && thisEvent.date.getDay() == curDate.getDay() && thisEvent.date.getDate() == curDate.getDate() && thisEvent.date.getYear() == curDate.getYear()) {
-									var eventId = "event_" + serviceIndex + "_" + thisEvent.id;
-
-									var $appendMe = $("<table></table>");
-
-									$appendMe.addClass("event");
-
-									$appendMe.append($("<tbody></tbody>"));
-
-									var r0 = $("<tr></tr>");
-									
-										r0.addClass("r0");
-
-										var c0_1 = $("<td></td>");
-
-											c0_1.addClass("picture");
-											c0_1.addClass("cell");
-											c0_1.addClass("c0");
-
-											c0_1.css("width", "32px");
-
-											c0_1.append($('<a name="' + eventId + '"></a>'));
-
-											var $eventImg = $("<img />");
-
-												var thisIconHref = $("link[rel='shortcut icon']").attr("href");
-
-												thisIconHref = thisIconHref.replace("dalton/theme", "dalton/" + thisEvent.icon);
-												thisIconHref = thisIconHref.replace("favicon", "icon");
-
-												$eventImg.attr("src", thisIconHref);
-												$eventImg.addClass("icon");
-
-											c0_1.append($eventImg);
-
-										r0.append(c0_1);
-
-										var c1_1 = $("<td></td>");
-
-											c1_1.addClass("topic");
-											c1_1.addClass("cell");
-											c1_1.addClass("c1");
-											c1_1.addClass("lastcol");
-
-											// No, referer with one r *is not a typo*.
-											// At least, not one made in Courses+.
-											var $referer = $("<div>");
-
-												$referer.addClass("referer");
-
-												var $refererLink = $("<a></a>");
-
-													$refererLink.attr("href", "#");
-													$refererLink.text(thisEvent.title);
-
-												$referer.append($refererLink);
-
-											c1_1.append($referer);
-
-											var $course = $("<div>");
-
-												$course.addClass("course");
-
-												var $courseLink = $("<a></a>");
-
-													$courseLink.css("color", "gray");
-													$courseLink.css("cursor", "default");
-													$courseLink.css("text-decoration", "none");
-													$courseLink.text("from " + service.displayName);
-
-												$course.append($courseLink);
-
-											c1_1.append($course);
-
-										r0.append(c1_1);
-
-									$appendMe.children("tbody").append(r0);
-
-									var r1 = $("<tr></tr>");
-									
-										r1.addClass("r1");
-										r1.addClass("lastrow");
-
-										var c0_2 = $("<td></td>");
-
-											c0_2.addClass("side");
-											c0_2.addClass("cell");
-											c0_2.addClass("c0");
-
-											c0_2.html("&nbsp");
-
-										r1.append(c0_2);
-
-										var c1_2 = $("<td></td>");
-
-											c1_2.addClass("description");
-											c1_2.addClass("cell");
-											c1_2.addClass("c0");
-											c1_2.addClass("lastcol");
-
-											var $noOverflowCont = $("<div></div>");
-
-												$noOverflowCont.addClass("no-overflow");
-												$noOverflowCont.html(thisEvent.description);
-
-											c1_2.append($noOverflowCont);
-
-										r1.append(c1_2);
-
-									$appendMe.children("tbody").append(r1);
-
-									$(".eventlist").append($appendMe);
-								}
-							}
-						}
+				$learnMore.attr("href", cpal.resources.getURL("etc/options.html#services"));
+				$noThanks.click(function() {
+					cpal.storage.setKey("serviceUpsell", true, function() {
+						window.location.reload();
 					});
-					break;
+				});
+
+				$serviceUpsell.append("<br />");
+				$serviceUpsell.append($learnMore);
+				$serviceUpsell.append("<br />");
+				$serviceUpsell.append($noThanks);
+
+				$("#region-post > .region-content").append($serviceUpsell);
 			}
 
-			runCount++;
-		}
-		console.log("Ran " + runCount + " service(s)!");
+			var runCount = 0;
+
+			for (var serviceCount in serviceList) {
+				var serviceIndex = serviceList[serviceCount];
+
+				if (serviceIndex == "runAll") {
+					continue;
+				}
+				var service = window.services[serviceIndex];
+				
+				console.log("Running service '" + service.displayName + "'...");
+
+				switch (service.type) {
+					case "assignment":
+						console.warn("TODO: assignment services");
+						break;
+					case "block":
+						var $blockBody = service.createBlock();
+
+						var $blockToAppend = $("<div></div>");
+
+						$blockToAppend.attr("id", serviceIndex + "_service_block");
+						$blockToAppend.addClass("block");
+
+							var $header = $("<div class=\"header\"><div class=\"title\"><h2></h2></div></div>");
+
+								$header.find("h2").text(service.displayName);
+
+							$blockToAppend.append($header);
+
+							var $content = $("<div class=\"content\"></div>");
+
+								$content.append($blockBody);
+
+							$blockToAppend.append($content);
+
+						$("#region-post > .region-content").append($blockToAppend);
+
+						break;
+					case "calendar":
+						service.createCalendarEvents(function(events) {
+							// date.getTime() / 1000 // in Unix time 
+							if (testURL("calendar/view.php?view=month")) {
+								console.log("Month view!");
+
+								var curDate = new Date(parseInt(getParameterByName("time", window.location.href)) * 1000);
+
+								var dayEventAddThing = {};
+
+								$(".day > .day").each(function() {
+									dayEventAddThing[$(this).text()] = [];
+								});
+
+								for (var eventIndex in events) {
+									var thisEvent = events[eventIndex];
+
+									if (thisEvent.date.getMonth() == curDate.getMonth()) {
+										dayEventAddThing[thisEvent.date.getDate()].push(thisEvent);
+									}
+								}
+
+								$(".day > .day").each(function() {
+									for (var eventIndex in dayEventAddThing[$(this).text()]) {
+										var thisEvent = dayEventAddThing[$(this).text()][eventIndex];
+
+										var eventId = "event_" + serviceIndex + "_" + thisEvent.id;
+
+										var $appendMe = $("<li></li>");
+
+										$appendMe.addClass("calendar_event_course");
+										$appendMe.addClass("cal_" + thisEvent.cssClass);
+
+										$appendMe.append($("<a></a>"));
+										$appendMe.children("a").text(service.displayName + " - " + thisEvent.title);
+
+										var linkTo = window.location.href;
+
+										linkTo = linkTo.replace("month", "day");
+										linkTo = linkTo.replace(getParameterByName("time", window.location.href), thisEvent.date.getTime() / 1000);
+										linkTo += "#";
+										linkTo += eventId;
+
+										$appendMe.children("a").attr("href", linkTo);
+
+										$(this).parent().children(".events-new").append($appendMe);
+									}
+								});
+							}				
+							if (testURL("calendar/view.php?view=day")) {
+								console.log("Day view!");
+
+								var curDate = new Date(parseInt(getParameterByName("time", window.location.href)) * 1000);
+
+								for (var eventIndex in events) {
+									var thisEvent = events[eventIndex];
+
+									if (thisEvent.date.getMonth() == curDate.getMonth() && thisEvent.date.getDay() == curDate.getDay() && thisEvent.date.getDate() == curDate.getDate() && thisEvent.date.getYear() == curDate.getYear()) {
+										var eventId = "event_" + serviceIndex + "_" + thisEvent.id;
+
+										var $appendMe = $("<table></table>");
+
+										$appendMe.addClass("event");
+
+										$appendMe.append($("<tbody></tbody>"));
+
+										var r0 = $("<tr></tr>");
+										
+											r0.addClass("r0");
+
+											var c0_1 = $("<td></td>");
+
+												c0_1.addClass("picture");
+												c0_1.addClass("cell");
+												c0_1.addClass("c0");
+
+												c0_1.css("width", "32px");
+
+												c0_1.append($('<a name="' + eventId + '"></a>'));
+
+												var $eventImg = $("<img />");
+
+													var thisIconHref = $("link[rel='shortcut icon']").attr("href");
+
+													thisIconHref = thisIconHref.replace("dalton/theme", "dalton/" + thisEvent.icon);
+													thisIconHref = thisIconHref.replace("favicon", "icon");
+
+													$eventImg.attr("src", thisIconHref);
+													$eventImg.addClass("icon");
+
+												c0_1.append($eventImg);
+
+											r0.append(c0_1);
+
+											var c1_1 = $("<td></td>");
+
+												c1_1.addClass("topic");
+												c1_1.addClass("cell");
+												c1_1.addClass("c1");
+												c1_1.addClass("lastcol");
+
+												// No, referer with one r *is not a typo*.
+												// At least, not one made in Courses+.
+												var $referer = $("<div>");
+
+													$referer.addClass("referer");
+
+													var $refererLink = $("<a></a>");
+
+														$refererLink.attr("href", "#");
+														$refererLink.text(thisEvent.title);
+
+													$referer.append($refererLink);
+
+												c1_1.append($referer);
+
+												var $course = $("<div>");
+
+													$course.addClass("course");
+
+													var $courseLink = $("<a></a>");
+
+														$courseLink.css("color", "gray");
+														$courseLink.css("cursor", "default");
+														$courseLink.css("text-decoration", "none");
+														$courseLink.text("from " + service.displayName);
+
+													$course.append($courseLink);
+
+												c1_1.append($course);
+
+											r0.append(c1_1);
+
+										$appendMe.children("tbody").append(r0);
+
+										var r1 = $("<tr></tr>");
+										
+											r1.addClass("r1");
+											r1.addClass("lastrow");
+
+											var c0_2 = $("<td></td>");
+
+												c0_2.addClass("side");
+												c0_2.addClass("cell");
+												c0_2.addClass("c0");
+
+												c0_2.html("&nbsp");
+
+											r1.append(c0_2);
+
+											var c1_2 = $("<td></td>");
+
+												c1_2.addClass("description");
+												c1_2.addClass("cell");
+												c1_2.addClass("c0");
+												c1_2.addClass("lastcol");
+
+												var $noOverflowCont = $("<div></div>");
+
+													$noOverflowCont.addClass("no-overflow");
+													$noOverflowCont.html(thisEvent.description);
+
+												c1_2.append($noOverflowCont);
+
+											r1.append(c1_2);
+
+										$appendMe.children("tbody").append(r1);
+
+										$(".eventlist").append($appendMe);
+									}
+								}
+							}
+						});
+						break;
+				}
+
+				runCount++;
+			}
+			console.log("Ran " + runCount + " service(s)!");
+		});
 	});
 };
