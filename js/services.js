@@ -128,7 +128,9 @@ var services = {
 						return;
 					}
 
-					var reqDate = "20150330";
+					var month = (new Date().getMonth() + 1);
+					var day = new Date().getDate();
+					var reqDate = (new Date().getYear() + 1900).toString() + (month < 10 ? "0" + month : month) + (day < 10 ? "0" + day : day);
 
 					$.ajax({
 						url: schedulesUrl,
@@ -172,6 +174,9 @@ var services = {
 
 								$("#coursesplus_services_schedule_blockarea").append($errMsg);
 								return;
+							}
+							if ($data.find("period").length == 0) {
+								$("#coursesplus_services_schedule_blockarea").text("No school today!");								
 							}
 							$data.find("period").each(function() {
 								var $listItem = $("<li></li>");
