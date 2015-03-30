@@ -112,7 +112,11 @@ var services = {
 			return window.open(url, loc, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 		},
 		onDisable: function() {
-			// TODO: clear info
+			cpal.storage.removeKey("schedules-owner", function() {
+				cpal.storage.removeKey("schedules-key", function() {
+					
+				});
+			});
 		},
 		createBlock: function() {
 			var schedulesUrl = "https://schedules.dalton.org/roux/index.php";
