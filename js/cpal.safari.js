@@ -79,6 +79,10 @@ cpal.storage.setKey = function(keyName, keyValue, callback) {
 	callbackStorage = callback;
 	safari.self.tab.dispatchMessage("setKey", [keyName, keyValue, null]);
 };
+cpal.storage.removeKey = function(keyName, keyValue, callback) {
+	callbackStorage = callback;
+	safari.self.tab.dispatchMessage("removeKey", [keyName, null]);
+};
 /*
  * cpal.storage.quota
  */

@@ -23,8 +23,13 @@
 	<body>
 		<h1>Log in to Schedules</h1>
 		<p>Log in with your Dalton ID. We don't store your password; we only use it to log in to Schedules and retrieve your schedules.</p>
-		<input type="text" placeholder="Dalton ID" class="form-control" />
-		<input type="password" placeholder="Password" class="form-control" />
-		<button id="login" class="btn btn-primary btn-lg">Log in</button>
+		<div id="loginform">
+			<input type="text" id="daltonid" placeholder="Dalton ID" class="form-control" />
+			<input type="password" id="password" placeholder="Password" class="form-control" />
+			<button id="login" class="btn btn-primary btn-lg">Log in</button>
+		</div>
+		<div id="loggingin" style="display:none;">
+			<h3>Logging you in...</h3>
+		</div>
 	</body>
 </html>

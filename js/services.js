@@ -101,10 +101,15 @@ var services = {
 		type: "block",
 		origins: ["*://schedules.dalton.org/"],
 		requires: [],
-		onEnable: function() {
-			var schedulesUrl = "https://schedules.dalton.org/roux/index.php";
-			// TODO: signin
-			
+		onEnable: function() {			
+			var url = "scheduleslogin.html";
+			var loc = "_blank";
+			var w = 500;
+			var h = 300;
+
+			var left = (screen.width/2)-(w/2);
+			var top = (screen.height/2)-(h/2);
+			return window.open(url, loc, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 		},
 		onDisable: function() {
 			// TODO: clear info

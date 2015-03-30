@@ -87,6 +87,11 @@ cpal.storage.setKey = function(keyName, keyValue, callback) {
 		}
 	});
 };
+cpal.storage.removeKey = function(keyName, callback) {
+	chrome.storage.sync.remove(keyName, function() {
+		callback();
+	});
+};
 /*
  * cpal.storage.quota
  */
