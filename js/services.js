@@ -96,12 +96,12 @@ var services = {
 		}
 	},
 	schedules: {
-		displayName: "Schedules",
+		displayName: "Schedule",
 		description: "Displays what classes you've got next in the sidebar.",
 		type: "block",
 		origins: ["*://schedules.dalton.org/"],
 		requires: [],
-		onEnable: function() {			
+		onEnable: function() {
 			var url = "scheduleslogin.html";
 			var loc = "_blank";
 			var w = 500;
@@ -109,7 +109,7 @@ var services = {
 
 			var left = (screen.width/2)-(w/2);
 			var top = (screen.height/2)-(h/2);
-			return window.open(url, loc, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+			window.open(url, loc, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 		},
 		onDisable: function() {
 			cpal.storage.removeKey("schedules-owner", function() {
@@ -120,9 +120,81 @@ var services = {
 		},
 		createBlock: function() {
 			var schedulesUrl = "https://schedules.dalton.org/roux/index.php";
-			// TODO: get events
-			// This shouldn't change much, so maybe some sort of caching (with a force refresh option)?
-			return $("<p>Schedule!</p>");
+
+			cpal.storage.getKey("schedules-owner", function(owner) {
+				cpal.storage.getKey("schedules-key", function(key) {
+					if (owner == undefined || key == undefined) {
+						$("#coursesplus_services_schedule_blockarea").text("You're not signed in! Please go to the options page, scroll to 'Services', and disable and re-enable the Schedules service.");
+						return;
+					}
+
+					var reqDate = "20150330";
+
+					$.ajax({
+						url: schedulesUrl,
+						type: "POST",
+						data: {
+							rouxRequest: "<request><key>" + key + "</key><action>selectStudentCalendar</action><ID>" + owner + "</ID><academicyear>" + (new Date().getYear() + 1900).toString() + "</academicyear><start>" + reqDate + "</start><end>" + reqDate + "</end></request>"
+						},
+						success: function(data) {
+							$("#coursesplus_services_schedule_blockarea").text("");
+							var $appendMe = $("<ul></ul>");
+
+							console.log(data);
+							var $data = $(data);
+
+							if ($data.find("result").children("error").children("code").text() == "505") {
+								// Invalid key!								
+								var $errMsg = $("<div></div>");
+								
+								$errMsg.html("Your session has expired. Please disable this service and re-enable it on the options page to restore the schedule. Then, reload this page.");
+
+								/*var $logInButton = $('<button class="btn btn-primary btn-sm">Log in</button>');
+								$logInButton.click(function() {
+									var url = chrome.runtime.getURL("scheduleslogin.html"); // TODO: cpal
+									var loc = "_blank";
+									var w = 500;
+									var h = 300;
+
+									var left = (screen.width/2)-(w/2);
+									var top = (screen.height/2)-(h/2);
+									window.open(url, loc, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+								});*/
+								$errMsg.append($logInButton);
+
+								$("#coursesplus_services_schedule_blockarea").append($errMsg);
+								return;
+							} else if ($data.find("result").children("error").children("code").text() != undefined) {
+
+								var $errMsg = $("<div></div>");
+								
+								$errMsg.text("Error " + $data.find("result").children("error").children("code").text() + " - " + $data.find("result").children("error").children("message").text());
+
+								$("#coursesplus_services_schedule_blockarea").append($errMsg);
+								return;
+							}
+							$data.find("period").each(function() {
+								var $listItem = $("<li></li>");
+
+								var name = $(this).children("section").children("name").text().replace("<![CDATA[", "").replace("]]>");
+								var instructor = $(this).children("instructor").children("name").text();
+								var location = $(this).children("location").text();
+
+								$listItem.append("<strong>" + name + " in " + location + "</strong><br />");
+								if (instructor != "") {
+									$listItem.append("with " + instructor);
+								}
+
+								$appendMe.append($listItem);
+							});
+
+							$("#coursesplus_services_schedule_blockarea").append($appendMe);
+						}
+					});
+				});
+			});
+
+			return $("<div id=\"coursesplus_services_schedule_blockarea\">Loading, please wait...</div>");
 		}
 	}//,
 	/* This is not a service because it should affect a whole site with all the above geatures
