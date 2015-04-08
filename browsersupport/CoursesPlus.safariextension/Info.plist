@@ -31,6 +31,7 @@
 				<string>js/cpal.safari.js</string>
 				<string>js/jquery.js</string>
 				<string>js/bootstrap.js</string>
+				<string>js/helpers.js</string>
 				<string>js/services.js</string>
 				<string>js/components.js</string>
 				<string>js/inject.js</string>

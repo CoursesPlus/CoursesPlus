@@ -1,36 +1,3 @@
-function testURL(url) {
-	var saveView = "";
-	if (window.location.href.indexOf("view.php") != -1) {
-		saveView = getParameterByName("view", window.location.href);
-	}
-	var saveViewing = "";
-	if (window.location.href.indexOf("index.php") != -1) {
-		saveViewing = getParameterByName("viewing", window.location.href);
-	}
-	var testThing = window.location.href.replace("http://", "")
-										.replace("https://", "")
-										.replace("courses2015.dalton.org/")
-										.replace("undefined", "")
-										.replace("index.php", "")
-										.replace(window.location.search, "")
-										.replace(window.location.hash, "").replace("?", "")
-										+ (saveView != "" ? ("?view=" + saveView) : "")
-										+ (saveViewing != "" ? ("?viewing=" + saveViewing) : "");
-	return testThing.indexOf(url) > -1;
-}
-function getParameterByName(name, href) {
-	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-	var regexS = "[\\?&]"+name+"=([^&#]*)";
-	var regex = new RegExp(regexS);
-	var results = regex.exec(href);
-	if (results == null) {
-		return "";
-	}
-	else {
-		return decodeURIComponent(results[1].replace(/\+/g, " "));
-	}
-}
-
 var services = {
 	/*planbook: {
 		displayName: "Planbook",
@@ -345,10 +312,10 @@ window.services.runAll = function() {
 					case "calendar":
 						service.createCalendarEvents(function(events) {
 							// date.getTime() / 1000 // in Unix time 
-							if (testURL("calendar/view.php?view=month")) {
+							if (helpers.testURL("calendar/view.php?view=month")) {
 								console.log("Month view!");
 
-								var curDate = new Date(parseInt(getParameterByName("time", window.location.href)) * 1000);
+								var curDate = new Date(parseInt(helpers.getParameterByName("time", window.location.href)) * 1000);
 
 								var dayEventAddThing = {};
 
@@ -381,7 +348,7 @@ window.services.runAll = function() {
 										var linkTo = window.location.href;
 
 										linkTo = linkTo.replace("month", "day");
-										linkTo = linkTo.replace(getParameterByName("time", window.location.href), thisEvent.date.getTime() / 1000);
+										linkTo = linkTo.replace(helpers.getParameterByName("time", window.location.href), thisEvent.date.getTime() / 1000);
 										linkTo += "#";
 										linkTo += eventId;
 
@@ -391,10 +358,10 @@ window.services.runAll = function() {
 									}
 								});
 							}				
-							if (testURL("calendar/view.php?view=day")) {
+							if (helpers.testURL("calendar/view.php?view=day")) {
 								console.log("Day view!");
 
-								var curDate = new Date(parseInt(getParameterByName("time", window.location.href)) * 1000);
+								var curDate = new Date(parseInt(helpers.getParameterByName("time", window.location.href)) * 1000);
 
 								for (var eventIndex in events) {
 									var thisEvent = events[eventIndex];

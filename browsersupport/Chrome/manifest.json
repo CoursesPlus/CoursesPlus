@@ -23,6 +23,7 @@
 				"js/cpal.chrome.js",
 				"js/jquery.js",
 				"js/bootstrap.js",
+				"js/helpers.js",
 				"js/services.js",
 				"js/components.js",
 				"js/inject.js",

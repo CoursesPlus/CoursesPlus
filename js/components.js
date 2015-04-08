@@ -80,19 +80,6 @@ var emoteTable = {
 	":zombie:": {url: "Zombie.png"}
 };
 
-function escapeRegExp(string) {
-    return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
-}
-String.prototype.replaceAll = function(search, replace)
-{
-    //if replace is null, return original string otherwise it will
-    //replace search string with 'undefined'.
-    if(!replace) 
-        return this;
-
-    return this.replace(new RegExp(escapeRegExp(search), 'g'), replace);
-};
-
 function componentEnabled(name, callback) {
 	var componentsToSkip = [];
 
@@ -101,64 +88,6 @@ function componentEnabled(name, callback) {
 		var response = (componentsToSkip.indexOf(name) == -1);
 		callback(response);
 	});
-}
-
-function randomString(len, charSet) {
-    charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var randomString = '';
-    for (var i = 0; i < len; i++) {
-    	var randomPoz = Math.floor(Math.random() * charSet.length);
-    	randomString += charSet.substring(randomPoz,randomPoz+1);
-    }
-    return randomString;
-}
-
-function getUniqueID(callback) {
-	cpal.storage.getKey("uniqueId", function(result) {
-		if (result != undefined) {
-			callback(result);
-		} else {
-			var newid = randomString(24);
-			cpal.storage.setKey("uniqueId", newid, function() {
-				callback(newId);
-			});
-		}
-	});
-}
-
-function getParameterByName(name, href)
-{
-	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-	var regexS = "[\\?&]"+name+"=([^&#]*)";
-	var regex = new RegExp( regexS );
-	var results = regex.exec( href );
-	if (results == null) {
-	  return "";
-	} else {
-	  return decodeURIComponent(results[1].replace(/\+/g, " "));
-	}
-}
-
-function testURL(url) {
-	var saveView = "";
-	if (window.location.href.indexOf("view.php") != -1) {
-		saveView = getParameterByName("view", window.location.href);
-	}
-	var saveViewing = "";
-	if (window.location.href.indexOf("index.php") != -1) {
-		saveViewing = getParameterByName("viewing", window.location.href);
-	}
-	var testThing = window.location.href.replace("http://", "")
-										.replace("https://", "")
-										.replace("courses2015.dalton.org/")
-										.replace("undefined", "")
-										.replace("index.php", "")
-										.replace(window.location.search, "")
-										.replace(/#.*$/, "")
-										.replace("?", "")
-										+ (saveView != "" ? ("?view=" + saveView) : "")
-										+ (saveViewing != "" ? ("?viewing=" + saveViewing) : "");
-	return testThing.indexOf(url) > -1;
 }
 
 function createDebugReport(e, component) {
@@ -247,7 +176,7 @@ var components = {
 		// Fix "Search Courses" label
 		$("label[for=shortsearchbox]").html("Search courses:&nbsp;&nbsp;");
 
-		if (testURL("calendar/view.php")) {
+		if (helpers.testURL("calendar/view.php")) {
 			// Move the calendar's "New event" button
 			var neb = $(".path-calendar .maincalendar .header .buttons > form").parent().html();
 			if (neb != undefined) {
@@ -265,7 +194,7 @@ var components = {
 		});
 
 		// Deal with news forums
-		if (testURL("forum/view.php")) {
+		if (helpers.testURL("forum/view.php")) {
 			$("table").addClass("table table-striped");
 			$("table").css("margin-left", "10px");
 			$("table").css("border-radius", "4px");
@@ -330,7 +259,7 @@ var components = {
 		});
 	}, js: [], css: [], runOn: "", requires: []},
 	dstBug: {displayName: "Fix date bug", description: "Fixes a bug where going to some days' event views would cause the wrong date to be shown.", exec: function() {
-		var realTime = getParameterByName("time", window.location.href);
+		var realTime = helpers.getParameterByName("time", window.location.href);
 		var myDate = new Date( parseInt(realTime) *1000);
 		var rawDateStr = myDate.toGMTString();
 		var dateParts = rawDateStr.split(' ');
@@ -831,7 +760,7 @@ var components = {
 		// Pure CSS! :)
 	}, js: [], css: ["modernAsides.css"], runOn: "*", requires: []},
 	markEvents: {displayName: "Mark events", description: "Mark events as done.", exec: function() {
-		if (testURL("calendar/view.php")) {
+		if (helpers.testURL("calendar/view.php")) {
 			$(".event").each(function() {
 				var $r0 = $(this).children("tbody").children(".r0");
 				var thisId = $r0.children(".picture").children("a").attr("name");
@@ -880,7 +809,7 @@ var components = {
 				});
 			});
 		}
-		if (testURL("calendar/view.php?view=month")) {
+		if (helpers.testURL("calendar/view.php?view=month")) {
 			$(".calendar_event_course:not(.day), .calendar_event_user:not(.day)").each(function() {
 				var url = $(this).children("a").attr("href");
 				if (url != undefined) {
@@ -907,10 +836,10 @@ var components = {
 		$("#password").attr("placeholder", "Password");
 	}, js: [], css: ["loginPageFixes.css"], runOn: "login/", requires: ["bootstrap"]},
 	tableOverflow: {displayName: "Table scrolling", description: "Make tables on course pages be scrollable if they go off the page.", exec: function() {
-		if (testURL("course/view.php")) {
+		if (helpers.testURL("course/view.php")) {
 			$("table:not(.calendartable)").wrap($('<div class="coursesplus-tableOverflowContainer"></div>'));
 		}
-		if (testURL("calendar/view.php")) {
+		if (helpers.testURL("calendar/view.php")) {
 			$("table:not(.calendartable):not(.event)").wrap($('<div class="coursesplus-tableOverflowContainer coursesplus-tableOverflowContainerBig"></div>'));
 		}
 	}, js: [], css: ["tableOverflow.css"], runOn: "view.php", requires: []},
@@ -1112,7 +1041,7 @@ var components = {
 	}, js: [], css: ["prefixColors.css"], runOn: "course/modedit.php", requires: ["bootstrap"]},
 	navbarMessages: {displayName: "Navbar messages", description: "Shows messages and information underneath the navbar.", exec: function() {
 		componentEnabled("newNavbar", function(newNav) {
-			getUniqueID(function(id) {
+			helpers.getUniqueID(function(id) {
 				$.get("https://coursesplus.tk/msg/getmsg.php", {
 					uniqid: id,
 					version: cpal.extension.getExtensionVersion(),
@@ -1432,7 +1361,7 @@ window.components.runAll = function() {
 				console.log("Skipping component '" + component.displayName + "' ('" + componentIndex + "') because it's disabled.");			
 				continue;
 			}
-			if (component.runOn == "*" || testURL(component.runOn)) {
+			if (component.runOn == "*" || helpers.testURL(component.runOn)) {
 				if (component.runOn == "" && window.location.href.replace("index.php", "").replace(window.location.search, "").replace("?", "").replace(/#.*$/, "") != "https://courses2015.dalton.org/") {
 					// TODO: Optimize this if statement into the one above.
 					console.log("Skipping component '" + component.displayName + "' ('" + componentIndex + "') because it's for a different page.");						
