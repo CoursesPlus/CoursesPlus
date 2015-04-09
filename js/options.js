@@ -219,9 +219,11 @@ $(document).ready(function() {
 					handleServicePart2(index, thisService);
 				}			
 			} else {
+				var componentIndex = $(this).attr("data-index");
 				cpal.storage.getKey("services", function(result) {
 					serviceList = ($.isArray(result) ? result : []);
-					serviceList.splice(serviceList.indexOf($(this).attr("data-index")), 1);
+					console.log(componentIndex);
+					serviceList.splice(serviceList.indexOf(componentIndex), 1);
 					cpal.storage.setKey("services", serviceList, function() {
 						
 					});
