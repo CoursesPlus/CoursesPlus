@@ -246,6 +246,7 @@ window.services.runAll = function() {
 			if (serviceList.length == 0 && serviceUpsell == undefined) {
 				var $serviceUpsell = $('<div class="coursesplus_services_serviceUpsell"></div>');
 
+				$serviceUpsell.css("background", "white");
 				$serviceUpsell.css("border", "solid 1px black");
 				$serviceUpsell.css("border-radius", "5px");
 				$serviceUpsell.css("padding", "5px");
