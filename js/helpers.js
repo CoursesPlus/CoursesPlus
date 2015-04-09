@@ -16,7 +16,7 @@ helpers.getParameterByName = function(name, href) {
 	}
 };
 
-helpers.getUniqueId = function(callback) {
+helpers.getUniqueID = function(callback) {
 	cpal.storage.getKey("uniqueId", function(result) {
 		if (result != undefined) {
 			callback(result);
