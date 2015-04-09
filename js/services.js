@@ -27,41 +27,57 @@ var services = {
 		}
 	},*/
 	lunchMenu: {
-		displayName: "Lunch menu",
-		description: "Displays what's for lunch in the sidebar.",
-		type: "block",
-		origins: ["*://*.myschooldining.com/"],
-		requires: [],
-		onEnable: function() {
+	displayName: "Lunch Menu",
+	description: "Displays what's for lunch in the sidebar.",
+	type: "block",
+	origins: ["*://*.myschooldining.com/"],
+	requires: [],
+	onEnable: function() {
 
-		},
-		onDisable: function() {
-
-		},
-		createBlock: function() {
-			$.get("https://www.myschooldining.com/api/", {
-				key: "B6EEF83E-7E80-11E1-BAEF-DBA84824019B",
-				siteID: 336,
-				locationId: 753,
-				lib: "menus"
-			}, function(data) {
-				var $builtList = $("<ul></ul>");
-				$builtList.css("list-style-type", "none");
-				var mealItems = data["meal periods"][0]["menu items"];
-				if (mealItems.length == 0) {
-					$builtList.append($("<li>No lunch today!</li>"));
-				}
-				$.each(mealItems, function() {
-					var $menuLi = $("<li></li>");
-					$menuLi.text(this.name);
-					$builtList.append($menuLi);
-				});
-				$("#coursesPlus_services_lunchMenu_overHerePls").html("");
-				$("#coursesPlus_services_lunchMenu_overHerePls").append($builtList);
-			});
-			return $("<p><center id=\"coursesPlus_services_lunchMenu_overHerePls\">Loading...</center></p>");
-		}
 	},
+	onDisable: function() {
+
+	},
+	createBlock: function() {
+		$.get("https://www.myschooldining.com/api/", {
+			key: "B6EEF83E-7E80-11E1-BAEF-DBA84824019B",
+			siteID: 336,
+			locationId: 753,
+			lib: "menus"
+		}, function(data) {
+			var $builtList = $("<ul></ul>");
+			$builtList.css("list-style-type", "none");
+			var mealItems = data["meal periods"][0]["menu items"];
+			if (mealItems.length == 0) {
+				$builtList.append($("<li>No lunch today!</li>"));
+			}
+			$.each(mealItems, function() {
+				var $menuLi = $("<li></li>");
+				$menuLi.text(this.name);
+				$builtList.append($menuLi);
+			});
+			$("#coursesPlus_services_lunchMenu_overHerePls").html("");
+			$("#coursesPlus_services_lunchMenu_overHerePls").append($builtList);
+		});
+		return $("<p><center id=\"coursesPlus_services_lunchMenu_overHerePls\">Loading...</center></p>");
+	}
+},
+	// weather: {
+	// 	displayName: "Weather",
+	// 	description: "Displays the weather in New York City in your sidebar.",
+	// 	type: "block",
+	// 	origins: ["*://*.wunderground.com/"],
+	// 	requires: [],
+	// 	onEnable: function() {
+
+	// 	},
+	// 	onDisable: function() {
+
+	// 	},
+	// 	createBlock: function() {
+	// 		// Get this html code. I do not know how to use html in javascript.
+	// 		<span style="display: block !important; width: 180px; text-align: center; font-family: sans-serif; font-size: 12px;"><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:10128.1.99999&bannertypeclick=wu_blueglass" title="New York, New York Weather Forecast" target="_blank"><img src="http://weathersticker.wunderground.com/weathersticker/cgi-bin/banner/ban/wxBanner?bannertype=wu_blueglass&airportcode=KNYC&ForcedCity=New York&ForcedState=NY&zip=10128&language=EN" alt="Find more about Weather in New York, NY" width="160" /></a><br><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:10128.1.99999&bannertypeclick=wu_blueglass" title="Get latest Weather Forecast updates" style="font-family: sans-serif; font-size: 12px" target="_blank">Click for weather forecast</a></span>
+	// 	}
 	schedules: {
 		displayName: "Schedule",
 		description: "Displays what classes you've got next in the sidebar.",
