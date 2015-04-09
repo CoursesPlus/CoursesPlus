@@ -1301,7 +1301,7 @@ function runNonComponentTweaks(componentsToSkip) {
 
 window.components = components;
 window.components.createErrorModal = function() {
-	var $errorModal = $('<div id="coursesplus-errorModal" class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">An error occured.</h4></div><div class="modal-body"></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>');
+	var $errorModal = $('<div id="coursesplus-errorModal" class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">An error occurred.</h4></div><div class="modal-body"></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>');
 
 		var $errorPanel = $('<div class="coursesplus-errorpanel"></div>');
 
@@ -1328,7 +1328,7 @@ window.components.createErrorModal = function() {
 
 			var $errorTechDetails = $('<textarea id="coursesplus-error-techDetails" class="form-control" style="height: 180px;"></textarea>');
 
-				$errorTechDetails.val("Error occured while loading the technical details!");
+				$errorTechDetails.val("Error occurred while loading the technical details!");
 
 			$errorPanel.append($errorTechDetails);
 
@@ -1394,7 +1394,7 @@ window.components.runAll = function() {
 					try {
 						component.exec();
 					} catch (e) {
-						console.error("COMPONENT ERROR OCCURED");
+						console.error("COMPONENT ERROR OCCURRED");
 						console.error(e);
 						console.error(e.stack);
 
