@@ -183,9 +183,9 @@ var services = {
 		},
 		createBlock: function() {
 			// Get this html code. I do not know how to use html in javascript.
-			//<span style="display: block !important; width: 180px; text-align: center; font-family: sans-serif; font-size: 12px;"><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:10128.1.99999&bannertypeclick=wu_blueglass" title="New York, New York Weather Forecast" target="_blank"><img src="http://weathersticker.wunderground.com/weathersticker/cgi-bin/banner/ban/wxBanner?bannertype=wu_blueglass&airportcode=KNYC&ForcedCity=New York&ForcedState=NY&zip=10128&language=EN" alt="Find more about Weather in New York, NY" width="160" /></a><br><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:10128.1.99999&bannertypeclick=wu_blueglass" title="Get latest Weather Forecast updates" style="font-family: sans-serif; font-size: 12px" target="_blank">Click for weather forecast</a></span>
+			return $('<span style="display: block !important; width: 180px; text-align: center; font-family: sans-serif; font-size: 12px;"><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:10128.1.99999&bannertypeclick=wu_blueglass" title="New York, New York Weather Forecast" target="_blank"><img src="http://weathersticker.wunderground.com/weathersticker/cgi-bin/banner/ban/wxBanner?bannertype=wu_blueglass&airportcode=KNYC&ForcedCity=New York&ForcedState=NY&zip=10128&language=EN" alt="Find more about Weather in New York, NY" width="160" /></a><br><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:10128.1.99999&bannertypeclick=wu_blueglass" title="Get latest Weather Forecast updates" style="font-family: sans-serif; font-size: 12px" target="_blank">Click for weather forecast</a></span>');
 		}
-	},//,
+	}//,
 	/* This is not a service because it should affect a whole site with all the above geatures
 	archivedCourses:
 		displayName: "Archived Courses",
