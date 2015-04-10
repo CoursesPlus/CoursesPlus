@@ -59,7 +59,7 @@ function createList(sortedComponents, $ulToAppendTo, checkList, checkPresence, c
 					$options.addClass("btn-info");
 					$options.addClass("btn-sm");
 					$options.click(function() {
-						var url = component.options;
+						var url = cpal.resources.getURL(component.options);
 						var loc = "_blank";
 						var w = 600;
 						var h = 400;
