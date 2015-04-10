@@ -32,6 +32,7 @@ var services = {
 		type: "block",
 		origins: ["*://*.myschooldining.com/"],
 		requires: [],
+		options: false,
 		onEnable: function() {
 
 		},
@@ -68,6 +69,7 @@ var services = {
 		type: "block",
 		origins: ["*://schedules.dalton.org/"],
 		requires: [],
+		options: false,
 		onEnable: function() {
 			var url = "scheduleslogin.html";
 			var loc = "_blank";
@@ -175,6 +177,7 @@ var services = {
 		type: "block",
 		origins: ["*://*.wunderground.com/"],
 		requires: [],
+		options: "etc/weatheroptions.html",
 		onEnable: function() {
 
 		},

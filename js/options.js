@@ -52,6 +52,26 @@ function createList(sortedComponents, $ulToAppendTo, checkList, checkPresence, c
 				$appendMe.append($req);
 			}
 
+			if (component.options) {
+				var $options = $('<button>Options</button>');
+
+					$options.addClass("btn");
+					$options.addClass("btn-info");
+					$options.addClass("btn-sm");
+					$options.click(function() {
+						var url = component.options;
+						var loc = "_blank";
+						var w = 600;
+						var h = 400;
+
+						var left = (screen.width/2)-(w/2);
+						var top = (screen.height/2)-(h/2);
+						window.open(url, loc, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+					});
+
+				$appendMe.append($options);
+			}
+
 		$appendMeReally.append($appendMe)
 		$ulToAppendTo.append($appendMeReally);
 	}
