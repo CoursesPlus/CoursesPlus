@@ -59,6 +59,7 @@ function createList(sortedComponents, $ulToAppendTo, checkList, checkPresence, c
 					$options.addClass("btn-info");
 					$options.addClass("btn-sm");
 					$options.click(function() {
+						// TODO: Check if service is enabled first.
 						var url = cpal.resources.getURL(component.options);
 						var loc = "_blank";
 						var w = 600;
