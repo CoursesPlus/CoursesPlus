@@ -189,7 +189,9 @@ var services = {
 			});
 		},
 		onDisable: function() {
+			cpal.storage.removeKey("weatherOptions", function() {
 
+			});
 		},
 		createBlock: function() {
 			cpal.storage.getKey("weatherOptions", function(options) {
