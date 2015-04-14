@@ -1,6 +1,6 @@
 console.log("Hello from inject.js!");
 
-if (window.location.href.indexOf(".pdf") != -1) {
+if (window.location.href.indexOf(".pdf") != -1 || window.location.href.indexOf(".PDF") != -1) {
 	console.log("It's a PDF! Let's stop now.");
 } else {
 	console.log("Set event listener.");
