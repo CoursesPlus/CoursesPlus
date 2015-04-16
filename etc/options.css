@@ -9,6 +9,7 @@ body {
 	font-family: Oxygen, Helvetica, Arial, sans-serif !important;
 	margin-left: 10px;
 	margin-right: 10px;
+	padding-top: 90px;
 	padding-bottom: 10px;
 }
 
@@ -118,7 +119,7 @@ body {
 	height: 200px;
 	float: left;
 	position: absolute;
-	left: 325px;
+	left: 625px;
 }
 #fileToUpload {
 	display: inline;
