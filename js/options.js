@@ -491,4 +491,19 @@ $(document).ready(function() {
 			prompt("Here is all the information Courses+ has stored in JSON format.", JSON.stringify(items));
 		});
 	});
+
+	$("#pagelist > li").click(function() {
+		$(".page.current").removeClass("current");
+
+		window.location.hash = $(this).data("page");
+
+		$("#" + $(this).data("page")).addClass("current");
+	});
+
+	if (window.location.hash != "") {
+		$(".page.current").removeClass("current");
+		$("#" + window.location.hash.substr(1)).addClass("current");
+	}
+
+	$(".currentVersion").text(cpal.extension.getExtensionVersion());
 });

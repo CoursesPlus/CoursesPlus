@@ -47,6 +47,7 @@
 		<style>
 		body {
 			margin-top: 0;
+			overflow: none;
 		}
 		header {
 			background: white;
@@ -84,11 +85,15 @@
 			background: white;
 			border-right: 2px solid black;
 			box-shadow: 1px 1px 1px black;
+			cursor: pointer;
 			width: 300px;
 			height: 100%;
 			z-index: 998;
 
 			padding-top: 0;
+			padding-bottom: 50px;
+
+			overflow: scroll;
 		}
 
 		#left-pane > ul {
@@ -114,8 +119,18 @@
 			font-size: 15px;
 		}
 
-		#main-options {
+		.page {
+			display: none;
+		}
+		.page.current {
+			display: block;
+		}
+
+		#page-container {
+			height: 90%;
+			width: 75%;
 			margin-left: 300px;
+			overflow: scroll;
 		}
 		</style>
 
@@ -124,148 +139,169 @@
 		</header>
 
 		<section id="left-pane">
-			<ul>
-				<li>
+			<ul id="pagelist">
+				<li data-page="page-options">
 					<div class="section-name">Page options</div>
 					<div class="section-desc">Change options for different pages. <em>Example: backgrounds and colors.</em></div>
 				</li>
-				<li>
+				<li data-page="features">
 					<div class="section-name">Features</div>
 					<div class="section-desc">Enable and disable different Courses<strong>Plus</strong> features</div>
 				</li>
-				<li>
+				<li data-page="services">
 					<div class="section-name">Services</div>
 					<div class="section-desc">Connect Courses<strong>Plus</strong> with other websites</div>
 				</li>
-				<li>
+				<li data-page="storage">
 					<div class="section-name">Storage</div>
 					<div class="section-desc">Manage Courses<strong>Plus</strong>'s stored data</div>
 				</li>
-				<li>
+				<li data-page="privacy">
 					<div class="section-name">Privacy</div>
 					<div class="section-desc">Manage Courses<strong>Plus</strong>'s anonymous analytics</div>
 				</li>
-				<li>
+				<li data-page="about">
 					<div class="section-name">About</div>
 					<div class="section-desc">About the version of Courses<strong>Plus</strong> you have installed.</div>
 				</li>
 			</ul>
 		</section>
 
-		<section id="main-options">
-			<p>You can use this page to set up, change, or disable some features of Courses<strong>Plus</strong>.</p>
-			<p>If you're signed in to Chrome, your options are synced across computers.</p>
-			<p>Your changes are automatically saved.</p>
-			<h3>Make Courses yours</h3>
-			<h4>Page options</h4>
-			<h6>Background</h6>
-			<div class="indentLevel1">
-				<h6>Color</h6>
-				<input type="color" id="secretColorPicker" value="#8e908f" />
-				<div id="backgrounds">
-					<div class="selBox background white selected" data-selBoxGroup="background" data-selBoxVal="white"></div>
-					<div class="selBox background pink" data-selBoxGroup="background" data-selBoxVal="pink"></div>
-					<div class="selBox background lightgreen" data-selBoxGroup="background" data-selBoxVal="lightgreen"></div>
-					<div class="selBox background lightblue" data-selBoxGroup="background" data-selBoxVal="lightblue"></div>
-					<div class="selBox background orange" data-selBoxGroup="background" data-selBoxVal="orange"></div>
-					<div class="selBox background gray" data-selBoxGroup="background" data-selBoxVal="gray"></div>
-					<div class="selBox background custom" data-selBoxGroup="background" data-selBoxVal="custom"><span>...</span></div>
+		<section id="page-container">
+			<!-- Pages -->
+			<section id="welcome" class="page current">
+				<p>You can use this page to set up, change, or disable some features of Courses<strong>Plus</strong>.</p>
+				<p>If you're signed in to Chrome, your options are synced across computers.</p>
+				<p>Your changes are automatically saved.</p>
+				<br />
+				<h3>To begin, select a category on the left.</h3>
+			</section>
+			<section id="page-options" class="page">
+				<h6>Background</h6>
+				<div class="indentLevel1">
+					<h6>Color</h6>
+					<input type="color" id="secretColorPicker" value="#8e908f" />
+					<div id="backgrounds">
+						<div class="selBox background white selected" data-selBoxGroup="background" data-selBoxVal="white"></div>
+						<div class="selBox background pink" data-selBoxGroup="background" data-selBoxVal="pink"></div>
+						<div class="selBox background lightgreen" data-selBoxGroup="background" data-selBoxVal="lightgreen"></div>
+						<div class="selBox background lightblue" data-selBoxGroup="background" data-selBoxVal="lightblue"></div>
+						<div class="selBox background orange" data-selBoxGroup="background" data-selBoxVal="orange"></div>
+						<div class="selBox background gray" data-selBoxGroup="background" data-selBoxVal="gray"></div>
+						<div class="selBox background custom" data-selBoxGroup="background" data-selBoxVal="custom"><span>...</span></div>
+					</div>
+
+					<h6>Image</h6>
+					<img id="backgroundImagePreview" src="../images/nobg.png"/>
+					<form id="bgImgUpl" enctype="multipart/form-data">
+					<br>
+						<div id="uploadingText" style="display:none;">Please wait...<br /><br />We are uploading your image.</div>
+						<div id="connectingText">Please wait...<br /><br />We are loading the image upload form.</div>
+
+						<input type="hidden" name="submit" id="Submit" style="display:none;" />
+						<input type="file" name="fileToUpload" id="fileToUpload" style="display:none;" />
+						<br />
+
+						<button id="bgImgUplBtn" class="btn btn-success btn-sm" style="display:none;">Upload image</button>
+						<small id="bgFileInfo" style="display:none;"></small>
+						<br />
+
+						<button id="resetBg" class="btn btn-warning btn-sm" style="display:none;">Reset image</button>
+						<br />
+
+						<small id="bgPrivacy" style="display:none;"></small>
+						<br />
+
+						<h6 style="display:none;">Sizing</h6>
+						<input type="radio" class="bgSizing" name="bgSizing" value="center" checked="checked" style="display:none;" /><span style="display:none;">&nbsp;Centered&nbsp;&nbsp;&nbsp;</span>
+						<input type="radio" class="bgSizing" name="bgSizing" value="tile" style="display:none;" /><span style="display:none;">&nbsp;Tiled&nbsp;&nbsp;&nbsp;</span>
+						<input type="radio" class="bgSizing" name="bgSizing" value="fill" style="display:none;" /><span style="display:none;">&nbsp;Fill screen&nbsp;&nbsp;&nbsp;</span>
+					</form>
 				</div>
-
-				<h6>Image</h6>
-				<img id="backgroundImagePreview" src="../images/nobg.png"/>
-				<form id="bgImgUpl" enctype="multipart/form-data">
-				<br>
-					<div id="uploadingText" style="display:none;">Please wait...<br /><br />We are uploading your image.</div>
-					<div id="connectingText">Please wait...<br /><br />We are loading the image upload form.</div>
-
-					<input type="hidden" name="submit" id="Submit" style="display:none;" />
-					<input type="file" name="fileToUpload" id="fileToUpload" style="display:none;" />
-					<br />
-
-					<button id="bgImgUplBtn" class="btn btn-success btn-sm" style="display:none;">Upload image</button>
-					<small id="bgFileInfo" style="display:none;"></small>
-					<br />
-
-					<button id="resetBg" class="btn btn-warning btn-sm" style="display:none;">Reset image</button>
-					<br />
-
-					<small id="bgPrivacy" style="display:none;"></small>
-					<br />
-
-					<h6 style="display:none;">Sizing</h6>
-					<input type="radio" class="bgSizing" name="bgSizing" value="center" checked="checked" style="display:none;" /><span style="display:none;">&nbsp;Centered&nbsp;&nbsp;&nbsp;</span>
-					<input type="radio" class="bgSizing" name="bgSizing" value="tile" style="display:none;" /><span style="display:none;">&nbsp;Tiled&nbsp;&nbsp;&nbsp;</span>
-					<input type="radio" class="bgSizing" name="bgSizing" value="fill" style="display:none;" /><span style="display:none;">&nbsp;Fill screen&nbsp;&nbsp;&nbsp;</span>
-				</form>
-			</div>
-			<h6>Text</h6>
-			<div class="indentLevel1">
-				<h6>Regular Color</h6>
-				<input type="color" id="secretTextColorPicker" value="#8e908f" />
-				<div id="textColors">
-					<div class="selBox textColor black selected" data-selBoxGroup="textColor" data-selBoxVal="black"></div>
-					<div class="selBox textColor gray" data-selBoxGroup="textColor" data-selBoxVal="gray"></div>
-					<div class="selBox textColor white" data-selBoxGroup="textColor" data-selBoxVal="white"></div>
-					<div class="selBox textColor custom" data-selBoxGroup="textColor" data-selBoxVal="custom"><span>...</span></div>
+				<h6>Text</h6>
+				<div class="indentLevel1">
+					<h6>Regular Color</h6>
+					<input type="color" id="secretTextColorPicker" value="#8e908f" />
+					<div id="textColors">
+						<div class="selBox textColor black selected" data-selBoxGroup="textColor" data-selBoxVal="black"></div>
+						<div class="selBox textColor gray" data-selBoxGroup="textColor" data-selBoxVal="gray"></div>
+						<div class="selBox textColor white" data-selBoxGroup="textColor" data-selBoxVal="white"></div>
+						<div class="selBox textColor custom" data-selBoxGroup="textColor" data-selBoxVal="custom"><span>...</span></div>
+					</div>
+					<h6>Link Color</h6>
+					<input type="color" id="secretLinkTextColorPicker" value="#8e908f" />
+					<div id="linkTextColors">
+						<div class="selBox linkTextColor bluish selected" data-selBoxGroup="linkTextColor" data-selBoxVal="#428BCA"></div>
+						<div class="selBox linkTextColor blue" data-selBoxGroup="linkTextColor" data-selBoxVal="blue"></div>
+						<div class="selBox linkTextColor black" data-selBoxGroup="linkTextColor" data-selBoxVal="black"></div>
+						<div class="selBox linkTextColor lightblue" data-selBoxGroup="linkTextColor" data-selBoxVal="lightblue"></div>
+						<div class="selBox linkTextColor gray" data-selBoxGroup="linkTextColor" data-selBoxVal="gray"></div>
+						<div class="selBox linkTextColor white" data-selBoxGroup="linkTextColor" data-selBoxVal="white"></div>
+						<div class="selBox linkTextColor custom" data-selBoxGroup="linkTextColor" data-selBoxVal="custom"><span>...</span></div>
+					</div>
 				</div>
-				<h6>Link Color</h6>
-				<input type="color" id="secretLinkTextColorPicker" value="#8e908f" />
-				<div id="linkTextColors">
-					<div class="selBox linkTextColor bluish selected" data-selBoxGroup="linkTextColor" data-selBoxVal="#428BCA"></div>
-					<div class="selBox linkTextColor blue" data-selBoxGroup="linkTextColor" data-selBoxVal="blue"></div>
-					<div class="selBox linkTextColor black" data-selBoxGroup="linkTextColor" data-selBoxVal="black"></div>
-					<div class="selBox linkTextColor lightblue" data-selBoxGroup="linkTextColor" data-selBoxVal="lightblue"></div>
-					<div class="selBox linkTextColor gray" data-selBoxGroup="linkTextColor" data-selBoxVal="gray"></div>
-					<div class="selBox linkTextColor white" data-selBoxGroup="linkTextColor" data-selBoxVal="white"></div>
-					<div class="selBox linkTextColor custom" data-selBoxGroup="linkTextColor" data-selBoxVal="custom"><span>...</span></div>
+				<h6>Navigation Bar</h6>
+				<div class="indentLevel1">
+					<h6>Text Color</h6>
+					<input type="color" id="secretNavTextColorPicker" value="#8e908f" />
+					<div id="navTextColors">
+						<div class="selBox navTextColor black selected" data-selBoxGroup="navTextColor" data-selBoxVal="black"></div>
+						<div class="selBox navTextColor blue" data-selBoxGroup="navTextColor" data-selBoxVal="blue"></div>
+						<div class="selBox navTextColor lightblue" data-selBoxGroup="navTextColor" data-selBoxVal="lightblue"></div>
+						<div class="selBox navTextColor gray" data-selBoxGroup="navTextColor" data-selBoxVal="gray"></div>
+						<div class="selBox navTextColor white" data-selBoxGroup="navTextColor" data-selBoxVal="white"></div>
+						<div class="selBox navTextColor custom" data-selBoxGroup="navTextColor" data-selBoxVal="custom"><span>...</span></div>
+					</div>
 				</div>
-			</div>
-			<h6>Navigation Bar</h6>
-			<div class="indentLevel1">
-				<h6>Text Color</h6>
-				<input type="color" id="secretNavTextColorPicker" value="#8e908f" />
-				<div id="navTextColors">
-					<div class="selBox navTextColor black selected" data-selBoxGroup="navTextColor" data-selBoxVal="black"></div>
-					<div class="selBox navTextColor blue" data-selBoxGroup="navTextColor" data-selBoxVal="blue"></div>
-					<div class="selBox navTextColor lightblue" data-selBoxGroup="navTextColor" data-selBoxVal="lightblue"></div>
-					<div class="selBox navTextColor gray" data-selBoxGroup="navTextColor" data-selBoxVal="gray"></div>
-					<div class="selBox navTextColor white" data-selBoxGroup="navTextColor" data-selBoxVal="white"></div>
-					<div class="selBox navTextColor custom" data-selBoxGroup="navTextColor" data-selBoxVal="custom"><span>...</span></div>
-				</div>
-			</div>
-			<h6>Logo</h6>
-			<img src="" class="selectedLogo"/>
-			<br />
-			<button id="selectLogo" class="btn btn-primary">Select a logo...</button>
-			<h3>Enable or disable features</h3>
-			<div id="features">
-				<ul class="grid grid-pad">
+				<h6>Logo</h6>
+				<img src="" class="selectedLogo"/>
+				<br />
+				<button id="selectLogo" class="btn btn-primary">Select a logo...</button>
+			</section>
+			<section id="features" class="page">
+				<div id="features">
+					<ul class="grid grid-pad">
 
+					</ul>
+				</div>
+			</section>
+			<section id="services" class="page">
+				<p>Services allow Courses<strong>Plus</strong> to connect Courses with other websites you use every day.</p>
+				<div id="services">
+					<ul class="grid grid-pad">
+
+					</ul>
+				</div>
+				<h4>Got an idea?</h4>
+				<p>Have an idea for a great new service - or any other feature you'd like to see? Send us an email at <a href="mailto:emails@coursesplus.tk">emails@coursesplus.tk</a>! Do you want to develop services? See <a href="https://trello.com/b/1FJCJDxW">here</a>!</p>
+			</section>
+			<section id="storage" class="page">
+				<p>Using sync storage - if you sign into Chrome on more than one computer, your Courses<strong>Plus</strong> settings will sync between them!</p>
+				<p id="storageUsage">Loading usage information...</p>
+				<button id="importData" class="btn btn-info">Import data</button>
+				<button id="exportData" class="btn btn-info">Export data</button>
+				<br />
+				<button id="clearStorage" class="btn btn-warning">Clear storage</button>
+			</section>
+			<section id="privacy" class="page">
+				<p>If you have the <strong>Navbar messages</strong> feature enabled, Courses<strong>Plus</strong> will connect to a server so it can retrieve the newest message. When it does this, information about what browser version you have, what version of Courses<strong>Plus</strong> you have, and a random, unique ID is transmitted to the server. No personally-identifying information is sent. To disable this tracking, disable the <strong>Navbar messages</strong> component.</p>
+				<p>Your unique ID is: <strong id="coursesplus-uniqueid">Loading...</strong></p>
+			</section>
+			<section id="about" class="page">
+				<h3>Courses+</h3>
+				<h4>version <span class="currentVersion"></span></h4>
+
+				<h2>Open-source software</h2>
+				<p>Courses+ is open source software licensed under the <a href="https://gitlab.com/CoursesPlus/CoursesPlus/blob/master/LICENSE.txt">MIT License</a>.
+
+				<p>Courses+ also makes use of the following open-source projects:</p>
+				<ul>
+					<li><a href="https://jquery.com/">jQuery</a></li>
+					<li><a href="https://jqueryui.com/">jQuery UI</a></li>
+					<li><a href="http://getbootstrap.com/">Twitter Bootstrap</a></li>
+					<li><a href="https://github.com/snaptortoise/konami-js">Konami.js</a></li>
 				</ul>
-			</div>
-
-			<h3>Services</h3>
-			<p>Services allow Courses<strong>Plus</strong> to connect Courses with other websites you use every day.</p>
-			<div id="services">
-				<ul class="grid grid-pad">
-
-				</ul>
-			</div>
-			<h4>Got an idea?</h4>
-			<p>Have an idea for a great new service - or any other feature you'd like to see? Send us an email at <a href="mailto:emails@coursesplus.tk">emails@coursesplus.tk</a>! Do you want to develop services? See <a href="https://trello.com/b/1FJCJDxW">here</a>!</p>
-
-			<h3>Storage info</h3>
-			<p>Using sync storage - if you sign into Chrome on more than one computer, your Courses<strong>Plus</strong> settings will sync between them!</p>
-			<p id="storageUsage">Loading usage information...</p>
-			<button id="importData" class="btn btn-info">Import data</button>
-			<button id="exportData" class="btn btn-info">Export data</button>
-			<br />
-			<button id="clearStorage" class="btn btn-warning">Clear storage</button>
-
-			<h3>Privacy</h3>
-			<p>If you have the <strong>Navbar messages</strong> feature enabled, Courses<strong>Plus</strong> will connect to a server so it can retrieve the newest message. When it does this, information about what browser version you have, what version of Courses<strong>Plus</strong> you have, and a random, unique ID is transmitted to the server. No personally-identifying information is sent. To disable this tracking, disable the <strong>Navbar messages</strong> component.</p>
-			<p>Your unique ID is: <strong id="coursesplus-uniqueid">Loading...</strong></p>
+			</section>
 		</section>
 	</body>
 </html>
