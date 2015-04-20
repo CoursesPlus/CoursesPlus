@@ -28,7 +28,7 @@ var services = {
 	},*/
 	lunchMenu: {
 		displayName: "Lunch Menu",
-		description: "by CoursesPlus✓<br>Displays what's for lunch in the sidebar.",
+		description: "by CoursesPlus<img src="images/verified-developer.png" alt="Verified Developer<br>Regestered Name: CoursesPlus<br>Verification Expires: 2020" height="42" width="42"><br>Displays what's for lunch in the sidebar.",
 		type: "block",
 		origins: ["*://*.myschooldining.com/"],
 		requires: [],
@@ -65,7 +65,7 @@ var services = {
 	},
 	schedules: {
 		displayName: "Schedule",
-		description: "by CoursesPlus ✔️<br>Displays what classes you've got next in the sidebar.",
+		description: "by CoursesPlus<img src="images/verified-developer.png" alt="Verified Developer<br>Regestered Name: CoursesPlus<br>Verification Expires: 2020" height="42" width="42"><br><br>Displays what classes you've got next in the sidebar.",
 		type: "block",
 		origins: ["*://schedules.dalton.org/"],
 		requires: [],
@@ -173,7 +173,7 @@ var services = {
 	},
 	weather: {
 		displayName: "Weather",
-		description: "by CoursesPlus ✔️<br>Displays the weather in your chosen location in your sidebar.",
+		description: "by CoursesPlus <img src="images/verified-developer.png" alt="Verified Developer<br>Regestered Name: CoursesPlus<br>Verification Expires: 2020" height="42" width="42"><br><br>Displays the weather in your chosen location in your sidebar.",
 		type: "block",
 		origins: ["*://*.wunderground.com/"],
 		requires: [],
