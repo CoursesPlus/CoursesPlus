@@ -60,7 +60,7 @@ var services = {
 				$("#coursesPlus_services_lunchMenu_overHerePls").html("");
 				$("#coursesPlus_services_lunchMenu_overHerePls").append($builtList);
 			});
-			return $("<p><center id=\"coursesPlus_services_lunchMenu_overHerePls\">Loading...</center></p>");
+			return $("<p><center id=\"coursesPlus_services_lunchMenu_overHerePls\">The lunch menu service<br>By Courses<strong>Plus<br><br>Loading...</center></p>");
 		}
 	},
 	schedules: {
