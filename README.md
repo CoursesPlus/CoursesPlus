@@ -1,10 +1,10 @@
 CoursesPlus
 ---
-Hello! This is the official repository for Courses+!
+Hello! This is the official repository for Courses**Plus**!
 
-CoursesPlus was created by Alex Studer.
+Courses**Plus** was originally created by Alex Studer, and has since expanded to include several other as part of the team.
 
-Also on the CoursesPlus Team:
+Also on the Courses**Plus** Team:
 * Joshua Fielding
 * William Barkoff
 * Sehan Choi
