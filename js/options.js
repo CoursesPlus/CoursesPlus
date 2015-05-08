@@ -45,14 +45,24 @@ function createList(sortedComponents, $ulToAppendTo, checkList, checkPresence, c
 			$appendMe.append($check);
 
 			var $label = $("<strong></strong>");
-			$label.addClass("featureLabel");
-			$label.html(/*"&nbsp;" + */component.displayName);
+				$label.addClass("featureLabel");
+				$label.html(/*"&nbsp;" + */component.displayName);
 			$appendMe.append($label);
 
 			var $desc = $("<p></p>");
-			$desc.addClass("featureDesc");
-			$desc.html(component.description);
-			$appendMe.append($("<br />"));
+				$desc.addClass("featureDesc");
+				if (component.author != undefined) {
+					var $author = $("<em></em>");
+						$author.text("by " + component.author);
+					$desc.append($author);
+					if (component.authorVerification) {
+						$desc.append("&nbsp;");
+						$desc.append('<i class="fa fa-check-circle" data-toggle="tooltip" data-placement="bottom" title="Verified author"></i>');
+					}
+					$desc.append("<br />");
+				}
+				$desc.append("<span>" + component.description + "</span>");
+				$appendMe.append($("<br />"));
 			$appendMe.append($desc);
 
 			var $req = $("<p></p>");
@@ -268,6 +278,8 @@ $(document).ready(function() {
 				thisService.onDisable();
 			}
 		});
+
+		$('[data-toggle="tooltip"]').tooltip();
 	});
 	cpal.storage.getKey("disabledComponents", function(result) {
 		disabledComponentList = ($.isArray(result) ? result : []);

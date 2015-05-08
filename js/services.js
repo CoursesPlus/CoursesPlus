@@ -27,8 +27,10 @@ var services = {
 		}
 	},*/
 	lunchMenu: {
-		displayName: "Lunch Menu",
-		description: "by CoursesPlus <img src=\"../images/verified-developer.png\" title=\"Verified Developer - Registered Name: CoursesPlus (verification expires in 2020)\" height=\"12\" width=\"12\" /><br>Displays what's for lunch in the sidebar.",
+		displayName: "Lunch Menu",		
+		author: "CoursesPlus",
+		authorVerification: true,
+		description: "Displays what's for lunch in the sidebar.",
 		type: "block",
 		origins: ["*://*.myschooldining.com/"],
 		requires: [],
@@ -62,7 +64,9 @@ var services = {
 	},
 	schedules: {
 		displayName: "Schedule",
-		description: "by CoursesPlus <img src=\"../images/verified-developer.png\" title=\"Verified Developer - Registered Name: CoursesPlus (verification expires in 2020)\" height=\"12\" width=\"12\" /><br><br>Displays what classes you've got next in the sidebar.",
+		author: "CoursesPlus",
+		authorVerification: true,
+		description: "Displays what classes you've got next in the sidebar.",
 		type: "block",
 		origins: ["*://schedules.dalton.org/"],
 		requires: [],
@@ -169,8 +173,10 @@ var services = {
 		}
 	},
 	weather: {
-		displayName: "Weather",
-		description: "by CoursesPlus <img src=\"../images/verified-developer.png\" title=\"Verified Developer - Registered Name: CoursesPlus (verification expires in 2020)\" height=\"12\" width=\"12\" /><br><br>Displays the weather in your chosen location in your sidebar.",
+		displayName: "Weather",		
+		author: "CoursesPlus",
+		authorVerification: true,
+		description: "Displays the weather in your chosen location in your sidebar.",
 		type: "block",
 		origins: ["*://*.wunderground.com/"],
 		requires: [],
