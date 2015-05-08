@@ -40,12 +40,9 @@ var services = {
 
 		},
 		createBlock: function() {
-			$.get("https://www.myschooldining.com/api/", {
-				key: "B6EEF83E-7E80-11E1-BAEF-DBA84824019B",
-				siteID: 336,
-				locationId: 753,
-				lib: "menus"
-			}, function(data) {
+			$.get("https://coursesplus.tk/lunch.php", {}, function(strData) {
+				var data = JSON.parse(strData);
+				
 				var $builtList = $("<ul></ul>");
 				$builtList.css("list-style-type", "none");
 				var mealItems = data["meal periods"][0]["menu items"];
@@ -60,7 +57,7 @@ var services = {
 				$("#coursesPlus_services_lunchMenu_overHerePls").html("");
 				$("#coursesPlus_services_lunchMenu_overHerePls").append($builtList);
 			});
-			return $("<p><center id=\"coursesPlus_services_lunchMenu_overHerePls\">The lunch menu service<br>By Courses<strong>Plus<br><br>Loading...</center></p>");
+			return $("<p><center id=\"coursesPlus_services_lunchMenu_overHerePls\">Loading, please wait...</center></p>");
 		}
 	},
 	schedules: {
