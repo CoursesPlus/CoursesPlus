@@ -497,6 +497,11 @@ $(document).ready(function() {
 
 		window.location.hash = $(this).data("page");
 
+		if ($(this).data("page").indexOf("external:") == 0) {
+			window.location.href = $(this).data("page").replace("external:", "");
+			return;
+		}
+
 		$("#" + $(this).data("page")).addClass("current");
 	});
 
