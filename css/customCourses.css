@@ -93,11 +93,17 @@
 .impact {
 	font-family: "Impact", sans-serif;
 }
-.tahoma {
-	font-family: "Tahoma", sans-serif;
+.lato {
+	font-family: "Lato", sans-serif;
+}
+.oxygen {
+	font-family: "Oxygen", sans-serif;
 }
 .ptSans {
 	font-family: "PT Sans", serif;
+}
+.tahoma {
+	font-family: "Tahoma", sans-serif;
 }
 .timesNewRoman {
 	font-family: "Times New Roman", serif;

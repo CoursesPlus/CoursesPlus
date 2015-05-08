@@ -211,7 +211,7 @@ var components = {
 				$(this).append(addMe);
 			}
 		});
-	}, js: [], css: ["bootstrap.css"], runOn: "*", requires: []},
+	}, js: [], css: ["bootstrap.css", "../scss_gen/fonts.css"], runOn: "*", requires: []},
 	/*logo: {displayName: "Logo change", description: "Changes the logo to the circular Dalton School thing.", exec: function() {
 		// MOVED to runNonComponentTweaks();
 		// Change logo
@@ -447,8 +447,10 @@ var components = {
 		$fontDropdown.append($('<option value="Georgia" class="editFont georgia">Georgia</option>'));
 		$fontDropdown.append($('<option value="Helvetica Neue" class="editFont helveticaNeue">Helvetica Neue (default)</option>'));
 		$fontDropdown.append($('<option value="Impact" class="editFont impact">Impact</option>'));
-		$fontDropdown.append($('<option value="Tahoma" class="editFont tahoma">Tahoma</option>'));
+		$fontDropdown.append($('<option value="Lato" class="editFont lato">Lato</option>'));
+		$fontDropdown.append($('<option value="Oxygen" class="editFont oxygen">Oxygen</option>'));
 		$fontDropdown.append($('<option value="PT Sans" class="editFont ptSans">PT Sans</option>'));
+		$fontDropdown.append($('<option value="Tahoma" class="editFont tahoma">Tahoma</option>'));
 		$fontDropdown.append($('<option value="Times New Roman" class="editFont timesNewRoman">Times New Roman</option>'));
 		$fontDropdown.append($('<option value="Trebuchet MS" class="editFont trebuchetMS">Trebuchet MS</option>'));
 		$fontDropdown.append($('<option value="Verdana" class="editFont verdana">Verdana</option>'));
