@@ -65,7 +65,7 @@ function createList(sortedComponents, $ulToAppendTo, checkList, checkPresence, c
 						var url = cpal.resources.getURL(optionsUrl);
 
 						var loc = "_blank";
-						var w = 600;
+						var w = 570;
 						var h = 400;
 
 						var left = (screen.width/2)-(w/2);
