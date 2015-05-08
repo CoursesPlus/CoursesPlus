@@ -21,15 +21,24 @@
 		<script type="text/javascript" src="../js/scheduleslogin.js"></script>
 	</head>
 	<body>
-		<h1>Log in to Schedules</h1>
-		<p>Log in with your Dalton ID. We don't store your password; we only use it to log in to Schedules and retrieve your schedules.</p>
-		<div id="loginform">
-			<input type="text" id="daltonid" placeholder="Dalton ID" class="form-control" />
-			<input type="password" id="password" placeholder="Password" class="form-control" /><br>
-			<button id="login" class="btn btn-primary btn-lg">Log in</button>
+		<div id="statusCheck">
+			<p>Checking login status, please wait...</p>
 		</div>
-		<div id="loggingin" style="display:none;">
-			<h3>Logging you in...</h3>
+		<div id="loggedIn" style="display:none;">
+			<p>Logged in as <strong id="username"></strong>.</p>
+			<button id="logOut" class="btn btn-primary">Log out</button>
 		</div>
+		<div id="loginPrompt" style="display:none;">
+			<h1>Log in to Schedules</h1>
+			<p>Log in with your Dalton ID. We don't store your password; we only use it to log in to Schedules and retrieve your schedules.</p>
+			<div id="loginform">
+				<input type="text" id="daltonid" placeholder="Dalton ID" class="form-control" />
+				<input type="password" id="password" placeholder="Password" class="form-control" />
+				<button id="login" class="btn btn-primary btn-lg">Log in</button>
+			</div>
+			<div id="loggingin" style="display:none;">
+				<h3>Logging you in...</h3>
+			</div>
+ 		</div>
 	</body>
 </html>

@@ -58,16 +58,31 @@ function createList(sortedComponents, $ulToAppendTo, checkList, checkPresence, c
 					$options.addClass("btn");
 					$options.addClass("btn-info");
 					$options.addClass("btn-sm");
+					$options.attr("data-componentIndex", componentIndex);
 					$options.click(function() {
 						// TODO: Check if service is enabled first.
-						var url = cpal.resources.getURL(component.options);
+						var optionsUrl = sortedComponents[$(this).attr("data-componentIndex")].options;
+						var url = cpal.resources.getURL(optionsUrl);
+
 						var loc = "_blank";
 						var w = 600;
 						var h = 400;
 
 						var left = (screen.width/2)-(w/2);
 						var top = (screen.height/2)-(h/2);
-						window.open(url, loc, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+
+						var $iframe = $("<iframe></iframe>");
+
+							$iframe.attr("src", url);
+							$iframe.css("width", w + "px");
+							$iframe.css("height", h + "px");
+							$iframe.css("border", "none");
+
+						$("#serviceOptionsModal .modal-body").html("");
+						$("#serviceOptionsModal .modal-body").append($iframe);
+
+						$("#serviceOptionsModal").modal();
+						//window.open(url, loc, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 					});
 
 				$appendMe.append($options);
@@ -345,7 +360,7 @@ $(document).ready(function() {
 		}
 	});
 	cpal.storage.getKey("navTextColor", function(items) {
-		if (result === undefined) {
+		if (items === undefined) {
 			return;
 		}
 		$(".navTextColor.black").removeClass("selected");

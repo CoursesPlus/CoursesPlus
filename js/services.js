@@ -66,7 +66,7 @@ var services = {
 		type: "block",
 		origins: ["*://schedules.dalton.org/"],
 		requires: [],
-		options: false,
+		options: "etc/scheduleslogin.html",
 		onEnable: function() {
 			var url = "scheduleslogin.html";
 			var loc = "_blank";
