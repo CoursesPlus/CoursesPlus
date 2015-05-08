@@ -323,42 +323,80 @@ window.services.runAll = function() {
 						console.warn("TODO: assignment services");
 						break;
 					case "block":
-						var $blockBody = service.createBlock();
+						cpal.storage.getKey("serviceHidden-" + serviceIndex, function(hiddenRaw, keyName) {
+							var saveServiceIndex = keyName.replace("serviceHidden-", "");
+							var saveService = window.services[saveServiceIndex];
 
-						var $blockToAppend = $("<div></div>");
+							var isHidden = (hiddenRaw ? hiddenRaw : false);
 
-						$blockToAppend.attr("id", serviceIndex + "_service_block");
-						$blockToAppend.addClass("block");
+							var $blockBody = saveService.createBlock();
 
-							var $header = $("<div class=\"header\"><div class=\"title\"><h2></h2></div></div>");
+							var $blockToAppend = $("<div></div>");
 
-								$header.find("h2").text(service.displayName);
+							$blockToAppend.attr("id", saveServiceIndex + "_service_block");
+							$blockToAppend.addClass("block");
+							if (isHidden) {
+								$blockToAppend.addClass("hidden");
+							}
 
-								if (service.options) {									
-									var $settingIcon = $('<i class="fa fa-wrench pull-right"></i>');
+								var $header = $("<div class=\"header\"><div class=\"title\"><h2></h2></div></div>");
 
-										$settingIcon.attr("data-serviceIndex", serviceIndex);
+									$header.find("h2").text(saveService.displayName);
 
-										$settingIcon.css("position", "relative");
-										$settingIcon.css("top", "-12px");
-										$settingIcon.css("right", "6px");
-										$settingIcon.css("cursor", "pointer");
-										$settingIcon.click(function() {
-											window.location.href = cpal.resources.getURL("etc/options.html#soptions:" + $(this).attr("data-serviceIndex"));
+									if (saveService.options) {
+										var $settingIcon = $('<i class="fa fa-wrench pull-right"></i>');
+
+											$settingIcon.attr("data-serviceIndex", saveServiceIndex);
+
+											$settingIcon.css("position", "relative");
+											$settingIcon.css("top", "-12px");
+											$settingIcon.css("right", "24px");
+											$settingIcon.css("cursor", "pointer");
+
+											$settingIcon.click(function() {
+												window.location.href = cpal.resources.getURL("etc/options.html#soptions:" + $(this).attr("data-serviceIndex"));
+											});
+
+										$header.children(".title").append($settingIcon);
+									}
+									var $toggleVisibleIcon = $('<i class="fa fa-minus-square pull-right"></i>');
+
+										if (isHidden) {
+											$toggleVisibleIcon.toggleClass("fa-minus-square");
+											$toggleVisibleIcon.toggleClass("fa-plus-square");
+										}
+										$toggleVisibleIcon.attr("data-serviceIndex", saveServiceIndex);
+
+										$toggleVisibleIcon.css("position", "relative");
+										$toggleVisibleIcon.css("top", "-12px");
+										$toggleVisibleIcon.css("right", "6px");
+										if (saveService.options) {
+											$toggleVisibleIcon.css("right", "-10px");										
+										}
+										$toggleVisibleIcon.css("cursor", "pointer");
+
+										$toggleVisibleIcon.click(function() {
+											$(this).toggleClass("fa-minus-square");
+											$(this).toggleClass("fa-plus-square");
+											var $blockElem = $(this).parent().parent().parent();
+											$blockElem.toggleClass("hidden");
+											cpal.storage.setKey("serviceHidden-" + $(this).attr("data-serviceIndex"), $blockElem.hasClass("hidden"), function() {
+
+											});
 										});
 
-									$header.children(".title").append($settingIcon);
-								}
+									$header.children(".title").append($toggleVisibleIcon);
 
-							$blockToAppend.append($header);
+								$blockToAppend.append($header);
 
-							var $content = $("<div class=\"content\"></div>");
+								var $content = $("<div class=\"content\"></div>");
 
-								$content.append($blockBody);
+									$content.append($blockBody);
 
-							$blockToAppend.append($content);
+								$blockToAppend.append($content);
 
-						$("#region-post > .region-content").append($blockToAppend);
+							$("#region-post > .region-content").append($blockToAppend);
+						});
 
 						break;
 					case "calendar":

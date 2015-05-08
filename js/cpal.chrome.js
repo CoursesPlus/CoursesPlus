@@ -70,7 +70,7 @@ cpal.storage.clear = function(callback) {
 };
 cpal.storage.getKey = function(keyName, callback) {
 	chrome.storage.sync.get(keyName, function(result) {
-		callback(result[keyName]);
+		callback(result[keyName], keyName);
 	});
 };
 cpal.storage.getAll = function(callback) {
