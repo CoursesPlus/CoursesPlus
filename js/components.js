@@ -1157,6 +1157,9 @@ function runNonComponentTweaks(componentsToSkip) {
 				var $linkTag = $("<link rel=\"stylesheet\" />");
 					$linkTag.attr("href", cpal.resources.getURL("css/themes/" + value + ".css"));
 				$("head").append($linkTag);
+				var $supportTag = $("<link rel=\"stylesheet\" />");
+					$supportTag.attr("href", cpal.resources.getURL("css/themes/" + value + ".support.css"));
+				$("head").append($supportTag);
 			}
 		}
 	});
