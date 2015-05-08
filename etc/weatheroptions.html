@@ -21,7 +21,24 @@
 		<script type="text/javascript" src="../js/weatheroptions.js"></script>
 	</head>
 	<body>
-		<h1>Weather options</h1>
-		<p>Change the location for the Weather service.</p>
+		<h3>Weather location</h3>
+		<div id="loading">
+			<p>Loading...</p>
+		</div>
+		<div id="pickLocation" style="display: none;">
+			<button class="btn btn-primary btn-lg" id="useLocation">Use my location</button>
+			<br />
+			<br />
+			<input type="text" class="form-control" id="locationText" placeholder="...or enter a location (city, zip code, longitude and latitude, etc...)" />
+			<button class="btn btn-primary" id="getWeather">Get weather</button>
+		</div>
+		<div id="seeLocation" style="display: none;">
+			<div class="h4">Location is set to: <strong id="locationStr"></strong></div>
+			<div><button class="btn btn-primary" id="changeLocation">Change location</button></div>
+		</div>
+		<h3>Units</h3>
+		<input type="radio" name="units" id="f_units" value="f" checked/> Farenheit (&deg;F)
+		<br />
+		<input type="radio" name="units" id="c_units" value="c" /> Celcius (&deg;C)
 	</body>
 </html>

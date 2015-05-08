@@ -176,32 +176,29 @@ var services = {
 		requires: [],
 		options: "etc/weatheroptions.html",
 		onEnable: function() {
-			cpal.storage.setKey("weatherOptions", {
-				city: "New York",
-				state: "NY",
-				zip: "10128",
-				airportcode: "KNYC",
-			}, function() {
-
-			});
+			
 		},
 		onDisable: function() {
-			cpal.storage.removeKey("weatherOptions", function() {
+			cpal.storage.removeKey("weather", function() {
 
 			});
 		},
 		createBlock: function() {
-			cpal.storage.getKey("weatherOptions", function(options) {
-				var city = options.city;
-				var state = options.state;
-				var zip = options.zip;
-				var airportcode = options.airportcode;
+			var $outputObj = $('<div id="coursesplus_services_weather_here"></div>');
 
-				var $widget = $('<span style="display: block !important; width: 180px; text-align: center; font-family: sans-serif; font-size: 12px;"><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=' + encodeURIComponent(city + ", " + state) + '&bannertypeclick=wu_blueglass" title="Weather Forecast" target="_blank"><img src="http://weathersticker.wunderground.com/weathersticker/cgi-bin/banner/ban/wxBanner?bannertype=wu_blueglass&airportcode=' + airportcode + '&ForcedCity=' + city + '&ForcedState=' + state + '&zip=' + zip + '&language=EN" alt="Find more about Weather in your location" width="160" /></a></span>');
-				$("#coursesplus_services_weather_stickerhere").append($widget);
-			});
+				var $iframe = $("<iframe seamless></iframe>");
 
-			return $('<div id="coursesplus_services_weather_stickerhere"></div>');
+					$iframe.attr("src", cpal.resources.getURL("etc/weatherdisplay.html"));
+					$iframe.attr("allowtransparency", "true");
+					$iframe.attr("scrolling", "no");
+					$iframe.css("border", "none");
+					$iframe.css("width", "175px");
+					$iframe.css("height", "160px");
+					$iframe.css("overflow", "hidden");
+
+				$outputObj.append($iframe);
+
+			return $outputObj;
 		}
 	}//,
 	/* This is not a service because it should affect a whole site with all the above geatures

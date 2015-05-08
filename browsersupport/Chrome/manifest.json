@@ -62,5 +62,6 @@
 		"matches": [
 			"*://courses2015.dalton.org/*"
 		]
-	}
+	},
+	"content_security_policy": "script-src 'self' https://query.yahooapis.com; object-src 'self'"
 }
