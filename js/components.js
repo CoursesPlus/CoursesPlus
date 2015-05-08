@@ -1150,6 +1150,17 @@ function runNonComponentTweaks(componentsToSkip) {
 
 	$("html, body, #dalton-nav, #page-content").css("background", "transparent");
 
+	console.log("Changing theme...");
+	cpal.storage.getKey("theme", function(value) {
+		if (value != undefined) {
+			if (value != "bootstrap") {
+				var $linkTag = $("<link rel=\"stylesheet\" />");
+					$linkTag.attr("href", cpal.resources.getURL("css/themes/" + value + ".css"));
+				$("head").append($linkTag);
+			}
+		}
+	});
+
 	console.log("Changing background color...");
 	cpal.storage.getKey("backgroundColor", function(result) {
 		if (result === undefined) {

@@ -520,6 +520,20 @@ $(document).ready(function() {
 		});
 	});
 
+	// Themes
+	$("[name=themeRadios]").change(function() {
+		var newTheme = $(this).val();
+		cpal.storage.setKey("theme", newTheme, function() {
+
+		});
+	});
+
+	cpal.storage.getKey("theme", function(value) {
+		if (value != undefined) {
+			$("input[name=themeRadios][value=" + value + "]").prop("checked", true);
+		}
+	});
+
 	$("#pagelist > li").click(function() {
 		$(".page.current").removeClass("current");
 
