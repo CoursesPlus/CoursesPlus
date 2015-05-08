@@ -13,7 +13,7 @@ $(document).ready(function() {
 	$("#logOut").click(function() {
 		logOut();
 		window.location.reload();
-	})
+	});
 
 	cpal.storage.getKey("schedules-user", function(username) {
 		if (username == undefined) {

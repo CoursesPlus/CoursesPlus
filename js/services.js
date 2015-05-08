@@ -334,6 +334,22 @@ window.services.runAll = function() {
 
 								$header.find("h2").text(service.displayName);
 
+								if (service.options) {									
+									var $settingIcon = $('<i class="fa fa-wrench pull-right"></i>');
+
+										$settingIcon.attr("data-serviceIndex", serviceIndex);
+
+										$settingIcon.css("position", "relative");
+										$settingIcon.css("top", "-12px");
+										$settingIcon.css("right", "6px");
+										$settingIcon.css("cursor", "pointer");
+										$settingIcon.click(function() {
+											window.location.href = cpal.resources.getURL("etc/options.html#soptions:" + $(this).attr("data-serviceIndex"));
+										});
+
+									$header.children(".title").append($settingIcon);
+								}
+
 							$blockToAppend.append($header);
 
 							var $content = $("<div class=\"content\"></div>");

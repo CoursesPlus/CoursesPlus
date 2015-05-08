@@ -4,6 +4,28 @@ function saveChanges() {
 		console.log("Saved changes!");
 	});
 }
+function openServiceOptions(serviceIndex) {
+	console.log("openServiceOptions: " + serviceIndex);
+	var optionsUrl = services[serviceIndex].options;
+	var url = cpal.resources.getURL(optionsUrl);
+	var loc = "_blank";
+	var w = 570;
+	var h = 300;
+
+	var left = (screen.width/2)-(w/2);
+	var top = (screen.height/2)-(h/2);
+	var $iframe = $("<iframe></iframe>");
+
+		$iframe.attr("src", url);
+		$iframe.css("width", w + "px");
+		$iframe.css("height", h + "px");
+		$iframe.css("border", "none");
+
+	$("#serviceOptionsModal .modal-body").html("");
+	$("#serviceOptionsModal .modal-body").append($iframe);
+
+	$("#serviceOptionsModal").modal();
+}
 function createList(sortedComponents, $ulToAppendTo, checkList, checkPresence, clickEvent) {
 	//var sortedComponents = window.components;
 	for (var componentIndex in sortedComponents) {
@@ -61,28 +83,7 @@ function createList(sortedComponents, $ulToAppendTo, checkList, checkPresence, c
 					$options.attr("data-componentIndex", componentIndex);
 					$options.click(function() {
 						// TODO: Check if service is enabled first.
-						var optionsUrl = sortedComponents[$(this).attr("data-componentIndex")].options;
-						var url = cpal.resources.getURL(optionsUrl);
-
-						var loc = "_blank";
-						var w = 570;
-						var h = 300;
-
-						var left = (screen.width/2)-(w/2);
-						var top = (screen.height/2)-(h/2);
-
-						var $iframe = $("<iframe></iframe>");
-
-							$iframe.attr("src", url);
-							$iframe.css("width", w + "px");
-							$iframe.css("height", h + "px");
-							$iframe.css("border", "none");
-
-						$("#serviceOptionsModal .modal-body").html("");
-						$("#serviceOptionsModal .modal-body").append($iframe);
-
-						$("#serviceOptionsModal").modal();
-						//window.open(url, loc, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+						openServiceOptions($(this).attr("data-componentIndex"));						
 					});
 
 				$appendMe.append($options);
@@ -522,6 +523,12 @@ $(document).ready(function() {
 
 	if (window.location.hash != "") {
 		$(".page.current").removeClass("current");
+		if (window.location.hash.substr(1).indexOf("soptions:") == 0) {
+			$(".page.current").removeClass("current");
+			$("#services").addClass("current");
+			openServiceOptions(window.location.hash.substr(1).replace("soptions:", ""));
+			return;
+		}
 		$("#" + window.location.hash.substr(1)).addClass("current");
 	}
 

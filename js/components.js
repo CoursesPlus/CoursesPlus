@@ -211,7 +211,7 @@ var components = {
 				$(this).append(addMe);
 			}
 		});
-	}, js: [], css: ["bootstrap.css", "../scss_gen/fonts.css"], runOn: "*", requires: []},
+	}, js: [], css: ["bootstrap.css", "../scss_gen/fonts.css", "font-awesome.min.css"], runOn: "*", requires: []},
 	/*logo: {displayName: "Logo change", description: "Changes the logo to the circular Dalton School thing.", exec: function() {
 		// MOVED to runNonComponentTweaks();
 		// Change logo
