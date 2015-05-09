@@ -52,6 +52,7 @@
 		"fonts/*.svg",
 		"fonts/*.ttf",
 		"fonts/*.woff",
+		"fonts/*.woff2",
 		"js/*.js",
 		"chosen/*.css",
 		"chosen/*.png",

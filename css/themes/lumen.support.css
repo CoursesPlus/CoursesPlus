@@ -1,0 +1,21 @@
+.breadcrumb {
+	background: transparent;
+	border: none;
+}
+
+.coursebox > .info > .coursename a {
+	font-weight: bold;
+}
+
+table a:not(.btn), .table a:not(.btn) {
+	text-decoration: none !important;
+}
+
+caption {
+	padding: 0;
+}
+
+.editBtn, .upcomingEventsBtn {
+	border: none;
+	border-radius: 0;
+}

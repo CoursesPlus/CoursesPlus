@@ -1,0 +1,30 @@
+body {
+	padding-top: 51px !important;
+}
+
+.breadcrumb {
+	background: transparent;
+	border: none;
+}
+
+.coursebox > .info > .coursename a {
+	font-weight: bold;
+}
+
+caption {
+	padding: 0;
+}
+
+.editBtn, .upcomingEventsBtn {
+	border: none;
+	border-radius: 0;
+}
+
+.breadcrumb {
+	font-size: 12px;
+	text-transform: none;
+}
+
+.dropdown-menu > li > a {
+	padding: 6px 15px;
+}

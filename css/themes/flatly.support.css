@@ -1,0 +1,28 @@
+.breadcrumb {
+	background: transparent;
+}
+
+.coursebox > .info > .coursename a {
+	font-weight: bold;
+}
+
+table a:not(.btn), .table a:not(.btn) {
+	text-decoration: none !important;
+}
+
+caption {
+	padding: 0;
+}
+
+.block .header h2 {
+	font-weight: bold;
+}
+
+table.minicalendar td {
+	border: solid 1px #ccc !important;
+}
+
+.editBtn, .upcomingEventsBtn {
+	border: none;
+	border-radius: 0;
+}
