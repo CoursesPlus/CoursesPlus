@@ -58,7 +58,7 @@
 		"chosen/*.png",
 		"chosen/*.js",
 		"etc/*.html",
-		"scss_gen/*.css",
+		"scss_gen/*.css"
 	],
 	"externally_connectable": {
 		"matches": [
