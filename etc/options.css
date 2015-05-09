@@ -39,6 +39,10 @@ h3 {
 	border: solid 3px yellow;
 }
 
+.themeDefault {
+	background-image: url("../images/themeDefault.png");
+}
+
 .pink {
 	background: pink;
 }
@@ -66,6 +70,7 @@ h3 {
 .white {
 	background: white;
 }
+
 .custom {
 	background-color: white;
 	color: white;

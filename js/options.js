@@ -346,7 +346,7 @@ $(document).ready(function() {
 		if (result === undefined) {
 			return;
 		}
-		$(".textColor.black").removeClass("selected");
+		$(".textColor.themeDefault").removeClass("selected");
 		if ($(".textColor").hasClass(result)) {
 			$(".textColor." + result).addClass("selected");
 		} else {
@@ -363,7 +363,7 @@ $(document).ready(function() {
 			// It's the "bluish" color.
 			return;
 		}
-		$(".linkTextColor.bluish").removeClass("selected");
+		$(".linkTextColor.themeDefault").removeClass("selected");
 		if ($(".linkTextColor").hasClass(result)) {
 			$(".linkTextColor." + result).addClass("selected");
 		} else {
@@ -372,11 +372,11 @@ $(document).ready(function() {
 			onLinkTextColorPickerChange();
 		}
 	});
-	cpal.storage.getKey("navTextColor", function(items) {
-		if (items === undefined) {
+	cpal.storage.getKey("navTextColor", function(result) {
+		if (result === undefined) {
 			return;
 		}
-		$(".navTextColor.black").removeClass("selected");
+		$(".navTextColor.themeDefault").removeClass("selected");
 		if ($(".navTextColor").hasClass(result)) {
 			$(".navTextColor." + result).addClass("selected");
 		} else {

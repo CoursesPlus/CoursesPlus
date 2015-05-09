@@ -404,7 +404,7 @@ var components = {
 			var $saveThis = $(this);
 			cpal.storage.getKey("course-" + courseId, function(result) {
 				var courseInfo = {
-					fontFamily: "Helvetica Neue",
+					fontFamily: "ThemeDefault",
 					backgroundColor: "white"
 				};
 				if (result !== undefined) {
@@ -414,9 +414,12 @@ var components = {
 				var fontFamilyCss = courseInfo.fontFamily;
 				if (fontFamilyCss == "Helvetica Neue") {
 					// Not all Windows machines have Helvetica Neue. So, we add in some replacements
-					fontFamilyCss = "'Helvetica Neue', Helvetica, Arial, sans-serif;";
+					fontFamilyCss = "'Helvetica Neue', Helvetica, Arial, sans-serif";
 				}
-				$saveThis.css("font-family", fontFamilyCss);
+				if (courseInfo.fontFamily !== "ThemeDefault") {
+					$saveThis.css("font-family", fontFamilyCss);
+					$saveThis.find("a").css("font-family", fontFamilyCss);
+				}
 
 				$saveThis.css("background-color", courseInfo.backgroundColor);
 				$saveThis.attr("data-background-color", courseInfo.backgroundColor);
@@ -443,9 +446,11 @@ var components = {
 		
 		var $fontHeader = $('<h6 class="editUppercase">Font</h6>');
 		var $fontDropdown = $('<select class="editFontDropdown"></select>');
+		$fontDropdown.append($('<option value="ThemeDefault" class="editFont themeDefault">Theme default</option>'));
+		$fontDropdown.append($('<option disabled>&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;</option>'));
 		$fontDropdown.append($('<option value="Arial Rounded MT Bold" class="editFont arialRounded">Arial Rounded MT Bold</option>'));
 		$fontDropdown.append($('<option value="Georgia" class="editFont georgia">Georgia</option>'));
-		$fontDropdown.append($('<option value="Helvetica Neue" class="editFont helveticaNeue">Helvetica Neue (default)</option>'));
+		$fontDropdown.append($('<option value="Helvetica Neue" class="editFont helveticaNeue">Helvetica Neue</option>'));
 		$fontDropdown.append($('<option value="Impact" class="editFont impact">Impact</option>'));
 		$fontDropdown.append($('<option value="Lato" class="editFont lato">Lato</option>'));
 		$fontDropdown.append($('<option value="Oxygen" class="editFont oxygen">Oxygen</option>'));
@@ -454,11 +459,17 @@ var components = {
 		$fontDropdown.append($('<option value="Times New Roman" class="editFont timesNewRoman">Times New Roman</option>'));
 		$fontDropdown.append($('<option value="Trebuchet MS" class="editFont trebuchetMS">Trebuchet MS</option>'));
 		$fontDropdown.append($('<option value="Verdana" class="editFont verdana">Verdana</option>'));
+
 		$fontDropdown.change(function() {
 			var courseId = $(".editCourseModal").attr("data-courseid");
 			$(".coursebox").each(function() {
 				if ($(this).attr("data-courseid") == courseId) {
-					$(this).css("font-family", $(".editFontDropdown").val());
+					var cssFamily = $(".editFontDropdown").val()
+					if (cssFamily == "ThemeDefault") {
+						cssFamily = "inherit";
+					}
+					$(this).css("font-family", cssFamily);
+					$(this).find("a").css("font-family", cssFamily);
 					$(this).attr("data-font-family", $(".editFontDropdown").val());
 					cpal.storage.getKey("course-" + courseId, function(result) {
 						var courseInfo = {};
@@ -670,7 +681,7 @@ var components = {
 		$(".headermain").remove();
 		$(".headermenu").remove();
 		$("#dalton_nav").remove();
-		$("body").css("padding-top", "70px");
+		$("body").css("padding-top", "60px");
 		$("body").append($navbar);
 
 		$(".navbar").css("overflow", "initial");
@@ -1200,31 +1211,41 @@ function runNonComponentTweaks(componentsToSkip) {
 
 	console.log("Changing text color...");
 	cpal.storage.getKey("textColor", function(result) {
-		if (result === undefined) {
-			console.log("Text color not set!");
+		if (result === undefined|| result === "themeDefault") {
+			console.log("Text color not set or is default!");
 			return;
 		}
-		$("html, body, #dalton-nav, #page-content").css("color", result);
-		$(".content h3.sectionname").css("color", result);
-		$("p").css("color", result);
+		$("html, body, #dalton-nav, #page-content").each(function() {
+			$(this).style("color", result, "important");
+		});
+		$(".content h3.sectionname").each(function() { 
+			$(this).style("color", result, "important");
+		});
+		$("p").each(function() {
+			$(this).style("color", result, "important");
+		});
 	});
 
 	console.log("Changing link text color...");
 	cpal.storage.getKey("linkTextColor", function(result) {
-		if (result === undefined) {
-			console.log("Link text color not set!");
+		if (result === undefined || result === "themeDefault") {
+			console.log("Link text color not set or is default!");
 			return;
 		}
-		$("a").not(".dropdown-toggle").not(".navbar-brand").not(".dropdown-menu > li > a").css("color", result);
+		$("a").not(".dropdown-toggle").not(".navbar-brand").not(".dropdown-menu > li > a").each(function() {
+			$(this).style("color", result, "important");
+		});
 	});
 
 	console.log("Changing navbar text color...");
 	cpal.storage.getKey("navTextColor", function(result) {
-		if (result === undefined) {
-			console.log("Nav text color not set!");
+		if (result === undefined || result === "themeDefault") {
+			console.log("Nav text color not set or is default!");
 			return;
 		}
-		$(".dropdown-toggle, .navbar-brand, .dropdown-menu > li > a").css("color", result);
+		$(".dropdown-toggle, .navbar-brand, .dropdown-menu > li > a, .dropdown").each(function(){ 
+			$(this).style("color", result, "important");
+		});
 	});
 
 	console.log("Changing logo...");
