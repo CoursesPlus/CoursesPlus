@@ -1,3 +1,19 @@
 .breadcrumb {
 	background: transparent;
 }
+
+.coursebox > .info > .coursename a {
+	font-weight: bold;
+}
+
+table a:not(.btn), .table a:not(.btn) {
+	text-decoration: none !important;
+}
+
+caption {
+	padding: 0;
+}
+
+.block .header h2 {
+	font-weight: bold;
+}

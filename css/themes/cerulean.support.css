@@ -1,3 +1,7 @@
 .breadcrumb {
 	background: transparent;
 }
+
+.editBtn, .upcomingEventsBtn {
+	border-radius: 0;
+}
