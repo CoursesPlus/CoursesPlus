@@ -21,7 +21,7 @@ helpers.getUniqueID = function(callback) {
 		if (result != undefined) {
 			callback(result);
 		} else {
-			var newid = randomString(24);
+			var newid = helpers.randomString(24);
 			cpal.storage.setKey("uniqueId", newid, function() {
 				callback(newId);
 			});
