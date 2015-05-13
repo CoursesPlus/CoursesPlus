@@ -216,7 +216,7 @@ var services = {
 		},
 		onDisable: function() {
 
-		}
+		},
 		createBlock: function() {
 			return $('<script type="text/javascript" id="WolframAlphaScript1674d5c5b2ada73e7c37f3a2bd2a3677" src="//www.wolframalpha.com/widget/widget.jsp?id=1674d5c5b2ada73e7c37f3a2bd2a3677&theme=gray&output=lightbox"></script>');
 		}
