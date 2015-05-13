@@ -205,7 +205,22 @@ var services = {
 				$outputObj.append($iframe);
 
 			return $outputObj;
+		},
+	wolfram_alpha: {
+		displayName: "Wolfram|Alpha",
+		author: "CoursesPlus",
+		authorVerification: true,
+		description: "Displays a Wolfram|Alpha search box in the sidebar",
+		onEnable: function() {
+
+		},
+		onDisable: function() {
+
 		}
+		createBlock: function() {
+			return $('<script type="text/javascript" id="WolframAlphaScript1674d5c5b2ada73e7c37f3a2bd2a3677" src="//www.wolframalpha.com/widget/widget.jsp?id=1674d5c5b2ada73e7c37f3a2bd2a3677&theme=gray&output=lightbox"></script>');
+		}
+	}
 	}//,
 	/* This is not a service because it should affect a whole site with all the above geatures
 	archivedCourses:
