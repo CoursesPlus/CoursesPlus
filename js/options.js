@@ -223,6 +223,9 @@ function handleServicePart2(index, thisService) {
 		serviceList.push(index);
 		cpal.storage.setKey("services", serviceList, function() {
 			thisService.onEnable();
+			if (thisService.options) {
+				openServiceOptions(index);
+			}
 		});
 	});
 }
