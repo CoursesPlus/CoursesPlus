@@ -66,7 +66,7 @@ var services = {
 		displayName: "Schedule",
 		author: "CoursesPlus",
 		authorVerification: true,
-		description: "Displays what classes you've got next in the sidebar. <em>This service is for students only.</em>",
+		description: "Displays what classes you've got next in the sidebar.",
 		type: "block",
 		origins: ["*://schedules.dalton.org/"],
 		requires: [],
