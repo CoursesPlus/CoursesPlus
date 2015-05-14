@@ -388,37 +388,54 @@ $(document).ready(function() {
 			onNavTextColorPickerChange();
 		}
 	});
-	cpal.storage.getKey("logoType", function(logoType) {
-		if (logoType === undefined) {
-			return;
+
+	// Logos
+
+		// Add logos to gallery
+		for (var logoIndex in window.logos) {
+			var thisLogo = window.logos[logoIndex];
+			var $logo = $('<div class="selBox logo" data-selBoxGroup="logo"></div>');
+				
+				$logo.attr("data-selBoxVal", logoIndex);
+				$logo.addClass(logoIndex);
+				$logo.css("background-image", "url(" + cpal.resources.getURL(thisLogo.whitebg) + ")");
+				$logo.css("width", thisLogo.width + "px");
+				$logo.css("height", thisLogo.height + "px");
+
+			$("#logoSelGallery").append($logo);
 		}
-		cpal.storage.getKey("logoImage", function(logoImage) {
-			if (logoImage === undefined) {
+
+		cpal.storage.getKey("logoType", function(logoType) {
+			if (logoType === undefined) {
 				return;
 			}
-			$(".logo.regular").removeClass("selected");
-			$(".logo." + logoImage).addClass("selected");
-			$(".selectedLogo").attr("src", cpal.resources.getURL("images/logos/" + logoImage + ".png"));
+			cpal.storage.getKey("logoImage", function(logoImage) {
+				if (logoImage === undefined) {
+					return;
+				}
+				$(".logo.regular").removeClass("selected");
+				$(".logo." + logoImage).addClass("selected");
+				$(".selectedLogo").attr("src", cpal.resources.getURL(window.logos[logoImage].whitebg));
+			});
 		});
-	});
-	$(".selectedLogo").attr("src", cpal.resources.getURL("images/logos/regular.png"));
-	$.ajax({
-		url: 'https://coursesplus.tk/usrupl/uplInfo.php',  //Server script to process data
-		type: 'POST',
-		dataType: 'json',
-		success: function(res) {
-			$("#bgFileInfo").html(res.typeAndSize);
-			$("#bgPrivacy").html(res.privacy);
+		$(".selectedLogo").attr("src", cpal.resources.getURL("images/logos/regular.png"));
+		$.ajax({
+			url: 'https://coursesplus.tk/usrupl/uplInfo.php',  //Server script to process data
+			type: 'POST',
+			dataType: 'json',
+			success: function(res) {
+				$("#bgFileInfo").html(res.typeAndSize);
+				$("#bgPrivacy").html(res.privacy);
 
-			hideConnecting();
-		},
-		error: function(jqXHR, textStatus, errorThrown) {
-			$("#connectingText").text("Unknown error connecting to background image server!");
-			console.log(jqXHR);
-			console.log(textStatus);
-			console.log(errorThrown);
-		}
-	});
+				hideConnecting();
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				$("#connectingText").text("Unknown error connecting to background image server!");
+				console.log(jqXHR);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		});
 
 	$(".selBox").click(function() {
 		if ($(this).hasClass("selected") && !$(this).hasClass("custom")) {
@@ -480,7 +497,7 @@ $(document).ready(function() {
 	$(".logo").on("selBoxChanged" ,function(e) {
 		cpal.storage.setKey("logoType", "preload");
 		cpal.storage.setKey("logoImage", e.to);
-		$(".selectedLogo").attr("src", cpal.resources.getURL("images/logos/" + e.to + ".png"));
+		$(".selectedLogo").attr("src", cpal.resources.getURL(window.logos[e.to].whitebg));
 	});
 	$("#selectLogo").click(function() {
 		$("#selLogoModal").modal();
