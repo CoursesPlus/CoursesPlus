@@ -7,7 +7,7 @@ if (window.location.href.indexOf(".pdf") != -1 || window.location.href.indexOf("
 	document.addEventListener('DOMContentLoaded', onDOM_Ready, false);
 }
 
-if (cpal.extension.getBrowser() == "safari") {
+if (cpal.extension.getBrowser() == "safari" || cpal.extension.getBrowser() == "firefox") {
 	window.services.runAll();
 	window.components.runAll();
 }
