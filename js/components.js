@@ -1164,13 +1164,11 @@ function runNonComponentTweaks(componentsToSkip) {
 	console.log("Changing theme...");
 	cpal.storage.getKey("theme", function(value) {
 		if (value != undefined) {
-			if (value != "bootstrap") {
-				var $linkTag = $("<link rel=\"stylesheet\" />");
-					$linkTag.attr("href", cpal.resources.getURL("css/themes/" + value + ".css"));
-				$("head").append($linkTag);
-				var $supportTag = $("<link rel=\"stylesheet\" />");
-					$supportTag.attr("href", cpal.resources.getURL("css/themes/" + value + ".support.css"));
-				$("head").append($supportTag);
+			var thisTheme = window.themes[value];
+			for (var cssIndex in thisTheme.css) {
+				var $themeStyleTag = $("<link rel=\"stylesheet\" />");
+					$themeStyleTag.attr("href", cpal.resources.getURL("css/themes/" + thisTheme.css[cssIndex]));
+				$("head").append($themeStyleTag);
 			}
 		}
 	});
@@ -1249,90 +1247,97 @@ function runNonComponentTweaks(componentsToSkip) {
 	});
 
 	console.log("Changing logo...");
-	cpal.storage.getKey("logoType", function(logoType) {
-		var newNavbar = (componentsToSkip.indexOf("newNavbar") == -1);
-		if (newNavbar) {
-			//console.log("Logo disabled because new navbar!");
-			$("#page-header").css("background", "transparent");
-			//return;
+	cpal.storage.getKey("theme", function(value) {
+		var themeBg = "white";
+		if (value != undefined) {
+			themeBg = window.themes[value].navbarbg;
 		}
-		if (logoType === undefined) {
-			console.log("Logo type not set!");
+		console.log(themeBg);
+		cpal.storage.getKey("logoType", function(logoType) {
+			var newNavbar = (componentsToSkip.indexOf("newNavbar") == -1);
 			if (newNavbar) {
-				var newUrl = cpal.resources.getURL("images/logos/regular.png");
-				var newWidth = (328 / 2) + "px";
-				var newHeight = (80 / 2) + "px";
-				var htmlToBrand = '<img class="navbarHappyLogo" src="' + newUrl + '" alt="Logo" width="' + newWidth + '" height="' + newHeight + '"/>';
-				$(".navbar-brand").html(htmlToBrand);
+				//console.log("Logo disabled because new navbar!");
+				$("#page-header").css("background", "transparent");
+				//return;
 			}
-			return;
-		}
-		if (logoType == "preload") {
-			console.log("Logo is preload, looking up which one...");
-			cpal.storage.getKey("logoImage", function(logoImage) {
-				if (logoImage === undefined) {
-					console.log("Logo image not set!");
-					return;
-				}
-
-				var logoUrl = cpal.resources.getURL("images/logos/" + logoImage + ".png");
-				var logoWidth = "";
-				var logoHeight = "";
-				var logoRaiseness = "";
-
-				// TODO: Make more efficient
-				switch (logoImage) {
-					case "regular":
-						logoWidth = "328px";
-						logoHeight = "80px";
-						break;
-
-					case "circle":
-						logoWidth = "80px";
-						logoHeight = "80px";
-						logoRaiseness = "-10px";
-						break;
-
-					case "coursesbigwordmark":
-						logoWidth = "216px";
-						logoHeight = "80px";
-						logoRaiseness = "-9px";
-						break;
-
-					case "coursespluswordmark":
-						logoWidth = "194px";
-						logoHeight = "31px";
-						logoRaiseness = "-3px";
-						break;
-
-					case "daltoncourseswordmark":
-						logoWidth = "237px";
-						logoHeight = "35px";
-						logoRaiseness = "-1px";
-						break;
-
-					default:
-						break;
-
-				}
-
+			if (logoType === undefined) {
+				console.log("Logo type not set!");
 				if (newNavbar) {
-					console.log("New navbar, new logo.");
-					var newWidth = (parseInt(logoWidth.replace("px", "")) / 2) + "px";
-					var newHeight = (parseInt(logoHeight.replace("px", "")) / 2) + "px";
-					var topText = "";
-					if (logoRaiseness != "") {
-						topText = ' style="top: ' + logoRaiseness + '"';
-					}
-					var htmlToBrand = '<img class="navbarHappyLogo" src="' + logoUrl + '" alt="Logo" width="' + newWidth + '" height="' + newHeight + '"' + topText + '/>';
+					var newUrl = cpal.resources.getURL("images/logos/regular.png");
+					var newWidth = (328 / 2) + "px";
+					var newHeight = (80 / 2) + "px";
+					var htmlToBrand = '<img class="navbarHappyLogo" src="' + newUrl + '" alt="Logo" width="' + newWidth + '" height="' + newHeight + '"/>';
 					$(".navbar-brand").html(htmlToBrand);
-				} else {
-					console.log("Old navbar, old logo.");
-					$("#page-header").css("background-image", "url(" + logoUrl + ")");
-					$("#page-header").css("background-size", logoWidth + " " + logoHeight);
 				}
-			});
-		}
+				return;
+			}
+			if (logoType == "preload") {
+				console.log("Logo is preload, looking up which one...");
+				cpal.storage.getKey("logoImage", function(logoImage) {
+					if (logoImage === undefined) {
+						console.log("Logo image not set!");
+						return;
+					}
+
+					var logoUrl = cpal.resources.getURL((themeBg == "white" ? window.logos[logoImage].whitebg : window.logos[logoImage].blackbg));
+					var logoWidth = "";
+					var logoHeight = "";
+					var logoRaiseness = "";
+
+					// TODO: Make more efficient
+					switch (logoImage) {
+						case "regular":
+							logoWidth = "328px";
+							logoHeight = "80px";
+							break;
+
+						case "circle":
+							logoWidth = "80px";
+							logoHeight = "80px";
+							logoRaiseness = "-10px";
+							break;
+
+						case "coursesbigwordmark":
+							logoWidth = "216px";
+							logoHeight = "80px";
+							logoRaiseness = "-9px";
+							break;
+
+						case "coursespluswordmark":
+							logoWidth = "194px";
+							logoHeight = "31px";
+							logoRaiseness = "-3px";
+							break;
+
+						case "daltoncourseswordmark":
+							logoWidth = "237px";
+							logoHeight = "35px";
+							logoRaiseness = "-1px";
+							break;
+
+						default:
+							break;
+
+					}
+
+					if (newNavbar) {
+						console.log("New navbar, new logo.");
+						var newWidth = (parseInt(logoWidth.replace("px", "")) / 2) + "px";
+						var newHeight = (parseInt(logoHeight.replace("px", "")) / 2) + "px";
+						var topText = "";
+						if (logoRaiseness != "") {
+							topText = ' style="top: ' + logoRaiseness + '"';
+						}
+						var htmlToBrand = '<img class="navbarHappyLogo" src="' + logoUrl + '" alt="Logo" width="' + newWidth + '" height="' + newHeight + '"' + topText + '/>';
+						$(".navbar-brand").html(htmlToBrand);
+					} else {
+						console.log("Old navbar, old logo.");
+						$("#page-header").css("background-image", "url(" + logoUrl + ")");
+						$("#page-header").css("background-size", logoWidth + " " + logoHeight);
+					}
+				});
+			}
+		});
 	});
 }
 

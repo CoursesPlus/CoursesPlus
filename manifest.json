@@ -26,6 +26,8 @@
 				"js/helpers.js",
 				"js/services.js",
 				"js/components.js",
+				"js/themes.js",
+				"js/logos.js",
 				"js/inject.js",
 				"js/coursesLib.js"
 			],
