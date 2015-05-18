@@ -28,7 +28,7 @@ $(document).ready(function() {
 		if ($(this).hasClass("disabled")) {
 			return;
 		}
-		$("#useLocation").text("Finding location...");
+		$("#useLocation").text("Finding location (please allow use of location above)...");
 		$("#useLocation").addClass("disabled");
 		navigator.geolocation.getCurrentPosition(function(position) {
 			loadWeather(position.coords.latitude + "," + position.coords.longitude);
