@@ -425,7 +425,7 @@ var components = {
 				$saveThis.attr("data-background-color", courseInfo.backgroundColor);
 			});
 
-			var $editBtn = $('<button class="editBtn nobootstrapchange btn btn-default btn-sm"><i class="glyphicon glyphicon-edit"></i></button>');
+			var $editBtn = $('<button class="editBtn nobootstrapchange btn btn-info btn-sm"><i class="glyphicon glyphicon-edit"></i></button>');
 			//$editBtn.css("left", ($('.coursebox').width() - 43) + "px");
 			$editBtn.click(onEditBtnDown);
 			$editBtn.mouseup(onEditBtnDown);
@@ -907,7 +907,7 @@ var components = {
 		$('.coursebox').each(function() {
 			var courseId = $(this).attr("data-courseid");
 
-			var $upcomingEventsBtn = $('<button class="upcomingEventsBtn nobootstrapchange btn btn-default btn-sm"><i class="glyphicon glyphicon-time"></i></button>');
+			var $upcomingEventsBtn = $('<button class="upcomingEventsBtn nobootstrapchange btn btn-info btn-sm"><i class="glyphicon glyphicon-time"></i></button>');
 			$upcomingEventsBtn.click(onUpcomingEventsBtnDown);
 			$upcomingEventsBtn.mouseup(onUpcomingEventsBtnDown);
 
@@ -1213,13 +1213,7 @@ function runNonComponentTweaks(componentsToSkip) {
 			console.log("Text color not set or is default!");
 			return;
 		}
-		$("html, body, #dalton-nav, #page-content").each(function() {
-			$(this).style("color", result, "important");
-		});
-		$(".content h3.sectionname").each(function() { 
-			$(this).style("color", result, "important");
-		});
-		$("p").each(function() {
+		$("html, body, #dalton-nav, #page-content, .content h3.sectionname, p, .btn").each(function () {
 			$(this).style("color", result, "important");
 		});
 	});

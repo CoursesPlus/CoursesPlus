@@ -6340,10 +6340,12 @@ body {
 .region-content > h1 {
 	display: none;
 }
-.btn {
+.btn:not(.nobootstrapchange) {
 	background: rgb(66, 139, 202) !important;
 	color: rgb(255, 255, 255) !important;
-	border-color: rgb(53, 126, 189) !important;
+	border-color: rgb(53, 126, 189);
+}
+.btn {
 	text-shadow: none !important;
 }
 .mform fieldset {
