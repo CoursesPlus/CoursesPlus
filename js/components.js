@@ -1274,45 +1274,9 @@ function runNonComponentTweaks(componentsToSkip) {
 					}
 
 					var logoUrl = cpal.resources.getURL((themeBg == "white" ? window.logos[logoImage].whitebg : window.logos[logoImage].blackbg));
-					var logoWidth = "";
-					var logoHeight = "";
-					var logoRaiseness = "";
-
-					// TODO: Make more efficient
-					switch (logoImage) {
-						case "regular":
-							logoWidth = "328px";
-							logoHeight = "80px";
-							break;
-
-						case "circle":
-							logoWidth = "80px";
-							logoHeight = "80px";
-							logoRaiseness = "-10px";
-							break;
-
-						case "coursesbigwordmark":
-							logoWidth = "216px";
-							logoHeight = "80px";
-							logoRaiseness = "-9px";
-							break;
-
-						case "coursespluswordmark":
-							logoWidth = "194px";
-							logoHeight = "31px";
-							logoRaiseness = "-3px";
-							break;
-
-						case "daltoncourseswordmark":
-							logoWidth = "237px";
-							logoHeight = "35px";
-							logoRaiseness = "-1px";
-							break;
-
-						default:
-							break;
-
-					}
+					var logoWidth = window.logos[logoImage].width + "px";
+					var logoHeight = window.logos[logoImage].height + "px";
+					var logoRaiseness = window.logos[logoImage].raiseness + "px";
 
 					if (newNavbar) {
 						console.log("New navbar, new logo.");
