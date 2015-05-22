@@ -425,7 +425,7 @@ var components = {
 				$saveThis.attr("data-background-color", courseInfo.backgroundColor);
 			});
 
-			var $editBtn = $('<button class="editBtn nobootstrapchange btn btn-info btn-sm"><i class="glyphicon glyphicon-edit"></i></button>');
+			var $editBtn = $('<button class="editBtn nobootstrapchange btn btn-primary btn-sm"><i class="glyphicon glyphicon-edit"></i></button>');
 			//$editBtn.css("left", ($('.coursebox').width() - 43) + "px");
 			$editBtn.click(onEditBtnDown);
 			$editBtn.mouseup(onEditBtnDown);
@@ -907,7 +907,7 @@ var components = {
 		$('.coursebox').each(function() {
 			var courseId = $(this).attr("data-courseid");
 
-			var $upcomingEventsBtn = $('<button class="upcomingEventsBtn nobootstrapchange btn btn-info btn-sm"><i class="glyphicon glyphicon-time"></i></button>');
+			var $upcomingEventsBtn = $('<button class="upcomingEventsBtn nobootstrapchange btn btn-primary btn-sm"><i class="glyphicon glyphicon-time"></i></button>');
 			$upcomingEventsBtn.click(onUpcomingEventsBtnDown);
 			$upcomingEventsBtn.mouseup(onUpcomingEventsBtnDown);
 
