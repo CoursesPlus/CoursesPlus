@@ -1213,7 +1213,7 @@ function runNonComponentTweaks(componentsToSkip) {
 			console.log("Text color not set or is default!");
 			return;
 		}
-		$("html, body, #dalton-nav, #page-content, .content h3.sectionname, p, .btn").each(function () {
+		$("html, body, #dalton-nav, #page-content, .content h3.sectionname, p, .btn, button").each(function () {
 			$(this).style("color", result, "important");
 		});
 	});

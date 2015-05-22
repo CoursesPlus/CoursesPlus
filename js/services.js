@@ -304,13 +304,14 @@ window.services.runAll = function() {
 				$serviceUpsell.text("Enable Services to connect Courses+ with other websites and information, like the current lunch or your schedule.");
 
 				var $learnMore = $('<a class="btn btn-primary" target="_blank">Learn more</a>');
-				var $noThanks = $('<button class="btn btn-danger btn-sm">No thanks</button>');
+				var $noThanks = $('<a class="btn btn-primary btn-sm">No thanks</a>');
 
 				$learnMore.attr("href", cpal.resources.getURL("etc/options.html#services"));
 				$noThanks.click(function() {
 					cpal.storage.setKey("serviceUpsell", true, function() {
 						window.location.reload();
 					});
+					return false;
 				});
 
 				$serviceUpsell.append("<br />");
