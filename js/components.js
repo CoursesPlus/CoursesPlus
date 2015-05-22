@@ -1257,7 +1257,8 @@ function runNonComponentTweaks(componentsToSkip) {
 			if (logoType === undefined) {
 				console.log("Logo type not set!");
 				if (newNavbar) {
-					var newUrl = cpal.resources.getURL("images/logos/regular.png");
+					var logoImage = "regular";
+					var newUrl = cpal.resources.getURL((themeBg == "white" ? window.logos[logoImage].whitebg : window.logos[logoImage].blackbg));
 					var newWidth = (328 / 2) + "px";
 					var newHeight = (80 / 2) + "px";
 					var htmlToBrand = '<img class="navbarHappyLogo" src="' + newUrl + '" alt="Logo" width="' + newWidth + '" height="' + newHeight + '"/>';

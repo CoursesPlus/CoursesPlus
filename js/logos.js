@@ -1,10 +1,10 @@
 var logos = {
 	regular: {
-		whitebg: "images/logos/regular.png",
-		blackbg: "images/logos/regular.png",
+		whitebg: "images/logos/whitebg/regular.png",
+		blackbg: "images/logos/blackbg/regular.png",
 		width: 328,
 		height: 80,
-        raiseness: 0
+		raiseness: 0
 	},
 	circle: {
 		whitebg: "images/logos/circle.png",
