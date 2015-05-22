@@ -572,6 +572,8 @@ $(document).ready(function() {
 		cpal.storage.getKey("theme", function(value) {
 			if (value != undefined) {
 				$("input[name=themeRadios][value=" + value + "]").prop("checked", true);
+			} else {
+				$("input[name=themeRadios][value=bootstrap]").prop("checked", true);
 			}
 		});
 
