@@ -723,7 +723,7 @@ var components = {
 
 		$("body").append($emotionModal);
 
-		var $emotionButton = $('<button id="emotionButton" class="btn btn-info">Emotions...</button>');
+		var $emotionButton = $('<input type="submit" id="emotionButton" class="btn btn-info" value="Emotions..." />');
 		$emotionButton.click(function() {
 			$(".emotionModal").modal();
 			return false;
