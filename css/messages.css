@@ -20,6 +20,10 @@
 .coursesplus-emotiontable > tbody > tr > td {
 	padding-bottom: 15px;
 }
+.emoteCell:hover {
+	background-color: #ddd;
+	cursor: pointer;
+}
 
 /* New message notification */
 #newmessageoverlay {

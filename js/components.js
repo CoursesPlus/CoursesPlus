@@ -687,7 +687,6 @@ var components = {
 		$(".navbar").css("overflow", "initial");
 	}, js: [], css: ["newNav.css"], runOn: "*", requires: ["bootstrap"]},
 	messageFixes: {displayName: "Messaging changes", description: "Makes some changes to the messaging system.", exec: function() {
-
 		$("#id_message").attr("placeholder", "Type message here...");
 
 		var $emotionModal = $('<div class="emotionModal modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">Emotions</h4></div><div class="modal-body"></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>');
@@ -703,10 +702,15 @@ var components = {
 				var $emoteRow = $('<tr></tr>');
 
 				for ( var emoteCode in emoteTable ) {
-					var $emoteCell = $('<td></td>');
+					var $emoteCell = $('<td class="emoteCell"></td>');
 
 						$emoteCell.append($('<span><img src="' + emoteBaseUrl + emoteTable[emoteCode].url + '" alt="' + emoteCode + '" title="' + emoteCode + '"/><br/>' + emoteCode + '</span>'));
 					
+						$emoteCell.click(function () {
+							$("#id_message").val($("#id_message").val() + $(this).children("span").text());
+							$(".emotionModal").modal("hide");
+						});
+
 					$emoteRow.append($emoteCell);
 
 					emoteColumn++;
