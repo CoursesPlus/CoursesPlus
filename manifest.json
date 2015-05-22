@@ -16,7 +16,8 @@
 				"https://courses2015.dalton.org/*"
 			],
 			"css": [
-				"css/inject.css"
+				"css/inject.css",
+				"scss_gen/fonts.css"
 			],
 			"js": [
 				"js/cpal.js",
