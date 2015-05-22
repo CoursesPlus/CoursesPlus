@@ -29,7 +29,7 @@ function openServiceOptions(serviceIndex) {
 function createList(sortedComponents, $ulToAppendTo, checkList, checkPresence, clickEvent) {
 	//var sortedComponents = window.components;
 	for (var componentIndex in sortedComponents) {
-		if (componentIndex == "runAll") {
+	    if (componentIndex == "runAll" || componentIndex == "createErrorModal") {
 			continue;
 		}
 		var component = sortedComponents[componentIndex];
@@ -67,22 +67,23 @@ function createList(sortedComponents, $ulToAppendTo, checkList, checkPresence, c
 
 			var $req = $("<p></p>");
 			$req.addClass("featureReq");
-			if (component.requires.length > 0) {
-				var result = "This feature requires ";
-				$.each(component.requires, function(index) {
-					if (index != 0) {
-						result += ",";
-					}
-					if (component.requires.length > 1 && index == (component.requires.length - 1)) {
-						result += " and ";
-					}
-					firstOne = false;
-					result += components[this].displayName;
-				});
-				result += " to be enabled.";
-				$req.html(result);
-				$appendMe.append($req);
-			}
+
+	        if (component.requires.length > 0) {
+	            var result = "This feature requires ";
+	            $.each(component.requires, function(index) {
+	                if (index != 0) {
+	                    result += ",";
+	                }
+	                if (component.requires.length > 1 && index == (component.requires.length - 1)) {
+	                    result += " and ";
+	                }
+	                firstOne = false;
+	                result += components[this].displayName;
+	            });
+	            result += " to be enabled.";
+	            $req.html(result);
+	            $appendMe.append($req);
+	        }
 
 			if (component.options) {
 				var $options = $('<button>Options</button>');
