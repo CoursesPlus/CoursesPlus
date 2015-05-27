@@ -9,25 +9,38 @@
 		<link href="../scss_gen/hamburger.css" rel="stylesheet" />
 
 		<script src="../js/jquery.js"></script>
-		<script src="../js/jquery.history.js"></script>
+		<script src="../js/cpalloader.js"></script>
 		<script src="../js/coursesLib.js"></script>
-		<script src="../js/hamburger.js"></script>
+		<script src="menubar.js"></script>
 
 		<style>
+			body, #page-content {
+				overflow-x: hidden;
+			}
 			#page-content {
 				padding-top: 20px;
 			}
+			.btn:hover {
+				background: rgb(56, 129, 192) !important;
+			}
 		</style>
 	</head>
-	<body style="overflow-x:hidden;">
+	<body>
 		<noscript>Please enable JavaScript. You can do this in Content Settings.</noscript>
-		<div id="page-content" style="overflow-x:hidden;">
+		<div id="page-content">
 			<div id="loadingPage" class="page showing">
 				<i class="fa fa-4x fa-circle-o-notch fa-spin"></i>
 			</div>
 			<div id="notLoggedInPage" class="page">
 				<h1>You're not logged in!</h1>
-				<h4>Log in on regular Courses and come back here.</h4>
+				<h4>Log in on Courses and come back here.</h4>
+			</div>
+			<div id="welcomePage" class="page">
+				<h1>Welcome</h1>
+				<h4>Your upcoming events on Courses go up here.</h4>
+				<button id="soundsGood" class="btn btn-default btn-lg">Sounds good</button>
+				<br />
+				<button id="noThanks" class="btn btn-info">No thanks</button>
 			</div>
 			<div id="mainPage" class="page">
 				<div class="content">
