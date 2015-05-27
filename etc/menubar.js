@@ -10,47 +10,57 @@ function setPageTo(pageId, dataStuff) {
 	}, 150);
 }
 
-function shouldLoadWelcome() {
-	return true;
+function shouldLoadWelcome(callback) {
+	cpal.storage.getKey("showedMenubarWelcome", function (resp) {
+		if (resp == undefined || resp == false) {
+			callback(true);
+		} else {
+			callback(false);
+		}
+	});
 }
 
 $(document).ready(function () {
-	if (!shouldLoadWelcome()) {
-		window.coursesLib.checkLoggedIn(function (loginStatus) {
-			if (!loginStatus.isLoggedIn) {
-				setPageTo("notLoggedInPage");
-				return;
-			}
-			window.coursesLib.getProfile(function (response) {
-				window.coursesLib.getUpcomingEvents(function (response) {
-					for (var i = 0; i < response.events.length; i++) {
-						var thisEvent = response.events[i];
-						var $eventItem = $('<li><div class="upcoming-title"></div><div class="upcoming-course"></div><div class="upcoming-desc"></div></li>');
+	shouldLoadWelcome(function (loadWelcome) {
+		if (!loadWelcome) {
+			window.coursesLib.checkLoggedIn(function (loginStatus) {
+				if (!loginStatus.isLoggedIn) {
+					setPageTo("notLoggedInPage");
+					return;
+				}
+				window.coursesLib.getProfile(function (response) {
+					window.coursesLib.getUpcomingEvents(function (response) {
+						for (var i = 0; i < response.events.length; i++) {
+							var thisEvent = response.events[i];
+							var $eventItem = $('<li><div class="upcoming-title"></div><div class="upcoming-course"></div><div class="upcoming-desc"></div></li>');
 
-						$eventItem.children(".upcoming-title").text(thisEvent.title);
-						$eventItem.children(".upcoming-course").text(thisEvent.course);
-						var descThing = thisEvent.normText;
-						if (descThing.length > 150) {
-							descThing = descThing.substring(0, 150);
-							descThing += "...";
+							$eventItem.children(".upcoming-title").text(thisEvent.title);
+							$eventItem.children(".upcoming-course").text(thisEvent.course);
+							var descThing = thisEvent.normText;
+							if (descThing.length > 150) {
+								descThing = descThing.substring(0, 150);
+								descThing += "...";
+							}
+							$eventItem.children(".upcoming-desc").text(descThing);
+
+							$("#upcomingEventList").append($eventItem);
+							/*$(".upcoming-desc").each(function () {
+								//$(this).text().sp
+							});*/
 						}
-						$eventItem.children(".upcoming-desc").text(descThing);
-
-						$("#upcomingEventList").append($eventItem);
-						/*$(".upcoming-desc").each(function () {
-							//$(this).text().sp
-						});*/
-					}
-					setPageTo("mainPage");
+						setPageTo("mainPage");
+					});
 				});
 			});
-		});
-	} else {
-		setPageTo("welcomePage");
-	}
+		} else {
+			setPageTo("welcomePage");
+		}
+	});
 
 	$("#soundsGood").click(function () {
-		window.location.reload();
+		cpal.storage.setKey("showedMenubarWelcome", true, function () {
+			window.location.reload();
+		});		
 	});
 	$("#noThanks").click(function () {
 		chrome.tabs.create({
