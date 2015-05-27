@@ -41,7 +41,11 @@ $(document).ready(function () {
 								descThing = descThing.substring(0, 150);
 								descThing += "...";
 							}
-							$eventItem.children(".upcoming-desc").text(descThing);
+							$eventItem.children(".upcoming-desc").text(descThing + " ");
+
+							var $readLink = $('<a target="_blank">see details &rarr;</a>');
+								$readLink.attr("href", thisEvent.link);
+							$eventItem.children(".upcoming-desc").append($readLink);
 
 							$("#upcomingEventList").append($eventItem);
 							/*$(".upcoming-desc").each(function () {
