@@ -1059,7 +1059,7 @@ var components = {
 	navbarMessages: {displayName: "Navbar messages", description: "Shows messages and information underneath the navbar.", exec: function() {
 		componentEnabled("newNavbar", function(newNav) {
 			helpers.getUniqueID(function(id) {
-				$.get("https://coursesplus.tk/msg/getmsg.php", {
+				$.get("https://analytics.coursesplus.tk/getmsg.php", {
 					uniqid: id,
 					version: cpal.extension.getExtensionVersion(),
 					browser: cpal.extension.getBrowser(),
