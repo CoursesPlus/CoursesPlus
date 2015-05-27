@@ -419,7 +419,7 @@ $(document).ready(function() {
 				$(".selectedLogo").attr("src", cpal.resources.getURL(window.logos[logoImage].whitebg));
 			});
 		});
-		$(".selectedLogo").attr("src", cpal.resources.getURL("images/logos/regular.png"));
+		$(".selectedLogo").attr("src", cpal.resources.getURL(window.logos["regular"].whitebg));
 		$.ajax({
 			url: 'https://usrupl.coursesplus.tk/uplInfo.php',  //Server script to process data
 			type: 'POST',
