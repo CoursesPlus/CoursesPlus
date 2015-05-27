@@ -1194,7 +1194,17 @@ function runNonComponentTweaks(componentsToSkip) {
 			return;
 		}
 		var $bgElements = $superBgThing;//$("html, body, #dalton-nav, #page-content");
-		$bgElements.css("background-image", "url('" + result.url + "')");
+		var url = result.url;
+		if (url.indexOf("coursesplus.tk/usrupl/") > -1) {
+			url = url.replace("coursesplus.tk/usrupl/", "usrupl.coursesplus.tk");
+			console.warn("Detected old URL format for background image; changing stored URL to " + url);
+			var newResult = result;
+			newResult.url = url;
+			cpal.storage.setKey("backgroundImage", newResult, function () {
+				console.log("Background image URL change success.");
+			});
+		}
+		$bgElements.css("background-image", "url('" + url + "')");
 		console.log(result);
 		switch (result.sizing) {
 			case "center":
