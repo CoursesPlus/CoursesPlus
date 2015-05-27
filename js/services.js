@@ -42,7 +42,7 @@ var services = {
 
 		},
 		createBlock: function() {
-			$.get("https://coursesplus.tk/lunch.php", {}, function(strData) {
+			$.get("https://services.coursesplus.tk/lunch.php", {}, function(strData) {
 				var data = JSON.parse(strData);
 				
 				var $builtList = $("<ul></ul>");

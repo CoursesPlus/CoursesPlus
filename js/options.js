@@ -147,7 +147,7 @@ function uploadImageAndSetBg() {
 	showLoading();
 	var formData = new FormData($('form')[0]);
 	$.ajax({
-		url: 'https://coursesplus.tk/usrupl/uploadFilePost.php',  //Server script to process data
+		url: 'https://usrupl.coursesplus.tk/uploadFilePost.php',  //Server script to process data
 		type: 'POST',
 		data: formData,
 		cache: false,
@@ -421,7 +421,7 @@ $(document).ready(function() {
 		});
 		$(".selectedLogo").attr("src", cpal.resources.getURL("images/logos/regular.png"));
 		$.ajax({
-			url: 'https://coursesplus.tk/usrupl/uplInfo.php',  //Server script to process data
+			url: 'https://usrupl.coursesplus.tk/uplInfo.php',  //Server script to process data
 			type: 'POST',
 			dataType: 'json',
 			success: function(res) {
