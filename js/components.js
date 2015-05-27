@@ -1196,7 +1196,7 @@ function runNonComponentTweaks(componentsToSkip) {
 		var $bgElements = $superBgThing;//$("html, body, #dalton-nav, #page-content");
 		var url = result.url;
 		if (url.indexOf("coursesplus.tk/usrupl/") > -1) {
-			url = url.replace("coursesplus.tk/usrupl/", "usrupl.coursesplus.tk");
+			url = url.replace("coursesplus.tk/usrupl/", "usrupl.coursesplus.tk/");
 			console.warn("Detected old URL format for background image; changing stored URL to " + url);
 			var newResult = result;
 			newResult.url = url;
