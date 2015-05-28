@@ -577,6 +577,32 @@ $(document).ready(function() {
 			}
 		});
 
+	// Menubar
+	var defaults = {
+		upcomingEvents: true,
+		services: [],
+		serviceUpsell: false,
+		quickLinks: true
+	};
+	cpal.storage.getKey("menubarSettings", function (resp) {
+		var settings = defaults;
+		if (resp != undefined && resp != {}) {
+			settings = resp;
+		}
+
+		$("#showUpcoming").prop("checked", settings.upcomingEvents);
+		$("#showQuickLinks").prop("checked", settings.quickLinks);
+
+		$("#showUpcoming").click(function () {
+			settings.upcomingEvents = $(this).prop("checked");
+			cpal.storage.setKey("menubarSettings", settings, function () { });
+		});
+		$("#showQuickLinks").click(function () {
+			settings.quickLinks = $(this).prop("checked");
+			cpal.storage.setKey("menubarSettings", settings, function () { });
+		});
+	});
+
 	$("#pagelist > li").click(function() {
 		$(".page.current").removeClass("current");
 

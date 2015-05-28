@@ -20,41 +20,69 @@ function shouldLoadWelcome(callback) {
 	});
 }
 
+function getSettings(callback) {
+	var defaults = {
+		upcomingEvents: true,
+		services: [],
+		serviceUpsell: false,
+		quickLinks: true
+	};
+	cpal.storage.getKey("menubarSettings", function (settings) {
+		if (settings == undefined || settings == {}) {
+			callback(defaults);
+		} else {
+			callback(settings);
+		}
+	});
+}
+
 $(document).ready(function () {
 	shouldLoadWelcome(function (loadWelcome) {
 		if (!loadWelcome) {
-			window.coursesLib.checkLoggedIn(function (loginStatus) {
-				if (!loginStatus.isLoggedIn) {
-					setPageTo("notLoggedInPage");
-					return;
-				}
-				window.coursesLib.getProfile(function (response) {
-					window.coursesLib.getUpcomingEvents(function (response) {
-						for (var i = 0; i < response.events.length; i++) {
-							var thisEvent = response.events[i];
-							var $eventItem = $('<li><div class="upcoming-title"></div><div class="upcoming-course"></div><div class="upcoming-desc"></div></li>');
-
-							$eventItem.children(".upcoming-title").text(thisEvent.title);
-							$eventItem.children(".upcoming-course").text(thisEvent.course);
-							var descThing = thisEvent.normText;
-							if (descThing.length > 150) {
-								descThing = descThing.substring(0, 150);
-								descThing += "...";
-							}
-							$eventItem.children(".upcoming-desc").text(descThing + " ");
-
-							var $readLink = $('<a target="_blank">see details &rarr;</a>');
-								$readLink.attr("href", thisEvent.link);
-							$eventItem.children(".upcoming-desc").append($readLink);
-
-							$("#upcomingEventList").append($eventItem);
-							/*$(".upcoming-desc").each(function () {
-								//$(this).text().sp
-							});*/
+			getSettings(function (settings) {
+				if (settings.upcomingEvents) {
+					window.coursesLib.checkLoggedIn(function (loginStatus) {
+						if (!loginStatus.isLoggedIn) {
+							setPageTo("notLoggedInPage");
+							return;
 						}
-						setPageTo("mainPage");
-					});
-				});
+						window.coursesLib.getProfile(function (response) {
+							window.coursesLib.getUpcomingEvents(function (response) {
+								$("#upcomingEventList").text("");
+								for (var i = 0; i < response.events.length; i++) {
+									var thisEvent = response.events[i];
+									var $eventItem = $('<li><div class="upcoming-title"></div><div class="upcoming-course"></div><div class="upcoming-desc"></div></li>');
+
+									$eventItem.children(".upcoming-title").text(thisEvent.title);
+									$eventItem.children(".upcoming-course").text(thisEvent.course);
+									var descThing = thisEvent.normText;
+									if (descThing.length > 150) {
+										descThing = descThing.substring(0, 150);
+										descThing += "...";
+									}
+									$eventItem.children(".upcoming-desc").text(descThing + " ");
+
+									var $readLink = $('<a target="_blank">see details &rarr;</a>');
+										$readLink.attr("href", thisEvent.link);
+									$eventItem.children(".upcoming-desc").append($readLink);
+
+									$("#upcomingEventList").append($eventItem);
+									/*$(".upcoming-desc").each(function () {
+										//$(this).text().sp
+									});*/
+								}
+							});
+						});
+					});	
+				} else {
+					$("#upcomingEvents").hide();
+				}
+
+				if (!settings.quickLinks) {
+					$("#quickLinks").hide();
+				}
+
+				setPageTo("mainPage");
 			});
 		} else {
 			setPageTo("welcomePage");
