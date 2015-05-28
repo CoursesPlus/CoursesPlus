@@ -35,13 +35,14 @@ var services = {
 		origins: ["*://*.myschooldining.com/"],
 		requires: [],
 		options: false,
+		menuBar: true,
 		onEnable: function() {
 
 		},
 		onDisable: function() {
 
 		},
-		createBlock: function() {
+		createBlock: function(menubar) {
 			$.get("https://services.coursesplus.tk/lunch.php", {}, function(strData) {
 				var data = JSON.parse(strData);
 				
@@ -71,6 +72,7 @@ var services = {
 		origins: ["*://schedules.dalton.org/"],
 		requires: [],
 		options: "etc/scheduleslogin.html",
+		menuBar: true,
 		onEnable: function() {
 
 		},
@@ -81,7 +83,7 @@ var services = {
 				});
 			});
 		},
-		createBlock: function() {
+		createBlock: function(menubar) {
 			var schedulesUrl = "https://schedules.dalton.org/roux/index.php";
 
 			cpal.storage.getKey("schedules-owner", function(owner) {
@@ -174,6 +176,7 @@ var services = {
 		origins: ["*://*.wunderground.com/"],
 		requires: [],
 		options: "etc/weatheroptions.html",
+		menuBar: true,
 		onEnable: function() {
 			
 		},
@@ -182,7 +185,7 @@ var services = {
 
 			});
 		},
-		createBlock: function() {
+		createBlock: function(menubar) {
 			var $outputObj = $('<div id="coursesplus_services_weather_here"></div>');
 
 				var $iframe = $("<iframe seamless></iframe>");
@@ -209,13 +212,14 @@ var services = {
 		origins: ["*://*.wolframalpha.com/"],
 		requires: [],
 		options: false,
+		menuBar: true,
 		onEnable: function() {
 			
 		},
 		onDisable: function() {
 
 		},
-		createBlock: function() {
+		createBlock: function(menubar) {
 			return $('<script type="text/javascript" id="WolframAlphaScript1674d5c5b2ada73e7c37f3a2bd2a3677" src="https://www.wolframalpha.com/widget/widget.jsp?id=1674d5c5b2ada73e7c37f3a2bd2a3677&theme=gray&output=lightbox"></script>');
 		}
 	}//,
