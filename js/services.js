@@ -220,7 +220,7 @@ var services = {
 
 		},
 		createBlock: function(menubar) {
-			return $('<script type="text/javascript" id="WolframAlphaScript6fbaac131efc42254f296c437c069dbf" src="//www.wolframalpha.com/widget/widget.jsp?id=6fbaac131efc42254f296c437c069dbf&theme=gray"></script>');
+			return $('<script type="text/javascript" id="WolframAlphaScript82abaab68b221b73a07470a01c9b803" src="https://www.wolframalpha.com/widget/widget.jsp?id=82abaab68b221b73a07470a01c9b803"></script>');
 		}
 	}//,
 	/* This is not a service because it should affect a whole site with all the above geatures
