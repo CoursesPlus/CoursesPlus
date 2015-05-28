@@ -4,6 +4,7 @@
 		<title>CoursesPlus Options</title>
 
 		<link rel="stylesheet" href="../css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../css/jquery-ui.css" />
 		<link rel="stylesheet" href="../css/simplegrid.css" />
 		<link rel="stylesheet" href="../scss_gen/fonts.css" />
 		<link rel="stylesheet" href="options.css" />
@@ -12,6 +13,7 @@
 		<script type="text/javascript" src="../js/cpal.js"></script>
 		<script type="text/javascript" src="../js/cpalloader.js"></script>
 		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/jquery-ui.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../js/components.js"></script>
 		<script type="text/javascript" src="../js/services.js"></script>
@@ -319,12 +321,16 @@
 
 				<h3>Services</h3>
 				<p>Some services can be shown in the popup. You can pick which ones show up here.</p>
-				<div id="menubarServices">
-					Eligible services:
-					<ul id="menubarServicesEligible"></ul>
+				<div id="menubarServices" class="clearfix">
+					<ul id="menubarServicesInUse" class="pull-left serviceSortable menubarServicesConnect">
 
-					Uneligible services:
-					<ul id="menubarServicesUneligible"></ul>
+					</ul>
+					<ul id="menubarServicesEligible" class="pull-left serviceSortable menubarServicesConnect">
+
+					</ul>
+					<ul id="menubarServicesUneligible" class="pull-left serviceSortable">
+
+					</ul>
 				</div>
 
 				<h3>Quick links</h3>

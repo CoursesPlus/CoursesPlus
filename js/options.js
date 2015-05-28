@@ -578,52 +578,59 @@ $(document).ready(function() {
 		});
 
 	// Menubar
-	var defaults = {
-		upcomingEvents: true,
-		services: [],
-		serviceUpsell: false,
-		quickLinks: true
-	};
-	cpal.storage.getKey("menubarSettings", function (resp) {
-		cpal.storage.getKey("services", function (servicesEnabled) {
-			var settings = defaults;
-			if (resp != undefined && resp != {}) {
-				settings = resp;
-			}
-
-			$("#showUpcoming").prop("checked", settings.upcomingEvents);
-			$("#showQuickLinks").prop("checked", settings.quickLinks);
-
-			$("#showUpcoming").click(function () {
-				settings.upcomingEvents = $(this).prop("checked");
-				cpal.storage.setKey("menubarSettings", settings, function () { });
-			});
-			$("#showQuickLinks").click(function () {
-				settings.quickLinks = $(this).prop("checked");
-				cpal.storage.setKey("menubarSettings", settings, function () { });
-			});
-
-			for (var serviceIndex in window.services) {
-				if (serviceIndex == "runAll") {
-					continue;
+		var defaults = {
+			upcomingEvents: true,
+			services: [],
+			serviceUpsell: false,
+			quickLinks: true
+		};
+		cpal.storage.getKey("menubarSettings", function (resp) {
+			cpal.storage.getKey("services", function (servicesEnabled) {
+				var settings = defaults;
+				if (resp != undefined && resp != {}) {
+					settings = resp;
 				}
-				var thisService = window.services[serviceIndex];
-				if (thisService.type != "block" || !thisService.menuBar) {
+
+				$("#showUpcoming").prop("checked", settings.upcomingEvents);
+				$("#showQuickLinks").prop("checked", settings.quickLinks);
+
+				$("#showUpcoming").click(function () {
+					settings.upcomingEvents = $(this).prop("checked");
+					cpal.storage.setKey("menubarSettings", settings, function () { });
+				});
+				$("#showQuickLinks").click(function () {
+					settings.quickLinks = $(this).prop("checked");
+					cpal.storage.setKey("menubarSettings", settings, function () { });
+				});
+
+				for (var serviceIndex in window.services) {
+					if (serviceIndex == "runAll") {
+						continue;
+					}
+					var thisService = window.services[serviceIndex];
 					var $serviceLi = $('<li></li>');
-						$serviceLi.text(thisService.displayName + " (not compatible)");
-					$("#menubarServicesUneligible").append($serviceLi);
-				} else if (servicesEnabled.indexOf(serviceIndex) == -1) {
-					var $serviceLi = $('<li></li>');
-						$serviceLi.text(thisService.displayName + " (disabled)");
-					$("#menubarServicesUneligible").append($serviceLi);
-				} else {
-					var $serviceLi = $('<li></li>');
-						$serviceLi.text(thisService.displayName);
-					$("#menubarServicesEligible").append($serviceLi);
+					$serviceLi.addClass("ui-state-default");
+					if (thisService.type != "block" || !thisService.menuBar) {
+							$serviceLi.addClass("ui-state-disabled");
+							$serviceLi.text(thisService.displayName + " (not compatible)");
+						$("#menubarServicesUneligible").append($serviceLi);
+					} else if (servicesEnabled.indexOf(serviceIndex) == -1) {
+						$serviceLi.addClass("ui-state-disabled");
+							$serviceLi.text(thisService.displayName + " (disabled)");
+						$("#menubarServicesUneligible").append($serviceLi);
+					} else {
+							$serviceLi.text(thisService.displayName);
+						$("#menubarServicesEligible").append($serviceLi);
+					}
 				}
-			}
+
+				$(".menubarServicesConnect").sortable({
+					connectWith: ".menubarServicesConnect",
+					items: "li:not(.ui-state-disabled)",
+					placeholder: "service-sortable-highlight"
+				}).disableSelection();
+			});
 		});
-	});
 
 	$("#pagelist > li").click(function() {
 		$(".page.current").removeClass("current");
