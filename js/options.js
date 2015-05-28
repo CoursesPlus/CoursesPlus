@@ -556,7 +556,7 @@ $(document).ready(function() {
 
 				$themeRadio.children("label").append(thisTheme.name);
 				if (thisTheme.editorsChoice) {
-					$themeRadio.children("label").append('<em>Editor\'s Choice!</em>');
+					$themeRadio.children("label").append(' <em>Editor\'s Choice!</em>');
 				}
 
 			$("#theme").append($themeRadio);

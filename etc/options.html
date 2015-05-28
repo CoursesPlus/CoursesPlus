@@ -171,6 +171,10 @@
 					<div class="section-name">Appearance</div>
 					<div class="section-desc">Change the look and feel of Courses<strong>Plus</strong>.</div>
 				</li>
+				<li data-page="menubar">
+					<div class="section-name">Menubar <sup>beta</sup></div>
+					<div class="section-desc">Modify what's shown on the Courses<strong>Plus</strong> menubar popup.</div>
+				</li>
 				<li data-page="features">
 					<div class="section-name">Features</div>
 					<div class="section-desc">Enable and disable different Courses<strong>Plus</strong> features</div>
@@ -305,6 +309,23 @@
 				<img src="" class="selectedLogo"/>
 				<br />
 				<button id="selectLogo" class="btn btn-primary">Select a logo...</button>
+			</section>
+			<section id="menubar" class="page">
+				<a href="disablemenu.html" target="_blank" class="btn btn-primary">Enable/disable icon</a>
+
+				<h3>Upcoming events</h3>
+				<p>Courses<strong>Plus</strong> can display upcoming events retrieved from Courses.</p>
+				<label><input type="checkbox" id="showUpcoming" /> Show upcoming events</label>
+
+				<h3>Services</h3>
+				<p>Some services can be shown in the popup. You can pick which ones show up here.</p>
+				<div id="menubarServices">
+
+				</div>
+
+				<h3>Quick links</h3>
+				<p>Courses<strong>Plus</strong> can display quick links to various websites.</p>
+				<label><input type="checkbox" id="showQuickLinks" /> Show quick links</label>
 			</section>
 			<section id="features" class="page">
 				<div id="features">
