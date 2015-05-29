@@ -657,4 +657,9 @@ $(document).ready(function() {
 	}
 
 	$(".currentVersion").text(cpal.extension.getExtensionVersion());
+	if (consts.isBeta) {
+		$(".currentVersion").text(cpal.extension.getExtensionVersion() + " (beta)");
+		$("#publicBeta").text("You're currently using the public beta - thanks!");
+		$("#publicBetaDesc").hide();
+	}
 });

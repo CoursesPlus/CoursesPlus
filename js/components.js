@@ -91,8 +91,11 @@ function componentEnabled(name, callback) {
 }
 
 function createDebugReport(e, component) {
-	var detailsText = "Courses+\n";
+	var detailsText = "CoursesPlus\n";
 	detailsText += "Debug report\n";
+	if (consts.isBeta) {
+		detailsText += "Public beta\n";
+	}
 	detailsText += "\n";
 	if (component != undefined) {
 		detailsText += "Error encountered while running code for component ";
@@ -126,6 +129,9 @@ function createDebugReport(e, component) {
 	detailsText += "\n";
 	detailsText += "Extension version: ";
 	detailsText += cpal.extension.getExtensionVersion();
+	if (consts.isBeta) {
+		detailsText += " (beta)";
+	}
 	detailsText += "\n";
 	detailsText += "\n";
 	detailsText += "CPAL platform-specifics:\n";
