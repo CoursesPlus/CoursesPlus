@@ -216,7 +216,7 @@ var services = {
 		origins: ["*://*.wolframalpha.com/"],
 		requires: [],
 		options: false,
-		menuBar: true,
+		menuBar: false,
 		onEnable: function() {
 			
 		},
