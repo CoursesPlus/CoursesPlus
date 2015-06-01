@@ -190,11 +190,15 @@ var services = {
 
 				var $iframe = $("<iframe seamless></iframe>");
 
-					$iframe.attr("src", cpal.resources.getURL("etc/weatherdisplay.html"));
+					$iframe.attr("src", cpal.resources.getURL("etc/weatherdisplay.html" + (menubar ? "#menubar" : "")));
 					$iframe.attr("allowtransparency", "true");
 					$iframe.attr("scrolling", "no");
 					$iframe.css("border", "none");
-					$iframe.css("width", "175px");
+					if (!menubar) {
+						$iframe.css("width", "175px");
+					} else {
+						$iframe.css("width", "inherit");
+					}
 					$iframe.css("height", "160px");
 					$iframe.css("overflow", "hidden");
 
@@ -349,7 +353,7 @@ window.services.runAll = function() {
 
 							var isHidden = (hiddenRaw ? hiddenRaw : false);
 
-							var $blockBody = saveService.createBlock();
+							var $blockBody = saveService.createBlock(false);
 
 							var $blockToAppend = $("<div></div>");
 

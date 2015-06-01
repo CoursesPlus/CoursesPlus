@@ -94,7 +94,7 @@ $(document).ready(function () {
 					for (var serviceIndexIndex in menubarServices) {
 						var serviceIndex = menubarServices[serviceIndexIndex];
 						var thisService = window.services[serviceIndex];
-						var $blockBody = thisService.createBlock();
+						var $blockBody = thisService.createBlock(true);
 						var $blockToAppend = $("<div></div>");
 
 						$blockToAppend.attr("id", serviceIndex + "_service_block");
@@ -109,7 +109,7 @@ $(document).ready(function () {
 									$settingIcon.attr("data-serviceIndex", serviceIndex);
 
 									$settingIcon.css("position", "relative");
-									$settingIcon.css("top", "-12px");
+									$settingIcon.css("top", "-31px");
 									$settingIcon.css("right", "6px");
 									$settingIcon.css("cursor", "pointer");
 
