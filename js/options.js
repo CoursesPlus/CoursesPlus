@@ -580,7 +580,6 @@ $(document).ready(function() {
 	// Menubar
 		var defaults = {
 			upcomingEvents: true,
-			services: [],
 			serviceUpsell: false,
 			quickLinks: true
 		};

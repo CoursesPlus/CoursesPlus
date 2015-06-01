@@ -23,23 +23,31 @@ function shouldLoadWelcome(callback) {
 function getSettings(callback) {
 	var defaults = {
 		upcomingEvents: true,
-		services: [],
 		serviceUpsell: false,
 		quickLinks: true
 	};
 	cpal.storage.getKey("menubarSettings", function (settings) {
+		var retSet;
 		if (settings == undefined || settings == {}) {
-			callback(defaults);
+			retSet = defaults;
 		} else {
-			callback(settings);
+			retSet = settings;
 		}
+		cpal.storage.getKey("menubarServices", function (serviceResp) {
+			if (serviceResp == undefined) {
+				callback(retSet, []);
+			} else {
+				callback(retSet, serviceResp);
+			}
+		});
 	});
 }
 
 $(document).ready(function () {
 	shouldLoadWelcome(function (loadWelcome) {
 		if (!loadWelcome) {
-			getSettings(function (settings) {
+			getSettings(function (settings, menubarServices) {
+
 				if (settings.upcomingEvents) {
 					window.coursesLib.checkLoggedIn(function (loginStatus) {
 						if (!loginStatus.isLoggedIn) {
@@ -80,6 +88,49 @@ $(document).ready(function () {
 
 				if (!settings.quickLinks) {
 					$("#quickLinks").hide();
+				}
+
+				if (services.length != 0) {
+					for (var serviceIndexIndex in menubarServices) {
+						var serviceIndex = menubarServices[serviceIndexIndex];
+						var thisService = window.services[serviceIndex];
+						var $blockBody = thisService.createBlock();
+						var $blockToAppend = $("<div></div>");
+
+						$blockToAppend.attr("id", serviceIndex + "_service_block");
+							$blockToAppend.addClass("block");
+
+							var $header = $("<div class=\"header\"><div class=\"title\"><h2></h2></div></div>");
+							$header.find("h2").text(thisService.displayName);
+
+							if (thisService.options) {
+									var $settingIcon = $('<i class="fa fa-wrench pull-right"></i>');
+
+									$settingIcon.attr("data-serviceIndex", serviceIndex);
+
+									$settingIcon.css("position", "relative");
+									$settingIcon.css("top", "-12px");
+									$settingIcon.css("right", "6px");
+									$settingIcon.css("cursor", "pointer");
+
+									$settingIcon.click(function () {
+										chrome.tabs.create({
+											url: cpal.resources.getURL("etc/options.html#soptions:" + $(this).attr("data-serviceIndex"))
+										});
+									});
+
+									$header.children(".title").append($settingIcon);
+								}
+							$blockToAppend.append($header);
+
+							var $content = $("<div class=\"content\"></div>");
+								$content.append($blockBody);
+							$blockToAppend.append($content);
+
+						$("#serviceSpot").append($blockToAppend);
+					}
+				} else {
+
 				}
 
 				setPageTo("mainPage");
