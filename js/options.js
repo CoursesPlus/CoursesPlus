@@ -603,31 +603,64 @@ $(document).ready(function() {
 					cpal.storage.setKey("menubarSettings", settings, function () { });
 				});
 
-				for (var serviceIndex in window.services) {
-					if (serviceIndex == "runAll") {
-						continue;
-					}
-					var thisService = window.services[serviceIndex];
-					var $serviceLi = $('<li></li>');
-					$serviceLi.addClass("ui-state-default");
-					if (thisService.type != "block" || !thisService.menuBar) {
-							$serviceLi.addClass("ui-state-disabled");
-							$serviceLi.text(thisService.displayName + " (not compatible)");
-						$("#menubarServicesUneligible").append($serviceLi);
-					} else if (servicesEnabled.indexOf(serviceIndex) == -1) {
-						$serviceLi.addClass("ui-state-disabled");
-							$serviceLi.text(thisService.displayName + " (disabled)");
-						$("#menubarServicesUneligible").append($serviceLi);
+				cpal.storage.getKey("menubarServices", function (resp) {
+					var menubarServices;
+					if (resp != undefined) {
+						menubarServices = resp;
 					} else {
-							$serviceLi.text(thisService.displayName);
-						$("#menubarServicesEligible").append($serviceLi);
+						menubarServices = [];
 					}
-				}
+					for (var serviceIndex in window.services) {
+						if (serviceIndex == "runAll") {
+							continue;
+						}
+						var thisService = window.services[serviceIndex];
+						var $serviceLi = $('<li></li>');
+							$serviceLi.addClass("ui-state-default");
+							$serviceLi.attr("data-serviceIndex", serviceIndex);
+						if (thisService.type != "block" || !thisService.menuBar) {
+								$serviceLi.addClass("ui-state-disabled");
+								$serviceLi.text(thisService.displayName + " (not compatible)");
+							$("#menubarServicesUneligible").append($serviceLi);
+						} else if (servicesEnabled.indexOf(serviceIndex) == -1) {
+								$serviceLi.addClass("ui-state-disabled");
+								$serviceLi.text(thisService.displayName + " (disabled)");
+							$("#menubarServicesUneligible").append($serviceLi);
+						} else {
+								$serviceLi.text(thisService.displayName);
+							if (menubarServices.indexOf(serviceIndex) == -1) {
+								$("#menubarServicesEligible").append($serviceLi);
+							}
+						}
+					}
+					for (var serviceIndexIndex in menubarServices) {
+						var serviceIndex = menubarServices[serviceIndexIndex];
+						if (serviceIndex == "runAll") {
+							continue;
+						}
+						var thisService = window.services[serviceIndex];
+						var $serviceLi = $('<li></li>');
+							$serviceLi.addClass("ui-state-default");
+							$serviceLi.attr("data-serviceIndex", serviceIndex);
+							$serviceLi.text(thisService.displayName);
+						$("#menubarServicesInUse").append($serviceLi);
+					}
+				});
 
 				$(".menubarServicesConnect").sortable({
 					connectWith: ".menubarServicesConnect",
 					items: "li:not(.ui-state-disabled)",
-					placeholder: "service-sortable-highlight"
+					placeholder: "service-sortable-highlight",
+					stop: function () {
+						var menubarServices = [];
+						$("#menubarServicesInUse > li").each(function() {
+							menubarServices.push($(this).attr("data-serviceIndex"));
+						});
+						console.log(menubarServices);
+						cpal.storage.setKey("menubarServices", menubarServices, function () {
+
+						});
+					}
 				}).disableSelection();
 			});
 		});
