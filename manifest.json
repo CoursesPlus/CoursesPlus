@@ -74,5 +74,5 @@
 			"*://courses2015.dalton.org/*"
 		]
 	},
-	"content_security_policy": "script-src 'self' https://query.yahooapis.com; object-src 'self'"
+	"content_security_policy": "script-src 'self' https://query.yahooapis.com https://www.wolframalpha.com; object-src 'self' https://www.wolframalpha.com"
 }
