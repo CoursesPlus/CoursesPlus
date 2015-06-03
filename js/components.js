@@ -1079,9 +1079,19 @@ var components = {
 
 					var message = response.message;
 					var style = response.style;
+					var cid = response.campaignId;
 					var canDismiss = true;
 
 					var $closeButton = $('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+
+					$closeButton.click(function () {
+						$.get("https://analytics.coursesplus.tk/closemsg.php", {
+							uniqid: id,
+							campaignId: cid
+						}, function (data) {
+
+						});
+					});
 					
 					var $alertElem = $('<div class="alert fade in" role="alert"></div>');
 					$alertElem.addClass(style);
