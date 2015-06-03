@@ -537,7 +537,7 @@ $(document).ready(function() {
 	});
 	$("#exportData").click(function() {
 		cpal.storage.getAll(function(items) {
-			prompt("Here is all the information Courses+ has stored in JSON format.", JSON.stringify(items));
+			prompt("Here is all the information CoursesPlus has stored in JSON format. Thank you for using CoursesPlus.\n\nIf you were told to export this data for debugging purposes, please email it to emails@coursesplus.tk.", JSON.stringify(items));
 		});
 	});
 
