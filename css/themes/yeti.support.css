@@ -28,3 +28,7 @@ caption {
 .dropdown-menu > li > a {
 	padding: 6px 15px;
 }
+
+.alert {
+	top: 45px !important;
+}

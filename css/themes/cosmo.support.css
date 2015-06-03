@@ -17,3 +17,9 @@ caption {
 .block .header h2 {
 	font-weight: bold;
 }
+
+.alert a {
+	color: white;
+	font-weight: bold;
+	text-decoration: underline;
+}

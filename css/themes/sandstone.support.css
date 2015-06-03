@@ -15,3 +15,7 @@ caption {
 	border: none;
 	border-radius: 0;
 }
+
+.alert {
+	top: 63px !important;
+}

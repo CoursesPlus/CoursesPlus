@@ -17,3 +17,7 @@ caption {
 .editBtn, .upcomingEventsBtn {
 	border-radius: 0;
 }
+
+.alert {
+	top: 65px !important;
+}

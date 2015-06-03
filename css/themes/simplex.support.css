@@ -19,3 +19,7 @@ caption {
 	border: none;
 	border-radius: 0;
 }
+
+.alert {
+	top: 40px !important;
+}

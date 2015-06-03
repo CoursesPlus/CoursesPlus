@@ -9,7 +9,7 @@ var themes = {
 		name: "Cerulean",
 		css: ["cerulean.css", "cerulean.support.css"],
 		editorsChoice: false,
-		navbarbg: "white"
+		navbarbg: "black"
 	},
 	cosmo: {
 		name: "Cosmo",
