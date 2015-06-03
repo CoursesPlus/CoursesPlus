@@ -89,8 +89,8 @@ $(document).ready(function () {
 				if (!settings.quickLinks) {
 					$("#quickLinks").hide();
 				}
-
-				if (services.length != 0) {
+				
+				if (menubarServices.length != 0) {
 					for (var serviceIndexIndex in menubarServices) {
 						var serviceIndex = menubarServices[serviceIndexIndex];
 						var thisService = window.services[serviceIndex];
@@ -130,7 +130,27 @@ $(document).ready(function () {
 						$("#serviceSpot").append($blockToAppend);
 					}
 				} else {
+					if (!settings.serviceUpsell) {
+						var $upsellElem = $('<div id="serviceUpsell"><p>You can add services up here! Just select the "Menubar" section of the options page to pick what shows up.</p></div>');
+							var $learnMoreBtn = $('<a href="' + cpal.resources.getURL("etc/options.html#menubar") + '" target="_blank" class="btn btn-primary btn-lg">Learn more</a>');
+							$upsellElem.append($learnMoreBtn);
 
+							$upsellElem.append("<br />");
+
+							var $noThanksBtn = $('<button class="btn btn-primary">No thanks</button>');
+								$noThanksBtn.click(function() {
+									getSettings(function (settings) {
+										settings.serviceUpsell = true;
+										cpal.storage.setKey("menubarSettings", settings, function () {
+											window.location.reload();
+										});
+									});
+								});
+							$upsellElem.append($noThanksBtn);
+						$("#serviceSpot").append($upsellElem);
+					} else {
+						$("#services").hide();
+					}
 				}
 
 				setPageTo("mainPage");
