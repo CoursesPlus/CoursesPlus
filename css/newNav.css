@@ -37,8 +37,8 @@
 
 /* Navbar force collapse */
 @media (max-width: 1140px) {
-	.navbar > .container-fluid {
-		overflow: scroll;
+	.navbar > .container-fluid  > .navbar-collapse {
+		overflow-y: scroll;
 	}
     .navbar-header {
         float: none;
