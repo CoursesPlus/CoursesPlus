@@ -217,6 +217,49 @@ var components = {
 				$(this).append(addMe);
 			}
 		});
+
+		// Fix event mess introduced in Courses 2016
+		$(".event").each(function() {
+			var $header = $('<header></header>');
+			
+			$header.append($(this).children(".name"));
+			$header.append($(this).children(".referer"));
+			$header.append($(this).children(".course"));
+			$header.append($(this).children(".date"));
+			$header.append('<div style="clear:both"></div>');
+
+			// Normalize name into referer.
+			$header.children(".name").addClass("referer");
+			$header.children(".name").removeClass("name");
+
+			// no img for now because it looks nicer
+			//$header.children(".referer").prepend($(this).children("img"));
+
+			$(this).children("img").remove();
+			$(this).children(".name").remove();
+			$(this).children(".referer").remove();
+			$(this).children(".course").remove();
+			$(this).children(".date").remove();
+
+			$header.css("background-color", "#3B6FFF");
+			$header.css("color", "white");
+			$header.css("padding", "10px");
+			$header.css("margin-bottom", "10px");
+			$header.css("font-size", "1.1em");
+
+			$header.children(".referer").children("img").css("width", "24px");
+			$header.children(".referer").children("img").css("height", "24px");
+			$header.children(".referer").css("margin-top", "0");
+
+			$header.children("h3").children("a").css("color", "white");
+			$header.children("h3").css("font-size", "1.5em");
+			$header.children("div").children("a").css("color", "white");
+
+			$(this).children(".description").removeClass("calendar_event_course"); // some holidays have this. 
+			$(this).children(".description").css("padding", "10px");
+
+			$(this).prepend($header);
+		});
 	}, js: [], css: ["bootstrap.css", "../scss_gen/fonts.css", "font-awesome.min.css"], runOn: "*", requires: []},
 	/*logo: {displayName: "Logo change", description: "Changes the logo to the circular Dalton School thing.", exec: function() {
 		// MOVED to runNonComponentTweaks();
