@@ -1,10 +1,10 @@
 console.log("Courses+ background page!");
-cpal.request.addBeforeSendHeaders(["*://courses2015.dalton.org/*"], function(details) {
+cpal.request.addBeforeSendHeaders(["*://courses2016.dalton.org/*"], function(details) {
 	if (details.url.indexOf("user/icon/dalton/") > -1) {
-		details.requestHeaders.push({name: 'X-CoursesPlus-RefererSpoof-Yay', value: "https://courses2015.dalton.org/user/profile.php"});
+		details.requestHeaders.push({name: 'X-CoursesPlus-RefererSpoof-Yay', value: "https://courses2016.dalton.org/user/profile.php"});
 	}
 	if (details.url.indexOf("theme/image.php/dalton/core") > -1 && details.url.indexOf("/u/f1") > -1) {
-		details.requestHeaders.push({name: 'X-CoursesPlus-RefererSpoof-Yay', value: "https://courses2015.dalton.org/user/profile.php"});
+		details.requestHeaders.push({name: 'X-CoursesPlus-RefererSpoof-Yay', value: "https://courses2016.dalton.org/user/profile.php"});
 	}
 	for (var i = 0; i < details.requestHeaders.length; ++i) {
 		if (details.requestHeaders[i].name === 'X-CoursesPlus-RefererSpoof-Yay') {

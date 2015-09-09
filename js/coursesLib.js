@@ -74,23 +74,15 @@ window.coursesLib.getUpcomingCourseEvents = function(courseId, doneFunc) {
 		respObj.id = courseId;
 		respObj.events = [];
 
-		$response.children("#page-content")
-					.children("#region-main-box")
-					.children("#region-post-box")
-					.children("#region-main-wrap")
-					.children("#region-main")
-					.children(".region-content")
-					.children(".maincalendar")
-					.children(".heightcontainer")
-					.children(".eventlist")
+		$response.find(".eventlist")
 					.children(".event").each(function() {
 						// !!!
-						var eventTitle = $(this).children("tbody").children(".r0").children(".topic").children(".referer").children("a").text().replace(/\s{2,}/g, " ");
-						var eventCourse = $(this).children("tbody").children(".r0").children(".topic").children(".course").children("a").text().replace(/\s{2,}/g, " ");
-						var eventHtml = $(this).children("tbody").children(".r1").children(".description").html();
-						var eventText = $(this).children("tbody").children(".r1").children(".description").text();
-						var eventNormText = $(this).children("tbody").children(".r1").children(".description").text().replace(/\r/g, "").replace(/\n/g, " ");
-						var eventLink = $(this).children("tbody").children(".r0").children(".topic").children(".referer").children("a").attr("href");
+						var eventTitle = $(this).children(".referer").children("a").text().replace(/\s{2,}/g, " ");
+						var eventCourse = $(this).children(".course").children("a").text().replace(/\s{2,}/g, " ");
+						var eventHtml = $(this).children(".description").html();
+						var eventText = $(this).children(".description").text();
+						var eventNormText = eventText.replace(/\r/g, "").replace(/\n/g, " ");
+						var eventLink = $(this).children(".referer").children("a").attr("href");
 						
 						var eventObj = {title: eventTitle, course: eventCourse, text: eventText, normText: eventNormText, html: eventHtml, link: eventLink};
 
@@ -108,23 +100,15 @@ window.coursesLib.getUpcomingEvents = function(doneFunc) {
 
 		respObj.events = [];
 
-		$response.children("#page-content")
-					.children("#region-main-box")
-					.children("#region-post-box")
-					.children("#region-main-wrap")
-					.children("#region-main")
-					.children(".region-content")
-					.children(".maincalendar")
-					.children(".heightcontainer")
-					.children(".eventlist")
+		$response.find(".eventlist")
 					.children(".event").each(function() {
 						// !!!
-						var eventTitle = $(this).children("tbody").children(".r0").children(".topic").children(".referer").children("a").text().replace(/\s{2,}/g, " ");
-						var eventCourse = $(this).children("tbody").children(".r0").children(".topic").children(".course").children("a").text().replace(/\s{2,}/g, " ");
-						var eventHtml = $(this).children("tbody").children(".r1").children(".description").html();
-						var eventText = $(this).children("tbody").children(".r1").children(".description").text();
-						var eventNormText = $(this).children("tbody").children(".r1").children(".description").text().replace(/\r/g, "").replace(/\n/g, " ");
-						var eventLink = $(this).children("tbody").children(".r0").children(".topic").children(".referer").children("a").attr("href");
+						var eventTitle = $(this).children(".referer").children("a").text().replace(/\s{2,}/g, " ");
+						var eventCourse = $(this).children(".course").children("a").text().replace(/\s{2,}/g, " ");
+						var eventHtml = $(this).children(".description").html();
+						var eventText = $(this).children(".description").text();
+						var eventNormText = eventText.replace(/\r/g, "").replace(/\n/g, " ");
+						var eventLink = $(this).children(".referer").children("a").attr("href");
 						
 						var eventObj = {title: eventTitle, course: eventCourse, text: eventText, normText: eventNormText, html: eventHtml, link: eventLink};
 
