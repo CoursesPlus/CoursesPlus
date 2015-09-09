@@ -831,7 +831,7 @@ var components = {
 		if (helpers.testURL("calendar/view.php")) {
 			$(".event").each(function() {
 				var $r0 = $(this);
-				var thisId = $r0.attr("id").replace("event_", "");
+				var thisId = $r0.attr("id");
 				
 				var $eventCheck = $('<input type="checkbox" class="eventCheck" />');
 				$eventCheck.attr("data-id", thisId);
