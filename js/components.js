@@ -219,7 +219,7 @@ var components = {
 		});
 
 		// Fix event mess introduced in Courses 2016
-		$(".event").each(function() {
+		$(":not(.content) > .event").each(function() {
 			var $header = $('<header></header>');
 			
 			$header.append($(this).children(".name"));
@@ -231,6 +231,8 @@ var components = {
 			// Normalize name into referer.
 			$header.children(".name").addClass("referer");
 			$header.children(".name").removeClass("name");
+
+			$header.children(".referer").prepend($('<span class="insTop"></span> '));
 
 			// no img for now because it looks nicer
 			//$header.children(".referer").prepend($(this).children("img"));
@@ -828,13 +830,14 @@ var components = {
 	markEvents: {displayName: "Mark events", description: "Mark events as done.", exec: function() {
 		if (helpers.testURL("calendar/view.php")) {
 			$(".event").each(function() {
-				var $r0 = $(this).children("tbody").children(".r0");
-				var thisId = $r0.children(".picture").children("a").attr("name");
+				var $r0 = $(this);
+				var thisId = $r0.attr("id").replace("event_", "");
 				
 				var $eventCheck = $('<input type="checkbox" class="eventCheck" />');
+				$eventCheck.attr("data-id", thisId);
 				$eventCheck.change(function() {
-					var eventId = $(this).parent().children("a").attr("name");
-					var $r0 = $(this).parent().parent();
+					var eventId = $(this).attr("data-id");
+					var $r0 = $(this).parent().parent().parent().parent();
 					var eventDone = $(this).prop('checked');
 
 					var saveThing = {};
@@ -846,14 +849,14 @@ var components = {
 						saveThing.done = eventDone;
 						cpal.storage.setKey(eventId, saveThing, function() {
 							if (saveThing.done) {
-								var $eventNameElem = $r0.children(".topic").children(".referer").children("a");
+								var $eventNameElem = $r0.children(".header").children(".referer");
 								$eventNameElem.text("DONE - " + $eventNameElem.text());
-								$r0.parent().parent().addClass("eventComplete");
+								$r0.addClass("eventComplete");
 								$eventCheck.prop('checked', true);
 							} else {
-								var $eventNameElem = $r0.children(".topic").children(".referer").children("a");
+								var $eventNameElem = $r0.children(".header").children(".referer");
 								$eventNameElem.text($eventNameElem.text().replace("DONE - ", ""));
-								$r0.parent().parent().removeClass("eventComplete");
+								$r0.removeClass("eventComplete");
 								$eventCheck.prop('checked', false);
 							}
 						});
@@ -865,13 +868,13 @@ var components = {
 						console.log(thisId + " not set!");
 					} else {
 						if (result.done) {
-							var $eventNameElem = $r0.children(".topic").children(".referer").children("a");
+							var $eventNameElem = $r0.children(".header").children(".referer");
 							$eventNameElem.text("DONE - " + $eventNameElem.text());
-							$r0.parent().parent().addClass("eventComplete");
+							$r0.addClass("eventComplete");
 							$eventCheck.prop('checked', true);
 						}
 					}
-					$r0.children(".picture").prepend($eventCheck);
+					$r0.children("header").children(".referer").children(".insTop").prepend($eventCheck);
 				});
 			});
 		}
