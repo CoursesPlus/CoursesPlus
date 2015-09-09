@@ -834,7 +834,13 @@ var components = {
 				var thisId = $r0.attr("id");
 				
 				var $eventCheck = $('<input type="checkbox" class="eventCheck" />');
+				
 				$eventCheck.attr("data-id", thisId);
+
+				$eventCheck.css("position", "relative");
+				$eventCheck.css("top", "-3px");
+				$eventCheck.css("margin-right", "8px");
+
 				$eventCheck.change(function() {
 					var eventId = $(this).attr("data-id");
 					var $r0 = $(this).parent().parent().parent().parent();
