@@ -78,6 +78,9 @@ window.coursesLib.getUpcomingCourseEvents = function(courseId, doneFunc) {
 					.children(".event").each(function() {
 						// !!!
 						var eventTitle = $(this).children(".referer").children("a").text().replace(/\s{2,}/g, " ");
+						if ($(this).children(".referer").length == 0) {
+							eventTitle = $(this).children(".name").text().replace(/\s{2,}/g, " ");
+						}
 						var eventCourse = $(this).children(".course").children("a").text().replace(/\s{2,}/g, " ");
 						var eventHtml = $(this).children(".description").html();
 						var eventText = $(this).children(".description").text();
@@ -104,6 +107,9 @@ window.coursesLib.getUpcomingEvents = function(doneFunc) {
 					.children(".event").each(function() {
 						// !!!
 						var eventTitle = $(this).children(".referer").children("a").text().replace(/\s{2,}/g, " ");
+						if ($(this).children(".referer").length == 0) {
+							eventTitle = $(this).children(".name").text().replace(/\s{2,}/g, " ");
+						}
 						var eventCourse = $(this).children(".course").children("a").text().replace(/\s{2,}/g, " ");
 						var eventHtml = $(this).children(".description").html();
 						var eventText = $(this).children(".description").text();
