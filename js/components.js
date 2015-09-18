@@ -385,6 +385,11 @@ var components = {
 		}
 	}, js: [], css: [], runOn: "calendar/view.php?view=day", requires: []},
 	myHome: {displayName: "\"My home\" fixes", description: "Makes some fixes to the \"my home\" page to make it work with Courses+.", exec: function() {
+		if ($(".box.notice").length == 1) {
+			// Customization mode
+			// let's not break things...
+			return;
+		}
 		$(".coursebox").addClass("myHome");
 		var even = false;
 		var count = 0;
