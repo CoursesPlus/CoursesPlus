@@ -176,7 +176,7 @@ var components = {
 		$('input[type="submit"], input[type="button"], button').not(".nobootstrapchange").css("background-color", "rgb(66, 139, 202)");
 
 		// Fix buttons being hidden
-		$(".messagesend form div").css("display", "block");
+		$(".messagesend form > fieldset > div").css("display", "block");
 		$(".messagesend form fieldset").removeClass("hidden");
 
 		// Fix "Search Courses" label
