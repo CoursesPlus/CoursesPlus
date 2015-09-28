@@ -115,9 +115,9 @@
 		}
 
 		#left-pane > ul {
-            display: block;
+			display: block;
 			list-style-type: none;
-            height: 100%;
+			height: 100%;
 			padding-left: 0px;
 			overflow-y: scroll;
 		}
@@ -141,23 +141,28 @@
 		}
 
 		.page {
-			display: none;
-			padding-top: 10px;
+			opacity: 0;
+			position: fixed;
+			top: 0;
+			left: 310px;
+			padding-top: 80px;
 			padding-left: 3px;
 			overflow-x: hidden;
-			overflow-y: scroll;
-            width: 100%;
-            height: 100%;
+			overflow-y: auto;
+			width: 100%;
+			height: 100%;
+			transition: opacity 0.25s;
 		}
 		.page.current {
-			display: block;
+			opacity: 1;
+			z-index: 999;
 		}
 
 		#page-container {
 			height: 100%;
 			width: 100%;
 			padding-left: 300px;
-            padding-right: 10px;
+			padding-right: 10px;
 		}
 		</style>
 
