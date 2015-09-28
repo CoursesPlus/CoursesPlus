@@ -21,6 +21,10 @@
 	text-transform: uppercase;
 }
 
+.editCourseModal {
+	color: black !important; /* work around themes */
+}
+
 .selBox {
 	display: inline-block;
 	border: solid 1px black;
