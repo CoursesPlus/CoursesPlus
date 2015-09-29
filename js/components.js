@@ -413,6 +413,10 @@ var components = {
 		}
 		//$(".block_course_overview .content .notice").css("margin-top", ((count*57) + 50) + "px");
 
+		// fool with the my home page to make it more like the home page
+		$(".region-content > .block").first().css("background", "none");
+		$(".region-content > .block:first > .header").remove();
+
 		if ($(".box.notice").length == 2) {
 			// Customization mode!
 			//$(".block_course_overview.block").css("height", "auto");//((count*57) + 160) + "px");
@@ -429,6 +433,10 @@ var components = {
 		$(".coursebox.even").after($('<div style="position: relative;float: left;width: 100%;" class="coursesplus-evillongnamegridhelper"></div>'));
 	}, js: [], css: ["grid.css"], runOn: "", requires: []},
 	customCourses: {displayName: "Customizable courses", description: "Makes the courses on the homepage be customizable.", exec: function() {	
+		if (!(helpers.testURL("") || helpers.testURL("my/"))) {
+			return; // go away
+		}
+
 		var onEditBtnDown = function() {
 			var courseId = $(this).parent().attr("data-courseid");
 			var courseName = $($(this).parent().children()[0]).text();
@@ -457,6 +465,10 @@ var components = {
 
 		$('.coursebox').each(function() {
 			var courseId = $(this).attr("data-courseid");
+			if ($(this).attr("data-courseid") == undefined) {
+				$(this).attr("data-courseid", $(this).attr("id").replace("course-", ""));
+				courseId = $(this).attr("data-courseid");
+			}
 			var $saveThis = $(this);
 			cpal.storage.getKey("course-" + courseId, function(result) {
 				var courseInfo = {
@@ -620,7 +632,7 @@ var components = {
 
 		
 		//$(".modal").modal();
-	}, js: [], css: ["modalstuff.css", "customCourses.css"], runOn: "", requires: ["bootstrap"]},
+	}, js: [], css: ["modalstuff.css", "customCourses.css"], runOn: "*", requires: ["bootstrap"]},
 	homeLogin: {displayName: "Login form changes", description: "Makes the login on the Courses homepage look nicer.", exec: function() {
 		$("#form-home input.text").css("margin-bottom", "0");
 		$("#form-home input.text").css("border-bottom-left-radius", "0");
