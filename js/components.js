@@ -1199,7 +1199,13 @@ var components = {
 
 			});
 		});
-	}, js: [], css: [], runOn: "*", requires: ["bootstrap"]}/*,
+	}, js: [], css: [], runOn: "*", requires: ["bootstrap"]},
+	iconset: {displayName: "Change icons", description: "Changes the icons in Courses to a new, modern iconset.", exec: function() {
+		setTimeout(function() {
+			$(".block-hider-hide").attr("src", cpal.resources.getURL("images/minus-square.png"));
+			$(".block-hider-show").attr("src", cpal.resources.getURL("images/plus-square.png"));
+		}, 1000);
+	}, js: [], css: [], runOn: "*", requires: []}/*,
 	rearrangeCourses: {displayName: "Rearrange courses", description: "Lets you drag and drop your courses into the order you want.", exec: function() {
 		/*! jQuery UI - v1.11.4 - 2015-03-22
 		* http://jqueryui.com
