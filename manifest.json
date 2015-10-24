@@ -14,6 +14,11 @@
 		"default_icon": "images/logos/circle.png",
 		"default_popup": "etc/menubar.html"
 	},
+	"applications": {
+		"gecko": {
+			"id": "coursesplus-firefox-this-is-not-a-real-email@coursesplus.tk"
+		}
+	},
 	"content_scripts": [
 		{
 			"matches": [

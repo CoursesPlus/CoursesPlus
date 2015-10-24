@@ -64,31 +64,31 @@ cpal.request.addBeforeSendHeaders = function(urls, listener) {
 cpal.storage = {};
 
 cpal.storage.clear = function(callback) {
-	chrome.storage.sync.clear(function() {
+	chrome.storage.local.clear(function() {
 		callback();
 	});
 };
 cpal.storage.getKey = function(keyName, callback) {
-	chrome.storage.sync.get(keyName, function(result) {
+	chrome.storage.local.get(keyName, function(result) {
 		callback(result[keyName], keyName);
 	});
 };
 cpal.storage.getAll = function(callback) {
-	chrome.storage.sync.get(null, function(items) {
+	chrome.storage.local.get(null, function(items) {
 		callback(items);
 	});
 };
 cpal.storage.setKey = function(keyName, keyValue, callback) {
 	var saveObj = {};
 	saveObj[keyName] = keyValue;
-	chrome.storage.sync.set(saveObj, function() {
+	chrome.storage.local.set(saveObj, function() {
 		if (callback !== undefined) {
 			callback();
 		}
 	});
 };
 cpal.storage.removeKey = function(keyName, callback) {
-	chrome.storage.sync.remove(keyName, function() {
+	chrome.storage.local.remove(keyName, function() {
 		callback();
 	});
 };
