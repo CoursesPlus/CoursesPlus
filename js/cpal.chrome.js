@@ -69,7 +69,9 @@ cpal.storage.clear = function(callback) {
 	});
 };
 cpal.storage.getKey = function(keyName, callback) {
+	console.log("getKey start - " + keyName);
 	chrome.storage.local.get(keyName, function(result) {
+		console.log("getKey callback - " + keyName);
 		callback(result[keyName], keyName);
 	});
 };
