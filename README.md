@@ -9,3 +9,5 @@ Also on the CoursesPlus Team:
 * William Barkoff
 * Sehan Choi
 * Eeshan Tripathii
+
+To see our license, please visit  [this](./LICENSE.txt) file.
