@@ -10,10 +10,10 @@
 		"page": "etc/bg.chrome.html",
 		"persistent": true
 	},
-		"browser_action": {
-    	"default_icon": "images/logos/circle.png",
-    	"default_popup": "etc/menubar.html"
-  	},
+	"browser_action": {
+		"default_icon": "images/logos/circle.png",
+		"default_popup": "etc/menubar.html"
+	},
 	"content_scripts": [
 		{
 			"matches": [
