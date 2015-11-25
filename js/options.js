@@ -621,7 +621,7 @@ $(document).ready(function() {
 								$serviceLi.addClass("ui-state-disabled");
 								$serviceLi.text(thisService.displayName + " (not compatible)");
 							$("#menubarServicesUneligible").append($serviceLi);
-						} else if (servicesEnabled.indexOf(serviceIndex) == -1) {
+						} else if (servicesEnabled == undefined || servicesEnabled.indexOf(serviceIndex) == -1) {
 								$serviceLi.addClass("ui-state-disabled");
 								$serviceLi.text(thisService.displayName + " (disabled)");
 							$("#menubarServicesUneligible").append($serviceLi);
