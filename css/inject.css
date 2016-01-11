@@ -40,3 +40,7 @@ body.removeCurtain:before {
 	box-shadow: 1px 2px 2px #eee;
 	padding-bottom: 10px;
 }
+
+.homelink {
+  display: none;
+}
