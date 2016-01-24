@@ -2,7 +2,7 @@ CoursesPlus
 ---
 Hello! This is the official repository for CoursesPlus!
 
-CoursesPlus is a Chrome (and hopefully Opera) extension available on the Chrome Web Store (and now hopefully Opera Web Store)
+CoursesPlus is an extension available on the Chrome and Opera Web Stores.
 
 CoursesPlus was originally created by Alex Studer, and has since expanded to include several others as part of the team.
 
