@@ -8,7 +8,7 @@
 .coursebox.myHome.even {
 	float: right;
 	position: relative;
-	top: -74px;
+	/*top: -74px;*/
 }
 .coursebox.myHome .course_title h2 {
 	text-overflow: ellipsis;
