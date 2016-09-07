@@ -1,5 +1,5 @@
 console.log("Courses+ background page!");
-cpal.request.addBeforeSendHeaders(["*://courses2016.dalton.org/*"], function(details) {
+cpal.request.addBeforeSendHeaders(["*://courses2017.dalton.org/*"], function(details) {
 	if (details.url.indexOf("user/icon/dalton/") > -1) {
 		details.requestHeaders.push({name: 'X-CoursesPlus-RefererSpoof-Yay', value: "https://courses2017.dalton.org/user/profile.php"});
 	}
