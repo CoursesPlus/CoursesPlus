@@ -17,7 +17,7 @@
 	"content_scripts": [
 		{
 			"matches": [
-				"https://courses2016.dalton.org/*"
+				"https://courses2017.dalton.org/*"
 			],
 			"css": [
 				"css/inject.css",
@@ -71,7 +71,7 @@
 	],
 	"externally_connectable": {
 		"matches": [
-			"*://courses2016.dalton.org/*"
+			"*://courses2017.dalton.org/*"
 		]
 	},
 	"content_security_policy": "script-src 'self' https://query.yahooapis.com https://www.wolframalpha.com; object-src 'self' https://www.wolframalpha.com"
