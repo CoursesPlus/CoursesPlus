@@ -4,7 +4,7 @@
  */
 window.coursesLib = {};
 
-window.coursesLib.baseUrl = "https://courses2016.dalton.org";
+window.coursesLib.baseUrl = "https://courses2017.dalton.org";
 
 window.coursesLib.checkLoggedIn = function(doneFunc) {
 	$.get(window.coursesLib.baseUrl + "/login/index.php", function (resText) {
