@@ -632,7 +632,7 @@ var components = {
 
 		
 		//$(".modal").modal();
-	}, js: [], css: ["modalstuff.css", "customCourses.css"], runOn: "*", requires: ["bootstrap"]},
+	}, js: [], css: ["modalstuff.css", "customCourses.css"], runOn: "*", requires: []},
 	homeLogin: {displayName: "Login form changes", description: "Makes the login on the Courses homepage look nicer.", exec: function() {
 		$("#form-home input.text").css("margin-bottom", "0");
 		$("#form-home input.text").css("border-bottom-left-radius", "0");
@@ -650,7 +650,7 @@ var components = {
 		$("#form-home button.submit").css("width", "35px");
 		$("#form-home button.submit").css("position", "relative");
 		$("#form-home button.submit").css("top", "-49px");
-	}, js: [], css: ["homelogin.css"], runOn: "", requires: ["bootstrap"]},
+	}, js: [], css: ["homelogin.css"], runOn: "", requires: []},
 	newNavbar: {displayName: "New navbar", description: "Changes the top navigation bar to a smaller and neater version.", exec: function() {
 
 		var $navbar = $('<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin:0;"></nav>');
@@ -753,7 +753,7 @@ var components = {
 		$("body").append($navbar);
 
 		$(".navbar").css("overflow", "initial");
-	}, js: [], css: ["newNav.css"], runOn: "*", requires: ["bootstrap"]},
+	}, js: [], css: ["newNav.css"], runOn: "*", requires: []},
 	messageFixes: {displayName: "Messaging changes", description: "Makes some changes to the messaging system.", exec: function() {
 		$("#id_message").attr("placeholder", "Type message here...");
 
@@ -840,7 +840,7 @@ var components = {
 			console.log("Parsed message!");
 			return true;
 		});
-	}, js: [], css: ["messages.css", "spacer.css"], runOn: "message/", requires: ["bootstrap"]},
+	}, js: [], css: ["messages.css", "spacer.css"], runOn: "message/", requires: []},
 	modernAsides: {displayName: "Modern asides", description: "Makes the asides on course pages look more modern.", exec: function() {
 		// Pure CSS! :)
 	}, js: [], css: ["modernAsides.css"], runOn: "*", requires: []},
@@ -922,11 +922,11 @@ var components = {
 				}
 			});
 		}
-	}, js: [], css: ["markEvents.css"], runOn: "*", requires: ["bootstrap"]},
+	}, js: [], css: ["markEvents.css"], runOn: "*", requires: []},
 	loginPageFixes: {displayName: "Login page fixes", description: "Makes the full-screen login page (the one you see on session timeout) look nicer.", exec: function() {
 		$("#username").attr("placeholder", "Username");
 		$("#password").attr("placeholder", "Password");
-	}, js: [], css: ["loginPageFixes.css"], runOn: "login/", requires: ["bootstrap"]},
+	}, js: [], css: ["loginPageFixes.css"], runOn: "login/", requires: []},
 	tableOverflow: {displayName: "Table scrolling", description: "Make tables on course pages be scrollable if they go off the page.", exec: function() {
 		if (helpers.testURL("course/view.php")) {
 			$("table:not(.calendartable)").wrap($('<div class="coursesplus-tableOverflowContainer"></div>'));
@@ -941,7 +941,7 @@ var components = {
 				return $(this).parent().find(".yui3-widget-bd").children(".eventcontent").html();
 			}, title: "Events", placement: "bottom", html: true });
 		});*/
-	}, js: [], css: ["calendarTweaks.css"], runOn: "*", requires: ["bootstrap"]},
+	}, js: [], css: ["calendarTweaks.css"], runOn: "*", requires: []},
 	upcomingEventsBtn: {displayName: "Upcoming events button", description: "Adds an 'upcoming events' button to courses on the main page.", exec: function() {	
 		(function($){var methods,utils,SIDES={center:'center',left:'left',right:'right'},WIDTH={auto:'auto'};function trunk8(element){this.$element=$(element);this.original_text=this.$element.html();this.settings=$.extend({},$.fn.trunk8.defaults);}trunk8.prototype.updateSettings=function(options){this.settings=$.extend(this.settings,options);};function truncate(){var data=this.data('trunk8'),settings=data.settings,width=settings.width,side=settings.side,fill=settings.fill,line_height=utils.getLineHeight(this)*settings.lines,str=data.original_text,length=str.length,max_bite='',lower,upper,bite_size,bite;this.html(str);if(width===WIDTH.auto){if(this.height()<=line_height){return;}lower=0;upper=length-1;while(lower<=upper){bite_size=lower+((upper-lower)>>1);bite=utils.eatStr(str,side,length-bite_size,fill);this.html(bite);if(this.height()>line_height){upper=bite_size-1;}else{lower=bite_size+1;max_bite=(max_bite.length>bite.length)?max_bite:bite;}}this.html('');this.html(max_bite);if(settings.tooltip){this.attr('title',str);}}else if(!isNaN(width)){bite_size=length-width;bite=utils.eatStr(str,side,bite_size,fill);this.html(bite);if(settings.tooltip){this.attr('title',str);}}else{$.error('Invalid width "'+width+'".');}}methods={init:function(options){return this.each(function(){var $this=$(this),data=$this.data('trunk8');if(!data){$this.data('trunk8',(data=new trunk8(this)));}data.updateSettings(options);truncate.call($this);});},update:function(new_string){return this.each(function(){var $this=$(this);if(new_string){$this.data('trunk8').original_text=new_string;}truncate.call($this);});},revert:function(){return this.each(function(){var text=$(this).data('trunk8').original_text;$(this).html(text);});},getSettings:function(){return this.get(0).data('trunk8').settings;}};utils={eatStr:function(str,side,bite_size,fill){var length=str.length,key=utils.eatStr.generateKey.apply(null,arguments),half_length,half_bite_size;if(utils.eatStr.cache[key]){return utils.eatStr.cache[key];}if((typeof str!=='string')||(length===0)){$.error('Invalid source string "'+str+'".');}if((bite_size<0)||(bite_size>length)){$.error('Invalid bite size "'+bite_size+'".');}else if(bite_size===0){return str;}if(typeof(fill+'')!=='string'){$.error('Fill unable to be converted to a string.');}switch(side){case SIDES.right:return utils.eatStr.cache[key]=$.trim(str.substr(0,length-bite_size))+fill;case SIDES.left:return utils.eatStr.cache[key]=fill+$.trim(str.substr(bite_size));case SIDES.center:half_length=length>>1;half_bite_size=bite_size>>1;return utils.eatStr.cache[key]=$.trim(utils.eatStr(str.substr(0,length-half_length),SIDES.right,bite_size-half_bite_size,''))+fill+$.trim(utils.eatStr(str.substr(length-half_length),SIDES.left,half_bite_size,''));default:$.error('Invalid side "'+side+'".');}},getLineHeight:function(elem){var $elem=$(elem),float=$elem.css('float'),position=$elem.css('position'),html=$elem.html(),wrapper_id='line-height-test',line_height;if(float!=='none'){$elem.css('float','none');}if(position==='absolute'){$elem.css('position','static');}$elem.html('i').wrap('<div id="'+wrapper_id+'" />');line_height=$('#'+wrapper_id).innerHeight();$elem.html(html).css({'float':float,'position':position}).unwrap();return line_height;}};utils.eatStr.cache={};utils.eatStr.generateKey=function(){return Array.prototype.join.call(arguments,'');};$.fn.trunk8=function(method){if(methods[method]){return methods[method].apply(this,Array.prototype.slice.call(arguments,1));}else if(typeof method==='object'||!method){return methods.init.apply(this,arguments);}else{$.error('Method '+method+' does not exist on jQuery.trunk8');}};$.fn.trunk8.defaults={fill:'&hellip;',lines:1,side:SIDES.right,tooltip:true,width:WIDTH.auto};})(jQuery);
 
@@ -1009,7 +1009,7 @@ var components = {
 		$upcomingEventsModal.children(".modal-dialog").children(".modal-content").children(".modal-body").append($panel);
 
 		$('body').append($upcomingEventsModal);
-	}, js: [], css: ["modalstuff.css", "upcomingEventsBtn.css"], runOn: "", requires: ["bootstrap"]},
+	}, js: [], css: ["modalstuff.css", "upcomingEventsBtn.css"], runOn: "", requires: []},
 	debugMode: {displayName: "Debug mode", description: "Adds a debugging mode for problem reporting.", exec: function() {
 		/*
 		 * Konami-JS ~ 
@@ -1051,7 +1051,7 @@ var components = {
 		};
 		easter_egg.load();
 		
-	}, js: [], css: [], runOn: "*", requires: ["bootstrap"]},	
+	}, js: [], css: [], runOn: "*", requires: []},	
 	prefixColors: {displayName: "Colored prefixes", description: "For teachers, colors the prefixes on the new/edit assignments.", exec: function() {
 		if ($("label[for=id_name]").text() != "Assignment name ") {
 			return;
@@ -1130,7 +1130,7 @@ var components = {
 		$("#coursesplus_teacherassignment_prefixes_learnmore").click(function() {
 			$("#coursesplus_learnmore_prefixes").modal();
 		});
-	}, js: [], css: ["prefixColors.css"], runOn: "course/modedit.php", requires: ["bootstrap"]},
+	}, js: [], css: ["prefixColors.css"], runOn: "course/modedit.php", requires: []},
 	navbarMessages: {displayName: "Navbar messages", description: "Shows messages and information underneath the navbar.", exec: function() {
 		componentEnabled("newNavbar", function(newNav) {
 			helpers.getUniqueID(function(id) {
@@ -1199,7 +1199,7 @@ var components = {
 
 			});
 		});
-	}, js: [], css: [], runOn: "*", requires: ["bootstrap"]},
+	}, js: [], css: [], runOn: "*", requires: []},
 	iconset: {displayName: "Change icons", description: "Changes the icons in Courses to a new, modern iconset.", exec: function() {
 		setTimeout(function() {
 			$(".block-hider-hide").attr("src", cpal.resources.getURL("images/minus-square.png"));

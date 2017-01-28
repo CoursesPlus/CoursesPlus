@@ -29,7 +29,7 @@ function openServiceOptions(serviceIndex) {
 function createList(sortedComponents, $ulToAppendTo, checkList, checkPresence, clickEvent) {
 	//var sortedComponents = window.components;
 	for (var componentIndex in sortedComponents) {
-	    if (componentIndex == "runAll" || componentIndex == "createErrorModal") {
+	    if (componentIndex == "runAll" || componentIndex == "createErrorModal" || componentIndex == "bootstrap") {
 			continue;
 		}
 		var component = sortedComponents[componentIndex];
