@@ -61,34 +61,36 @@ cpal.request.addBeforeSendHeaders = function(urls, listener) {
 /*
  * cpal.storage
  */
-cpal.storage = {};
+cpal.storage = {
+	storageArea: chrome.storage.sync
+};
 
 cpal.storage.clear = function(callback) {
-	chrome.storage.sync.clear(function() {
+	cpal.storage.storageArea.clear(function() {
 		callback();
 	});
 };
 cpal.storage.getKey = function(keyName, callback) {
-	chrome.storage.sync.get(keyName, function(result) {
+	cpal.storage.storageArea.get(keyName, function(result) {
 		callback(result[keyName], keyName);
 	});
 };
 cpal.storage.getAll = function(callback) {
-	chrome.storage.sync.get(null, function(items) {
+	cpal.storage.storageArea.get(null, function(items) {
 		callback(items);
 	});
 };
 cpal.storage.setKey = function(keyName, keyValue, callback) {
 	var saveObj = {};
 	saveObj[keyName] = keyValue;
-	chrome.storage.sync.set(saveObj, function() {
+	cpal.storage.storageArea.set(saveObj, function() {
 		if (callback !== undefined) {
 			callback();
 		}
 	});
 };
 cpal.storage.removeKey = function(keyName, callback) {
-	chrome.storage.sync.remove(keyName, function() {
+	cpal.storage.storageArea.remove(keyName, function() {
 		callback();
 	});
 };
@@ -97,10 +99,19 @@ cpal.storage.removeKey = function(keyName, callback) {
  */
 cpal.storage.quota = {};
 cpal.storage.quota.getUsedBytes = function(callback) {
-	chrome.storage.sync.getBytesInUse(null, function(bytes) {
+	if (cpal.isSecretlyFirefox) {
+		callback(0);
+		return;
+	}
+	cpal.storage.storageArea.getBytesInUse(null, function(bytes) {
 		callback(bytes);
 	});
 };
 cpal.storage.quota.getTotalBytes = function() {
-	return chrome.storage.sync.QUOTA_BYTES;
+	return cpal.storage.storageArea.QUOTA_BYTES;
 };
+
+cpal.isSecretlyFirefox = (navigator.userAgent.indexOf("Firefox/") > -1);
+if (cpal.isSecretlyFirefox) {
+	cpal.storage.storageArea = chrome.storage.local;
+}
