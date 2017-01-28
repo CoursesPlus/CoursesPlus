@@ -723,7 +723,7 @@ var components = {
 								var $upcomingLink = $('<li><a></a></li>');
 
 									$upcomingLink.children("a").html("<i class=\"glyphicon glyphicon-time\"></i>&nbsp;&nbsp;Upcoming events");
-									$upcomingLink.children("a").attr("href", "https://courses2016.dalton.org/calendar/view.php");
+									$upcomingLink.children("a").attr("href", "https://courses2017.dalton.org/calendar/view.php");
 
 								$logDownList.append($upcomingLink);
 							}
@@ -1468,7 +1468,7 @@ window.components.runAll = function() {
 				continue;
 			}
 			if (component.runOn == "*" || helpers.testURL(component.runOn)) {
-				if (component.runOn == "" && window.location.href.replace("index.php", "").replace(window.location.search, "").replace("?", "").replace(/#.*$/, "") != "https://courses2016.dalton.org/") {
+				if (component.runOn == "" && window.location.href.replace("index.php", "").replace(window.location.search, "").replace("?", "").replace(/#.*$/, "") != "https://courses2017.dalton.org/") {
 					// TODO: Optimize this if statement into the one above.
 					console.log("Skipping component '" + component.displayName + "' ('" + componentIndex + "') because it's for a different page.");						
 				} else {
