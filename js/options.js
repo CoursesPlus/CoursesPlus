@@ -51,16 +51,6 @@ function createList(sortedComponents, $ulToAppendTo, checkList, checkPresence, c
 
 			var $desc = $("<p></p>");
 				$desc.addClass("featureDesc");
-				if (component.author != undefined) {
-					var $author = $("<em></em>");
-						$author.text("by " + component.author);
-					$desc.append($author);
-					if (component.authorVerification) {
-						$desc.append("&nbsp;");
-						$desc.append('<i class="fa fa-check-circle" data-toggle="tooltip" data-placement="bottom" title="Verified author"></i>');
-					}
-					$desc.append("<br />");
-				}
 				$desc.append("<span>" + component.description + "</span>");
 				$appendMe.append($("<br />"));
 			$appendMe.append($desc);
