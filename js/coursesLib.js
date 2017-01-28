@@ -138,5 +138,3 @@ window.coursesLib.getProfile = function(doneFunc) {
 		doneFunc(respObj);
 	});
 };
-
-console.log("CoursesLib ready!");

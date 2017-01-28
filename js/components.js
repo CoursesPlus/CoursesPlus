@@ -554,7 +554,7 @@ var components = {
 		var $bgHeader = $('<h6 class="editUppercase">Background color</h6>');
 		var $bgSelboxContainer = $('<div class="editBackgroundColors"></div>');
 
-		var $secretColorPicker = $('<input type="color" class="secretCourseBgColorPicker" value="white" style="position:absolute;top:-5000px;left:-5000px;" />');
+		var $secretColorPicker = $('<input type="color" class="secretCourseBgColorPicker" value="#ffffff" style="position:absolute;top:-5000px;left:-5000px;" />');
 		$bgSelboxContainer.append($secretColorPicker);
 
 		$bgSelboxContainer.append($('<div class="selBox background white" data-selBoxGroup="background" data-selBoxVal="white"></div>'));

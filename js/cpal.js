@@ -61,5 +61,3 @@ cpal.storage.quota.getUsedBytes = cpal.notImplemented;
 cpal.storage.quota.getTotalBytes = cpal.notImplemented;
 
 window.cpal = {};
-
-console.log("CPAL base ready!");
