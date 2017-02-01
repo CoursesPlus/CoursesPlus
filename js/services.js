@@ -1,9 +1,9 @@
 var services = {
-	/*planbook: {
-		displayName: "Planbook",
-		description: "Displays events from the Online Planbook (at daltonplanner.org) in your calendar.",
+	/*calendarServiceTest: {
+		displayName: "Calendar service test",
+		description: "Test service for client-side calendar events.",
 		type: "calendar",
-		origins: ["*://daltonplanner.org/"],
+		origins: [],
 		requires: [],
 		onEnable: function() {
 			// TODO: signin
@@ -14,22 +14,18 @@ var services = {
 		createCalendarEvents: function(callback) {
 			// TODO: get events
 			// Should the request be on-demand or in the background?
-			cpal.storage.getKey("daltonplanner-cache", function(events) {
-				callback([{
-					id: "IAmUnique",
-					title: "Test event",
-					cssClass: "hw",
-					icon: "assign",
-					date: new Date("2-19-2015"),
-					description: "This is a test event added by the 'Planbook' service. It's client-side only, and inserted by the Courses+ service manager. <br/> <b>BOLD</b><i>ITALIC</i><u>UNDERLINE</u>"
-				}]);
-			});
+			callback([{
+				id: "IAmUnique",
+				title: "Test event",
+				cssClass: "hw",
+				icon: "assign",
+				date: new Date("1-30-2017"),
+				description: "This is a test event added by a service. It's client-side only, and inserted by the Courses+ service manager. <br/> <b>BOLD</b><i>ITALIC</i><u>UNDERLINE</u>"
+			}]);
 		}
 	},*/
 	lunchMenu: {
-		displayName: "Lunch Menu",		
-		author: "CoursesPlus",
-		authorVerification: true,
+		displayName: "Lunch Menu",
 		description: "Displays what's for lunch in the sidebar.",
 		type: "block",
 		origins: ["*://*.myschooldining.com/"],
@@ -65,8 +61,6 @@ var services = {
 	},
 	schedules: {
 		displayName: "Schedule",
-		author: "CoursesPlus",
-		authorVerification: true,
 		description: "Displays what classes you've got next in the sidebar.",
 		type: "block",
 		origins: ["*://schedules.dalton.org/"],
@@ -168,9 +162,7 @@ var services = {
 		}
 	},
 	weather: {
-		displayName: "Weather",		
-		author: "CoursesPlus",
-		authorVerification: true,
+		displayName: "Weather",
 		description: "Displays the weather in your chosen location in your sidebar.",
 		type: "block",
 		origins: ["*://*.wunderground.com/"],
@@ -209,8 +201,6 @@ var services = {
 	},
 	wolframAlpha: {
 		displayName: "Wolfram|Alpha",
-		author: "CoursesPlus",
-		authorVerification: true,
 		description: "Displays a Wolfram|Alpha search box in the sidebar.",
 		type: "block",
 		origins: ["*://*.wolframalpha.com/"],
@@ -226,18 +216,7 @@ var services = {
 		createBlock: function(menubar) {
 			return $('<script type="text/javascript" id="WolframAlphaScript82abaab68b221b73a07470a01c9b803" src="https://www.wolframalpha.com/widget/widget.jsp?id=82abaab68b221b73a07470a01c9b803"></script>');
 		}
-	}//,
-	/* This is not a service because it should affect a whole site with all the above geatures
-	archivedCourses:
-		displayName: "Archived Courses",
-		description: "Allows Courses+to work on Archived Courses",
-		type: "block", // I do not know what to put here.
-		origins: ["*://.dalton.org/"],
-		requires: [],
-		onEnable: function() {
-			// TODO: Change a bunch of links in the code. This should be simple.
-		},
-	},*//*
+	}/*
 	athletics: {
 		displayName: "Athletics",
 		description: "Displays your sport's schedule in the sidebar.",
@@ -255,24 +234,6 @@ var services = {
 			return $("<p>Athletics!</p>");
 		}
 	}*//*,
-	randomStudent: {
-		displayName: "Random Student of the Day",
-		description: "Displays a random student every day. NOTE: Your name will be displayed to other students if you enable this option.",
-		type: "block",
-		origins: [],
-		requires: [],
-		onEnable: function() {
-			// TODO: ask student for name.
-			//     - store names on server.
-		},
-		onDisable: function() {
-			// TODO: reset participant info
-		},
-		createBlock: function() {
-			// TODO: fetch a name from the server.
-			return $("<p>HIII!</p>");
-		}
-	},
 	googleDrive: {
 		displayName: "Google Drive Connect",
 		description: "Allows you to connect a Google Drive document to an assignment.",

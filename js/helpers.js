@@ -50,7 +50,7 @@ helpers.testURL = function(url) {
 	}
 	var testThing = window.location.href.replace("http://", "")
 										.replace("https://", "")
-										.replace("courses2015.dalton.org/")
+										.replace("courses2017.dalton.org/")
 										.replace("undefined", "")
 										.replace("index.php", "")
 										.replace(window.location.search, "")
