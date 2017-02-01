@@ -1207,7 +1207,137 @@ var components = {
 			$(".block-hider-hide").attr("src", cpal.resources.getURL("images/minus-square.png"));
 			$(".block-hider-show").attr("src", cpal.resources.getURL("images/plus-square.png"));
 		}, 1000);
-	}, js: [], css: [], runOn: "*", requires: []}
+	}, js: [], css: [], runOn: "*", requires: []},
+	hideEvents: {displayName: "Hide events", description: "Adds a hide button to events on the calendar.", exec: function() {
+		if (helpers.testURL("calendar/view.php?view=day")) {
+			var eventMap = {};
+			var hiddenEvents = [];
+			var allEventsHidden = function(count) {
+				if (count == 0) {
+					return;
+				}
+				var $event = $('<div class="event hiddenEvent"></div>');
+					var $infoText = $('<span></span>');
+						var infoText = count + " events hidden";
+						if (count == 1) { infoText = "1 event hidden"; }
+						$infoText.text(infoText);
+					$event.append($infoText);
+
+					var $openToggle = $('<a class="hiddenEventOpenToggle">open</a>');
+						$openToggle.click(function() {
+							$(".hiddenEventList").toggleClass("hidden");
+							if ($(this).text() == "open") {
+								$(this).text("close");
+							} else {
+								$(this).text("open");
+							}
+						});
+					$event.append($openToggle);
+
+					var $eventList = $('<ul class="hiddenEventList hidden"></ul>');
+						for (var eventIndex in hiddenEvents) {
+							var eventID = hiddenEvents[eventIndex];
+							var event = eventMap[eventID];
+							var $eventItem = $('<li></li>');
+								$eventItem.attr("data-eventID", eventID);
+								$eventItem.text(event.name);
+								var $unhideLink = $('<a class="hiddenEventUnhide">unhide</a>');
+									$unhideLink.click(function() {
+										var eventID = $eventItem.attr("data-eventID");
+										cpal.storage.getKey(eventID, function(info) {
+											var eventInfo = info || {};
+											eventInfo.hide = false;
+											cpal.storage.setKey(eventID, eventInfo, function() {
+												window.location.reload();
+											});
+										});
+									});
+								$eventItem.append($unhideLink);
+							$eventList.append($eventItem);
+						}
+					$event.append($eventList);
+				$(".eventlist").append($event);
+			};
+			var hiddenCount = 0;
+			var eventCount = 0;
+			var eventTotal = $(".event").length;
+			$(".event").each(function() {
+				var eventID = $(this).attr("id");
+				var $that = $(this);
+				eventMap[eventID] = {
+					name: $(this).find(".referer").text()
+				};
+				cpal.storage.getKey(eventID, function(info) {
+					var eventInfo = info || {};
+
+					eventCount++;
+
+					if (eventInfo.hide) {
+						hiddenEvents.push(eventID);
+						hiddenCount++;
+						$that.remove();
+					} else {
+						var $hideLink = $('<a class="eventHideLink">hide</a>');
+							$hideLink.attr("data-eventID", eventID);
+							$hideLink.click(function() {
+								var eventID = $(this).attr("data-eventID");
+								cpal.storage.getKey(eventID, function(info) {
+									var eventInfo = info || {};
+									eventInfo.hide = true;
+									cpal.storage.setKey(eventID, eventInfo, function() {
+										window.location.reload();
+									});
+								});
+							});
+						$that.find("header .date").prepend(" &bull; ");
+						$that.find("header .date").prepend($hideLink);
+					}
+
+					if (eventCount == eventTotal) {
+						allEventsHidden(hiddenCount);
+					}
+				});
+			});
+		}
+		if (helpers.testURL("calendar/view.php?view=month")) {
+			var eventsProcessed = 0;
+			var eventsTotal = 0;
+			var dayMap = {};
+			$(".calendar_event_course:not(.day), .calendar_event_user:not(.day)").each(function(i) {
+				var url = $(this).children("a").attr("href");
+				if (url != undefined) {
+					var eventID = url.split("#")[1];
+					var $that = $(this);
+					eventsTotal++;
+					cpal.storage.getKey(eventID, function(result) {
+						var eventInfo = result || {};
+						var day = $that.parent().parent().find(".day").text();
+						eventsProcessed++;
+						if (eventInfo.hide) {
+							var mapEntry = dayMap[day] || [];
+							mapEntry.push(eventID);
+							dayMap[day] = mapEntry;
+							$that.remove();
+						}
+						console.log(eventsProcessed + " of " + eventsTotal);
+						if (eventsProcessed == eventsTotal) {
+							$(".day .day a").each(function() {
+								console.log($(this).text());
+								var day = dayMap[$(this).text()];
+								if (!day || day.length == 0) {
+									return;
+								}
+								var $hidden = $('<li class="hiddenEventCount"></li>');
+									$hidden.text("(" + day.length + " hidden)");
+								var $list = $(this).parent().parent().children(".events-new");
+								$list.append($hidden);
+							});
+						}
+					});
+				}
+			});
+		}
+	}, js: [], css: ["hideEvents.css"], runOn: "*", requires: []}
 };
 
 function runNonComponentTweaks(componentsToSkip) {

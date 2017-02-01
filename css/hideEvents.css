@@ -1,0 +1,32 @@
+.eventHideLink {
+	color: white;
+	cursor: pointer;
+}
+.eventHideLink:hover {
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+}
+.hiddenEvent {
+	background: #ddd;
+	font-size: 1.2em;
+	padding: 10px;
+}
+.hiddenEventOpenToggle {
+	cursor: pointer;
+	float: right;
+}
+.hiddenEventList {
+	font-size: 0.9em;
+}
+.hiddenEventList.hidden {
+	display: none;
+}
+.hiddenEventUnhide {
+	cursor: pointer;
+	float: right;
+}
+.hiddenEventCount {
+	color: gray;
+	font-style: italic;
+}
