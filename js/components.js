@@ -1319,10 +1319,8 @@ var components = {
 							dayMap[day] = mapEntry;
 							$that.remove();
 						}
-						console.log(eventsProcessed + " of " + eventsTotal);
 						if (eventsProcessed == eventsTotal) {
 							$(".day .day a").each(function() {
-								console.log($(this).text());
 								var day = dayMap[$(this).text()];
 								if (!day || day.length == 0) {
 									return;
