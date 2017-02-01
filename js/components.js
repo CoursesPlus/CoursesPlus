@@ -101,7 +101,11 @@ function createDebugReport(e, component) {
 		detailsText += "Error encountered while running code for component ";
 		detailsText += component.displayName;
 		detailsText += " (with index ";
-		detailsText += componentIndex;
+		if (componentIndex) {
+			detailsText += componentIndex;
+		} else {
+			detailsText += "undefined";
+		}
 		detailsText += ").\n";
 	} else {
 		detailsText += "No component info - manual report?"
@@ -262,6 +266,19 @@ var components = {
 
 			$(this).prepend($header);
 		});
+
+		// Fix JS error on homepage when loading collapsible sections
+		/*var injectedScript = `var oldM = M.block_course_overview.CollapsibleRegion;
+		M.block_course_overview.CollapsibleRegion = function(Y, id, userpref, strtooltip) {
+			if ($("#" + id).length == 0) {
+				console.warn("CollapsibleRegion given invalid id!");
+				return;
+			}
+			oldM(Y, id, userpref, strtooltip);
+		};`
+		var $script = $('<script></script>');
+			$script.html(injectedScript);
+		$("body").append($script);*/
 	}, js: [], css: ["bootstrap.css", "../scss_gen/fonts.css", "font-awesome.min.css"], runOn: "*", requires: []},
 	teacherList: {displayName: "Condense list of teachers", description: "Makes a list of teachers just say the first teacher's name and bla others.", exec: function() {
 		$(".teachers").each(function(index) {
@@ -399,7 +416,7 @@ var components = {
 		// Fix height (because the "Show all courses" page doesn't have the text at the bottom to push the box down)
 		//$(".block_course_overview.block").css("height", ((count*57) + 108) + "px");
 		$(".collapsibleregioncaption").html("");
-		$(".activity_info").remove();
+		//$(".activity_info").remove();
 		$(".block_course_overview .content .notice").css("text-align", "center");
 		$(".block_course_overview .content .notice").css("font-style", "italic");
 		if ($(".block_course_overview .content .notice").html() != undefined) {
@@ -410,12 +427,6 @@ var components = {
 		// fool with the my home page to make it more like the home page
 		$(".region-content > .block").first().css("background", "none");
 		$(".region-content > .block:first > .header").remove();
-
-		if ($(".box.notice").length == 2) {
-			// Customization mode!
-			//$(".block_course_overview.block").css("height", "auto");//((count*57) + 160) + "px");
-			//$(".block_course_overview .content .notice:first-child").css("margin-top", "0px");
-		}
 	}, js: [], css: ["my.css"], runOn: "my/", requires: []},
 	uselessText: {displayName: "Remove useless text", description: "Removes the \"Dalton Courses is your place for ... bla bla bla\" text on the main page.", exec: function() {
 		// Get rid of the useless "Dalton Courses is your place for... bla bla bla"
