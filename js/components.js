@@ -263,12 +263,6 @@ var components = {
 			$(this).prepend($header);
 		});
 	}, js: [], css: ["bootstrap.css", "../scss_gen/fonts.css", "font-awesome.min.css"], runOn: "*", requires: []},
-	/*logo: {displayName: "Logo change", description: "Changes the logo to the circular Dalton School thing.", exec: function() {
-		// MOVED to runNonComponentTweaks();
-		// Change logo
-		//$("#page-header").css("background-image", "url(" + cpal.resources.getURL("images/logos/circle.png") + ")");
-		//$("#page-header").css("background-size", "80px 80px");
-	}, js: [], css:"", runOn: "*"},*/
 	teacherList: {displayName: "Condense list of teachers", description: "Makes a list of teachers just say the first teacher's name and bla others.", exec: function() {
 		$(".teachers").each(function(index) {
 			// Get rid of the "Teacher: " text.
@@ -963,16 +957,13 @@ var components = {
 					var $thisEvent = $('<div class="coursesplus-thisEvent"></div>');
 
 					$thisEvent.append($('<div class="coursesplus-eventTitle"></div>'));
-
-						$thisEvent.children(".coursesplus-eventTitle").text(thisEvent.title);
+					$thisEvent.children(".coursesplus-eventTitle").text(thisEvent.title);
 
 					$thisEvent.append($('<div class="coursesplus-eventDesc"></div>'));
-
-						$thisEvent.children(".coursesplus-eventDesc").text(thisEvent.normText);
+					$thisEvent.children(".coursesplus-eventDesc").text(thisEvent.normText);
 
 					$thisEvent.append($('<div class="coursesplus-eventGo"><a href="" class="btn btn-sm btn-primary">read more</a></div>'));
-
-						$thisEvent.children(".coursesplus-eventGo").children("a").attr("href", thisEvent.link);
+					$thisEvent.children(".coursesplus-eventGo").children("a").attr("href", thisEvent.link);
 
 					$(".upcomingEventsModal").find(".upcomingPanel").append($thisEvent);
 

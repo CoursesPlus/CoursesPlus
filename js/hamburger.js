@@ -4,7 +4,7 @@
 function setPageTo(pageId, dataStuff) {
 	$("html, body").animate({ scrollTop: 0 }, 125);
 
-	History.pushState({}, "Dalton Courses", "#!" + pageId + ((dataStuff !== undefined) ? "-" + dataStuff : ""));
+	//History.pushState({}, "Dalton Courses", "#!" + pageId + ((dataStuff !== undefined) ? "-" + dataStuff : ""));
 	setTimeout(function() {
 		$(".page.showing").removeClass("showing");
 		$("#" + pageId).addClass("showing");
