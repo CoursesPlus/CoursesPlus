@@ -535,20 +535,11 @@ $(document).ready(function() {
 		for (var themeIndex in window.themes) {
 			var thisTheme = window.themes[themeIndex];
 			var $themeRadio = $("<div><label></label></div>");
-
 				$themeRadio.addClass("radio");
-
 				var $radioButton = $('<input type="radio" name="themeRadios" />');
-
 					$radioButton.val(themeIndex);
-
 				$themeRadio.children("label").append($radioButton);
-
 				$themeRadio.children("label").append(thisTheme.name);
-				if (thisTheme.editorsChoice) {
-					$themeRadio.children("label").append(' <em>Editor\'s Choice!</em>');
-				}
-
 			$("#theme").append($themeRadio);
 		}
 
