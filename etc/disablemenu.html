@@ -13,24 +13,29 @@
 				margin-right: 10px;
 				padding-bottom: 10px;
 			}
+			.hidden {
+				display: none;
+			}
 		</style>
 
 		<script src="../js/jquery.js"></script>
+		<script src="disablemenu.js"></script>
 	</head>
 	<body>
-		<h1>Disable the Menu bar Icon</h1>
-		<h3>Please follow the below instructions to disable the icon in the menu bar.</h3>
+		<h1>Disable menubar icon</h1>
 		<ol>
 			<li>Find the Dalton logo in the menu bar. (It looks like this: <img src="../images/logos/circle.png" height="19" width="19" />)</li>
-			<li>If you are on a Mac, <strong>hold control and click it</strong>.</li>
-			<li>If you are on Windows, <strong>right-click it.</strong>.</li>
-			<li>Click "Hide button".</li>
+			<li>If you are on a Mac, <strong>hold control and click it</strong>. Otherwise, <strong>right-click it</strong>.</li>
+			<li class="hidden chromeOnly">Click "Hide button".</li>
+			<li class="hidden firefoxOnly">Click "Remove from toolbar".</li>
 		</ol>
-		To re-enable the button:
+		<h3>To re-enable it</h3>
 		<ol>
 			<li>Click the three lines ("hamburger") menu in the top right.</li>
-			<li>Select "More Tools" and click on "Extensions".</li>
-			<li>Scroll down to CoursesPlus, and click "Show Button" (right next to "Allow in incognito").</li>
+			<li class="hidden chromeOnly">Select "More Tools" and click on "Extensions".</li>
+			<li class="hidden chromeOnly">Scroll down to CoursesPlus, and click "Show Button" (right next to "Allow in incognito").</li>
+			<li class="hidden firefoxOnly">Click "Customize".</li>
+			<li class="hidden firefoxOnly">Drag the CoursesPlus icon back to the menu bar.</li>
 		</ol>
 	</body>
 </html>
