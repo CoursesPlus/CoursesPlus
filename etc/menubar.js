@@ -131,7 +131,8 @@ $(document).ready(function () {
 					}
 				} else {
 					if (!settings.serviceUpsell) {
-						var $upsellElem = $('<div id="serviceUpsell"><p>You can add services up here! Just select the "Menubar" section of the options page to pick what shows up.</p></div>');
+						var $upsellElem = $('<div id="serviceUpsell">You can add services up here! Just select the "Menubar" section of the options page to pick what shows up.</div>');
+							$upsellElem.append("<br />");
 							var $learnMoreBtn = $('<a href="' + cpal.resources.getURL("etc/options.html#menubar") + '" target="_blank" class="btn btn-primary btn-lg">Learn more</a>');
 							$upsellElem.append($learnMoreBtn);
 
