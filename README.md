@@ -1,4 +1,4 @@
-# CoursesPlus [![Chrome Web Store](https://img.shields.io/chrome-web-store/d/pieincmodljnbihihjnapcmhdddhbpgi.svg)](https://chrome.google.com/webstore/detail/coursesplus/pieincmodljnbihihjnapcmhdddhbpgi)[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/pieincmodljnbihihjnapcmhdddhbpgi.svg)](https://chrome.google.com/webstore/detail/coursesplus/pieincmodljnbihihjnapcmhdddhbpgi/reviews) 
+# CoursesPlus [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/pieincmodljnbihihjnapcmhdddhbpgi.svg)](https://chrome.google.com/webstore/detail/coursesplus/pieincmodljnbihihjnapcmhdddhbpgi) [![Chrome Web Store](https://img.shields.io/chrome-web-store/d/pieincmodljnbihihjnapcmhdddhbpgi.svg)](https://chrome.google.com/webstore/detail/coursesplus/pieincmodljnbihihjnapcmhdddhbpgi) [![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/pieincmodljnbihihjnapcmhdddhbpgi.svg)](https://chrome.google.com/webstore/detail/coursesplus/pieincmodljnbihihjnapcmhdddhbpgi/reviews) 
 
 Hello! This is the official repository for CoursesPlus!
 
