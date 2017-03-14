@@ -1,5 +1,5 @@
-# CoursesPlus [![Chrome Web Store](https://img.shields.io/chrome-web-store/d/pieincmodljnbihihjnapcmhdddhbpgi.svg)](https://chrome.google.com/webstore/detail/coursesplus/pieincmodljnbihihjnapcmhdddhbpgi)
----
+# CoursesPlus [![Chrome Web Store](https://img.shields.io/chrome-web-store/d/pieincmodljnbihihjnapcmhdddhbpgi.svg)](https://chrome.google.com/webstore/detail/coursesplus/pieincmodljnbihihjnapcmhdddhbpgi)[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/pieincmodljnbihihjnapcmhdddhbpgi.svg)](https://chrome.google.com/webstore/detail/coursesplus/pieincmodljnbihihjnapcmhdddhbpgi/reviews) 
+
 Hello! This is the official repository for CoursesPlus!
 
 CoursesPlus is an extension available on the Chrome and Opera Web Stores.
