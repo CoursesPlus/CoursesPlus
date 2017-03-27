@@ -1,3 +1,3 @@
 var consts = {};
 
-consts.isBeta = true;
+consts.isBeta = false;
